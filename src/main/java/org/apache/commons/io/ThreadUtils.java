@@ -42,27 +42,7 @@ public final class ThreadUtils {
      * @see Thread#sleep(long, int)
      */
     public static void sleep(final Duration duration) throws InterruptedException {
-        // Using this method avoids depending on the vagaries of the precision and accuracy of system timers and schedulers.
-        try {
-            // Use the JVM elapsed time, avoids issues with DST changes and manual OS time changes.
-            final long nanoStart = System.nanoTime();
-            final long finishNanos = nanoStart + duration.toNanos(); // toNanos(): Possible ArithmeticException, otherwise wrap around OK.
-            Duration remainingDuration = duration;
-            long nowNano;
-            do {
-                Thread.sleep(remainingDuration.toMillis(), getNanosOfMilli(remainingDuration));
-                nowNano = System.nanoTime();
-                remainingDuration = Duration.ofNanos(finishNanos - nowNano);
-            } while (nowNano - finishNanos < 0); // handles wrap around, see Thread#sleep(long, int).
-        } catch (final ArithmeticException e) {
-            // Use the current time
-            final Instant finishInstant = Instant.now().plus(duration);
-            Duration remainingDuration = duration;
-            do {
-                Thread.sleep(remainingDuration.toMillis(), getNanosOfMilli(remainingDuration));
-                remainingDuration = Duration.between(Instant.now(), finishInstant);
-            } while (!remainingDuration.isNegative());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

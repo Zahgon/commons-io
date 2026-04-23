@@ -105,8 +105,7 @@ public final class MessageDigestInputStream extends ObservableInputStream {
          */
         @Override
         public MessageDigestInputStream get() throws IOException {
-            setObservers(Arrays.asList(new MessageDigestMaintainingObserver(messageDigest)));
-            return new MessageDigestInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -119,8 +118,7 @@ public final class MessageDigestInputStream extends ObservableInputStream {
          * @return {@code this} instance.
          */
         public Builder setMessageDigest(final MessageDigest messageDigest) {
-            this.messageDigest = messageDigest;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -136,10 +134,8 @@ public final class MessageDigestInputStream extends ObservableInputStream {
          * @throws NoSuchAlgorithmException if no Provider supports a MessageDigestSpi implementation for the specified algorithm.
          */
         public Builder setMessageDigest(final String algorithm) throws NoSuchAlgorithmException {
-            this.messageDigest = MessageDigest.getInstance(algorithm);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -161,12 +157,12 @@ public final class MessageDigestInputStream extends ObservableInputStream {
 
         @Override
         public void data(final byte[] input, final int offset, final int length) throws IOException {
-            messageDigest.update(input, offset, length);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void data(final int input) throws IOException {
-            messageDigest.update((byte) input);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -176,7 +172,7 @@ public final class MessageDigestInputStream extends ObservableInputStream {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -208,6 +204,6 @@ public final class MessageDigestInputStream extends ObservableInputStream {
      * @return the message digest used, never null.
      */
     public MessageDigest getMessageDigest() {
-        return messageDigest;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

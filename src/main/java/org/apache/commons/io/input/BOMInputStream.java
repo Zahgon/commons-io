@@ -17,14 +17,12 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-
 import org.apache.commons.io.ByteOrderMark;
 import org.apache.commons.io.IOUtils;
 
@@ -137,7 +135,7 @@ public class BOMInputStream extends ProxyInputStream {
          * @return the default byte order mark
          */
         static ByteOrderMark getDefaultByteOrderMark() {
-            return DEFAULT[0];
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private ByteOrderMark[] byteOrderMarks = DEFAULT;
@@ -177,7 +175,7 @@ public class BOMInputStream extends ProxyInputStream {
          */
         @Override
         public BOMInputStream get() throws IOException {
-            return new BOMInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -190,8 +188,7 @@ public class BOMInputStream extends ProxyInputStream {
          * @return {@code this} instance.
          */
         public Builder setByteOrderMarks(final ByteOrderMark... byteOrderMarks) {
-            this.byteOrderMarks = byteOrderMarks != null ? byteOrderMarks.clone() : DEFAULT;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -204,10 +201,8 @@ public class BOMInputStream extends ProxyInputStream {
          * @return {@code this} instance.
          */
         public Builder setInclude(final boolean include) {
-            this.include = include;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -222,7 +217,7 @@ public class BOMInputStream extends ProxyInputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -231,10 +226,15 @@ public class BOMInputStream extends ProxyInputStream {
     private final List<ByteOrderMark> bomList;
 
     private ByteOrderMark byteOrderMark;
+
     private int fbIndex;
+
     private int[] firstBytes;
+
     private final boolean include;
+
     private boolean markedAtStart;
+
     private int markFbIndex;
 
     private BOMInputStream(final Builder builder) throws IOException {
@@ -330,10 +330,7 @@ public class BOMInputStream extends ProxyInputStream {
      *             if an error reading the first bytes of the stream occurs.
      */
     public ByteOrderMark getBOM() throws IOException {
-        if (firstBytes == null) {
-            byteOrderMark = readBom();
-        }
-        return byteOrderMark;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -344,8 +341,7 @@ public class BOMInputStream extends ProxyInputStream {
      *             if an error reading the first bytes of the stream occurs
      */
     public String getBOMCharsetName() throws IOException {
-        getBOM();
-        return byteOrderMark == null ? null : byteOrderMark.getCharsetName();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -356,7 +352,7 @@ public class BOMInputStream extends ProxyInputStream {
      *             if an error reading the first bytes of the stream occurs
      */
     public boolean hasBOM() throws IOException {
-        return getBOM() != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -371,10 +367,7 @@ public class BOMInputStream extends ProxyInputStream {
      *             if an error reading the first bytes of the stream occurs
      */
     public boolean hasBOM(final ByteOrderMark bom) throws IOException {
-        if (!bomList.contains(bom)) {
-            throw new IllegalArgumentException("Stream not configured to detect " + bom);
-        }
-        return Objects.equals(getBOM(), bom);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -385,9 +378,7 @@ public class BOMInputStream extends ProxyInputStream {
      */
     @Override
     public synchronized void mark(final int readLimit) {
-        markFbIndex = fbIndex;
-        markedAtStart = firstBytes == null;
-        in.mark(readLimit);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -410,9 +401,7 @@ public class BOMInputStream extends ProxyInputStream {
      */
     @Override
     public int read() throws IOException {
-        checkOpen();
-        final int b = readFirstBytes();
-        return b >= 0 ? b : in.read();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -426,7 +415,7 @@ public class BOMInputStream extends ProxyInputStream {
      */
     @Override
     public int read(final byte[] buf) throws IOException {
-        return read(buf, 0, buf.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -444,19 +433,7 @@ public class BOMInputStream extends ProxyInputStream {
      */
     @Override
     public int read(final byte[] buf, int off, int len) throws IOException {
-        int firstCount = 0;
-        int b = 0;
-        while (len > 0 && b >= 0) {
-            b = readFirstBytes();
-            if (b >= 0) {
-                buf[off++] = (byte) (b & 0xFF);
-                len--;
-                firstCount++;
-            }
-        }
-        final int secondCount = in.read(buf, off, len);
-        afterRead(secondCount);
-        return secondCount < 0 ? firstCount > 0 ? firstCount : EOF : firstCount + secondCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private ByteOrderMark readBom() throws IOException {
@@ -506,11 +483,7 @@ public class BOMInputStream extends ProxyInputStream {
      */
     @Override
     public synchronized void reset() throws IOException {
-        fbIndex = markFbIndex;
-        if (markedAtStart) {
-            firstBytes = null;
-        }
-        in.reset();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -524,10 +497,6 @@ public class BOMInputStream extends ProxyInputStream {
      */
     @Override
     public long skip(final long n) throws IOException {
-        int skipped = 0;
-        while (n > skipped && readFirstBytes() >= 0) {
-            skipped++;
-        }
-        return in.skip(n - skipped) + skipped;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

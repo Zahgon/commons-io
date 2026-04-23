@@ -58,11 +58,7 @@ public class TeeOutputStream extends ProxyOutputStream {
      */
     @Override
     public void close() throws IOException {
-        try {
-            super.close();
-        } finally {
-            this.branch.close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,8 +68,7 @@ public class TeeOutputStream extends ProxyOutputStream {
      */
     @Override
     public void flush() throws IOException {
-        super.flush();
-        this.branch.flush();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,8 +79,7 @@ public class TeeOutputStream extends ProxyOutputStream {
      */
     @Override
     public synchronized void write(final byte[] b) throws IOException {
-        super.write(b);
-        this.branch.write(b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -98,8 +92,7 @@ public class TeeOutputStream extends ProxyOutputStream {
      */
     @Override
     public synchronized void write(final byte[] b, final int off, final int len) throws IOException {
-        super.write(b, off, len);
-        this.branch.write(b, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -110,8 +103,6 @@ public class TeeOutputStream extends ProxyOutputStream {
      */
     @Override
     public synchronized void write(final int b) throws IOException {
-        super.write(b);
-        this.branch.write(b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

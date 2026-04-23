@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.Reader;
@@ -77,12 +76,17 @@ public class NullReader extends Reader {
     public static final NullReader INSTANCE = new NullReader();
 
     private final long size;
+
     private final boolean throwEofException;
+
     private final boolean markSupported;
 
     private long position;
+
     private long mark = -1;
+
     private long readLimit;
+
     private boolean eof;
 
     /**
@@ -92,7 +96,7 @@ public class NullReader extends Reader {
      * @since 2.7
      */
     public NullReader() {
-       this(0, true, false);
+        this(0, true, false);
     }
 
     /**
@@ -102,7 +106,7 @@ public class NullReader extends Reader {
      * @param size The size of the reader to emulate.
      */
     public NullReader(final long size) {
-       this(size, true, false);
+        this(size, true, false);
     }
 
     /**
@@ -117,9 +121,9 @@ public class NullReader extends Reader {
      * end of file is reached.
      */
     public NullReader(final long size, final boolean markSupported, final boolean throwEofException) {
-       this.size = size;
-       this.markSupported = markSupported;
-       this.throwEofException = throwEofException;
+        this.size = size;
+        this.markSupported = markSupported;
+        this.throwEofException = throwEofException;
     }
 
     /**
@@ -130,9 +134,7 @@ public class NullReader extends Reader {
      */
     @Override
     public void close() throws IOException {
-        eof = false;
-        position = 0;
-        mark = -1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -157,7 +159,7 @@ public class NullReader extends Reader {
      * @return the current position.
      */
     public long getPosition() {
-        return position;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -166,7 +168,7 @@ public class NullReader extends Reader {
      * @return The size of the reader to emulate.
      */
     public long getSize() {
-        return size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -178,11 +180,7 @@ public class NullReader extends Reader {
      */
     @Override
     public synchronized void mark(final int readLimit) {
-        if (!markSupported) {
-            throw UnsupportedOperationExceptions.mark();
-        }
-        mark = position;
-        this.readLimit = readLimit;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -192,7 +190,7 @@ public class NullReader extends Reader {
      */
     @Override
     public boolean markSupported() {
-        return markSupported;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -204,8 +202,7 @@ public class NullReader extends Reader {
      * @return This implementation always returns zero.
      */
     protected int processChar() {
-        // do nothing - overridable by subclass
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -220,7 +217,7 @@ public class NullReader extends Reader {
      * @param length The number of characters.
      */
     protected void processChars(final char[] chars, final int offset, final int length) {
-        // do nothing - overridable by subclass
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -235,14 +232,7 @@ public class NullReader extends Reader {
      */
     @Override
     public int read() throws IOException {
-        if (eof) {
-            throw new IOException("Read after end of file");
-        }
-        if (position == size) {
-            return doEndOfFile();
-        }
-        position++;
-        return processChar();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -258,7 +248,7 @@ public class NullReader extends Reader {
      */
     @Override
     public int read(final char[] chars) throws IOException {
-        return read(chars, 0, chars.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -276,20 +266,7 @@ public class NullReader extends Reader {
      */
     @Override
     public int read(final char[] chars, final int offset, final int length) throws IOException {
-        if (eof) {
-            throw new IOException("Read after end of file");
-        }
-        if (position == size) {
-            return doEndOfFile();
-        }
-        position += length;
-        int returnLength = length;
-        if (position > size) {
-            returnLength = length - (int) (position - size);
-            position = size;
-        }
-        processChars(chars, offset, returnLength);
-        return returnLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -302,19 +279,7 @@ public class NullReader extends Reader {
      */
     @Override
     public synchronized void reset() throws IOException {
-        if (!markSupported) {
-            throw UnsupportedOperationExceptions.reset();
-        }
-        if (mark < 0) {
-            throw new IOException("No position has been marked");
-        }
-        if (position > mark + readLimit) {
-            throw new IOException("Marked position [" + mark +
-                    "] is no longer valid - passed the read limit [" +
-                    readLimit + "]");
-        }
-        position = mark;
-        eof = false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -330,19 +295,6 @@ public class NullReader extends Reader {
      */
     @Override
     public long skip(final long numberOfChars) throws IOException {
-        if (eof) {
-            throw new IOException("Skip after end of file");
-        }
-        if (position == size) {
-            return doEndOfFile();
-        }
-        position += numberOfChars;
-        long returnLength = numberOfChars;
-        if (position > size) {
-            returnLength = numberOfChars - (position - size);
-            position = size;
-        }
-        return returnLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

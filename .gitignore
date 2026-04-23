@@ -20,3 +20,8 @@ site-content
 
 ### Ignore Visual Studio code files
 /.vscode/
+
+.aider*
+logs/
+.commit0_scripts/
+.github/workflows/

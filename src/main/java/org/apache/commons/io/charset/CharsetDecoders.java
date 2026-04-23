@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.charset;
 
 import java.nio.charset.Charset;
@@ -37,10 +36,12 @@ public final class CharsetDecoders {
      * @return the given non-null CharsetDecoder or a new default CharsetDecoder.
      */
     public static CharsetDecoder toCharsetDecoder(final CharsetDecoder charsetDecoder) {
-        return charsetDecoder != null ? charsetDecoder : Charset.defaultCharset().newDecoder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** No instances. */
+    /**
+     * No instances.
+     */
     private CharsetDecoders() {
         // No instances.
     }

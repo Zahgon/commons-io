@@ -19,7 +19,6 @@ package org.apache.commons.io.input;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -51,8 +50,11 @@ public class CircularInputStream extends AbstractInputStream {
     }
 
     private long byteCount;
+
     private int position = IOUtils.EOF;
+
     private final byte[] repeatedContent;
+
     private final long targetByteCount;
 
     /**
@@ -71,26 +73,16 @@ public class CircularInputStream extends AbstractInputStream {
 
     @Override
     public int available() throws IOException {
-        // A negative targetByteCount means an infinite target count.
-        return isClosed() ? 0 : targetByteCount <= Integer.MAX_VALUE ? Math.max(Integer.MAX_VALUE, (int) targetByteCount) : Integer.MAX_VALUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() throws IOException {
-        super.close();
-        byteCount = targetByteCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read() {
-        if (targetByteCount >= 0 || isClosed()) {
-            if (byteCount == targetByteCount) {
-                return IOUtils.EOF;
-            }
-            byteCount++;
-        }
-        position = (position + 1) % repeatedContent.length;
-        return repeatedContent[position] & 0xff;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

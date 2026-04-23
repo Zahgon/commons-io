@@ -53,10 +53,14 @@ public class DefaultFileComparator extends AbstractFileComparator implements Ser
 
     private static final long serialVersionUID = 3260141861365313518L;
 
-    /** Singleton default comparator instance */
+    /**
+     * Singleton default comparator instance
+     */
     public static final Comparator<File> DEFAULT_COMPARATOR = new DefaultFileComparator();
 
-    /** Singleton reverse default comparator instance */
+    /**
+     * Singleton reverse default comparator instance
+     */
     public static final Comparator<File> DEFAULT_REVERSE = new ReverseFileComparator(DEFAULT_COMPARATOR);
 
     /**
@@ -76,6 +80,6 @@ public class DefaultFileComparator extends AbstractFileComparator implements Ser
      */
     @Override
     public int compare(final File file1, final File file2) {
-        return file1.compareTo(file2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

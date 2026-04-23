@@ -29,7 +29,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Matcher;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
@@ -97,9 +96,8 @@ public class XmlStreamWriter extends Writer {
          */
         @Override
         public XmlStreamWriter get() throws IOException {
-            return new XmlStreamWriter(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private static final int BUFFER_SIZE = IOUtils.DEFAULT_BUFFER_SIZE;
@@ -111,7 +109,7 @@ public class XmlStreamWriter extends Writer {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final OutputStream out;
@@ -124,7 +122,8 @@ public class XmlStreamWriter extends Writer {
 
     private Charset charset;
 
-    @SuppressWarnings("resource") // caller closes.
+    // caller closes.
+    @SuppressWarnings("resource")
     private XmlStreamWriter(final Builder builder) throws IOException {
         this(builder.getOutputStream(), builder.getCharset());
     }
@@ -203,12 +202,7 @@ public class XmlStreamWriter extends Writer {
      */
     @Override
     public void close() throws IOException {
-        if (writer == null) {
-            charset = defaultCharset;
-            writer = new OutputStreamWriter(out, charset);
-            writer.write(prologWriter.toString());
-        }
-        writer.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -219,15 +213,13 @@ public class XmlStreamWriter extends Writer {
      * @param len The number of characters to write
      * @throws IOException if an error occurs detecting the encoding
      */
-    private void detectEncoding(final char[] cbuf, final int off, final int len)
-            throws IOException {
+    private void detectEncoding(final char[] cbuf, final int off, final int len) throws IOException {
         int size = len;
         final StringBuffer xmlProlog = prologWriter.getBuffer();
         if (xmlProlog.length() + len > BUFFER_SIZE) {
             size = BUFFER_SIZE - xmlProlog.length();
         }
         prologWriter.write(cbuf, off, size);
-
         // try to determine encoding
         if (xmlProlog.length() >= 5) {
             if (xmlProlog.substring(0, 5).equals("<?xml")) {
@@ -235,8 +227,7 @@ public class XmlStreamWriter extends Writer {
                 final int xmlPrologEnd = xmlProlog.indexOf("?>");
                 if (xmlPrologEnd > 0) {
                     // ok, full XML prolog written: let's extract encoding
-                    final Matcher m = XmlStreamReader.ENCODING_PATTERN.matcher(xmlProlog.substring(0,
-                            xmlPrologEnd));
+                    final Matcher m = XmlStreamReader.ENCODING_PATTERN.matcher(xmlProlog.substring(0, xmlPrologEnd));
                     if (m.find()) {
                         final String encName = m.group(1).toUpperCase(Locale.ROOT);
                         charset = Charset.forName(encName.substring(1, encName.length() - 1));
@@ -273,9 +264,7 @@ public class XmlStreamWriter extends Writer {
      */
     @Override
     public void flush() throws IOException {
-        if (writer != null) {
-            writer.flush();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -284,7 +273,7 @@ public class XmlStreamWriter extends Writer {
      * @return the default encoding
      */
     public String getDefaultEncoding() {
-        return defaultCharset.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -293,7 +282,7 @@ public class XmlStreamWriter extends Writer {
      * @return the detected encoding
      */
     public String getEncoding() {
-        return charset.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -306,10 +295,6 @@ public class XmlStreamWriter extends Writer {
      */
     @Override
     public void write(final char[] cbuf, final int off, final int len) throws IOException {
-        if (prologWriter != null) {
-            detectEncoding(cbuf, off, len);
-        } else {
-            writer.write(cbuf, off, len);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -25,7 +25,6 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.Objects;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.build.AbstractOrigin;
@@ -74,6 +73,7 @@ public class LockableFileWriter extends Writer {
     public static class Builder extends AbstractStreamBuilder<LockableFileWriter, Builder> {
 
         private boolean append;
+
         private AbstractOrigin<?, ?> lockDirectory = newFileOrigin(FileUtils.getTempDirectoryPath());
 
         /**
@@ -112,7 +112,7 @@ public class LockableFileWriter extends Writer {
          */
         @Override
         public LockableFileWriter get() throws IOException {
-            return new LockableFileWriter(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -122,8 +122,7 @@ public class LockableFileWriter extends Writer {
          * @return {@code this} instance.
          */
         public Builder setAppend(final boolean append) {
-            this.append = append;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -133,8 +132,7 @@ public class LockableFileWriter extends Writer {
          * @return {@code this} instance.
          */
         public Builder setLockDirectory(final File lockDirectory) {
-            this.lockDirectory = newFileOrigin(lockDirectory != null ? lockDirectory : FileUtils.getTempDirectory());
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -144,13 +142,13 @@ public class LockableFileWriter extends Writer {
          * @return {@code this} instance.
          */
         public Builder setLockDirectory(final String lockDirectory) {
-            this.lockDirectory = newFileOrigin(lockDirectory != null ? lockDirectory : FileUtils.getTempDirectoryPath());
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
-    /** The extension for the lock file. */
+    /**
+     * The extension for the lock file.
+     */
     private static final String LCK = ".lck";
 
     /**
@@ -160,19 +158,22 @@ public class LockableFileWriter extends Writer {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The writer to decorate. */
+    /**
+     * The writer to decorate.
+     */
     private final Writer out;
 
-    /** The lock file. */
+    /**
+     * The lock file.
+     */
     private final File lockFile;
 
     private LockableFileWriter(final Builder builder) throws IOException {
         this(builder.checkOriginFile(), builder.getCharset(), builder.append, builder.lockDirectory.getFile().toString());
     }
-
 
     /**
      * Constructs a LockableFileWriter. If the file exists, it is overwritten.
@@ -350,11 +351,7 @@ public class LockableFileWriter extends Writer {
      */
     @Override
     public void close() throws IOException {
-        try {
-            out.close();
-        } finally {
-            FileUtils.delete(lockFile);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -378,7 +375,7 @@ public class LockableFileWriter extends Writer {
      */
     @Override
     public void flush() throws IOException {
-        out.flush();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -427,7 +424,7 @@ public class LockableFileWriter extends Writer {
      */
     @Override
     public void write(final char[] cbuf) throws IOException {
-        out.write(cbuf);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -440,7 +437,7 @@ public class LockableFileWriter extends Writer {
      */
     @Override
     public void write(final char[] cbuf, final int off, final int len) throws IOException {
-        out.write(cbuf, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -451,7 +448,7 @@ public class LockableFileWriter extends Writer {
      */
     @Override
     public void write(final int c) throws IOException {
-        out.write(c);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -462,7 +459,7 @@ public class LockableFileWriter extends Writer {
      */
     @Override
     public void write(final String str) throws IOException {
-        out.write(str);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -475,7 +472,6 @@ public class LockableFileWriter extends Writer {
      */
     @Override
     public void write(final String str, final int off, final int len) throws IOException {
-        out.write(str, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

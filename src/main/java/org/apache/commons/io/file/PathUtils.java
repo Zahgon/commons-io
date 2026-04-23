@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.io.File;
@@ -71,7 +70,6 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -138,14 +136,15 @@ public final class PathUtils {
         }
 
         static String extractKey(final String separator, final String string) {
-            // Replace the file separator in a path string with a string that is not legal in a path on Windows, Linux, and macOS.
-            return string.replaceAll("\\" + separator, ">");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         final boolean equals;
+
         // final List<Path> relativeDirList1; // might need later?
         // final List<Path> relativeDirList2; // might need later?
         final List<Path> relativeFileList1;
+
         final List<Path> relativeFileList2;
 
         /**
@@ -158,8 +157,7 @@ public final class PathUtils {
          * @param fileVisitOptions See {@link Files#walkFileTree(Path,Set,int,FileVisitor)}.
          * @throws IOException if an I/O error is thrown by a visitor method.
          */
-        private RelativeSortedPaths(final Path dir1, final Path dir2, final int maxDepth, final LinkOption[] linkOptions,
-                final FileVisitOption[] fileVisitOptions) throws IOException {
+        private RelativeSortedPaths(final Path dir1, final Path dir2, final int maxDepth, final LinkOption[] linkOptions, final FileVisitOption[] fileVisitOptions) throws IOException {
             final List<Path> tmpRelativeDirList1;
             final List<Path> tmpRelativeDirList2;
             List<Path> tmpRelativeFileList1 = null;
@@ -199,33 +197,40 @@ public final class PathUtils {
     }
 
     private static final OpenOption[] OPEN_OPTIONS_TRUNCATE = { StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING };
+
     private static final OpenOption[] OPEN_OPTIONS_APPEND = { StandardOpenOption.CREATE, StandardOpenOption.APPEND };
+
     /**
      * Empty {@link CopyOption} array.
      *
      * @since 2.8.0
      */
     public static final CopyOption[] EMPTY_COPY_OPTIONS = {};
+
     /**
      * Empty {@link DeleteOption} array.
      *
      * @since 2.8.0
      */
     public static final DeleteOption[] EMPTY_DELETE_OPTION_ARRAY = {};
+
     /**
      * Empty {@link FileAttribute} array.
      *
      * @since 2.13.0
      */
     public static final FileAttribute<?>[] EMPTY_FILE_ATTRIBUTE_ARRAY = {};
+
     /**
      * Empty {@link FileVisitOption} array.
      */
     public static final FileVisitOption[] EMPTY_FILE_VISIT_OPTION_ARRAY = {};
+
     /**
      * Empty {@link LinkOption} array.
      */
     public static final LinkOption[] EMPTY_LINK_OPTION_ARRAY = {};
+
     /**
      * {@link LinkOption} array for {@link LinkOption#NOFOLLOW_LINKS}.
      *
@@ -234,16 +239,19 @@ public final class PathUtils {
      */
     @Deprecated
     public static final LinkOption[] NOFOLLOW_LINK_OPTION_ARRAY = { LinkOption.NOFOLLOW_LINKS };
+
     /**
      * A LinkOption used to follow link in this class, the inverse of {@link LinkOption#NOFOLLOW_LINKS}.
      *
      * @since 2.12.0
      */
     static final LinkOption NULL_LINK_OPTION = null;
+
     /**
      * Empty {@link OpenOption} array.
      */
     public static final OpenOption[] EMPTY_OPEN_OPTION_ARRAY = {};
+
     /**
      * Empty {@link Path} array.
      *
@@ -261,8 +269,7 @@ public final class PathUtils {
      * @return file tree information.
      */
     private static AccumulatorPathVisitor accumulate(final Path directory, final int maxDepth, final FileVisitOption[] fileVisitOptions) throws IOException {
-        return visitFileTree(AccumulatorPathVisitor.builder().setDirectoryPostTransformer(PathUtils::stripTrailingSeparator).get(), directory,
-                toFileVisitOptionSet(fileVisitOptions), maxDepth);
+        return visitFileTree(AccumulatorPathVisitor.builder().setDirectoryPostTransformer(PathUtils::stripTrailingSeparator).get(), directory, toFileVisitOptionSet(fileVisitOptions), maxDepth);
     }
 
     /**
@@ -273,7 +280,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
     public static PathCounters cleanDirectory(final Path directory) throws IOException {
-        return cleanDirectory(directory, EMPTY_DELETE_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -286,7 +293,7 @@ public final class PathUtils {
      * @since 2.8.0
      */
     public static PathCounters cleanDirectory(final Path directory, final DeleteOption... deleteOptions) throws IOException {
-        return visitFileTree(new CleaningPathVisitor(Counters.longPathCounters(), deleteOptions), directory).getPathCounters();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -325,20 +332,7 @@ public final class PathUtils {
      * @since 2.19.0
      */
     public static boolean contentEquals(final FileSystem fileSystem1, final FileSystem fileSystem2) throws IOException {
-        if (Objects.equals(fileSystem1, fileSystem2)) {
-            return true;
-        }
-        final List<Path> sortedList1 = toSortedList(fileSystem1.getRootDirectories());
-        final List<Path> sortedList2 = toSortedList(fileSystem2.getRootDirectories());
-        if (sortedList1.size() != sortedList2.size()) {
-            return false;
-        }
-        for (int i = 0; i < sortedList1.size(); i++) {
-            if (!directoryAndFileContentEquals(sortedList1.get(i), sortedList2.get(i))) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -352,9 +346,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static long copy(final IOSupplier<InputStream> in, final Path target, final CopyOption... copyOptions) throws IOException {
-        try (InputStream inputStream = in.get()) {
-            return Files.copy(inputStream, target, copyOptions);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -367,9 +359,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
     public static PathCounters copyDirectory(final Path sourceDirectory, final Path targetDirectory, final CopyOption... copyOptions) throws IOException {
-        final Path absoluteSource = sourceDirectory.toAbsolutePath();
-        return visitFileTree(new CopyDirectoryVisitor(Counters.longPathCounters(), absoluteSource, targetDirectory, copyOptions), absoluteSource)
-                .getPathCounters();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -383,8 +373,7 @@ public final class PathUtils {
      * @see Files#copy(InputStream, Path, CopyOption...)
      */
     public static Path copyFile(final URL sourceFile, final Path targetFile, final CopyOption... copyOptions) throws IOException {
-        copy(sourceFile::openStream, targetFile, copyOptions);
-        return targetFile;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -398,10 +387,7 @@ public final class PathUtils {
      * @see Files#copy(Path, Path, CopyOption...)
      */
     public static Path copyFileToDirectory(final Path sourceFile, final Path targetDirectory, final CopyOption... copyOptions) throws IOException {
-        // Path.resolve() naturally won't work across FileSystem unless we convert to a String
-        final Path sourceFileName = Objects.requireNonNull(sourceFile.getFileName(), "source file name");
-        final Path targetFile = resolve(targetDirectory, sourceFileName);
-        return Files.copy(sourceFile, targetFile, copyOptions);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -415,9 +401,7 @@ public final class PathUtils {
      * @see Files#copy(InputStream, Path, CopyOption...)
      */
     public static Path copyFileToDirectory(final URL sourceFile, final Path targetDirectory, final CopyOption... copyOptions) throws IOException {
-        final Path resolve = targetDirectory.resolve(FilenameUtils.getName(sourceFile.getFile()));
-        copy(sourceFile::openStream, resolve, copyOptions);
-        return resolve;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -428,7 +412,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
     public static PathCounters countDirectory(final Path directory) throws IOException {
-        return visitFileTree(CountingPathVisitor.withLongCounters(), directory).getPathCounters();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -440,7 +424,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static PathCounters countDirectoryAsBigInteger(final Path directory) throws IOException {
-        return visitFileTree(CountingPathVisitor.withBigIntegerCounters(), directory).getPathCounters();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -456,7 +440,7 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static Path createParentDirectories(final Path path, final FileAttribute<?>... attrs) throws IOException {
-        return createParentDirectories(path, LinkOption.NOFOLLOW_LINKS, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -473,13 +457,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static Path createParentDirectories(final Path path, final LinkOption linkOption, final FileAttribute<?>... attrs) throws IOException {
-        Path parent = getParent(path);
-        parent = linkOption == LinkOption.NOFOLLOW_LINKS ? parent : readIfSymbolicLink(parent);
-        if (parent == null) {
-            return null;
-        }
-        final boolean exists = linkOption == null ? Files.exists(parent) : Files.exists(parent, linkOption);
-        return exists ? parent : Files.createDirectories(parent, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -489,7 +467,7 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static Path current() {
-        return Paths.get(".");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -508,7 +486,7 @@ public final class PathUtils {
      * @throws IOException          if an I/O error is thrown by a visitor method or if an I/O error occurs.
      */
     public static PathCounters delete(final Path path) throws IOException {
-        return delete(path, EMPTY_DELETE_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -529,8 +507,7 @@ public final class PathUtils {
      * @since 2.8.0
      */
     public static PathCounters delete(final Path path, final DeleteOption... deleteOptions) throws IOException {
-        // File deletion through Files deletes links, not targets, so use LinkOption.NOFOLLOW_LINKS.
-        return Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS) ? deleteDirectory(path, deleteOptions) : deleteFile(path, deleteOptions);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -552,8 +529,7 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static PathCounters delete(final Path path, final LinkOption[] linkOptions, final DeleteOption... deleteOptions) throws IOException {
-        // File deletion through Files deletes links, not targets, so use LinkOption.NOFOLLOW_LINKS.
-        return Files.isDirectory(path, linkOptions) ? deleteDirectory(path, linkOptions, deleteOptions) : deleteFile(path, linkOptions, deleteOptions);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -564,7 +540,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
     public static PathCounters deleteDirectory(final Path directory) throws IOException {
-        return deleteDirectory(directory, EMPTY_DELETE_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -577,10 +553,7 @@ public final class PathUtils {
      * @since 2.8.0
      */
     public static PathCounters deleteDirectory(final Path directory, final DeleteOption... deleteOptions) throws IOException {
-        final LinkOption[] linkOptions = noFollowLinkOptionArray();
-        // POSIX ops will noop on non-POSIX.
-        return withPosixFileAttributes(getParent(directory), linkOptions, overrideReadOnly(deleteOptions),
-                pfa -> visitFileTree(new DeletingPathVisitor(Counters.longPathCounters(), linkOptions, deleteOptions), directory).getPathCounters());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -594,7 +567,7 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static PathCounters deleteDirectory(final Path directory, final LinkOption[] linkOptions, final DeleteOption... deleteOptions) throws IOException {
-        return visitFileTree(new DeletingPathVisitor(Counters.longPathCounters(), linkOptions, deleteOptions), directory).getPathCounters();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -606,7 +579,7 @@ public final class PathUtils {
      * @throws NoSuchFileException if the file is a directory
      */
     public static PathCounters deleteFile(final Path file) throws IOException {
-        return deleteFile(file, EMPTY_DELETE_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -620,8 +593,7 @@ public final class PathUtils {
      * @since 2.8.0
      */
     public static PathCounters deleteFile(final Path file, final DeleteOption... deleteOptions) throws IOException {
-        // Files.deleteIfExists() never follows links, so use LinkOption.NOFOLLOW_LINKS in other calls to Files.
-        return deleteFile(file, noFollowLinkOptionArray(), deleteOptions);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -635,46 +607,8 @@ public final class PathUtils {
      * @throws NoSuchFileException if the file is a directory.
      * @since 2.9.0
      */
-    public static PathCounters deleteFile(final Path file, final LinkOption[] linkOptions, final DeleteOption... deleteOptions)
-            throws NoSuchFileException, IOException {
-        //
-        // TODO Needs clean up?
-        //
-        if (Files.isDirectory(file, linkOptions)) {
-            throw new NoSuchFileException(file.toString());
-        }
-        final PathCounters pathCounts = Counters.longPathCounters();
-        boolean exists = exists(file, linkOptions);
-        long size = exists && !Files.isSymbolicLink(file) ? Files.size(file) : 0;
-        try {
-            if (Files.deleteIfExists(file)) {
-                pathCounts.getFileCounter().increment();
-                pathCounts.getByteCounter().add(size);
-                return pathCounts;
-            }
-        } catch (final AccessDeniedException ignored) {
-            // Ignore and try again below.
-        }
-        final Path parent = getParent(file);
-        PosixFileAttributes posixFileAttributes = null;
-        try {
-            if (overrideReadOnly(deleteOptions)) {
-                posixFileAttributes = readPosixFileAttributes(parent, linkOptions);
-                setReadOnly(file, false, linkOptions);
-            }
-            // Read size _after_ having read/execute access on POSIX.
-            exists = exists(file, linkOptions);
-            size = exists && !Files.isSymbolicLink(file) ? Files.size(file) : 0;
-            if (Files.deleteIfExists(file)) {
-                pathCounts.getFileCounter().increment();
-                pathCounts.getByteCounter().add(size);
-            }
-        } finally {
-            if (posixFileAttributes != null) {
-                Files.setPosixFilePermissions(parent, posixFileAttributes.permissions());
-            }
-        }
-        return pathCounts;
+    public static PathCounters deleteFile(final Path file, final LinkOption[] linkOptions, final DeleteOption... deleteOptions) throws NoSuchFileException, IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -684,7 +618,7 @@ public final class PathUtils {
      * @since 3.13.0
      */
     public static void deleteOnExit(final Path path) {
-        Objects.requireNonNull(path).toFile().deleteOnExit();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -697,7 +631,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
     public static boolean directoryAndFileContentEquals(final Path path1, final Path path2) throws IOException {
-        return directoryAndFileContentEquals(path1, path2, EMPTY_LINK_OPTION_ARRAY, EMPTY_OPEN_OPTION_ARRAY, EMPTY_FILE_VISIT_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -712,42 +646,8 @@ public final class PathUtils {
      * @return Whether the two directories contain the same files while considering file contents.
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
-    public static boolean directoryAndFileContentEquals(final Path path1, final Path path2, final LinkOption[] linkOptions, final OpenOption[] openOptions,
-            final FileVisitOption[] fileVisitOption) throws IOException {
-        // First walk both file trees and gather normalized paths.
-        if (path1 == null && path2 == null) {
-            return true;
-        }
-        if (path1 == null || path2 == null) {
-            return false;
-        }
-        if (notExists(path1) && notExists(path2)) {
-            return true;
-        }
-        final RelativeSortedPaths relativeSortedPaths = new RelativeSortedPaths(path1, path2, Integer.MAX_VALUE, linkOptions, fileVisitOption);
-        // If the normalized path names and counts are not the same, no need to compare contents.
-        if (!relativeSortedPaths.equals) {
-            return false;
-        }
-        // Both visitors contain the same normalized paths, we can compare file contents.
-        final List<Path> fileList1 = relativeSortedPaths.relativeFileList1;
-        final List<Path> fileList2 = relativeSortedPaths.relativeFileList2;
-        final boolean sameFileSystem = isSameFileSystem(path1, path2);
-        for (final Path path : fileList1) {
-            final int binarySearch = sameFileSystem ? Collections.binarySearch(fileList2, path)
-                    : Collections.binarySearch(fileList2, path,
-                            Comparator.comparing(p -> RelativeSortedPaths.extractKey(p.getFileSystem().getSeparator(), p.toString())));
-            if (binarySearch < 0) {
-                throw new IllegalStateException("Unexpected mismatch.");
-            }
-            if (sameFileSystem && !fileContentEquals(path1.resolve(path), path2.resolve(path), linkOptions, openOptions)) {
-                return false;
-            }
-            if (!fileContentEquals(path1.resolve(path.toString()), path2.resolve(path.toString()), linkOptions, openOptions)) {
-                return false;
-            }
-        }
-        return true;
+    public static boolean directoryAndFileContentEquals(final Path path1, final Path path2, final LinkOption[] linkOptions, final OpenOption[] openOptions, final FileVisitOption[] fileVisitOption) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -760,7 +660,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
     public static boolean directoryContentEquals(final Path path1, final Path path2) throws IOException {
-        return directoryContentEquals(path1, path2, Integer.MAX_VALUE, EMPTY_LINK_OPTION_ARRAY, EMPTY_FILE_VISIT_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -775,9 +675,8 @@ public final class PathUtils {
      * @return Whether the two directories contain the same files without considering file contents.
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
-    public static boolean directoryContentEquals(final Path path1, final Path path2, final int maxDepth, final LinkOption[] linkOptions,
-            final FileVisitOption[] fileVisitOptions) throws IOException {
-        return new RelativeSortedPaths(path1, path2, maxDepth, linkOptions, fileVisitOptions).equals;
+    public static boolean directoryContentEquals(final Path path1, final Path path2, final int maxDepth, final LinkOption[] linkOptions, final FileVisitOption[] fileVisitOptions) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static boolean exists(final Path path, final LinkOption... options) {
@@ -798,7 +697,7 @@ public final class PathUtils {
      * @see org.apache.commons.io.FileUtils#contentEquals(java.io.File, java.io.File)
      */
     public static boolean fileContentEquals(final Path path1, final Path path2) throws IOException {
-        return fileContentEquals(path1, path2, EMPTY_LINK_OPTION_ARRAY, EMPTY_OPEN_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -816,55 +715,8 @@ public final class PathUtils {
      * @throws IOException          if an I/O error occurs.
      * @see org.apache.commons.io.FileUtils#contentEquals(java.io.File, java.io.File)
      */
-    public static boolean fileContentEquals(final Path path1, final Path path2, final LinkOption[] linkOptions, final OpenOption[] openOptions)
-            throws IOException {
-        if (path1 == null && path2 == null) {
-            return true;
-        }
-        if (path1 == null || path2 == null) {
-            return false;
-        }
-        final Path nPath1 = path1.normalize();
-        final Path nPath2 = path2.normalize();
-        final boolean path1Exists = exists(nPath1, linkOptions);
-        if (path1Exists != exists(nPath2, linkOptions)) {
-            return false;
-        }
-        if (!path1Exists) {
-            // Two not existing files are equal?
-            // Same as FileUtils
-            return true;
-        }
-        if (Files.isDirectory(nPath1, linkOptions)) {
-            // don't compare directory contents.
-            throw new IOException("Can't compare directories, only files: " + nPath1);
-        }
-        if (Files.isDirectory(nPath2, linkOptions)) {
-            // don't compare directory contents.
-            throw new IOException("Can't compare directories, only files: " + nPath2);
-        }
-        if (Files.size(nPath1) != Files.size(nPath2)) {
-            // lengths differ, cannot be equal
-            return false;
-        }
-        if (isSameFileSystem(path1, path2) && path1.equals(path2)) {
-            // same file
-            return true;
-        }
-        // Faster:
-        try (RandomAccessFile raf1 = RandomAccessFileMode.READ_ONLY.create(path1.toRealPath(linkOptions));
-                RandomAccessFile raf2 = RandomAccessFileMode.READ_ONLY.create(path2.toRealPath(linkOptions))) {
-            return RandomAccessFiles.contentEquals(raf1, raf2);
-        } catch (final UnsupportedOperationException e) {
-            // Slower:
-            // Handle
-            // java.lang.UnsupportedOperationException
-            // at com.sun.nio.zipfs.ZipPath.toFile(ZipPath.java:656)
-            try (InputStream inputStream1 = Files.newInputStream(nPath1, openOptions);
-                    InputStream inputStream2 = Files.newInputStream(nPath2, openOptions)) {
-                return IOUtils.contentEquals(inputStream1, inputStream2);
-            }
-        }
+    public static boolean fileContentEquals(final Path path1, final Path path2, final LinkOption[] linkOptions, final OpenOption[] openOptions) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -891,11 +743,7 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static Path[] filter(final PathFilter filter, final Path... paths) {
-        Objects.requireNonNull(filter, "filter");
-        if (paths == null) {
-            return EMPTY_PATH_ARRAY;
-        }
-        return filterPaths(filter, Stream.of(paths), Collectors.toList()).toArray(EMPTY_PATH_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static <R, A> R filterPaths(final PathFilter filter, final Stream<Path> stream, final Collector<? super Path, A, R> collector) {
@@ -922,8 +770,7 @@ public final class PathUtils {
      * @since 2.8.0
      */
     public static List<AclEntry> getAclEntryList(final Path sourcePath) throws IOException {
-        final AclFileAttributeView fileAttributeView = getAclFileAttributeView(sourcePath);
-        return fileAttributeView == null ? null : fileAttributeView.getAcl();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -935,7 +782,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static AclFileAttributeView getAclFileAttributeView(final Path path, final LinkOption... options) {
-        return Files.getFileAttributeView(path, AclFileAttributeView.class, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -949,11 +796,7 @@ public final class PathUtils {
      * @since 2.16.0
      */
     public static String getBaseName(final Path path) {
-        if (path == null) {
-            return null;
-        }
-        final Path fileName = path.getFileName();
-        return fileName != null ? FilenameUtils.removeExtension(fileName.toString()) : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -965,7 +808,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static DosFileAttributeView getDosFileAttributeView(final Path path, final LinkOption... options) {
-        return Files.getFileAttributeView(path, DosFileAttributeView.class, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -989,8 +832,7 @@ public final class PathUtils {
      * @since 2.16.0
      */
     public static String getExtension(final Path path) {
-        final String fileName = getFileNameString(path);
-        return fileName != null ? FilenameUtils.getExtension(fileName) : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1004,8 +846,7 @@ public final class PathUtils {
      * @since 2.16.0
      */
     public static <R> R getFileName(final Path path, final Function<Path, R> function) {
-        final Path fileName = path != null ? path.getFileName() : null;
-        return fileName != null ? function.apply(fileName) : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1017,7 +858,7 @@ public final class PathUtils {
      * @since 2.16.0
      */
     public static String getFileNameString(final Path path) {
-        return getFileName(path, Path::toString);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1033,7 +874,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static FileTime getLastModifiedFileTime(final File file) throws IOException {
-        return getLastModifiedFileTime(file.toPath(), null, EMPTY_LINK_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1047,7 +888,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static FileTime getLastModifiedFileTime(final Path path, final FileTime defaultIfAbsent, final LinkOption... options) throws IOException {
-        return Files.exists(path) ? getLastModifiedTime(path, options) : defaultIfAbsent;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1060,7 +901,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static FileTime getLastModifiedFileTime(final Path path, final LinkOption... options) throws IOException {
-        return getLastModifiedFileTime(path, null, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1072,7 +913,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static FileTime getLastModifiedFileTime(final URI uri) throws IOException {
-        return getLastModifiedFileTime(Paths.get(uri), null, EMPTY_LINK_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1085,7 +926,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static FileTime getLastModifiedFileTime(final URL url) throws IOException, URISyntaxException {
-        return getLastModifiedFileTime(url.toURI());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static FileTime getLastModifiedTime(final Path path, final LinkOption... options) throws IOException {
@@ -1105,7 +946,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static PosixFileAttributeView getPosixFileAttributeView(final Path path, final LinkOption... options) {
-        return Files.getFileAttributeView(path, PosixFileAttributeView.class, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1115,7 +956,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static Path getTempDirectory() {
-        return Paths.get(FileUtils.getTempDirectoryPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1131,7 +972,7 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static boolean isDirectory(final Path path, final LinkOption... options) {
-        return path != null && Files.isDirectory(path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1142,7 +983,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error occurs.
      */
     public static boolean isEmpty(final Path path) throws IOException {
-        return Files.isDirectory(path) ? isEmptyDirectory(path) : isEmptyFile(path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1156,9 +997,7 @@ public final class PathUtils {
      *                               checkRead} method is invoked to check read access to the directory.
      */
     public static boolean isEmptyDirectory(final Path directory) throws IOException {
-        try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(directory)) {
-            return !directoryStream.iterator().hasNext();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1171,7 +1010,7 @@ public final class PathUtils {
      *                           checkRead} method denies read access to the file.
      */
     public static boolean isEmptyFile(final Path file) throws IOException {
-        return Files.size(file) <= 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1186,8 +1025,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isNewer(final Path file, final ChronoZonedDateTime<?> czdt, final LinkOption... options) throws IOException {
-        Objects.requireNonNull(czdt, "czdt");
-        return isNewer(file, czdt.toInstant(), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1202,10 +1040,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isNewer(final Path file, final FileTime fileTime, final LinkOption... options) throws IOException {
-        if (notExists(file)) {
-            return false;
-        }
-        return compareLastModifiedTimeTo(file, fileTime, options) > 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1220,7 +1055,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isNewer(final Path file, final Instant instant, final LinkOption... options) throws IOException {
-        return isNewer(file, FileTime.from(instant), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1235,7 +1070,7 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static boolean isNewer(final Path file, final long timeMillis, final LinkOption... options) throws IOException {
-        return isNewer(file, FileTime.fromMillis(timeMillis), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1248,7 +1083,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isNewer(final Path file, final Path reference) throws IOException {
-        return isNewer(file, getLastModifiedTime(reference));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1263,10 +1098,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isOlder(final Path file, final FileTime fileTime, final LinkOption... options) throws IOException {
-        if (notExists(file)) {
-            return false;
-        }
-        return compareLastModifiedTimeTo(file, fileTime, options) < 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1281,7 +1113,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isOlder(final Path file, final Instant instant, final LinkOption... options) throws IOException {
-        return isOlder(file, FileTime.from(instant), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1296,7 +1128,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isOlder(final Path file, final long timeMillis, final LinkOption... options) throws IOException {
-        return isOlder(file, FileTime.fromMillis(timeMillis), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1309,7 +1141,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isOlder(final Path file, final Path reference) throws IOException {
-        return isOlder(file, getLastModifiedTime(reference));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1321,7 +1153,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean isPosix(final Path test, final LinkOption... options) {
-        return exists(test, options) && readPosixFileAttributes(test, options) != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1337,11 +1169,11 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static boolean isRegularFile(final Path path, final LinkOption... options) {
-        return path != null && Files.isRegularFile(path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static boolean isSameFileSystem(final Path path1, final Path path2) {
-        return path1.getFileSystem() == path2.getFileSystem();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1357,7 +1189,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error occurs.
      */
     public static DirectoryStream<Path> newDirectoryStream(final Path dir, final PathFilter pathFilter) throws IOException {
-        return Files.newDirectoryStream(dir, new DirectoryStreamFilter(pathFilter));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1371,16 +1203,11 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static OutputStream newOutputStream(final Path path, final boolean append) throws IOException {
-        return newOutputStream(path, EMPTY_LINK_OPTION_ARRAY, append ? OPEN_OPTIONS_APPEND : OPEN_OPTIONS_TRUNCATE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static OutputStream newOutputStream(final Path path, final LinkOption[] linkOptions, final OpenOption... openOptions) throws IOException {
-        if (!exists(path, linkOptions)) {
-            createParentDirectories(path, linkOptions != null && linkOptions.length > 0 ? linkOptions[0] : NULL_LINK_OPTION);
-        }
-        final List<OpenOption> list = new ArrayList<>(Arrays.asList(openOptions != null ? openOptions : EMPTY_OPEN_OPTION_ARRAY));
-        list.addAll(Arrays.asList(linkOptions != null ? linkOptions : EMPTY_LINK_OPTION_ARRAY));
-        return Files.newOutputStream(path, list.toArray(EMPTY_OPEN_OPTION_ARRAY));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1389,7 +1216,7 @@ public final class PathUtils {
      * @return Copy of the {@link LinkOption} array for {@link LinkOption#NOFOLLOW_LINKS}.
      */
     public static LinkOption[] noFollowLinkOptionArray() {
-        return NOFOLLOW_LINK_OPTION_ARRAY.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static boolean notExists(final Path path, final LinkOption... options) {
@@ -1421,12 +1248,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static <A extends BasicFileAttributes> A readAttributes(final Path path, final Class<A> type, final LinkOption... options) {
-        try {
-            return path == null ? null : Files.readAttributes(path, type, options);
-        } catch (final UnsupportedOperationException | IOException e) {
-            // For example, on Windows.
-            return null;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1438,7 +1260,7 @@ public final class PathUtils {
      * @since 2.9.0
      */
     public static BasicFileAttributes readBasicFileAttributes(final Path path) throws IOException {
-        return Files.readAttributes(path, BasicFileAttributes.class);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1450,7 +1272,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static BasicFileAttributes readBasicFileAttributes(final Path path, final LinkOption... options) {
-        return readAttributes(path, BasicFileAttributes.class, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1475,7 +1297,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static DosFileAttributes readDosFileAttributes(final Path path, final LinkOption... options) {
-        return readAttributes(path, DosFileAttributes.class, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static Path readIfSymbolicLink(final Path path) throws IOException {
@@ -1491,8 +1313,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static BasicFileAttributes readOsFileAttributes(final Path path, final LinkOption... options) {
-        final PosixFileAttributes fileAttributes = readPosixFileAttributes(path, options);
-        return fileAttributes != null ? fileAttributes : readDosFileAttributes(path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1504,7 +1325,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static PosixFileAttributes readPosixFileAttributes(final Path path, final LinkOption... options) {
-        return readAttributes(path, PosixFileAttributes.class, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1519,7 +1340,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static String readString(final Path path, final Charset charset) throws IOException {
-        return new String(Files.readAllBytes(path), Charsets.toCharset(charset));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1532,11 +1353,7 @@ public final class PathUtils {
      * @return A collection of relativized paths, optionally sorted.
      */
     static List<Path> relativize(final Collection<Path> collection, final Path parent, final boolean sort, final Comparator<? super Path> comparator) {
-        Stream<Path> stream = collection.stream().map(parent::relativize);
-        if (sort) {
-            stream = comparator == null ? stream.sorted() : stream.sorted(comparator);
-        }
-        return stream.collect(Collectors.toList());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1558,15 +1375,7 @@ public final class PathUtils {
     }
 
     static Path resolve(final Path targetDirectory, final Path otherPath) {
-        final FileSystem fileSystemTarget = targetDirectory.getFileSystem();
-        final FileSystem fileSystemSource = otherPath.getFileSystem();
-        if (fileSystemTarget == fileSystemSource) {
-            return targetDirectory.resolve(otherPath);
-        }
-        final String separatorSource = fileSystemSource.getSeparator();
-        final String separatorTarget = fileSystemTarget.getSeparator();
-        final String otherString = otherPath.toString();
-        return targetDirectory.resolve(Objects.equals(separatorSource, separatorTarget) ? otherString : otherString.replace(separatorSource, separatorTarget));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static boolean setDosReadOnly(final Path path, final boolean readOnly, final LinkOption... linkOptions) throws IOException {
@@ -1589,8 +1398,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static void setLastModifiedTime(final Path sourceFile, final Path targetFile) throws IOException {
-        Objects.requireNonNull(sourceFile, "sourceFile");
-        Files.setLastModifiedTime(targetFile, getLastModifiedTime(sourceFile));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1602,18 +1410,12 @@ public final class PathUtils {
      * @return true if the operation was attempted and succeeded, false if parent is null.
      * @throws IOException if an I/O error occurs.
      */
-    private static boolean setPosixDeletePermissions(final Path parent, final boolean enableDeleteChildren, final LinkOption... linkOptions)
-            throws IOException {
+    private static boolean setPosixDeletePermissions(final Path parent, final boolean enableDeleteChildren, final LinkOption... linkOptions) throws IOException {
         // To delete a file in POSIX, you need write and execute permissions on its parent directory.
         // @formatter:off
-        return setPosixPermissions(parent, enableDeleteChildren, Arrays.asList(
-            PosixFilePermission.OWNER_WRITE,
-            //PosixFilePermission.GROUP_WRITE,
-            //PosixFilePermission.OTHERS_WRITE,
-            PosixFilePermission.OWNER_EXECUTE
-            //PosixFilePermission.GROUP_EXECUTE,
-            //PosixFilePermission.OTHERS_EXECUTE
-            ), linkOptions);
+        return setPosixPermissions(parent, enableDeleteChildren, Arrays.asList(PosixFilePermission.OWNER_WRITE, //PosixFilePermission.GROUP_WRITE,
+        //PosixFilePermission.OTHERS_WRITE,
+        PosixFilePermission.OWNER_EXECUTE), linkOptions);
         // @formatter:on
     }
 
@@ -1630,8 +1432,7 @@ public final class PathUtils {
      * @return true if the operation was attempted and succeeded, false if parent is null.
      * @throws IOException if an I/O error occurs.
      */
-    private static boolean setPosixPermissions(final Path path, final boolean addPermissions, final List<PosixFilePermission> updatePermissions,
-            final LinkOption... linkOptions) throws IOException {
+    private static boolean setPosixPermissions(final Path path, final boolean addPermissions, final List<PosixFilePermission> updatePermissions, final LinkOption... linkOptions) throws IOException {
         if (path != null) {
             final Set<PosixFilePermission> permissions = Files.getPosixFilePermissions(path, linkOptions);
             final Set<PosixFilePermission> newPermissions = new HashSet<>(permissions);
@@ -1652,16 +1453,8 @@ public final class PathUtils {
         // Not Windows 10
         final Set<PosixFilePermission> permissions = Files.getPosixFilePermissions(path, linkOptions);
         // @formatter:off
-        final List<PosixFilePermission> readPermissions = Arrays.asList(
-                PosixFilePermission.OWNER_READ
-                //PosixFilePermission.GROUP_READ,
-                //PosixFilePermission.OTHERS_READ
-            );
-        final List<PosixFilePermission> writePermissions = Arrays.asList(
-                PosixFilePermission.OWNER_WRITE
-                //PosixFilePermission.GROUP_WRITE,
-                //PosixFilePermission.OTHERS_WRITE
-            );
+        final List<PosixFilePermission> readPermissions = Arrays.asList(PosixFilePermission.OWNER_READ);
+        final List<PosixFilePermission> writePermissions = Arrays.asList(PosixFilePermission.OWNER_WRITE);
         // @formatter:on
         if (readOnly) {
             // RO: We can read, we cannot write.
@@ -1689,30 +1482,7 @@ public final class PathUtils {
      * @since 2.8.0
      */
     public static Path setReadOnly(final Path path, final boolean readOnly, final LinkOption... linkOptions) throws IOException {
-        try {
-            // Windows is simplest
-            if (setDosReadOnly(path, readOnly, linkOptions)) {
-                return path;
-            }
-        } catch (final IOException ignored) {
-            // Retry with POSIX below.
-        }
-        final Path parent = getParent(path);
-        if (!isPosix(parent, linkOptions)) { // Test parent because we may not the permissions to test the file.
-            throw new IOException(String.format("DOS or POSIX file operations not available for '%s', linkOptions %s", path, Arrays.toString(linkOptions)));
-        }
-        // POSIX
-        if (readOnly) {
-            // RO
-            // File, then parent dir (if any).
-            setPosixReadOnlyFile(path, readOnly, linkOptions);
-            setPosixDeletePermissions(parent, false, linkOptions);
-        } else {
-            // RE
-            // Parent dir (if any), then file.
-            setPosixDeletePermissions(parent, true, linkOptions);
-        }
-        return path;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1731,8 +1501,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static long sizeOf(final Path path) throws IOException {
-        requireExists(path, "path");
-        return Files.isDirectory(path) ? sizeOfDirectory(path) : Files.size(path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1747,8 +1516,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static BigInteger sizeOfAsBigInteger(final Path path) throws IOException {
-        requireExists(path, "path");
-        return Files.isDirectory(path) ? sizeOfDirectoryAsBigInteger(path) : BigInteger.valueOf(Files.size(path));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1765,7 +1533,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static long sizeOfDirectory(final Path directory) throws IOException {
-        return countDirectory(directory).getByteCounter().getLong();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1778,7 +1546,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static BigInteger sizeOfDirectoryAsBigInteger(final Path directory) throws IOException {
-        return countDirectoryAsBigInteger(directory).getByteCounter().getBigInteger();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static Path stripTrailingSeparator(final Path dir) {
@@ -1794,7 +1562,7 @@ public final class PathUtils {
      * @return a new Set.
      */
     static Set<FileVisitOption> toFileVisitOptionSet(final FileVisitOption... fileVisitOptions) {
-        return fileVisitOptions == null ? EnumSet.noneOf(FileVisitOption.class) : Stream.of(fileVisitOptions).collect(Collectors.toSet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static <T> List<T> toList(final Iterable<T> iterable) {
@@ -1818,14 +1586,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static Path touch(final Path file) throws IOException {
-        Objects.requireNonNull(file, "file");
-        if (!Files.exists(file)) {
-            createParentDirectories(file);
-            Files.createFile(file);
-        } else {
-            FileTimes.setLastModifiedTime(file);
-        }
-        return file;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1842,8 +1603,7 @@ public final class PathUtils {
      * @throws NullPointerException if the directory is {@code null}.
      */
     public static <T extends FileVisitor<? super Path>> T visitFileTree(final T visitor, final Path directory) throws IOException {
-        Files.walkFileTree(directory, visitor);
-        return visitor;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1859,10 +1619,8 @@ public final class PathUtils {
      * @return the given visitor.
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
-    public static <T extends FileVisitor<? super Path>> T visitFileTree(final T visitor, final Path start, final Set<FileVisitOption> options,
-            final int maxDepth) throws IOException {
-        Files.walkFileTree(start, options, maxDepth, visitor);
-        return visitor;
+    public static <T extends FileVisitor<? super Path>> T visitFileTree(final T visitor, final Path start, final Set<FileVisitOption> options, final int maxDepth) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1878,7 +1636,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
     public static <T extends FileVisitor<? super Path>> T visitFileTree(final T visitor, final String first, final String... more) throws IOException {
-        return visitFileTree(visitor, Paths.get(first, more));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1893,7 +1651,7 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown by a visitor method.
      */
     public static <T extends FileVisitor<? super Path>> T visitFileTree(final T visitor, final URI uri) throws IOException {
-        return visitFileTree(visitor, Paths.get(uri));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1910,30 +1668,7 @@ public final class PathUtils {
      * @since 2.12.0
      */
     public static boolean waitFor(final Path file, final Duration timeout, final LinkOption... options) {
-        Objects.requireNonNull(file, "file");
-        final Instant finishInstant = Instant.now().plus(timeout);
-        boolean interrupted = false;
-        final long minSleepMillis = 100;
-        try {
-            while (!exists(file, options)) {
-                final Instant now = Instant.now();
-                if (now.isAfter(finishInstant)) {
-                    return false;
-                }
-                try {
-                    ThreadUtils.sleep(Duration.ofMillis(Math.min(minSleepMillis, finishInstant.minusMillis(now.toEpochMilli()).toEpochMilli())));
-                } catch (final InterruptedException ignore) {
-                    interrupted = true;
-                } catch (final Exception ex) {
-                    break;
-                }
-            }
-        } finally {
-            if (interrupted) {
-                Thread.currentThread().interrupt();
-            }
-        }
-        return exists(file, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1953,15 +1688,13 @@ public final class PathUtils {
      * @throws IOException if an I/O error is thrown when accessing the starting file.
      * @since 2.9.0
      */
-    @SuppressWarnings("resource") // Caller closes
-    public static Stream<Path> walk(final Path start, final PathFilter pathFilter, final int maxDepth, final boolean readAttributes,
-            final FileVisitOption... options) throws IOException {
-        return Files.walk(start, maxDepth, options)
-                .filter(path -> pathFilter.accept(path, readAttributes ? readBasicFileAttributesUnchecked(path) : null) == FileVisitResult.CONTINUE);
+    // Caller closes
+    @SuppressWarnings("resource")
+    public static Stream<Path> walk(final Path start, final PathFilter pathFilter, final int maxDepth, final boolean readAttributes, final FileVisitOption... options) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    private static <R> R withPosixFileAttributes(final Path path, final LinkOption[] linkOptions, final boolean overrideReadOnly,
-            final IOFunction<PosixFileAttributes, R> function) throws IOException {
+    private static <R> R withPosixFileAttributes(final Path path, final LinkOption[] linkOptions, final boolean overrideReadOnly, final IOFunction<PosixFileAttributes, R> function) throws IOException {
         final PosixFileAttributes posixFileAttributes = overrideReadOnly ? readPosixFileAttributes(path, linkOptions) : null;
         try {
             return function.apply(posixFileAttributes);
@@ -1984,13 +1717,8 @@ public final class PathUtils {
      * @throws NullPointerException if either {@code path} or {@code charSequence} is {@code null}.
      * @since 2.12.0
      */
-    public static Path writeString(final Path path, final CharSequence charSequence, final Charset charset, final OpenOption... openOptions)
-            throws IOException {
-        // Check the text is not null before opening file.
-        Objects.requireNonNull(path, "path");
-        Objects.requireNonNull(charSequence, "charSequence");
-        Files.write(path, String.valueOf(charSequence).getBytes(Charsets.toCharset(charset)), openOptions);
-        return path;
+    public static Path writeString(final Path path, final CharSequence charSequence, final Charset charset, final OpenOption... openOptions) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

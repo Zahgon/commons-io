@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.commons.io;
 
 import java.nio.ByteBuffer;
@@ -40,7 +39,7 @@ public final class ByteBuffers {
      * @return The new byte buffer.
      */
     public static ByteBuffer littleEndian(final byte[] array) {
-        return littleEndian(ByteBuffer.wrap(array));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -50,7 +49,7 @@ public final class ByteBuffers {
      * @return the given buffer.
      */
     public static ByteBuffer littleEndian(final ByteBuffer allocate) {
-        return allocate.order(ByteOrder.LITTLE_ENDIAN);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -65,11 +64,10 @@ public final class ByteBuffers {
      * @throws IllegalArgumentException If the <code>capacity</code> is negative.
      */
     public static ByteBuffer littleEndian(final int capacity) {
-        return littleEndian(ByteBuffer.allocate(capacity));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private ByteBuffers() {
         // empty, no instance.
     }
-
 }

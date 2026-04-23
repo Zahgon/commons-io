@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.commons.io.serialization;
 
 import java.io.ObjectStreamClass;
@@ -59,8 +58,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return this object
      */
     public ObjectStreamClassPredicate accept(final Class<?>... classes) {
-        Stream.of(classes).map(c -> new FullClassNameMatcher(c.getName())).forEach(acceptMatchers::add);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -73,8 +71,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return this instance.
      */
     public ObjectStreamClassPredicate accept(final ClassNameMatcher matcher) {
-        acceptMatchers.add(matcher);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,8 +84,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return this instance.
      */
     public ObjectStreamClassPredicate accept(final Pattern pattern) {
-        acceptMatchers.add(new RegexpClassNameMatcher(pattern));
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -102,8 +98,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return this instance.
      */
     public ObjectStreamClassPredicate accept(final String... patterns) {
-        Stream.of(patterns).map(WildcardClassNameMatcher::new).forEach(acceptMatchers::add);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,8 +111,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return this instance.
      */
     public ObjectStreamClassPredicate reject(final Class<?>... classes) {
-        Stream.of(classes).map(c -> new FullClassNameMatcher(c.getName())).forEach(rejectMatchers::add);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,8 +124,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return this instance.
      */
     public ObjectStreamClassPredicate reject(final ClassNameMatcher m) {
-        rejectMatchers.add(m);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -144,8 +137,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return this instance.
      */
     public ObjectStreamClassPredicate reject(final Pattern pattern) {
-        rejectMatchers.add(new RegexpClassNameMatcher(pattern));
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -159,8 +151,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return this instance.
      */
     public ObjectStreamClassPredicate reject(final String... patterns) {
-        Stream.of(patterns).map(WildcardClassNameMatcher::new).forEach(rejectMatchers::add);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -174,7 +165,7 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      */
     @Override
     public boolean test(final ObjectStreamClass objectStreamClass) {
-        return test(objectStreamClass.getName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -187,18 +178,6 @@ public class ObjectStreamClassPredicate implements Predicate<ObjectStreamClass> 
      * @return true if the input is accepted, false if rejected, false if neither.
      */
     public boolean test(final String name) {
-        // The reject list takes precedence over the accept list.
-        for (final ClassNameMatcher m : rejectMatchers) {
-            if (m.matches(name)) {
-                return false;
-            }
-        }
-        for (final ClassNameMatcher m : acceptMatchers) {
-            if (m.matches(name)) {
-                return true;
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.io.IOException;
@@ -48,7 +47,7 @@ public class DirectoryStreamFilter implements DirectoryStream.Filter<Path> {
 
     @Override
     public boolean accept(final Path path) throws IOException {
-        return pathFilter.accept(path, PathUtils.readBasicFileAttributes(path, PathUtils.EMPTY_LINK_OPTION_ARRAY)) == FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -57,7 +56,6 @@ public class DirectoryStreamFilter implements DirectoryStream.Filter<Path> {
      * @return the path filter.
      */
     public PathFilter getPathFilter() {
-        return pathFilter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

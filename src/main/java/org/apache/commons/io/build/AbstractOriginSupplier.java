@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.build;
 
 import java.io.File;
@@ -26,7 +25,6 @@ import java.io.Writer;
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import org.apache.commons.io.IORandomAccessFile;
 import org.apache.commons.io.build.AbstractOrigin.ByteArrayOrigin;
 import org.apache.commons.io.build.AbstractOrigin.CharSequenceOrigin;
@@ -56,7 +54,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new byte array origin.
      */
     protected static ByteArrayOrigin newByteArrayOrigin(final byte[] origin) {
-        return new ByteArrayOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -67,7 +65,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @since 2.13.0
      */
     protected static CharSequenceOrigin newCharSequenceOrigin(final CharSequence origin) {
-        return new CharSequenceOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,7 +75,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new file origin.
      */
     protected static FileOrigin newFileOrigin(final File origin) {
-        return new FileOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,7 +85,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new file origin.
      */
     protected static FileOrigin newFileOrigin(final String origin) {
-        return new FileOrigin(new File(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,7 +95,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new input stream origin.
      */
     protected static InputStreamOrigin newInputStreamOrigin(final InputStream origin) {
-        return new InputStreamOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -107,7 +105,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new output stream origin.
      */
     protected static OutputStreamOrigin newOutputStreamOrigin(final OutputStream origin) {
-        return new OutputStreamOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,7 +115,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new path origin.
      */
     protected static PathOrigin newPathOrigin(final Path origin) {
-        return new PathOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -127,7 +125,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new path name origin.
      */
     protected static PathOrigin newPathOrigin(final String origin) {
-        return new PathOrigin(Paths.get(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,7 +136,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @since 2.18.0
      */
     protected static IORandomAccessFileOrigin newRandomAccessFileOrigin(final IORandomAccessFile origin) {
-        return new IORandomAccessFileOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -149,7 +147,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @since 2.18.0
      */
     protected static RandomAccessFileOrigin newRandomAccessFileOrigin(final RandomAccessFile origin) {
-        return new RandomAccessFileOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -159,7 +157,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new reader origin.
      */
     protected static ReaderOrigin newReaderOrigin(final Reader origin) {
-        return new ReaderOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -169,7 +167,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new URI origin.
      */
     protected static URIOrigin newURIOrigin(final URI origin) {
-        return new URIOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -179,7 +177,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return a new writer.
      */
     protected static WriterOrigin newWriterOrigin(final Writer origin) {
-        return new WriterOrigin(origin);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -201,10 +199,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @throws IllegalStateException if the {@code origin} is {@code null}.
      */
     protected AbstractOrigin<?, ?> checkOrigin() {
-        if (origin == null) {
-            throw new IllegalStateException("origin == null");
-        }
-        return origin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -213,7 +208,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return the origin.
      */
     protected AbstractOrigin<?, ?> getOrigin() {
-        return origin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -222,7 +217,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return whether the origin is null.
      */
     protected boolean hasOrigin() {
-        return origin != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -232,7 +227,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setByteArray(final byte[] origin) {
-        return setOrigin(newByteArrayOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -243,7 +238,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @since 2.13.0
      */
     public B setCharSequence(final CharSequence origin) {
-        return setOrigin(newCharSequenceOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -253,7 +248,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setFile(final File origin) {
-        return setOrigin(newFileOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -263,7 +258,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setFile(final String origin) {
-        return setOrigin(newFileOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -273,7 +268,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setInputStream(final InputStream origin) {
-        return setOrigin(newInputStreamOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -283,8 +278,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     protected B setOrigin(final AbstractOrigin<?, ?> origin) {
-        this.origin = origin;
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -294,7 +288,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setOutputStream(final OutputStream origin) {
-        return setOrigin(newOutputStreamOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -304,7 +298,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setPath(final Path origin) {
-        return setOrigin(newPathOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -314,7 +308,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setPath(final String origin) {
-        return setOrigin(newPathOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -325,7 +319,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @since 2.18.0
      */
     public B setRandomAccessFile(final IORandomAccessFile origin) {
-        return setOrigin(newRandomAccessFileOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -336,7 +330,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @since 2.18.0
      */
     public B setRandomAccessFile(final RandomAccessFile origin) {
-        return setOrigin(newRandomAccessFileOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -346,7 +340,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setReader(final Reader origin) {
-        return setOrigin(newReaderOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -356,7 +350,7 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setURI(final URI origin) {
-        return setOrigin(newURIOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -366,6 +360,6 @@ public abstract class AbstractOriginSupplier<T, B extends AbstractOriginSupplier
      * @return {@code this} instance.
      */
     public B setWriter(final Writer origin) {
-        return setOrigin(newWriterOrigin(origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

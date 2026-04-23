@@ -48,6 +48,7 @@ import java.util.stream.StreamSupport;
 public class CompositeFileComparator extends AbstractFileComparator implements Serializable {
 
     private static final Comparator<?>[] EMPTY_COMPARATOR_ARRAY = {};
+
     private static final long serialVersionUID = -2224170307287243428L;
 
     /**
@@ -70,8 +71,7 @@ public class CompositeFileComparator extends AbstractFileComparator implements S
      * @param delegates The delegate file comparators
      */
     public CompositeFileComparator(final Iterable<Comparator<File>> delegates) {
-        this.delegates = delegates == null ? emptyArray()
-                : StreamSupport.stream(delegates.spliterator(), false).toArray((IntFunction<Comparator<File>[]>) Comparator[]::new);
+        this.delegates = delegates == null ? emptyArray() : StreamSupport.stream(delegates.spliterator(), false).toArray((IntFunction<Comparator<File>[]>) Comparator[]::new);
     }
 
     /**
@@ -83,10 +83,11 @@ public class CompositeFileComparator extends AbstractFileComparator implements S
      */
     @Override
     public int compare(final File file1, final File file2) {
-        return Stream.of(delegates).map(delegate -> delegate.compare(file1, file2)).filter(r -> r != 0).findFirst().orElse(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    @SuppressWarnings("unchecked") // types are already correct
+    // types are already correct
+    @SuppressWarnings("unchecked")
     private Comparator<File>[] emptyArray() {
         return (Comparator<File>[]) EMPTY_COMPARATOR_ARRAY;
     }
@@ -98,8 +99,6 @@ public class CompositeFileComparator extends AbstractFileComparator implements S
      */
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder(super.toString());
-        builder.append(Arrays.toString(delegates));
-        return builder.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

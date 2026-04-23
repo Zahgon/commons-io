@@ -17,7 +17,6 @@
 package org.apache.commons.io;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -120,7 +119,7 @@ public class CopyUtils {
      * @throws IOException In case of an I/O problem
      */
     public static void copy(final byte[] input, final OutputStream output) throws IOException {
-        output.write(input);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -151,8 +150,7 @@ public class CopyUtils {
      * @throws IOException In case of an I/O problem
      */
     public static void copy(final byte[] input, final Writer output, final String encoding) throws IOException {
-        final ByteArrayInputStream inputStream = new ByteArrayInputStream(input);
-        copy(inputStream, output, encoding);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -165,14 +163,7 @@ public class CopyUtils {
      * @throws IOException In case of an I/O problem
      */
     public static int copy(final InputStream input, final OutputStream output) throws IOException {
-        final byte[] buffer = IOUtils.byteArray();
-        int count = 0;
-        int n;
-        while (EOF != (n = input.read(buffer))) {
-            output.write(buffer, 0, n);
-            count += n;
-        }
-        return count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -188,10 +179,7 @@ public class CopyUtils {
      * @deprecated Use {@link #copy(InputStream, Writer, String)} instead
      */
     @Deprecated
-    public static void copy(
-            final InputStream input,
-            final Writer output)
-                throws IOException {
+    public static void copy(final InputStream input, final Writer output) throws IOException {
         // make explicit the dependency on the default encoding
         final InputStreamReader in = new InputStreamReader(input, Charset.defaultCharset());
         copy(in, output);
@@ -208,13 +196,8 @@ public class CopyUtils {
      * Charset Registry</a> for a list of valid encoding types.
      * @throws IOException In case of an I/O problem
      */
-    public static void copy(
-            final InputStream input,
-            final Writer output,
-            final String encoding)
-                throws IOException {
-        final InputStreamReader in = new InputStreamReader(input, encoding);
-        copy(in, output);
+    public static void copy(final InputStream input, final Writer output, final String encoding) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -230,10 +213,7 @@ public class CopyUtils {
      * @deprecated Use {@link #copy(Reader, OutputStream, String)} instead
      */
     @Deprecated
-    public static void copy(
-            final Reader input,
-            final OutputStream output)
-                throws IOException {
+    public static void copy(final Reader input, final OutputStream output) throws IOException {
         // make explicit the dependency on the default encoding
         final OutputStreamWriter out = new OutputStreamWriter(output, Charset.defaultCharset());
         copy(input, out);
@@ -254,16 +234,8 @@ public class CopyUtils {
      * @throws IOException In case of an I/O problem
      * @since 2.5
      */
-    public static void copy(
-            final Reader input,
-            final OutputStream output,
-            final String encoding)
-                throws IOException {
-        final OutputStreamWriter out = new OutputStreamWriter(output, encoding);
-        copy(input, out);
-        // XXX Unless anyone is planning on rewriting OutputStreamWriter, we
-        // have to flush here.
-        out.flush();
+    public static void copy(final Reader input, final OutputStream output, final String encoding) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -274,18 +246,8 @@ public class CopyUtils {
      * @return the number of characters copied
      * @throws IOException In case of an I/O problem
      */
-    public static int copy(
-            final Reader input,
-            final Writer output)
-                throws IOException {
-        final char[] buffer = IOUtils.getScratchCharArray();
-        int count = 0;
-        int n;
-        while (EOF != (n = input.read(buffer))) {
-            output.write(buffer, 0, n);
-            count += n;
-        }
-        return count;
+    public static int copy(final Reader input, final Writer output) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -302,10 +264,7 @@ public class CopyUtils {
      * @deprecated Use {@link #copy(String, OutputStream, String)} instead
      */
     @Deprecated
-    public static void copy(
-            final String input,
-            final OutputStream output)
-                throws IOException {
+    public static void copy(final String input, final OutputStream output) throws IOException {
         final StringReader in = new StringReader(input);
         // make explicit the dependency on the default encoding
         final OutputStreamWriter out = new OutputStreamWriter(output, Charset.defaultCharset());
@@ -328,17 +287,8 @@ public class CopyUtils {
      * @throws IOException In case of an I/O problem
      * @since 2.5
      */
-    public static void copy(
-            final String input,
-            final OutputStream output,
-            final String encoding)
-                throws IOException {
-        final StringReader in = new StringReader(input);
-        final OutputStreamWriter out = new OutputStreamWriter(output, encoding);
-        copy(in, out);
-        // XXX Unless anyone is planning on rewriting OutputStreamWriter, we
-        // have to flush here.
-        out.flush();
+    public static void copy(final String input, final OutputStream output, final String encoding) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -348,9 +298,8 @@ public class CopyUtils {
      * @param output the {@link Writer} to write to
      * @throws IOException In case of an I/O problem
      */
-    public static void copy(final String input, final Writer output)
-                throws IOException {
-        output.write(input);
+    public static void copy(final String input, final Writer output) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -362,5 +311,4 @@ public class CopyUtils {
     public CopyUtils() {
         // empty
     }
-
 }

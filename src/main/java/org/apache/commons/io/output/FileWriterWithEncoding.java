@@ -24,7 +24,6 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.util.Objects;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -121,7 +120,7 @@ public class FileWriterWithEncoding extends ProxyWriter {
          */
         @Override
         public FileWriterWithEncoding get() throws IOException {
-            return new FileWriterWithEncoding(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private Object getEncoder() {
@@ -139,8 +138,7 @@ public class FileWriterWithEncoding extends ProxyWriter {
          * @return {@code this} instance.
          */
         public Builder setAppend(final boolean append) {
-            this.append = append;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -150,10 +148,8 @@ public class FileWriterWithEncoding extends ProxyWriter {
          * @return {@code this} instance.
          */
         public Builder setCharsetEncoder(final CharsetEncoder charsetEncoder) {
-            this.charsetEncoder = charsetEncoder;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -163,7 +159,7 @@ public class FileWriterWithEncoding extends ProxyWriter {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -201,7 +197,8 @@ public class FileWriterWithEncoding extends ProxyWriter {
         }
     }
 
-    @SuppressWarnings("resource") // caller closes
+    // caller closes
+    @SuppressWarnings("resource")
     private FileWriterWithEncoding(final Builder builder) throws IOException {
         super(initWriter(builder.checkOriginFile(), builder.getEncoder(), builder.append));
     }
@@ -231,7 +228,8 @@ public class FileWriterWithEncoding extends ProxyWriter {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}
      */
     @Deprecated
-    @SuppressWarnings("resource") // Call site is responsible for closing a new instance.
+    // Call site is responsible for closing a new instance.
+    @SuppressWarnings("resource")
     public FileWriterWithEncoding(final File file, final Charset encoding, final boolean append) throws IOException {
         this(initWriter(file, encoding, append));
     }
@@ -261,7 +259,8 @@ public class FileWriterWithEncoding extends ProxyWriter {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}
      */
     @Deprecated
-    @SuppressWarnings("resource") // Call site is responsible for closing a new instance.
+    // Call site is responsible for closing a new instance.
+    @SuppressWarnings("resource")
     public FileWriterWithEncoding(final File file, final CharsetEncoder charsetEncoder, final boolean append) throws IOException {
         this(initWriter(file, charsetEncoder, append));
     }
@@ -291,7 +290,8 @@ public class FileWriterWithEncoding extends ProxyWriter {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}
      */
     @Deprecated
-    @SuppressWarnings("resource") // Call site is responsible for closing a new instance.
+    // Call site is responsible for closing a new instance.
+    @SuppressWarnings("resource")
     public FileWriterWithEncoding(final File file, final String charsetName, final boolean append) throws IOException {
         this(initWriter(file, charsetName, append));
     }

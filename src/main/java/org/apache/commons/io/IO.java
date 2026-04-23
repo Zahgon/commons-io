@@ -25,7 +25,6 @@ final class IO {
      * Clears any state, throughout Apache Commons IO. Handy for tests.
      */
     static void clear() {
-        IOUtils.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

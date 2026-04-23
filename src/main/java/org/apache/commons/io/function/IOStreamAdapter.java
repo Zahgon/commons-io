@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.util.stream.Stream;
@@ -29,7 +28,7 @@ import java.util.stream.Stream;
 final class IOStreamAdapter<T> extends IOBaseStreamAdapter<T, IOStream<T>, Stream<T>> implements IOStream<T> {
 
     static <T> IOStream<T> adapt(final Stream<T> delegate) {
-        return delegate != null ? new IOStreamAdapter<>(delegate) : IOStream.empty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private IOStreamAdapter(final Stream<T> delegate) {
@@ -38,7 +37,6 @@ final class IOStreamAdapter<T> extends IOBaseStreamAdapter<T, IOStream<T>, Strea
 
     @Override
     public IOStream<T> wrap(final Stream<T> delegate) {
-        return unwrap() == delegate ? this : adapt(delegate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

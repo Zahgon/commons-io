@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.build.AbstractOrigin;
@@ -135,7 +134,9 @@ public class FileAlterationObserver implements Serializable {
     public static final class Builder extends AbstractOriginSupplier<FileAlterationObserver, Builder> {
 
         private FileEntry rootEntry;
+
         private FileFilter fileFilter;
+
         private IOCase ioCase;
 
         private Builder() {
@@ -154,7 +155,7 @@ public class FileAlterationObserver implements Serializable {
          */
         @Override
         public FileAlterationObserver get() throws IOException {
-            return new FileAlterationObserver(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -164,8 +165,7 @@ public class FileAlterationObserver implements Serializable {
          * @return This instance.
          */
         public Builder setFileFilter(final FileFilter fileFilter) {
-            this.fileFilter = fileFilter;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -175,8 +175,7 @@ public class FileAlterationObserver implements Serializable {
          * @return This instance.
          */
         public Builder setIOCase(final IOCase ioCase) {
-            this.ioCase = ioCase;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -186,10 +185,8 @@ public class FileAlterationObserver implements Serializable {
          * @return This instance.
          */
         public Builder setRootEntry(final FileEntry rootEntry) {
-            this.rootEntry = rootEntry;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private static final long serialVersionUID = 1185122225658782848L;
@@ -201,17 +198,17 @@ public class FileAlterationObserver implements Serializable {
      * @since 2.18.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static Comparator<File> toComparator(final IOCase ioCase) {
-        switch (IOCase.value(ioCase, IOCase.SYSTEM)) {
-        case SYSTEM:
-            return NameFileComparator.NAME_SYSTEM_COMPARATOR;
-        case INSENSITIVE:
-            return NameFileComparator.NAME_INSENSITIVE_COMPARATOR;
-        default:
-            return NameFileComparator.NAME_COMPARATOR;
+        switch(IOCase.value(ioCase, IOCase.SYSTEM)) {
+            case SYSTEM:
+                return NameFileComparator.NAME_SYSTEM_COMPARATOR;
+            case INSENSITIVE:
+                return NameFileComparator.NAME_INSENSITIVE_COMPARATOR;
+            default:
+                return NameFileComparator.NAME_COMPARATOR;
         }
     }
 
@@ -343,9 +340,7 @@ public class FileAlterationObserver implements Serializable {
      * @param listener The file system listener.
      */
     public void addListener(final FileAlterationListener listener) {
-        if (listener != null) {
-            listeners.add(listener);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -385,21 +380,7 @@ public class FileAlterationObserver implements Serializable {
      * Checks whether the file and its children have been created, modified or deleted.
      */
     public void checkAndNotify() {
-
-        // fire onStart()
-        listeners.forEach(listener -> listener.onStart(this));
-
-        // fire directory/file events
-        final File rootFile = rootEntry.getFile();
-        if (rootFile.exists()) {
-            checkAndFire(rootEntry, rootEntry.getChildren(), listFiles(rootFile));
-        } else if (rootEntry.isExists()) {
-            checkAndFire(rootEntry, rootEntry.getChildren(), FileUtils.EMPTY_FILE_ARRAY);
-        }
-        // Else: Didn't exist and still doesn't
-
-        // fire onStop()
-        listeners.forEach(listener -> listener.onStop(this));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -421,9 +402,10 @@ public class FileAlterationObserver implements Serializable {
      *
      * @throws Exception if an error occurs.
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     public void destroy() throws Exception {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -476,7 +458,7 @@ public class FileAlterationObserver implements Serializable {
     }
 
     Comparator<File> getComparator() {
-        return comparator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -485,7 +467,7 @@ public class FileAlterationObserver implements Serializable {
      * @return the directory being observed.
      */
     public File getDirectory() {
-        return rootEntry.getFile();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -495,7 +477,7 @@ public class FileAlterationObserver implements Serializable {
      * @since 2.1
      */
     public FileFilter getFileFilter() {
-        return fileFilter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -504,7 +486,7 @@ public class FileAlterationObserver implements Serializable {
      * @return The file system listeners
      */
     public Iterable<FileAlterationListener> getListeners() {
-        return new ArrayList<>(listeners);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -512,10 +494,10 @@ public class FileAlterationObserver implements Serializable {
      *
      * @throws Exception if an error occurs.
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     public void initialize() throws Exception {
-        rootEntry.refresh(rootEntry.getFile());
-        rootEntry.setChildren(listFileEntries(rootEntry.getFile(), rootEntry));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -545,9 +527,7 @@ public class FileAlterationObserver implements Serializable {
      * @param listener The file system listener.
      */
     public void removeListener(final FileAlterationListener listener) {
-        if (listener != null) {
-            listeners.removeIf(listener::equals);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private File[] sort(final File[] files) {
@@ -567,17 +547,6 @@ public class FileAlterationObserver implements Serializable {
      */
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getClass().getSimpleName());
-        builder.append("[file='");
-        builder.append(getDirectory().getPath());
-        builder.append('\'');
-        builder.append(", ");
-        builder.append(fileFilter.toString());
-        builder.append(", listeners=");
-        builder.append(listeners.size());
-        builder.append("]");
-        return builder.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

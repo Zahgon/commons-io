@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -50,8 +49,7 @@ public interface IOBiFunction<T, U, R> {
      * @throws NullPointerException if after is null
      */
     default <V> IOBiFunction<T, U, V> andThen(final IOFunction<? super R, ? extends V> after) {
-        Objects.requireNonNull(after);
-        return (final T t, final U u) -> after.apply(apply(t, u));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -71,6 +69,6 @@ public interface IOBiFunction<T, U, R> {
      * @return an UncheckedIOException BiFunction.
      */
     default BiFunction<T, U, R> asBiFunction() {
-        return (t, u) -> Uncheck.apply(this, t, u);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

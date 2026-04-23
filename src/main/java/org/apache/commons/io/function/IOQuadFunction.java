@@ -51,8 +51,7 @@ public interface IOQuadFunction<T, U, V, W, R> {
      * @throws NullPointerException if after is null
      */
     default <X> IOQuadFunction<T, U, V, W, X> andThen(final IOFunction<? super R, ? extends X> after) {
-        Objects.requireNonNull(after);
-        return (final T t, final U u, final V v, final W w) -> after.apply(apply(t, u, v, w));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

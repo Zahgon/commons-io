@@ -19,7 +19,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.Reader;
 
@@ -44,7 +43,8 @@ public class BoundedReader extends Reader {
 
     private int markedAt = INVALID;
 
-    private int readAheadLimit; // Internally, this value will never exceed the allowed size
+    // Internally, this value will never exceed the allowed size
+    private int readAheadLimit;
 
     private final int maxCharsFromTargetReader;
 
@@ -66,7 +66,7 @@ public class BoundedReader extends Reader {
      */
     @Override
     public void close() throws IOException {
-        target.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -81,11 +81,7 @@ public class BoundedReader extends Reader {
      */
     @Override
     public void mark(final int readAheadLimit) throws IOException {
-        this.readAheadLimit = readAheadLimit - charsRead;
-
-        markedAt = charsRead;
-
-        target.mark(readAheadLimit);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,16 +93,7 @@ public class BoundedReader extends Reader {
      */
     @Override
     public int read() throws IOException {
-
-        if (charsRead >= maxCharsFromTargetReader) {
-            return EOF;
-        }
-
-        if (markedAt >= 0 && charsRead - markedAt >= readAheadLimit) {
-            return EOF;
-        }
-        charsRead++;
-        return target.read();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -121,15 +108,7 @@ public class BoundedReader extends Reader {
      */
     @Override
     public int read(final char[] cbuf, final int off, final int len) throws IOException {
-        int c;
-        for (int i = 0; i < len; i++) {
-            c = read();
-            if (c == EOF) {
-                return i == 0 ? EOF : i;
-            }
-            cbuf[off + i] = (char) c;
-        }
-        return len;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,7 +119,6 @@ public class BoundedReader extends Reader {
      */
     @Override
     public void reset() throws IOException {
-        charsRead = markedAt;
-        target.reset();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

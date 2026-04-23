@@ -19,7 +19,6 @@ package org.apache.commons.io.comparator;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Comparator;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOCase;
 
@@ -60,27 +59,39 @@ public class ExtensionFileComparator extends AbstractFileComparator implements S
 
     private static final long serialVersionUID = 1928235200184222815L;
 
-    /** Case-sensitive extension comparator instance (see {@link IOCase#SENSITIVE}) */
+    /**
+     * Case-sensitive extension comparator instance (see {@link IOCase#SENSITIVE})
+     */
     public static final Comparator<File> EXTENSION_COMPARATOR = new ExtensionFileComparator();
 
-    /** Reverse case-sensitive extension comparator instance (see {@link IOCase#SENSITIVE}) */
+    /**
+     * Reverse case-sensitive extension comparator instance (see {@link IOCase#SENSITIVE})
+     */
     public static final Comparator<File> EXTENSION_REVERSE = new ReverseFileComparator(EXTENSION_COMPARATOR);
 
-    /** Case-insensitive extension comparator instance (see {@link IOCase#INSENSITIVE}) */
-    public static final Comparator<File> EXTENSION_INSENSITIVE_COMPARATOR
-                                                = new ExtensionFileComparator(IOCase.INSENSITIVE);
+    /**
+     * Case-insensitive extension comparator instance (see {@link IOCase#INSENSITIVE})
+     */
+    public static final Comparator<File> EXTENSION_INSENSITIVE_COMPARATOR = new ExtensionFileComparator(IOCase.INSENSITIVE);
 
-    /** Reverse case-insensitive extension comparator instance (see {@link IOCase#INSENSITIVE}) */
-    public static final Comparator<File> EXTENSION_INSENSITIVE_REVERSE
-                                                = new ReverseFileComparator(EXTENSION_INSENSITIVE_COMPARATOR);
+    /**
+     * Reverse case-insensitive extension comparator instance (see {@link IOCase#INSENSITIVE})
+     */
+    public static final Comparator<File> EXTENSION_INSENSITIVE_REVERSE = new ReverseFileComparator(EXTENSION_INSENSITIVE_COMPARATOR);
 
-    /** System sensitive extension comparator instance (see {@link IOCase#SYSTEM}) */
+    /**
+     * System sensitive extension comparator instance (see {@link IOCase#SYSTEM})
+     */
     public static final Comparator<File> EXTENSION_SYSTEM_COMPARATOR = new ExtensionFileComparator(IOCase.SYSTEM);
 
-    /** Reverse system sensitive path comparator instance (see {@link IOCase#SYSTEM}) */
+    /**
+     * Reverse system sensitive path comparator instance (see {@link IOCase#SYSTEM})
+     */
     public static final Comparator<File> EXTENSION_SYSTEM_REVERSE = new ReverseFileComparator(EXTENSION_SYSTEM_COMPARATOR);
 
-    /** Whether the comparison is case-sensitive. */
+    /**
+     * Whether the comparison is case-sensitive.
+     */
     private final IOCase ioCase;
 
     /**
@@ -111,9 +122,7 @@ public class ExtensionFileComparator extends AbstractFileComparator implements S
      */
     @Override
     public int compare(final File file1, final File file2) {
-        final String suffix1 = FilenameUtils.getExtension(file1.getName());
-        final String suffix2 = FilenameUtils.getExtension(file2.getName());
-        return ioCase.checkCompareTo(suffix1, suffix2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -123,6 +132,6 @@ public class ExtensionFileComparator extends AbstractFileComparator implements S
      */
     @Override
     public String toString() {
-        return super.toString() + "[ioCase=" + ioCase + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

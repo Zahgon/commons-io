@@ -19,7 +19,6 @@ package org.apache.commons.io.output;
 import java.io.FilterWriter;
 import java.io.IOException;
 import java.io.Writer;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -57,11 +56,11 @@ public class ChunkedWriter extends FilterWriter {
      * @throws IllegalArgumentException if the chunk size is &lt;= 0
      */
     public ChunkedWriter(final Writer writer, final int chunkSize) {
-       super(writer);
-       if (chunkSize <= 0) {
-           throw new IllegalArgumentException();
-       }
-       this.chunkSize = chunkSize;
+        super(writer);
+        if (chunkSize <= 0) {
+            throw new IllegalArgumentException();
+        }
+        this.chunkSize = chunkSize;
     }
 
     /**
@@ -74,14 +73,6 @@ public class ChunkedWriter extends FilterWriter {
      */
     @Override
     public void write(final char[] data, final int srcOffset, final int length) throws IOException {
-        int bytes = length;
-        int dstOffset = srcOffset;
-        while (bytes > 0) {
-            final int chunk = Math.min(bytes, chunkSize);
-            out.write(data, dstOffset, chunk);
-            bytes -= chunk;
-            dstOffset += chunk;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

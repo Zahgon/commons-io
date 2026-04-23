@@ -17,12 +17,10 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.FilterReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.CharBuffer;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -64,9 +62,10 @@ public abstract class ProxyReader extends FilterReader {
      * @throws IOException if the post-processing fails
      * @since 2.0
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void afterRead(final int n) throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,9 +86,10 @@ public abstract class ProxyReader extends FilterReader {
      * @throws IOException if the pre-processing fails
      * @since 2.0
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void beforeRead(final int n) throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -98,11 +98,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public void close() throws IOException {
-        try {
-            in.close();
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,7 +111,7 @@ public abstract class ProxyReader extends FilterReader {
      * @since 2.0
      */
     protected void handleIOException(final IOException e) throws IOException {
-        throw e;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -125,11 +121,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public synchronized void mark(final int readAheadLimit) throws IOException {
-        try {
-            in.mark(readAheadLimit);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,7 +130,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public boolean markSupported() {
-        return in.markSupported();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -148,15 +140,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public int read() throws IOException {
-        try {
-            beforeRead(1);
-            final int c = in.read();
-            afterRead(c != EOF ? 1 : EOF);
-            return c;
-        } catch (final IOException e) {
-            handleIOException(e);
-            return EOF;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -167,15 +151,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public int read(final char[] chr) throws IOException {
-        try {
-            beforeRead(IOUtils.length(chr));
-            final int n = in.read(chr);
-            afterRead(n);
-            return n;
-        } catch (final IOException e) {
-            handleIOException(e);
-            return EOF;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -188,15 +164,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public int read(final char[] chr, final int st, final int len) throws IOException {
-        try {
-            beforeRead(len);
-            final int n = in.read(chr, st, len);
-            afterRead(n);
-            return n;
-        } catch (final IOException e) {
-            handleIOException(e);
-            return EOF;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -208,15 +176,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public int read(final CharBuffer target) throws IOException {
-        try {
-            beforeRead(IOUtils.length(target));
-            final int n = in.read(target);
-            afterRead(n);
-            return n;
-        } catch (final IOException e) {
-            handleIOException(e);
-            return EOF;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -226,12 +186,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public boolean ready() throws IOException {
-        try {
-            return in.ready();
-        } catch (final IOException e) {
-            handleIOException(e);
-            return false;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -240,11 +195,7 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public synchronized void reset() throws IOException {
-        try {
-            in.reset();
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -255,12 +206,6 @@ public abstract class ProxyReader extends FilterReader {
      */
     @Override
     public long skip(final long ln) throws IOException {
-        try {
-            return in.skip(ln);
-        } catch (final IOException e) {
-            handleIOException(e);
-            return 0;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

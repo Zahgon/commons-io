@@ -36,7 +36,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.commons.io.ByteOrderMark;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
@@ -120,7 +119,9 @@ public class XmlStreamReader extends Reader {
     public static class Builder extends AbstractStreamBuilder<XmlStreamReader, Builder> {
 
         private boolean nullCharset = true;
+
         private boolean lenient = true;
+
         private String httpContentType;
 
         /**
@@ -155,24 +156,17 @@ public class XmlStreamReader extends Reader {
          */
         @Override
         public XmlStreamReader get() throws IOException {
-            final String defaultEncoding = nullCharset ? null : getCharset().name();
-            // @formatter:off
-            return httpContentType == null
-                    ? new XmlStreamReader(getInputStream(), lenient, defaultEncoding)
-                    : new XmlStreamReader(getInputStream(), httpContentType, lenient, defaultEncoding);
-            // @formatter:on
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Builder setCharset(final Charset charset) {
-            nullCharset = charset == null;
-            return super.setCharset(charset);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Builder setCharset(final String charset) {
-            nullCharset = charset == null;
-            return super.setCharset(Charsets.toCharset(charset, getCharsetDefault()));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -182,8 +176,7 @@ public class XmlStreamReader extends Reader {
          * @return {@code this} instance.
          */
         public Builder setHttpContentType(final String httpContentType) {
-            this.httpContentType = httpContentType;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -193,10 +186,8 @@ public class XmlStreamReader extends Reader {
          * @return {@code this} instance.
          */
         public Builder setLenient(final boolean lenient) {
-            this.lenient = lenient;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private static final String UTF_8 = StandardCharsets.UTF_8.name();
@@ -217,15 +208,12 @@ public class XmlStreamReader extends Reader {
 
     private static final String EBCDIC = "CP1047";
 
-    private static final ByteOrderMark[] BOMS = { ByteOrderMark.UTF_8, ByteOrderMark.UTF_16BE, ByteOrderMark.UTF_16LE, ByteOrderMark.UTF_32BE,
-            ByteOrderMark.UTF_32LE };
+    private static final ByteOrderMark[] BOMS = { ByteOrderMark.UTF_8, ByteOrderMark.UTF_16BE, ByteOrderMark.UTF_16LE, ByteOrderMark.UTF_32BE, ByteOrderMark.UTF_32LE };
 
-    /** UTF_16LE and UTF_32LE have the same two starting BOM bytes. */
-    private static final ByteOrderMark[] XML_GUESS_BYTES = { new ByteOrderMark(UTF_8, 0x3C, 0x3F, 0x78, 0x6D),
-            new ByteOrderMark(UTF_16BE, 0x00, 0x3C, 0x00, 0x3F), new ByteOrderMark(UTF_16LE, 0x3C, 0x00, 0x3F, 0x00),
-            new ByteOrderMark(UTF_32BE, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x78, 0x00, 0x00, 0x00, 0x6D),
-            new ByteOrderMark(UTF_32LE, 0x3C, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x78, 0x00, 0x00, 0x00, 0x6D, 0x00, 0x00, 0x00),
-            new ByteOrderMark(EBCDIC, 0x4C, 0x6F, 0xA7, 0x94) };
+    /**
+     * UTF_16LE and UTF_32LE have the same two starting BOM bytes.
+     */
+    private static final ByteOrderMark[] XML_GUESS_BYTES = { new ByteOrderMark(UTF_8, 0x3C, 0x3F, 0x78, 0x6D), new ByteOrderMark(UTF_16BE, 0x00, 0x3C, 0x00, 0x3F), new ByteOrderMark(UTF_16LE, 0x3C, 0x00, 0x3F, 0x00), new ByteOrderMark(UTF_32BE, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x78, 0x00, 0x00, 0x00, 0x6D), new ByteOrderMark(UTF_32LE, 0x3C, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x78, 0x00, 0x00, 0x00, 0x6D, 0x00, 0x00, 0x00), new ByteOrderMark(EBCDIC, 0x4C, 0x6F, 0xA7, 0x94) };
 
     private static final Pattern CHARSET_PATTERN = Pattern.compile("charset=[\"']?([.[^; \"']]*)[\"']?");
 
@@ -245,16 +233,12 @@ public class XmlStreamReader extends Reader {
      * {@code 'ebcdic-de-273+euro'}.
      * </p>
      */
-    public static final Pattern ENCODING_PATTERN = Pattern.compile(
-    // @formatter:off
-            "^<\\?xml\\s+"
-            + "(?:version\\s*=\\s*(?:(?:\"1\\.[0-9]+\")|(?:'1.[0-9]+'))\\s+)??"
-            + "encoding\\s*=\\s*"
-            + "((?:\"[A-Za-z0-9][A-Za-z0-9._+:-]*\")"  // double-quoted
-            +  "|(?:'[A-Za-z0-9][A-Za-z0-9._+:-]*'))", // single-quoted
-            Pattern.MULTILINE);
-    // @formatter:on
+    public static final Pattern ENCODING_PATTERN = Pattern.compile(// @formatter:off
+    "^<\\?xml\\s+" + "(?:version\\s*=\\s*(?:(?:\"1\\.[0-9]+\")|(?:'1.[0-9]+'))\\s+)??" + "encoding\\s*=\\s*" + // double-quoted
+    "((?:\"[A-Za-z0-9][A-Za-z0-9._+:-]*\")" + // single-quoted
+    "|(?:'[A-Za-z0-9][A-Za-z0-9._+:-]*'))", Pattern.MULTILINE);
 
+    // @formatter:on
     private static final String RAW_EX_1 = "Illegal encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch";
 
     private static final String RAW_EX_2 = "Illegal encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] unknown BOM";
@@ -272,7 +256,7 @@ public class XmlStreamReader extends Reader {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -282,17 +266,7 @@ public class XmlStreamReader extends Reader {
      * @return The content type encoding (upcased)
      */
     static String getContentTypeEncoding(final String httpContentType) {
-        String encoding = null;
-        if (httpContentType != null) {
-            final int i = httpContentType.indexOf(";");
-            if (i > -1) {
-                final String postMime = httpContentType.substring(i + 1);
-                final Matcher m = CHARSET_PATTERN.matcher(postMime);
-                encoding = m.find() ? m.group(1) : null;
-                encoding = encoding != null ? encoding.toUpperCase(Locale.ROOT) : null;
-            }
-        }
-        return encoding;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -302,13 +276,7 @@ public class XmlStreamReader extends Reader {
      * @return The mime content type
      */
     static String getContentTypeMime(final String httpContentType) {
-        String mime = null;
-        if (httpContentType != null) {
-            final int i = httpContentType.indexOf(";");
-            mime = i >= 0 ? httpContentType.substring(0, i) : httpContentType;
-            mime = mime.trim();
-        }
-        return mime;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -328,7 +296,8 @@ public class XmlStreamReader extends Reader {
             int max = IOUtils.DEFAULT_BUFFER_SIZE;
             int c = inputStream.read(bytes, offset, max);
             int firstGT = -1;
-            String xmlProlog = ""; // avoid possible NPE warning (cannot happen; this just silences the warning)
+            // avoid possible NPE warning (cannot happen; this just silences the warning)
+            String xmlProlog = "";
             while (c != -1 && firstGT == -1 && offset < IOUtils.DEFAULT_BUFFER_SIZE) {
                 offset += c;
                 max -= c;
@@ -365,8 +334,7 @@ public class XmlStreamReader extends Reader {
      * @return true if the mime type belongs to the APPLICATION XML family, otherwise false
      */
     static boolean isAppXml(final String mime) {
-        return mime != null && (mime.equals("application/xml") || mime.equals("application/xml-dtd") || mime.equals("application/xml-external-parsed-entity")
-                || mime.startsWith("application/") && mime.endsWith("+xml"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -376,7 +344,7 @@ public class XmlStreamReader extends Reader {
      * @return true if the mime type belongs to the TEXT XML family, otherwise false
      */
     static boolean isTextXml(final String mime) {
-        return mime != null && (mime.equals("text/xml") || mime.equals("text/xml-external-parsed-entity") || mime.startsWith("text/") && mime.endsWith("+xml"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final Reader reader;
@@ -492,11 +460,11 @@ public class XmlStreamReader extends Reader {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}
      */
     @Deprecated
-    @SuppressWarnings("resource") // InputStream is managed through a InputStreamReader in this instance.
+    // InputStream is managed through a InputStreamReader in this instance.
+    @SuppressWarnings("resource")
     public XmlStreamReader(final InputStream inputStream, final boolean lenient, final String defaultEncoding) throws IOException {
         this.defaultEncoding = defaultEncoding;
-        final BOMInputStream bom = new BOMInputStream(new BufferedInputStream(Objects.requireNonNull(inputStream, "inputStream"), IOUtils.DEFAULT_BUFFER_SIZE),
-                false, BOMS);
+        final BOMInputStream bom = new BOMInputStream(new BufferedInputStream(Objects.requireNonNull(inputStream, "inputStream"), IOUtils.DEFAULT_BUFFER_SIZE), false, BOMS);
         final BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);
         this.encoding = processHttpStream(bom, pis, lenient);
         this.reader = new InputStreamReader(pis, encoding);
@@ -596,12 +564,11 @@ public class XmlStreamReader extends Reader {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}
      */
     @Deprecated
-    @SuppressWarnings("resource") // InputStream is managed through a InputStreamReader in this instance.
-    public XmlStreamReader(final InputStream inputStream, final String httpContentType, final boolean lenient, final String defaultEncoding)
-            throws IOException {
+    // InputStream is managed through a InputStreamReader in this instance.
+    @SuppressWarnings("resource")
+    public XmlStreamReader(final InputStream inputStream, final String httpContentType, final boolean lenient, final String defaultEncoding) throws IOException {
         this.defaultEncoding = defaultEncoding;
-        final BOMInputStream bom = new BOMInputStream(new BufferedInputStream(Objects.requireNonNull(inputStream, "inputStream"), IOUtils.DEFAULT_BUFFER_SIZE),
-                false, BOMS);
+        final BOMInputStream bom = new BOMInputStream(new BufferedInputStream(Objects.requireNonNull(inputStream, "inputStream"), IOUtils.DEFAULT_BUFFER_SIZE), false, BOMS);
         final BOMInputStream pis = new BOMInputStream(bom, true, XML_GUESS_BYTES);
         this.encoding = processHttpStream(bom, pis, lenient, httpContentType);
         this.reader = new InputStreamReader(pis, encoding);
@@ -623,7 +590,8 @@ public class XmlStreamReader extends Reader {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}
      */
     @Deprecated
-    @SuppressWarnings("resource") // InputStream is managed through another reader in this instance.
+    // InputStream is managed through another reader in this instance.
+    @SuppressWarnings("resource")
     public XmlStreamReader(final Path file) throws IOException {
         this(Files.newInputStream(Objects.requireNonNull(file, "file")));
     }
@@ -672,19 +640,12 @@ public class XmlStreamReader extends Reader {
         final boolean lenient = true;
         final String contentType = urlConnection.getContentType();
         final InputStream inputStream = urlConnection.getInputStream();
-        @SuppressWarnings("resource") // managed by the InputStreamReader tracked by this instance
-        // @formatter:off
-        final BOMInputStream bomInput = BOMInputStream.builder()
-            .setInputStream(new BufferedInputStream(inputStream, IOUtils.DEFAULT_BUFFER_SIZE))
-            .setInclude(false)
-            .setByteOrderMarks(BOMS)
-            .get();
+        // managed by the InputStreamReader tracked by this instance
         @SuppressWarnings("resource")
-        final BOMInputStream piInput = BOMInputStream.builder()
-            .setInputStream(new BufferedInputStream(bomInput, IOUtils.DEFAULT_BUFFER_SIZE))
-            .setInclude(true)
-            .setByteOrderMarks(XML_GUESS_BYTES)
-            .get();
+        final BOMInputStream // @formatter:off
+        bomInput = BOMInputStream.builder().setInputStream(new BufferedInputStream(inputStream, IOUtils.DEFAULT_BUFFER_SIZE)).setInclude(false).setByteOrderMarks(BOMS).get();
+        @SuppressWarnings("resource")
+        final BOMInputStream piInput = BOMInputStream.builder().setInputStream(new BufferedInputStream(bomInput, IOUtils.DEFAULT_BUFFER_SIZE)).setInclude(true).setByteOrderMarks(XML_GUESS_BYTES).get();
         // @formatter:on
         if (urlConnection instanceof HttpURLConnection || contentType != null) {
             this.encoding = processHttpStream(bomInput, piInput, lenient, contentType);
@@ -704,71 +665,8 @@ public class XmlStreamReader extends Reader {
      * @return the HTTP encoding
      * @throws IOException thrown if there is a problem reading the stream.
      */
-    String calculateHttpEncoding(final String bomEnc, final String xmlGuessEnc, final String xmlEnc, final boolean lenient, final String httpContentType)
-            throws IOException {
-
-        // Lenient and has XML encoding
-        if (lenient && xmlEnc != null) {
-            return xmlEnc;
-        }
-
-        // Determine mime/encoding content types from HTTP Content Type
-        final String cTMime = getContentTypeMime(httpContentType);
-        final String cTEnc = getContentTypeEncoding(httpContentType);
-        final boolean appXml = isAppXml(cTMime);
-        final boolean textXml = isTextXml(cTMime);
-
-        // Mime type NOT "application/xml" or "text/xml"
-        if (!appXml && !textXml) {
-            final String msg = MessageFormat.format(HTTP_EX_3, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-            throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-        }
-
-        // No content type encoding
-        if (cTEnc == null) {
-            if (appXml) {
-                return calculateRawEncoding(bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            return defaultEncoding == null ? US_ASCII : defaultEncoding;
-        }
-
-        // UTF-16BE or UTF-16LE content type encoding
-        if (cTEnc.equals(UTF_16BE) || cTEnc.equals(UTF_16LE)) {
-            if (bomEnc != null) {
-                final String msg = MessageFormat.format(HTTP_EX_1, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-                throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            return cTEnc;
-        }
-
-        // UTF-16 content type encoding
-        if (cTEnc.equals(UTF_16)) {
-            if (bomEnc != null && bomEnc.startsWith(UTF_16)) {
-                return bomEnc;
-            }
-            final String msg = MessageFormat.format(HTTP_EX_2, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-            throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-        }
-
-        // UTF-32BE or UTF-132E content type encoding
-        if (cTEnc.equals(UTF_32BE) || cTEnc.equals(UTF_32LE)) {
-            if (bomEnc != null) {
-                final String msg = MessageFormat.format(HTTP_EX_1, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-                throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            return cTEnc;
-        }
-
-        // UTF-32 content type encoding
-        if (cTEnc.equals(UTF_32)) {
-            if (bomEnc != null && bomEnc.startsWith(UTF_32)) {
-                return bomEnc;
-            }
-            final String msg = MessageFormat.format(HTTP_EX_2, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-            throw new XmlStreamReaderException(msg, cTMime, cTEnc, bomEnc, xmlGuessEnc, xmlEnc);
-        }
-
-        return cTEnc;
+    String calculateHttpEncoding(final String bomEnc, final String xmlGuessEnc, final String xmlEnc, final boolean lenient, final String httpContentType) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -781,60 +679,7 @@ public class XmlStreamReader extends Reader {
      * @throws IOException thrown if there is a problem reading the stream.
      */
     String calculateRawEncoding(final String bomEnc, final String xmlGuessEnc, final String xmlEnc) throws IOException {
-
-        // BOM is Null
-        if (bomEnc == null) {
-            if (xmlGuessEnc == null || xmlEnc == null) {
-                return defaultEncoding == null ? UTF_8 : defaultEncoding;
-            }
-            if (xmlEnc.equals(UTF_16) && (xmlGuessEnc.equals(UTF_16BE) || xmlGuessEnc.equals(UTF_16LE))) {
-                return xmlGuessEnc;
-            }
-            return xmlEnc;
-        }
-
-        // BOM is UTF-8
-        if (bomEnc.equals(UTF_8)) {
-            if (xmlGuessEnc != null && !xmlGuessEnc.equals(UTF_8)) {
-                final String msg = MessageFormat.format(RAW_EX_1, bomEnc, xmlGuessEnc, xmlEnc);
-                throw new XmlStreamReaderException(msg, bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            if (xmlEnc != null && !xmlEnc.equals(UTF_8)) {
-                final String msg = MessageFormat.format(RAW_EX_1, bomEnc, xmlGuessEnc, xmlEnc);
-                throw new XmlStreamReaderException(msg, bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            return bomEnc;
-        }
-
-        // BOM is UTF-16BE or UTF-16LE
-        if (bomEnc.equals(UTF_16BE) || bomEnc.equals(UTF_16LE)) {
-            if (xmlGuessEnc != null && !xmlGuessEnc.equals(bomEnc)) {
-                final String msg = MessageFormat.format(RAW_EX_1, bomEnc, xmlGuessEnc, xmlEnc);
-                throw new XmlStreamReaderException(msg, bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            if (xmlEnc != null && !xmlEnc.equals(UTF_16) && !xmlEnc.equals(bomEnc)) {
-                final String msg = MessageFormat.format(RAW_EX_1, bomEnc, xmlGuessEnc, xmlEnc);
-                throw new XmlStreamReaderException(msg, bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            return bomEnc;
-        }
-
-        // BOM is UTF-32BE or UTF-32LE
-        if (bomEnc.equals(UTF_32BE) || bomEnc.equals(UTF_32LE)) {
-            if (xmlGuessEnc != null && !xmlGuessEnc.equals(bomEnc)) {
-                final String msg = MessageFormat.format(RAW_EX_1, bomEnc, xmlGuessEnc, xmlEnc);
-                throw new XmlStreamReaderException(msg, bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            if (xmlEnc != null && !xmlEnc.equals(UTF_32) && !xmlEnc.equals(bomEnc)) {
-                final String msg = MessageFormat.format(RAW_EX_1, bomEnc, xmlGuessEnc, xmlEnc);
-                throw new XmlStreamReaderException(msg, bomEnc, xmlGuessEnc, xmlEnc);
-            }
-            return bomEnc;
-        }
-
-        // BOM is something else
-        final String msg = MessageFormat.format(RAW_EX_2, bomEnc, xmlGuessEnc, xmlEnc);
-        throw new XmlStreamReaderException(msg, bomEnc, xmlGuessEnc, xmlEnc);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -844,7 +689,7 @@ public class XmlStreamReader extends Reader {
      */
     @Override
     public void close() throws IOException {
-        reader.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -884,7 +729,7 @@ public class XmlStreamReader extends Reader {
      * @return the default encoding to use.
      */
     public String getDefaultEncoding() {
-        return defaultEncoding;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -893,7 +738,7 @@ public class XmlStreamReader extends Reader {
      * @return charset encoding.
      */
     public String getEncoding() {
-        return encoding;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -929,8 +774,7 @@ public class XmlStreamReader extends Reader {
      * @return the encoding to be used
      * @throws IOException thrown if there is a problem reading the stream.
      */
-    private String processHttpStream(final BOMInputStream bomInput, final BOMInputStream piInput, final boolean lenient, final String httpContentType)
-            throws IOException {
+    private String processHttpStream(final BOMInputStream bomInput, final BOMInputStream piInput, final boolean lenient, final String httpContentType) throws IOException {
         final String bomEnc = bomInput.getBOMCharsetName();
         final String xmlGuessEnc = piInput.getBOMCharsetName();
         final String xmlEnc = getXmlProlog(piInput, xmlGuessEnc);
@@ -955,7 +799,6 @@ public class XmlStreamReader extends Reader {
      */
     @Override
     public int read(final char[] buf, final int offset, final int len) throws IOException {
-        return reader.read(buf, offset, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -79,7 +79,7 @@ public class FileCleaner {
      * @return the singleton instance
      */
     public static FileCleaningTracker getInstance() {
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

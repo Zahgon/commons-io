@@ -14,11 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.util.stream.Stream;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -42,10 +40,6 @@ public enum StandardDeleteOption implements DeleteOption {
      * @return true if the given options contain {@link StandardDeleteOption#OVERRIDE_READ_ONLY}.
      */
     public static boolean overrideReadOnly(final DeleteOption[] options) {
-        if (IOUtils.length(options) == 0) {
-            return false;
-        }
-        return Stream.of(options).anyMatch(e -> OVERRIDE_READ_ONLY == e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

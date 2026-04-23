@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.io.IOException;
@@ -38,8 +37,7 @@ final class UncheckedIOExceptions {
      * @return a new {@link UncheckedIOException}.
      */
     public static UncheckedIOException create(final Object message) {
-        final String string = Objects.toString(message);
-        return new UncheckedIOException(string, new IOException(string));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -52,7 +50,7 @@ final class UncheckedIOExceptions {
      * @return a new {@link UncheckedIOException}.
      */
     public static UncheckedIOException wrap(final IOException e, final Object message) {
-        return new UncheckedIOException(Objects.toString(message), e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private UncheckedIOExceptions() {

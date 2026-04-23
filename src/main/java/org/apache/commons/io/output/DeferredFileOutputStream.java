@@ -24,7 +24,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 import org.apache.commons.io.file.PathUtils;
 
@@ -78,9 +77,13 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
     public static class Builder extends AbstractStreamBuilder<DeferredFileOutputStream, Builder> {
 
         private int threshold;
+
         private Path outputFile;
+
         private String prefix;
+
         private String suffix;
+
         private Path directory;
 
         /**
@@ -110,7 +113,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
          */
         @Override
         public DeferredFileOutputStream get() {
-            return new DeferredFileOutputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -120,8 +123,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
          * @return {@code this} instance.
          */
         public Builder setDirectory(final File directory) {
-            this.directory = toPath(directory, null);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -132,8 +134,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
          * @since 2.14.0
          */
         public Builder setDirectory(final Path directory) {
-            this.directory = toPath(directory, null);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -143,8 +144,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
          * @return {@code this} instance.
          */
         public Builder setOutputFile(final File outputFile) {
-            this.outputFile = toPath(outputFile, null);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -155,8 +155,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
          * @since 2.14.0
          */
         public Builder setOutputFile(final Path outputFile) {
-            this.outputFile = toPath(outputFile, null);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -166,8 +165,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
          * @return {@code this} instance.
          */
         public Builder setPrefix(final String prefix) {
-            this.prefix = prefix;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -177,8 +175,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
          * @return {@code this} instance.
          */
         public Builder setSuffix(final String suffix) {
-            this.suffix = suffix;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -188,10 +185,8 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
          * @return {@code this} instance.
          */
         public Builder setThreshold(final int threshold) {
-            this.threshold = threshold;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -201,7 +196,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static int checkBufferSize(final int initialBufferSize) {
@@ -293,8 +288,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      * @param initialBufferSize The initial size of the in memory buffer.
      * @throws IllegalArgumentException if initialBufferSize &lt; 0.
      */
-    private DeferredFileOutputStream(final int threshold, final File outputFile, final String prefix, final String suffix, final File directory,
-            final int initialBufferSize) {
+    private DeferredFileOutputStream(final int threshold, final File outputFile, final String prefix, final String suffix, final File directory, final int initialBufferSize) {
         super(threshold);
         this.outputPath = toPath(outputFile, null);
         this.prefix = prefix;
@@ -357,8 +351,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      */
     @Override
     public void close() throws IOException {
-        super.close();
-        closed = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -368,7 +361,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      * @return The data for this output stream, or {@code null} if no such data is available.
      */
     public byte[] getData() {
-        return memoryOutputStream != null ? memoryOutputStream.toByteArray() : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -384,7 +377,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      * @return The File for this output stream, or {@code null} if no such File exists.
      */
     public File getFile() {
-        return outputPath != null ? outputPath.toFile() : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -401,7 +394,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      * @since 2.14.0
      */
     public Path getPath() {
-        return outputPath;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -423,7 +416,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      * @return {@code true} if the data is available in memory; {@code false} otherwise.
      */
     public boolean isInMemory() {
-        return !isThresholdExceeded();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -434,19 +427,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      */
     @Override
     protected void thresholdReached() throws IOException {
-        if (prefix != null) {
-            outputPath = Files.createTempFile(directory, prefix, suffix);
-        }
-        PathUtils.createParentDirectories(outputPath, null, PathUtils.EMPTY_FILE_ATTRIBUTE_ARRAY);
-        final OutputStream fos = Files.newOutputStream(outputPath);
-        try {
-            memoryOutputStream.writeTo(fos);
-        } catch (final IOException e) {
-            fos.close();
-            throw e;
-        }
-        currentOutputStream = fos;
-        memoryOutputStream = null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -460,16 +441,7 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      * @since 2.9.0
      */
     public InputStream toInputStream() throws IOException {
-        // we may only need to check if this is closed if we are working with a file
-        // but we should force the habit of closing whether we are working with
-        // a file or memory.
-        if (!closed) {
-            throw new IOException("Stream not closed");
-        }
-        if (isInMemory()) {
-            return memoryOutputStream.toInputStream();
-        }
-        return Files.newInputStream(outputPath);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -480,16 +452,6 @@ public class DeferredFileOutputStream extends ThresholdingOutputStream {
      * @throws IOException          if this stream is not yet closed or an error occurs.
      */
     public void writeTo(final OutputStream outputStream) throws IOException {
-        // we may only need to check if this is closed if we are working with a file
-        // but we should force the habit of closing whether we are working with
-        // a file or memory.
-        if (!closed) {
-            throw new IOException("Stream not closed");
-        }
-        if (isInMemory()) {
-            memoryOutputStream.writeTo(outputStream);
-        } else {
-            Files.copy(outputPath, outputStream);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

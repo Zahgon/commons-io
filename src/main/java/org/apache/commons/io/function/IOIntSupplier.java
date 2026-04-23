@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -36,7 +35,7 @@ public interface IOIntSupplier {
      * @return an UncheckedIOException Supplier.
      */
     default IntSupplier asIntSupplier() {
-        return () -> Uncheck.getAsInt(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -43,46 +42,45 @@ final class UncheckedIOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends 
 
     @Override
     public void close() {
-        delegate.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isParallel() {
-        return delegate.isParallel();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<T> iterator() {
-        return delegate.iterator().asIterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("resource")
     @Override
     public B onClose(final Runnable closeHandler) {
-        return Uncheck.apply(delegate::onClose, () -> closeHandler.run()).unwrap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("resource")
     @Override
     public B parallel() {
-        return delegate.parallel().unwrap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("resource")
     @Override
     public B sequential() {
-        return delegate.sequential().unwrap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Spliterator<T> spliterator() {
-        return delegate.spliterator().unwrap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("resource")
     @Override
     public B unordered() {
-        return delegate.unordered().unwrap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

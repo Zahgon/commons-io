@@ -17,11 +17,9 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 import org.apache.commons.io.function.Erase;
@@ -70,7 +68,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
          * @return the {@link ProxyInputStream#afterRead(int)} consumer.
          */
         public IOIntConsumer getAfterRead() {
-            return afterRead;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -91,10 +89,8 @@ public abstract class ProxyInputStream extends FilterInputStream {
          * @return this instance.
          */
         public B setAfterRead(final IOIntConsumer afterRead) {
-            this.afterRead = afterRead;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -167,7 +163,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      * @since 2.0
      */
     protected void afterRead(final int n) throws IOException {
-        afterRead.accept(n);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -178,14 +174,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public int available() throws IOException {
-        if (in != null && !isClosed()) {
-            try {
-                return in.available();
-            } catch (final IOException e) {
-                handleIOException(e);
-            }
-        }
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -208,9 +197,10 @@ public abstract class ProxyInputStream extends FilterInputStream {
      * @throws IOException if the pre-processing fails in a subclass.
      * @since 2.0
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void beforeRead(final int n) throws IOException {
-        // no-op default
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -219,7 +209,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      * @throws IOException if this instance is closed.
      */
     void checkOpen() throws IOException {
-        Input.checkOpen(!isClosed());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -229,8 +219,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public void close() throws IOException {
-        IOUtils.close(in, this::handleIOException);
-        closed = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -245,7 +234,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      * @since 2.0
      */
     protected void handleIOException(final IOException e) throws IOException {
-        exceptionHandler.accept(e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -254,7 +243,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      * @return whether this instance is closed.
      */
     boolean isClosed() {
-        return closed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -264,9 +253,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public synchronized void mark(final int readLimit) {
-        if (in != null) {
-            in.mark(readLimit);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -278,7 +265,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public boolean markSupported() {
-        return in != null && in.markSupported();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -289,15 +276,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public int read() throws IOException {
-        try {
-            beforeRead(1);
-            final int b = in.read();
-            afterRead(b != EOF ? 1 : EOF);
-            return b;
-        } catch (final IOException e) {
-            handleIOException(e);
-            return EOF;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -314,15 +293,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public int read(final byte[] b) throws IOException {
-        try {
-            beforeRead(IOUtils.length(b));
-            final int n = in.read(b);
-            afterRead(n);
-            return n;
-        } catch (final IOException e) {
-            handleIOException(e);
-            return EOF;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -341,15 +312,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public int read(final byte[] b, final int off, final int len) throws IOException {
-        try {
-            beforeRead(len);
-            final int n = in.read(b, off, len);
-            afterRead(n);
-            return n;
-        } catch (final IOException e) {
-            handleIOException(e);
-            return EOF;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -359,11 +322,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public synchronized void reset() throws IOException {
-        try {
-            in.reset();
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -374,8 +333,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      * @since 2.19.0
      */
     public ProxyInputStream setReference(final InputStream in) {
-        this.in = in;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -387,12 +345,7 @@ public abstract class ProxyInputStream extends FilterInputStream {
      */
     @Override
     public long skip(final long n) throws IOException {
-        try {
-            return in.skip(n);
-        } catch (final IOException e) {
-            handleIOException(e);
-            return 0;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -405,7 +358,6 @@ public abstract class ProxyInputStream extends FilterInputStream {
      * @since 2.16.0
      */
     public InputStream unwrap() {
-        return in;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

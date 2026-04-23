@@ -24,7 +24,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.build.AbstractSupplier;
@@ -92,10 +91,14 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
      */
     public static class Builder extends AbstractSupplier<WildcardFileFilter, Builder> {
 
-        /** The wildcards that will be used to match file names. */
+        /**
+         * The wildcards that will be used to match file names.
+         */
         private String[] wildcards;
 
-        /** Whether the comparison is case-sensitive. */
+        /**
+         * Whether the comparison is case-sensitive.
+         */
         private IOCase ioCase = IOCase.SENSITIVE;
 
         /**
@@ -107,7 +110,7 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
 
         @Override
         public WildcardFileFilter get() {
-            return new WildcardFileFilter(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -117,8 +120,7 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
          * @return {@code this} instance.
          */
         public Builder setIoCase(final IOCase ioCase) {
-            this.ioCase = IOCase.value(ioCase, IOCase.SENSITIVE);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -128,8 +130,7 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
          * @return {@code this} instance.
          */
         public Builder setWildcards(final List<String> wildcards) {
-            setWildcards(requireWildcards(wildcards).toArray(EMPTY_STRING_ARRAY));
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -139,10 +140,8 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
          * @return {@code this} instance.
          */
         public Builder setWildcards(final String... wildcards) {
-            this.wildcards = requireWildcards(wildcards);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private static final long serialVersionUID = -7426486598995782105L;
@@ -154,17 +153,21 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static <T> T requireWildcards(final T wildcards) {
         return Objects.requireNonNull(wildcards, "wildcards");
     }
 
-    /** The wildcards that will be used to match file names. */
+    /**
+     * The wildcards that will be used to match file names.
+     */
     private final String[] wildcards;
 
-    /** Whether the comparison is case-sensitive. */
+    /**
+     * Whether the comparison is case-sensitive.
+     */
     private final IOCase ioCase;
 
     private WildcardFileFilter(final Builder builder) {
@@ -268,7 +271,7 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public boolean accept(final File file) {
-        return accept(file.getName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -280,7 +283,7 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public boolean accept(final File dir, final String name) {
-        return accept(name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -293,7 +296,7 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        return toFileVisitResult(accept(PathUtils.getFileNameString(path)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean accept(final String name) {
@@ -307,11 +310,6 @@ public class WildcardFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public String toString() {
-        final StringBuilder buffer = new StringBuilder();
-        buffer.append(super.toString());
-        buffer.append("(");
-        append(wildcards, buffer);
-        buffer.append(")");
-        return buffer.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

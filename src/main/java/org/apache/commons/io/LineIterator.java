@@ -51,7 +51,6 @@ import java.util.Objects;
 public class LineIterator implements Iterator<String>, Closeable {
 
     // This class deliberately does not implement Iterable, see https://issues.apache.org/jira/browse/IO-181
-
     /**
      * Closes a {@link LineIterator} quietly.
      *
@@ -65,13 +64,19 @@ public class LineIterator implements Iterator<String>, Closeable {
         IOUtils.closeQuietly(iterator);
     }
 
-    /** The reader that is being read. */
+    /**
+     * The reader that is being read.
+     */
     private final BufferedReader bufferedReader;
 
-    /** The current line. */
+    /**
+     * The current line.
+     */
     private String cachedLine;
 
-    /** A flag indicating if the iterator has been fully read. */
+    /**
+     * A flag indicating if the iterator has been fully read.
+     */
     private boolean finished;
 
     /**
@@ -80,7 +85,8 @@ public class LineIterator implements Iterator<String>, Closeable {
      * @param reader the {@link Reader} to read from, not null
      * @throws NullPointerException if the reader is null
      */
-    @SuppressWarnings("resource") // Caller closes Reader
+    // Caller closes Reader
+    @SuppressWarnings("resource")
     public LineIterator(final Reader reader) {
         Objects.requireNonNull(reader, "reader");
         if (reader instanceof BufferedReader) {
@@ -101,9 +107,7 @@ public class LineIterator implements Iterator<String>, Closeable {
      */
     @Override
     public void close() throws IOException {
-        finished = true;
-        cachedLine = null;
-        IOUtils.close(bufferedReader);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,28 +120,7 @@ public class LineIterator implements Iterator<String>, Closeable {
      */
     @Override
     public boolean hasNext() {
-        if (cachedLine != null) {
-            return true;
-        }
-        if (finished) {
-            return false;
-        }
-        try {
-            while (true) {
-                final String line = bufferedReader.readLine();
-                if (line == null) {
-                    finished = true;
-                    return false;
-                }
-                if (isValidLine(line)) {
-                    cachedLine = line;
-                    return true;
-                }
-            }
-        } catch (final IOException ioe) {
-            IOUtils.closeQuietly(this, ioe::addSuppressed);
-            throw new IllegalStateException(ioe);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,7 +130,7 @@ public class LineIterator implements Iterator<String>, Closeable {
      * @return true if valid, false to remove from the iterator
      */
     protected boolean isValidLine(final String line) {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -158,7 +141,7 @@ public class LineIterator implements Iterator<String>, Closeable {
      */
     @Override
     public String next() {
-        return nextLine();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -185,7 +168,6 @@ public class LineIterator implements Iterator<String>, Closeable {
      */
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("remove not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

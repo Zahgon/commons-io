@@ -14,13 +14,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
@@ -113,9 +111,8 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
          */
         @Override
         public UnsynchronizedBufferedInputStream get() throws IOException {
-            return new UnsynchronizedBufferedInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -170,11 +167,7 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
      */
     @Override
     public int available() throws IOException {
-        final InputStream localIn = inputStream; // 'in' could be invalidated by close()
-        if (buffer == null || localIn == null) {
-            throw new IOException("Stream is closed");
-        }
-        return count - pos + localIn.available();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -184,12 +177,7 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
      */
     @Override
     public void close() throws IOException {
-        buffer = null;
-        final InputStream localIn = inputStream;
-        inputStream = null;
-        if (localIn != null) {
-            localIn.close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private int fillBuffer(final InputStream localIn, byte[] localBuf) throws IOException {
@@ -226,7 +214,7 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
     }
 
     byte[] getBuffer() {
-        return buffer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -239,8 +227,7 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
      */
     @Override
     public void mark(final int readLimit) {
-        markLimit = readLimit;
-        markPos = pos;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -252,7 +239,7 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
      */
     @Override
     public boolean markSupported() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -264,31 +251,7 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
      */
     @Override
     public int read() throws IOException {
-        // Use local refs since buf and in may be invalidated by an
-        // unsynchronized close()
-        byte[] localBuf = buffer;
-        final InputStream localIn = inputStream;
-        if (localBuf == null || localIn == null) {
-            throw new IOException("Stream is closed");
-        }
-
-        /* Are there buffered bytes available? */
-        if (pos >= count && fillBuffer(localIn, localBuf) == IOUtils.EOF) {
-            return IOUtils.EOF; /* no, fill buffer */
-        }
-        // localBuf may have been invalidated by fillbuf
-        if (localBuf != buffer) {
-            localBuf = buffer;
-            if (localBuf == null) {
-                throw new IOException("Stream is closed");
-            }
-        }
-
-        /* Did filling the buffer fail with -1 (EOF)? */
-        if (count - pos > 0) {
-            return localBuf[pos++] & 0xFF;
-        }
-        return IOUtils.EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -306,74 +269,7 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
      */
     @Override
     public int read(final byte[] dest, int offset, final int length) throws IOException {
-        // Use local ref since buf may be invalidated by an unsynchronized
-        // close()
-        byte[] localBuf = buffer;
-        if (localBuf == null) {
-            throw new IOException("Stream is closed");
-        }
-        // avoid int overflow
-        if (offset > dest.length - length || offset < 0 || length < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-        if (length == 0) {
-            return 0;
-        }
-        final InputStream localIn = inputStream;
-        if (localIn == null) {
-            throw new IOException("Stream is closed");
-        }
-
-        int required;
-        if (pos < count) {
-            /* There are bytes available in the buffer. */
-            final int copylength = count - pos >= length ? length : count - pos;
-            System.arraycopy(localBuf, pos, dest, offset, copylength);
-            pos += copylength;
-            if (copylength == length || localIn.available() == 0) {
-                return copylength;
-            }
-            offset += copylength;
-            required = length - copylength;
-        } else {
-            required = length;
-        }
-
-        while (true) {
-            final int read;
-            /*
-             * If we're not marked and the required size is greater than the buffer, simply read the bytes directly bypassing the buffer.
-             */
-            if (markPos == IOUtils.EOF && required >= localBuf.length) {
-                read = localIn.read(dest, offset, required);
-                if (read == IOUtils.EOF) {
-                    return required == length ? IOUtils.EOF : length - required;
-                }
-            } else {
-                if (fillBuffer(localIn, localBuf) == IOUtils.EOF) {
-                    return required == length ? IOUtils.EOF : length - required;
-                }
-                // localBuf may have been invalidated by fillBuffer()
-                if (localBuf != buffer) {
-                    localBuf = buffer;
-                    if (localBuf == null) {
-                        throw new IOException("Stream is closed");
-                    }
-                }
-
-                read = count - pos >= required ? required : count - pos;
-                System.arraycopy(localBuf, pos, dest, offset, read);
-                pos += read;
-            }
-            required -= read;
-            if (required == 0) {
-                return length;
-            }
-            if (localIn.available() == 0) {
-                return length - required;
-            }
-            offset += read;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -385,13 +281,7 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
      */
     @Override
     public void reset() throws IOException {
-        if (buffer == null) {
-            throw new IOException("Stream is closed");
-        }
-        if (IOUtils.EOF == markPos) {
-            throw new IOException("Mark has been invalidated");
-        }
-        pos = markPos;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -403,44 +293,6 @@ public final class UnsynchronizedBufferedInputStream extends UnsynchronizedFilte
      */
     @Override
     public long skip(final long amount) throws IOException {
-        // Use local refs since buf and in may be invalidated by an
-        // unsynchronized close()
-        final byte[] localBuf = buffer;
-        final InputStream localIn = inputStream;
-        if (localBuf == null) {
-            throw new IOException("Stream is closed");
-        }
-        if (amount < 1) {
-            return 0;
-        }
-        if (localIn == null) {
-            throw new IOException("Stream is closed");
-        }
-
-        if (count - pos >= amount) {
-            // (int count - int pos) here is always an int so amount is also in the int range if the above test is true.
-            // We can safely cast to int and avoid static analysis warnings.
-            pos += (int) amount;
-            return amount;
-        }
-        int read = count - pos;
-        pos = count;
-
-        if (markPos != IOUtils.EOF && amount <= markLimit) {
-            if (fillBuffer(localIn, localBuf) == IOUtils.EOF) {
-                return read;
-            }
-            if (count - pos >= amount - read) {
-                // (int count - int pos) here is always an int so (amount - read) is also in the int range if the above test is true.
-                // We can safely cast to int and avoid static analysis warnings.
-                pos += (int) amount - read;
-                return amount;
-            }
-            // Couldn't get all the bytes, skip what we read
-            read += count - pos;
-            pos = count;
-            return read;
-        }
-        return read + localIn.skip(amount - read);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

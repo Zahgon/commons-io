@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.io.File;
@@ -32,6 +31,7 @@ import java.util.Objects;
 public final class IORandomAccessFile extends RandomAccessFile {
 
     private final File file;
+
     private final String mode;
 
     /**
@@ -68,7 +68,7 @@ public final class IORandomAccessFile extends RandomAccessFile {
      * @return the file passed to {@link #IORandomAccessFile(File, String)}.
      */
     public File getFile() {
-        return file;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,7 +77,7 @@ public final class IORandomAccessFile extends RandomAccessFile {
      * @return the mode passed to {@link #IORandomAccessFile(File, String)}.
      */
     public String getMode() {
-        return mode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,7 +88,6 @@ public final class IORandomAccessFile extends RandomAccessFile {
      */
     @Override
     public String toString() {
-        return Objects.toString(file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

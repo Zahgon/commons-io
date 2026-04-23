@@ -38,7 +38,7 @@ public class CloseShieldInputStream extends ProxyInputStream {
      * @since 2.17.0
      */
     public static InputStream systemIn(final InputStream inputStream) {
-        return inputStream == System.in ? wrap(inputStream) : inputStream;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -49,7 +49,7 @@ public class CloseShieldInputStream extends ProxyInputStream {
      * @since 2.9.0
      */
     public static CloseShieldInputStream wrap(final InputStream inputStream) {
-        return new CloseShieldInputStream(inputStream);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,7 +72,6 @@ public class CloseShieldInputStream extends ProxyInputStream {
      */
     @Override
     public void close() {
-        in = ClosedInputStream.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

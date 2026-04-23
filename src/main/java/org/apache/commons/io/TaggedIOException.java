@@ -26,7 +26,8 @@ import java.io.Serializable;
  *
  * @since 2.0
  */
-@SuppressWarnings("deprecation") // needs to extend deprecated IOExceptionWithCause to preserve binary compatibility
+// needs to extend deprecated IOExceptionWithCause to preserve binary compatibility
+@SuppressWarnings("deprecation")
 public class TaggedIOException extends IOExceptionWithCause {
 
     /**
@@ -63,9 +64,7 @@ public class TaggedIOException extends IOExceptionWithCause {
      * otherwise {@code false}
      */
     public static boolean isTaggedWith(final Throwable throwable, final Object tag) {
-        return tag != null
-            && throwable instanceof TaggedIOException
-            && tag.equals(((TaggedIOException) throwable).tag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,11 +89,8 @@ public class TaggedIOException extends IOExceptionWithCause {
      * @param tag tag object
      * @throws IOException original exception from the tagged decorator, if any
      */
-    public static void throwCauseIfTaggedWith(final Throwable throwable, final Object tag)
-            throws IOException {
-        if (isTaggedWith(throwable, tag)) {
-            throw ((TaggedIOException) throwable).getCause();
-        }
+    public static void throwCauseIfTaggedWith(final Throwable throwable, final Object tag) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -121,7 +117,7 @@ public class TaggedIOException extends IOExceptionWithCause {
      */
     @Override
     public synchronized IOException getCause() {
-        return (IOException) super.getCause();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,7 +126,6 @@ public class TaggedIOException extends IOExceptionWithCause {
      * @return tag object
      */
     public Serializable getTag() {
-        return tag;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

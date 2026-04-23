@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.channels;
 
 import java.io.IOException;
@@ -23,7 +22,6 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.SeekableByteChannel;
 import java.util.Objects;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -59,45 +57,7 @@ public final class FileChannels {
      * @since 2.19.0
      */
     public static boolean contentEquals(final ReadableByteChannel channel1, final ReadableByteChannel channel2, final int bufferCapacity) throws IOException {
-        // Before making any changes, please test with org.apache.commons.io.jmh.IOUtilsContentEqualsInputStreamsBenchmark
-        // Short-circuit test
-        if (Objects.equals(channel1, channel2)) {
-            return true;
-        }
-        // Don't use ByteBuffer#compact() to avoid extra copying.
-        final ByteBuffer c1Buffer = ByteBuffer.allocateDirect(bufferCapacity);
-        final ByteBuffer c2Buffer = ByteBuffer.allocateDirect(bufferCapacity);
-        int c1NumRead = 0;
-        int c2NumRead = 0;
-        boolean c1Read0 = false;
-        boolean c2Read0 = false;
-        // If a channel is a non-blocking channel, it may return 0 bytes read for any given call.
-        while (true) {
-            if (!c2Read0) {
-                c1NumRead = readToLimit(channel1, c1Buffer);
-                c1Buffer.clear();
-                c1Read0 = c1NumRead == 0;
-            }
-            if (!c1Read0) {
-                c2NumRead = readToLimit(channel2, c2Buffer);
-                c2Buffer.clear();
-                c2Read0 = c2NumRead == 0;
-            }
-            if (c1NumRead == IOUtils.EOF && c2NumRead == IOUtils.EOF) {
-                return c1Buffer.equals(c2Buffer);
-            }
-            if (c1NumRead == 0 || c2NumRead == 0) {
-                // 0 may be returned from a non-blocking channel.
-                Thread.yield();
-                continue;
-            }
-            if (c1NumRead != c2NumRead) {
-                return false;
-            }
-            if (!c1Buffer.equals(c2Buffer)) {
-                return false;
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -114,17 +74,7 @@ public final class FileChannels {
      * @since 2.19.0
      */
     public static boolean contentEquals(final SeekableByteChannel channel1, final SeekableByteChannel channel2, final int bufferCapacity) throws IOException {
-        // Short-circuit test
-        if (Objects.equals(channel1, channel2)) {
-            return true;
-        }
-        // Short-circuit test
-        final long size1 = size(channel1);
-        final long size2 = size(channel2);
-        if (size1 != size2) {
-            return false;
-        }
-        return size1 == 0 && size2 == 0 || contentEquals((ReadableByteChannel) channel1, channel2, bufferCapacity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

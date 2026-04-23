@@ -19,7 +19,6 @@ package org.apache.commons.io.input;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.function.Supplier;
-
 import org.apache.commons.io.function.Erase;
 
 /**
@@ -90,7 +89,7 @@ public class BrokenInputStream extends InputStream {
      */
     @Override
     public int available() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,7 +99,7 @@ public class BrokenInputStream extends InputStream {
      */
     @Override
     public void close() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -109,7 +108,7 @@ public class BrokenInputStream extends InputStream {
      * @return  the Throwable to throw.
      */
     Throwable getThrowable() {
-        return exceptionSupplier.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -120,7 +119,7 @@ public class BrokenInputStream extends InputStream {
      */
     @Override
     public int read() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,7 +129,7 @@ public class BrokenInputStream extends InputStream {
      */
     @Override
     public synchronized void reset() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -151,7 +150,6 @@ public class BrokenInputStream extends InputStream {
      */
     @Override
     public long skip(final long n) throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

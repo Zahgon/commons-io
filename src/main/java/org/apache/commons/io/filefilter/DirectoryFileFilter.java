@@ -97,7 +97,7 @@ public class DirectoryFileFilter extends AbstractFileFilter implements Serializa
      */
     @Override
     public boolean accept(final File file) {
-        return isDirectory(file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -110,7 +110,6 @@ public class DirectoryFileFilter extends AbstractFileFilter implements Serializa
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return toFileVisitResult(file != null && Files.isDirectory(file));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

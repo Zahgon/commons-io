@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.build;
 
 import java.io.File;
@@ -28,7 +27,6 @@ import java.nio.charset.Charset;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.util.function.IntUnaryOperator;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.file.PathUtils;
@@ -106,7 +104,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return the buffer size, defaults to {@link IOUtils#DEFAULT_BUFFER_SIZE} ({@value IOUtils#DEFAULT_BUFFER_SIZE}).
      */
     public int getBufferSize() {
-        return bufferSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,7 +113,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return the buffer size default, defaults to {@link IOUtils#DEFAULT_BUFFER_SIZE} ({@value IOUtils#DEFAULT_BUFFER_SIZE}).
      */
     public int getBufferSizeDefault() {
-        return bufferSizeDefault;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -129,7 +127,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.13.0
      */
     public CharSequence getCharSequence() throws IOException {
-        return checkOrigin().getCharSequence(getCharset());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,7 +136,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return the Charset, defaults to {@link Charset#defaultCharset()}.
      */
     public Charset getCharset() {
-        return charset;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,7 +145,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return the Charset default, defaults to {@link Charset#defaultCharset()}.
      */
     public Charset getCharsetDefault() {
-        return charsetDefault;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -160,7 +158,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.18.0
      */
     public File getFile() {
-        return checkOrigin().getFile();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,7 +173,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.13.0
      */
     public InputStream getInputStream() throws IOException {
-        return checkOrigin().getInputStream(getOpenOptions());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -184,7 +182,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return the OpenOption array.
      */
     public OpenOption[] getOpenOptions() {
-        return openOptions;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -199,7 +197,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.13.0
      */
     public OutputStream getOutputStream() throws IOException {
-        return checkOrigin().getOutputStream(getOpenOptions());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -212,7 +210,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.13.0
      */
     public Path getPath() {
-        return checkOrigin().getPath();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -225,7 +223,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.18.0
      */
     public RandomAccessFile getRandomAccessFile() throws IOException {
-        return checkOrigin().getRandomAccessFile(getOpenOptions());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -240,7 +238,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.16.0
      */
     public Reader getReader() throws IOException {
-        return checkOrigin().getReader(getCharset());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -255,7 +253,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.13.0
      */
     public Writer getWriter() throws IOException {
-        return checkOrigin().getWriter(getCharset(), getOpenOptions());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -268,8 +266,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return {@code this} instance.
      */
     public B setBufferSize(final int bufferSize) {
-        this.bufferSize = checkBufferSize(bufferSize > 0 ? bufferSize : bufferSizeDefault);
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -282,8 +279,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return {@code this} instance.
      */
     public B setBufferSize(final Integer bufferSize) {
-        setBufferSize(bufferSize != null ? bufferSize : bufferSizeDefault);
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -294,8 +290,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.14.0
      */
     public B setBufferSizeChecker(final IntUnaryOperator bufferSizeChecker) {
-        this.bufferSizeChecker = bufferSizeChecker != null ? bufferSizeChecker : defaultSizeChecker;
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -308,8 +303,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return {@code this} instance.
      */
     protected B setBufferSizeDefault(final int bufferSizeDefault) {
-        this.bufferSizeDefault = bufferSizeDefault;
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -321,8 +315,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @since 2.14.0
      */
     public B setBufferSizeMax(final int bufferSizeMax) {
-        this.bufferSizeMax = bufferSizeMax > 0 ? bufferSizeMax : DEFAULT_MAX_VALUE;
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -335,8 +328,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return {@code this} instance.
      */
     public B setCharset(final Charset charset) {
-        this.charset = Charsets.toCharset(charset, charsetDefault);
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -349,7 +341,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return {@code this} instance.
      */
     public B setCharset(final String charset) {
-        return setCharset(Charsets.toCharset(charset, charsetDefault));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -362,8 +354,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @return {@code this} instance.
      */
     protected B setCharsetDefault(final Charset defaultCharset) {
-        this.charsetDefault = defaultCharset;
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -383,8 +374,7 @@ public abstract class AbstractStreamBuilder<T, B extends AbstractStreamBuilder<T
      * @see #setWriter(Writer)
      */
     public B setOpenOptions(final OpenOption... openOptions) {
-        this.openOptions = openOptions != null ? openOptions : DEFAULT_OPEN_OPTIONS;
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private int throwIae(final int size, final int max) {

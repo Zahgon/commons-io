@@ -19,7 +19,6 @@ package org.apache.commons.io.output;
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
@@ -93,9 +92,8 @@ public class ChunkedOutputStream extends FilterOutputStream {
          */
         @Override
         public ChunkedOutputStream get() throws IOException {
-            return new ChunkedOutputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -105,7 +103,7 @@ public class ChunkedOutputStream extends FilterOutputStream {
      * @since 2.13.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -119,7 +117,8 @@ public class ChunkedOutputStream extends FilterOutputStream {
      * @param builder holds contruction data.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("resource") // caller closes.
+    // caller closes.
+    @SuppressWarnings("resource")
     private ChunkedOutputStream(final Builder builder) throws IOException {
         super(builder.getOutputStream());
         final int bufferSize = builder.getBufferSize();
@@ -159,7 +158,7 @@ public class ChunkedOutputStream extends FilterOutputStream {
 
     /* Package-private for testing. */
     int getChunkSize() {
-        return chunkSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -172,14 +171,6 @@ public class ChunkedOutputStream extends FilterOutputStream {
      */
     @Override
     public void write(final byte[] data, final int srcOffset, final int length) throws IOException {
-        int bytes = length;
-        int dstOffset = srcOffset;
-        while (bytes > 0) {
-            final int chunk = Math.min(bytes, chunkSize);
-            out.write(data, dstOffset, chunk);
-            bytes -= chunk;
-            dstOffset += chunk;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -43,7 +42,7 @@ public interface IOTriConsumer<T, U, V> {
      */
     @SuppressWarnings("unchecked")
     static <T, U, V> IOTriConsumer<T, U, V> noop() {
-        return Constants.IO_TRI_CONSUMER;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -67,10 +66,6 @@ public interface IOTriConsumer<T, U, V> {
      * @throws NullPointerException if {@code after} is null
      */
     default IOTriConsumer<T, U, V> andThen(final IOTriConsumer<? super T, ? super U, ? super V> after) {
-        Objects.requireNonNull(after);
-        return (t, u, v) -> {
-            accept(t, u, v);
-            after.accept(t, u, v);
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

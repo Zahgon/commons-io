@@ -65,6 +65,7 @@ import java.nio.file.attribute.BasicFileAttributes;
  * @see FileFilterUtils#fileFileFilter()
  */
 public class SymbolicLinkFileFilter extends AbstractFileFilter implements Serializable {
+
     /*
      * Note to developers: The unit test needs to create symbolic links to files. However, on
      * Windows, this can't be done without admin privileges. This class is designed to allow a
@@ -79,7 +80,6 @@ public class SymbolicLinkFileFilter extends AbstractFileFilter implements Serial
      * tested on Windows is not likely to change, and will be tested properly when it gets run
      * on Apache servers.
      */
-
     /**
      * Singleton instance of file filter.
      */
@@ -113,7 +113,7 @@ public class SymbolicLinkFileFilter extends AbstractFileFilter implements Serial
      */
     @Override
     public boolean accept(final File file) {
-        return isSymbolicLink(file.toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,7 +126,7 @@ public class SymbolicLinkFileFilter extends AbstractFileFilter implements Serial
      */
     @Override
     public FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        return toFileVisitResult(isSymbolicLink(path));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,6 +140,6 @@ public class SymbolicLinkFileFilter extends AbstractFileFilter implements Serial
      * @return true if the file exists and is a symbolic link to either a file or directory, false otherwise.
      */
     boolean isSymbolicLink(final Path filePath) {
-        return Files.isSymbolicLink(filePath);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

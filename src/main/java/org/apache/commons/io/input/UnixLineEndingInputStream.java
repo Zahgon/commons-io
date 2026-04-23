@@ -19,7 +19,6 @@ package org.apache.commons.io.input;
 import static org.apache.commons.io.IOUtils.CR;
 import static org.apache.commons.io.IOUtils.EOF;
 import static org.apache.commons.io.IOUtils.LF;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -57,8 +56,7 @@ public class UnixLineEndingInputStream extends InputStream {
      */
     @Override
     public void close() throws IOException {
-        super.close();
-        in.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -83,7 +81,7 @@ public class UnixLineEndingInputStream extends InputStream {
      */
     @Override
     public synchronized void mark(final int readLimit) {
-        throw UnsupportedOperationExceptions.mark();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -91,23 +89,7 @@ public class UnixLineEndingInputStream extends InputStream {
      */
     @Override
     public synchronized int read() throws IOException {
-        final boolean previousWasSlashR = atSlashCr;
-        if (atEos) {
-            return handleEos(previousWasSlashR);
-        }
-        final int target = readWithUpdate();
-        if (atEos) {
-            return handleEos(previousWasSlashR);
-        }
-        if (atSlashCr) {
-            return LF;
-        }
-
-        if (previousWasSlashR && atSlashLf) {
-            return read();
-        }
-
-        return target;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

@@ -20,7 +20,6 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import org.apache.commons.io.build.AbstractOrigin;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 import org.apache.commons.io.function.Uncheck;
@@ -87,9 +86,8 @@ public final class UnsynchronizedByteArrayOutputStream extends AbstractByteArray
          */
         @Override
         public UnsynchronizedByteArrayOutputStream get() {
-            return new UnsynchronizedByteArrayOutputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -98,7 +96,7 @@ public final class UnsynchronizedByteArrayOutputStream extends AbstractByteArray
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -119,7 +117,7 @@ public final class UnsynchronizedByteArrayOutputStream extends AbstractByteArray
      * @throws IOException if an I/O error occurs.
      */
     public static InputStream toBufferedInputStream(final InputStream input) throws IOException {
-        return toBufferedInputStream(input, DEFAULT_SIZE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -141,11 +139,7 @@ public final class UnsynchronizedByteArrayOutputStream extends AbstractByteArray
      * @throws IOException if an I/O error occurs.
      */
     public static InputStream toBufferedInputStream(final InputStream input, final int size) throws IOException {
-        // It does not matter if a ByteArrayOutputStream is not closed as close() is a no-op
-        try (UnsynchronizedByteArrayOutputStream output = builder().setBufferSize(size).get()) {
-            output.write(input);
-            return output.toInputStream();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -183,54 +177,41 @@ public final class UnsynchronizedByteArrayOutputStream extends AbstractByteArray
      */
     @Override
     public void reset() {
-        resetImpl();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int size() {
-        return count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public byte[] toByteArray() {
-        return toByteArrayImpl();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public InputStream toInputStream() {
-        // @formatter:off
-        return toInputStream((buffer, offset, length) -> Uncheck
-                .get(() -> UnsynchronizedByteArrayInputStream.builder()
-                        .setByteArray(buffer)
-                        .setOffset(offset)
-                        .setLength(length)
-                        .get()));
-        // @formatter:on
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void write(final byte[] b, final int off, final int len) {
-        if (off < 0 || off > b.length || len < 0 || off + len > b.length || off + len < 0) {
-            throw new IndexOutOfBoundsException(String.format("offset=%,d, length=%,d", off, len));
-        }
-        if (len == 0) {
-            return;
-        }
-        writeImpl(b, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int write(final InputStream in) throws IOException {
-        return writeImpl(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void write(final int b) {
-        writeImpl(b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void writeTo(final OutputStream out) throws IOException {
-        writeToImpl(out);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.util.Iterator;
@@ -48,7 +47,7 @@ public final class StreamIterator<E> implements Iterator<E>, AutoCloseable {
      * @return A new iterator.
      */
     public static <T> StreamIterator<T> iterator(final Stream<T> stream) {
-        return new StreamIterator<>(stream);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -76,30 +75,16 @@ public final class StreamIterator<E> implements Iterator<E>, AutoCloseable {
      */
     @Override
     public void close() {
-        closed = true;
-        stream.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasNext() {
-        if (closed) {
-            // Calling Iterator#hasNext() on a closed java.nio.file.FileTreeIterator causes an IllegalStateException.
-            return false;
-        }
-        final boolean hasNext = iterator.hasNext();
-        if (!hasNext) {
-            close();
-        }
-        return hasNext;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E next() {
-        final E next = iterator.next();
-        if (next == null) {
-            close();
-        }
-        return next;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

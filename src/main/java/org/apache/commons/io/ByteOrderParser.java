@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.nio.ByteOrder;
@@ -47,14 +46,7 @@ public final class ByteOrderParser {
      *             if the {@link String} containing the ByteOrder representation to be parsed is unknown.
      */
     public static ByteOrder parseByteOrder(final String value) {
-        if (ByteOrder.BIG_ENDIAN.toString().equals(value)) {
-            return ByteOrder.BIG_ENDIAN;
-        }
-        if (ByteOrder.LITTLE_ENDIAN.toString().equals(value)) {
-            return ByteOrder.LITTLE_ENDIAN;
-        }
-        throw new IllegalArgumentException("Unsupported byte order setting: " + value + ", expected one of " + ByteOrder.LITTLE_ENDIAN +
-                 ", " + ByteOrder.BIG_ENDIAN);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -62,5 +54,4 @@ public final class ByteOrderParser {
      */
     private ByteOrderParser() {
     }
-
 }

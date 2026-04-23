@@ -14,13 +14,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
 /**
@@ -98,9 +96,8 @@ public class UnsynchronizedFilterInputStream extends InputStream {
          */
         @Override
         public UnsynchronizedFilterInputStream get() throws IOException {
-            return new UnsynchronizedFilterInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -109,7 +106,7 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,7 +135,7 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      */
     @Override
     public int available() throws IOException {
-        return inputStream.available();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -148,7 +145,7 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      */
     @Override
     public void close() throws IOException {
-        inputStream.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -161,10 +158,11 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      * @see #markSupported()
      * @see #reset()
      */
-    @SuppressWarnings("sync-override") // by design.
+    // by design.
+    @SuppressWarnings("sync-override")
     @Override
     public void mark(final int readLimit) {
-        inputStream.mark(readLimit);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -178,7 +176,7 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      */
     @Override
     public boolean markSupported() {
-        return inputStream.markSupported();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -190,7 +188,7 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      */
     @Override
     public int read() throws IOException {
-        return inputStream.read();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -203,7 +201,7 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      */
     @Override
     public int read(final byte[] buffer) throws IOException {
-        return read(buffer, 0, buffer.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -219,7 +217,7 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      */
     @Override
     public int read(final byte[] buffer, final int offset, final int count) throws IOException {
-        return inputStream.read(buffer, offset, count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -230,10 +228,11 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      * @see #mark(int)
      * @see #markSupported()
      */
-    @SuppressWarnings("sync-override") // by design.
+    // by design.
+    @SuppressWarnings("sync-override")
     @Override
     public void reset() throws IOException {
-        inputStream.reset();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -248,6 +247,6 @@ public class UnsynchronizedFilterInputStream extends InputStream {
      */
     @Override
     public long skip(final long count) throws IOException {
-        return inputStream.skip(count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

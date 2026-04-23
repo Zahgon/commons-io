@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public interface IOIterable<T> {
      * @see Iterable#iterator()
      */
     default void forEach(final IOConsumer<? super T> action) throws IOException {
-        iterator().forEachRemaining(Objects.requireNonNull(action));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -55,7 +54,7 @@ public interface IOIterable<T> {
      * @see Iterable#spliterator()
      */
     default IOSpliterator<T> spliterator() {
-        return IOSpliteratorAdapter.adapt(new UncheckedIOIterable<>(this).spliterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -66,5 +65,4 @@ public interface IOIterable<T> {
      * @return the underlying Iterable.
      */
     Iterable<T> unwrap();
-
 }

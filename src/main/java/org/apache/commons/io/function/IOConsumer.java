@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -22,7 +21,6 @@ import java.io.UncheckedIOException;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.IOExceptionList;
 import org.apache.commons.io.IOIndexedException;
 
@@ -52,7 +50,7 @@ public interface IOConsumer<T> {
      * @since 2.12.0
      */
     static <T> void forAll(final IOConsumer<T> action, final Iterable<T> iterable) throws IOExceptionList {
-        IOStreams.forAll(IOStreams.of(iterable), action);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -65,7 +63,7 @@ public interface IOConsumer<T> {
      * @since 2.12.0
      */
     static <T> void forAll(final IOConsumer<T> action, final Stream<T> stream) throws IOExceptionList {
-        IOStreams.forAll(stream, action, IOIndexedException::new);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -79,7 +77,7 @@ public interface IOConsumer<T> {
      */
     @SafeVarargs
     static <T> void forAll(final IOConsumer<T> action, final T... array) throws IOExceptionList {
-        IOStreams.forAll(IOStreams.of(array), action);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -92,7 +90,7 @@ public interface IOConsumer<T> {
      * @since 2.12.0
      */
     static <T> void forEach(final Iterable<T> iterable, final IOConsumer<T> action) throws IOException {
-        IOStreams.forEach(IOStreams.of(iterable), action);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -105,7 +103,7 @@ public interface IOConsumer<T> {
      * @since 2.12.0
      */
     static <T> void forEach(final Stream<T> stream, final IOConsumer<T> action) throws IOException {
-        IOStreams.forEach(stream, action);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -118,7 +116,7 @@ public interface IOConsumer<T> {
      * @since 2.12.0
      */
     static <T> void forEach(final T[] array, final IOConsumer<T> action) throws IOException {
-        IOStreams.forEach(IOStreams.of(array), action);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,7 +128,7 @@ public interface IOConsumer<T> {
      */
     @SuppressWarnings("unchecked")
     static <T> IOConsumer<T> noop() {
-        return (IOConsumer<T>) NOOP_IO_CONSUMER;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -151,11 +149,7 @@ public interface IOConsumer<T> {
      * @throws NullPointerException if {@code after} is null
      */
     default IOConsumer<T> andThen(final IOConsumer<? super T> after) {
-        Objects.requireNonNull(after, "after");
-        return (final T t) -> {
-            accept(t);
-            after.accept(t);
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -165,7 +159,6 @@ public interface IOConsumer<T> {
      * @since 2.12.0
      */
     default Consumer<T> asConsumer() {
-        return t -> Uncheck.accept(this, t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

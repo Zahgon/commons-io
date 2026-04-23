@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file.attribute;
 
 import java.io.IOException;
@@ -92,7 +91,7 @@ public final class FileTimes {
      * @since 2.16.0
      */
     public static FileTime fromUnixTime(final long time) {
-        return FileTime.from(time, TimeUnit.SECONDS);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,7 +105,7 @@ public final class FileTimes {
      * @since 2.16.0
      */
     public static boolean isUnixTime(final FileTime time) {
-        return isUnixTime(toUnixTime(time));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,7 +116,7 @@ public final class FileTimes {
      * @since 2.16.0
      */
     public static boolean isUnixTime(final long seconds) {
-        return Integer.MIN_VALUE <= seconds && seconds <= Integer.MAX_VALUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -128,7 +127,7 @@ public final class FileTimes {
      * @return The resulting FileTime.
      */
     public static FileTime minusMillis(final FileTime fileTime, final long millisToSubtract) {
-        return FileTime.from(fileTime.toInstant().minusMillis(millisToSubtract));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -139,7 +138,7 @@ public final class FileTimes {
      * @return The resulting FileTime.
      */
     public static FileTime minusNanos(final FileTime fileTime, final long nanosToSubtract) {
-        return FileTime.from(fileTime.toInstant().minusNanos(nanosToSubtract));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,7 +149,7 @@ public final class FileTimes {
      * @return The resulting FileTime.
      */
     public static FileTime minusSeconds(final FileTime fileTime, final long secondsToSubtract) {
-        return FileTime.from(fileTime.toInstant().minusSeconds(secondsToSubtract));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -159,11 +158,11 @@ public final class FileTimes {
      * @return the current instant FileTime from the system clock.
      */
     public static FileTime now() {
-        return FileTime.from(Instant.now());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static Date ntfsTimeToDate(final BigDecimal ntfsTime) {
-        return new Date(ntfsTimeToInstant(ntfsTime).toEpochMilli());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -177,7 +176,7 @@ public final class FileTimes {
      * @see <a href="https://learn.microsoft.com/en-us/windows/win32/sysinfo/file-times">NTFS File Times</a>
      */
     public static Date ntfsTimeToDate(final long ntfsTime) {
-        return ntfsTimeToDate(BigDecimal.valueOf(ntfsTime));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -192,17 +191,15 @@ public final class FileTimes {
      * @see <a href="https://learn.microsoft.com/en-us/windows/win32/sysinfo/file-times">NTFS File Times</a>
      */
     public static FileTime ntfsTimeToFileTime(final long ntfsTime) {
-        return FileTime.from(ntfsTimeToInstant(ntfsTime));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static Instant ntfsTimeToInstant(final BigDecimal ntfsTime) {
-        final BigDecimal javaHundredsNanos = ntfsTime.add(UNIX_TO_NTFS_OFFSET_BD);
-        final BigDecimal[] dar = javaHundredsNanos.divideAndRemainder(HUNDRED_NANOS_PER_SECOND_BD, MATH_CONTEXT);
-        return Instant.ofEpochSecond(dar[0].longValueExact(), dar[1].multiply(HUNDRED_BD).longValueExact());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static Instant ntfsTimeToInstant(final long ntfsTime) {
-        return ntfsTimeToInstant(BigDecimal.valueOf(ntfsTime));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -213,7 +210,7 @@ public final class FileTimes {
      * @return The resulting FileTime.
      */
     public static FileTime plusMillis(final FileTime fileTime, final long millisToAdd) {
-        return FileTime.from(fileTime.toInstant().plusMillis(millisToAdd));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -224,7 +221,7 @@ public final class FileTimes {
      * @return The resulting FileTime.
      */
     public static FileTime plusNanos(final FileTime fileTime, final long nanosToSubtract) {
-        return FileTime.from(fileTime.toInstant().plusNanos(nanosToSubtract));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -235,7 +232,7 @@ public final class FileTimes {
      * @return The resulting FileTime.
      */
     public static FileTime plusSeconds(final FileTime fileTime, final long secondsToAdd) {
-        return FileTime.from(fileTime.toInstant().plusSeconds(secondsToAdd));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -245,7 +242,7 @@ public final class FileTimes {
      * @throws IOException if an I/O error occurs.
      */
     public static void setLastModifiedTime(final Path path) throws IOException {
-        Files.setLastModifiedTime(path, now());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -256,7 +253,7 @@ public final class FileTimes {
      * @see #toFileTime(Date)
      */
     public static Date toDate(final FileTime fileTime) {
-        return fileTime != null ? new Date(fileTime.toMillis()) : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -267,7 +264,7 @@ public final class FileTimes {
      * @see #toDate(FileTime)
      */
     public static FileTime toFileTime(final Date date) {
-        return date != null ? FileTime.fromMillis(date.getTime()) : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -280,7 +277,7 @@ public final class FileTimes {
      * @return the NTFS time, 100-nanosecond units since 1 January 1601.
      */
     public static long toNtfsTime(final Date date) {
-        return toNtfsTime(date.getTime());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -293,13 +290,11 @@ public final class FileTimes {
      * @return the NTFS time, 100-nanosecond units since 1 January 1601.
      */
     public static long toNtfsTime(final FileTime fileTime) {
-        return toNtfsTime(fileTime.toInstant());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static long toNtfsTime(final Instant instant) {
-        final BigDecimal javaHundredNanos = BigDecimal.valueOf(instant.getEpochSecond()).multiply(HUNDRED_NANOS_PER_SECOND_BD)
-                .add(BigDecimal.valueOf(instant.getNano() / 100));
-        return javaHundredNanos.subtract(UNIX_TO_NTFS_OFFSET_BD).longValueExact();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -313,15 +308,7 @@ public final class FileTimes {
      * @since 2.16.0
      */
     public static long toNtfsTime(final long javaTime) {
-        final BigDecimal javaHundredNanos = BigDecimal.valueOf(javaTime).multiply(HUNDRED_NANOS_PER_MILLISECOND_BD);
-        final BigDecimal ntfsTime = javaHundredNanos.subtract(UNIX_TO_NTFS_OFFSET_BD);
-        if (ntfsTime.compareTo(LONG_MAX_VALUE_BD) >= 0) {
-            return Long.MAX_VALUE;
-        }
-        if (ntfsTime.compareTo(LONG_MIN_VALUE_BD) <= 0) {
-            return Long.MIN_VALUE;
-        }
-        return ntfsTime.longValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -336,7 +323,7 @@ public final class FileTimes {
      * @since 2.16.0
      */
     public static long toUnixTime(final FileTime fileTime) {
-        return fileTime != null ? fileTime.to(TimeUnit.SECONDS) : 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private FileTimes() {

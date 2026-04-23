@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Serializable;
 import java.util.UUID;
-
 import org.apache.commons.io.TaggedIOException;
 
 /**
@@ -89,7 +88,7 @@ public class TaggedReader extends ProxyReader {
      */
     @Override
     protected void handleIOException(final IOException e) throws IOException {
-        throw new TaggedIOException(e, tag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -99,7 +98,7 @@ public class TaggedReader extends ProxyReader {
      * @return {@code true} if the exception was thrown by this reader, {@code false} otherwise
      */
     public boolean isCauseOf(final Throwable exception) {
-        return TaggedIOException.isTaggedWith(exception, tag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -111,7 +110,6 @@ public class TaggedReader extends ProxyReader {
      * @throws IOException original exception, if any, thrown by this reader
      */
     public void throwIfCauseOf(final Throwable throwable) throws IOException {
-        TaggedIOException.throwCauseIfTaggedWith(throwable, tag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

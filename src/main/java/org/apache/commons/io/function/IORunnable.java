@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -35,7 +34,7 @@ public interface IORunnable {
      * @since 2.16.0
      */
     static IORunnable noop() {
-        return Constants.IO_RUNNABLE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -44,7 +43,7 @@ public interface IORunnable {
      * @return an UncheckedIOException Predicate.
      */
     default Runnable asRunnable() {
-        return () -> Uncheck.run(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

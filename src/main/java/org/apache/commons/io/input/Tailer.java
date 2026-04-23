@@ -19,7 +19,6 @@ package org.apache.commons.io.input;
 import static org.apache.commons.io.IOUtils.CR;
 import static org.apache.commons.io.IOUtils.EOF;
 import static org.apache.commons.io.IOUtils.LF;
-
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;
@@ -36,7 +35,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.ThreadUtils;
 import org.apache.commons.io.build.AbstractOrigin;
@@ -138,6 +136,7 @@ import org.apache.commons.io.file.attribute.FileTimes;
  *        VFS</a>.
  */
 public class Tailer implements Runnable, AutoCloseable {
+
     // @formatter:off
     /**
      * Builds a new {@link Tailer}.
@@ -180,12 +179,19 @@ public class Tailer implements Runnable, AutoCloseable {
         }
 
         private Tailable tailable;
+
         private TailerListener tailerListener;
+
         private Duration delayDuration = DEFAULT_DELAY_DURATION;
+
         private boolean tailFromEnd;
+
         private boolean reOpen;
+
         private boolean startThread = true;
+
         private boolean ignoreTouch = DEFAULT_IGNORE_TOUCH;
+
         private ExecutorService executorService = Executors.newSingleThreadExecutor(Builder::newDaemonThread);
 
         /**
@@ -216,11 +222,7 @@ public class Tailer implements Runnable, AutoCloseable {
          */
         @Override
         public Tailer get() {
-            final Tailer tailer = new Tailer(this);
-            if (startThread) {
-                executorService.submit(tailer);
-            }
-            return tailer;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -230,8 +232,7 @@ public class Tailer implements Runnable, AutoCloseable {
          * @return {@code this} instance.
          */
         public Builder setDelayDuration(final Duration delayDuration) {
-            this.delayDuration = delayDuration != null ? delayDuration : DEFAULT_DELAY_DURATION;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -241,8 +242,7 @@ public class Tailer implements Runnable, AutoCloseable {
          * @return {@code this} instance.
          */
         public Builder setExecutorService(final ExecutorService executorService) {
-            this.executorService = Objects.requireNonNull(executorService, "executorService");
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -257,8 +257,7 @@ public class Tailer implements Runnable, AutoCloseable {
          * @since 2.20.0
          */
         public Builder setIgnoreTouch(final boolean ignoreTouch) {
-            this.ignoreTouch = ignoreTouch;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -268,8 +267,7 @@ public class Tailer implements Runnable, AutoCloseable {
          */
         @Override
         protected Builder setOrigin(final AbstractOrigin<?, ?> origin) {
-            setTailable(new TailablePath(origin.getPath()));
-            return super.setOrigin(origin);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -279,8 +277,7 @@ public class Tailer implements Runnable, AutoCloseable {
          * @return {@code this} instance.
          */
         public Builder setReOpen(final boolean reOpen) {
-            this.reOpen = reOpen;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -290,8 +287,7 @@ public class Tailer implements Runnable, AutoCloseable {
          * @return {@code this} instance.
          */
         public Builder setStartThread(final boolean startThread) {
-            this.startThread = startThread;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -301,8 +297,7 @@ public class Tailer implements Runnable, AutoCloseable {
          * @return {@code this} instance.
          */
         public Builder setTailable(final Tailable tailable) {
-            this.tailable = Objects.requireNonNull(tailable, "tailable");
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -312,8 +307,7 @@ public class Tailer implements Runnable, AutoCloseable {
          * @return {@code this} instance.
          */
         public Builder setTailerListener(final TailerListener tailerListener) {
-            this.tailerListener = Objects.requireNonNull(tailerListener, "tailerListener");
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -323,8 +317,7 @@ public class Tailer implements Runnable, AutoCloseable {
          * @return {@code this} instance.
          */
         public Builder setTailFromEnd(final boolean end) {
-            this.tailFromEnd = end;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -341,24 +334,23 @@ public class Tailer implements Runnable, AutoCloseable {
 
         @Override
         public void close() throws IOException {
-            randomAccessFile.close();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public long getPointer() throws IOException {
-            return randomAccessFile.getFilePointer();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int read(final byte[] b) throws IOException {
-            return randomAccessFile.read(b);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void seek(final long position) throws IOException {
-            randomAccessFile.seek(position);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -451,6 +443,7 @@ public class Tailer implements Runnable, AutoCloseable {
     private static final class TailablePath implements Tailable {
 
         private final Path path;
+
         private final LinkOption[] linkOptions;
 
         private TailablePath(final Path path, final LinkOption... linkOptions) {
@@ -459,32 +452,32 @@ public class Tailer implements Runnable, AutoCloseable {
         }
 
         Path getPath() {
-            return path;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public RandomAccessResourceBridge getRandomAccess(final String mode) throws FileNotFoundException {
-            return new RandomAccessFileBridge(path.toFile(), mode);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isNewer(final FileTime fileTime) throws IOException {
-            return PathUtils.isNewer(path, fileTime, linkOptions);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public FileTime lastModifiedFileTime() throws IOException {
-            return Files.getLastModifiedTime(path, linkOptions);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public long size() throws IOException {
-            return Files.size(path);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return "TailablePath [file=" + path + ", linkOptions=" + Arrays.toString(linkOptions) + "]";
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -506,7 +499,7 @@ public class Tailer implements Runnable, AutoCloseable {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -523,18 +516,9 @@ public class Tailer implements Runnable, AutoCloseable {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}.
      */
     @Deprecated
-    public static Tailer create(final File file, final Charset charset, final TailerListener tailerListener, final long delayMillis, final boolean end,
-            final boolean reOpen, final int bufferSize) {
+    public static Tailer create(final File file, final Charset charset, final TailerListener tailerListener, final long delayMillis, final boolean end, final boolean reOpen, final int bufferSize) {
         //@formatter:off
-        return builder()
-                .setFile(file)
-                .setTailerListener(tailerListener)
-                .setCharset(charset)
-                .setDelayDuration(Duration.ofMillis(delayMillis))
-                .setTailFromEnd(end)
-                .setReOpen(reOpen)
-                .setBufferSize(bufferSize)
-                .get();
+        return builder().setFile(file).setTailerListener(tailerListener).setCharset(charset).setDelayDuration(Duration.ofMillis(delayMillis)).setTailFromEnd(end).setReOpen(reOpen).setBufferSize(bufferSize).get();
         //@formatter:on
     }
 
@@ -549,10 +533,7 @@ public class Tailer implements Runnable, AutoCloseable {
     @Deprecated
     public static Tailer create(final File file, final TailerListener tailerListener) {
         //@formatter:off
-        return builder()
-                .setFile(file)
-                .setTailerListener(tailerListener)
-                .get();
+        return builder().setFile(file).setTailerListener(tailerListener).get();
         //@formatter:on
     }
 
@@ -568,11 +549,7 @@ public class Tailer implements Runnable, AutoCloseable {
     @Deprecated
     public static Tailer create(final File file, final TailerListener tailerListener, final long delayMillis) {
         //@formatter:off
-        return builder()
-                .setFile(file)
-                .setTailerListener(tailerListener)
-                .setDelayDuration(Duration.ofMillis(delayMillis))
-                .get();
+        return builder().setFile(file).setTailerListener(tailerListener).setDelayDuration(Duration.ofMillis(delayMillis)).get();
         //@formatter:on
     }
 
@@ -589,12 +566,7 @@ public class Tailer implements Runnable, AutoCloseable {
     @Deprecated
     public static Tailer create(final File file, final TailerListener tailerListener, final long delayMillis, final boolean end) {
         //@formatter:off
-        return builder()
-                .setFile(file)
-                .setTailerListener(tailerListener)
-                .setDelayDuration(Duration.ofMillis(delayMillis))
-                .setTailFromEnd(end)
-                .get();
+        return builder().setFile(file).setTailerListener(tailerListener).setDelayDuration(Duration.ofMillis(delayMillis)).setTailFromEnd(end).get();
         //@formatter:on
     }
 
@@ -612,13 +584,7 @@ public class Tailer implements Runnable, AutoCloseable {
     @Deprecated
     public static Tailer create(final File file, final TailerListener tailerListener, final long delayMillis, final boolean end, final boolean reOpen) {
         //@formatter:off
-        return builder()
-                .setFile(file)
-                .setTailerListener(tailerListener)
-                .setDelayDuration(Duration.ofMillis(delayMillis))
-                .setTailFromEnd(end)
-                .setReOpen(reOpen)
-                .get();
+        return builder().setFile(file).setTailerListener(tailerListener).setDelayDuration(Duration.ofMillis(delayMillis)).setTailFromEnd(end).setReOpen(reOpen).get();
         //@formatter:on
     }
 
@@ -635,17 +601,9 @@ public class Tailer implements Runnable, AutoCloseable {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}.
      */
     @Deprecated
-    public static Tailer create(final File file, final TailerListener tailerListener, final long delayMillis, final boolean end, final boolean reOpen,
-        final int bufferSize) {
+    public static Tailer create(final File file, final TailerListener tailerListener, final long delayMillis, final boolean end, final boolean reOpen, final int bufferSize) {
         //@formatter:off
-        return builder()
-                .setFile(file)
-                .setTailerListener(tailerListener)
-                .setDelayDuration(Duration.ofMillis(delayMillis))
-                .setTailFromEnd(end)
-                .setReOpen(reOpen)
-                .setBufferSize(bufferSize)
-                .get();
+        return builder().setFile(file).setTailerListener(tailerListener).setDelayDuration(Duration.ofMillis(delayMillis)).setTailFromEnd(end).setReOpen(reOpen).setBufferSize(bufferSize).get();
         //@formatter:on
     }
 
@@ -663,13 +621,7 @@ public class Tailer implements Runnable, AutoCloseable {
     @Deprecated
     public static Tailer create(final File file, final TailerListener tailerListener, final long delayMillis, final boolean end, final int bufferSize) {
         //@formatter:off
-        return builder()
-                .setFile(file)
-                .setTailerListener(tailerListener)
-                .setDelayDuration(Duration.ofMillis(delayMillis))
-                .setTailFromEnd(end)
-                .setBufferSize(bufferSize)
-                .get();
+        return builder().setFile(file).setTailerListener(tailerListener).setDelayDuration(Duration.ofMillis(delayMillis)).setTailFromEnd(end).setBufferSize(bufferSize).get();
         //@formatter:on
     }
 
@@ -749,8 +701,7 @@ public class Tailer implements Runnable, AutoCloseable {
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}.
      */
     @Deprecated
-    public Tailer(final File file, final Charset charset, final TailerListener tailerListener, final long delayMillis, final boolean end, final boolean reOpen,
-            final int bufSize) {
+    public Tailer(final File file, final Charset charset, final TailerListener tailerListener, final long delayMillis, final boolean end, final boolean reOpen, final int bufSize) {
         this(new TailablePath(file.toPath()), charset, tailerListener, Duration.ofMillis(delayMillis), end, reOpen, bufSize, DEFAULT_IGNORE_TOUCH);
     }
 
@@ -851,8 +802,7 @@ public class Tailer implements Runnable, AutoCloseable {
      * @param ignoreTouch if true, file timestamp changes without content change get ignored
      * @param bufferSize Buffer size
      */
-    private Tailer(final Tailable tailable, final Charset charset, final TailerListener tailerListener, final Duration delayDuration, final boolean tailAtEnd,
-            final boolean reOpen, final int bufferSize, final boolean ignoreTouch) {
+    private Tailer(final Tailable tailable, final Charset charset, final TailerListener tailerListener, final Duration delayDuration, final boolean tailAtEnd, final boolean reOpen, final int bufferSize, final boolean ignoreTouch) {
         this.tailable = Objects.requireNonNull(tailable, "tailable");
         this.listener = Objects.requireNonNull(tailerListener, "listener");
         this.delayDuration = delayDuration;
@@ -870,7 +820,7 @@ public class Tailer implements Runnable, AutoCloseable {
      */
     @Override
     public void close() {
-        this.run = false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -891,7 +841,7 @@ public class Tailer implements Runnable, AutoCloseable {
      * @since 2.12.0
      */
     public Duration getDelayDuration() {
-        return delayDuration;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -901,10 +851,7 @@ public class Tailer implements Runnable, AutoCloseable {
      * @throws IllegalStateException if constructed using a user provided {@link Tailable} implementation
      */
     public File getFile() {
-        if (tailable instanceof TailablePath) {
-            return ((TailablePath) tailable).getPath().toFile();
-        }
-        throw new IllegalStateException("Cannot extract java.io.File from " + tailable.getClass().getName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -914,7 +861,7 @@ public class Tailer implements Runnable, AutoCloseable {
      * @since 2.5
      */
     protected boolean getRun() {
-        return run;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -924,7 +871,7 @@ public class Tailer implements Runnable, AutoCloseable {
      * @since 2.12.0
      */
     public Tailable getTailable() {
-        return tailable;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -937,44 +884,45 @@ public class Tailer implements Runnable, AutoCloseable {
     private long readLines(final RandomAccessResourceBridge reader) throws IOException {
         try (ByteArrayOutputStream lineBuf = new ByteArrayOutputStream(64)) {
             long pos = reader.getPointer();
-            long rePos = pos; // position to re-read
+            // position to re-read
+            long rePos = pos;
             int num;
             boolean seenCR = false;
             while (getRun() && (num = reader.read(inbuf)) != EOF) {
                 for (int i = 0; i < num; i++) {
                     final byte ch = inbuf[i];
-                    switch (ch) {
-                    case LF:
-                        seenCR = false; // swallow CR before LF
-                        listener.handle(new String(lineBuf.toByteArray(), charset));
-                        lineBuf.reset();
-                        rePos = pos + i + 1;
-                        break;
-                    case CR:
-                        if (seenCR) {
-                            lineBuf.write(CR);
-                        }
-                        seenCR = true;
-                        break;
-                    default:
-                        if (seenCR) {
-                            seenCR = false; // swallow final CR
+                    switch(ch) {
+                        case LF:
+                            // swallow CR before LF
+                            seenCR = false;
                             listener.handle(new String(lineBuf.toByteArray(), charset));
                             lineBuf.reset();
                             rePos = pos + i + 1;
-                        }
-                        lineBuf.write(ch);
+                            break;
+                        case CR:
+                            if (seenCR) {
+                                lineBuf.write(CR);
+                            }
+                            seenCR = true;
+                            break;
+                        default:
+                            if (seenCR) {
+                                // swallow final CR
+                                seenCR = false;
+                                listener.handle(new String(lineBuf.toByteArray(), charset));
+                                lineBuf.reset();
+                                rePos = pos + i + 1;
+                            }
+                            lineBuf.write(ch);
                     }
                 }
                 pos = reader.getPointer();
             }
-
-            reader.seek(rePos); // Ensure we can re-read if necessary
-
+            // Ensure we can re-read if necessary
+            reader.seek(rePos);
             if (listener instanceof TailerListenerAdapter) {
                 ((TailerListenerAdapter) listener).endOfFileReached();
             }
-
             return rePos;
         }
     }
@@ -984,100 +932,7 @@ public class Tailer implements Runnable, AutoCloseable {
      */
     @Override
     public void run() {
-        RandomAccessResourceBridge reader = null;
-        try {
-            FileTime last = FileTimes.EPOCH; // The last time the file was checked for changes
-            long position = 0; // position within the file
-            // Open the file
-            while (getRun() && reader == null) {
-                try {
-                    reader = tailable.getRandomAccess(RAF_READ_ONLY_MODE);
-                } catch (final FileNotFoundException e) {
-                    listener.fileNotFound();
-                }
-                if (reader == null) {
-                    ThreadUtils.sleep(delayDuration);
-                } else {
-                    // The current position in the file
-                    position = tailFromEnd ? tailable.size() : 0;
-                    last = tailable.lastModifiedFileTime();
-                    reader.seek(position);
-                }
-            }
-            while (getRun()) {
-                final boolean newer = tailable.isNewer(last); // IO-279, must be done first
-                // Check the file length to see if it was rotated
-                final long length = tailable.size();
-                if (length < position) {
-                    // File was rotated
-                    listener.fileRotated();
-                    // Reopen the reader after rotation ensuring that the old file is closed iff we re-open it
-                    // successfully
-                    try (RandomAccessResourceBridge save = reader) {
-                        reader = tailable.getRandomAccess(RAF_READ_ONLY_MODE);
-                        // At this point, we're sure that the old file is rotated
-                        // Finish scanning the old file and then we'll start with the new one
-                        try {
-                            readLines(save);
-                        } catch (final IOException ioe) {
-                            listener.handle(ioe);
-                        }
-                        position = 0;
-                    } catch (final FileNotFoundException e) {
-                        // in this case we continue to use the previous reader and position values
-                        listener.fileNotFound();
-                        ThreadUtils.sleep(delayDuration);
-                    }
-                    continue;
-                }
-                // File was not rotated
-                // See if the file needs to be read again
-                if (length > position) {
-                    // The file has more content than it did last time
-                    position = readLines(reader);
-                    last = tailable.lastModifiedFileTime();
-                } else if (newer) {
-                    /*
-                     * This can happen if the file
-                     * - is overwritten with the exact same length of information
-                     * - gets "touched"
-                     * - Files.getLastModifiedTime returns a new timestamp but newer data is not yet there (
-                     *   was reported to happen on busy systems or samba network shares, see IO-279)
-                     * The default behaviour is to replay the whole file. If this is unsdesired in your usecase,
-                     * use the ignoreTouch builder flag
-                     */
-                    if (!ignoreTouch) {
-                        position = 0;
-                        reader.seek(position); // cannot be null here
-
-                        // Now we can read new lines
-                        position = readLines(reader);
-                    }
-                    // we eitherway continue with the new timestamp
-                    last = tailable.lastModifiedFileTime();
-                }
-                if (reOpen && reader != null) {
-                    reader.close();
-                }
-                ThreadUtils.sleep(delayDuration);
-                if (getRun() && reOpen) {
-                    reader = tailable.getRandomAccess(RAF_READ_ONLY_MODE);
-                    reader.seek(position);
-                }
-            }
-        } catch (final InterruptedException e) {
-            Thread.currentThread().interrupt();
-            listener.handle(e);
-        } catch (final Exception e) {
-            listener.handle(e);
-        } finally {
-            try {
-                IOUtils.close(reader);
-            } catch (final IOException e) {
-                listener.handle(e);
-            }
-            close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

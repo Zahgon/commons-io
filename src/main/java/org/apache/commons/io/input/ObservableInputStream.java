@@ -17,13 +17,11 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.function.IOConsumer;
 
@@ -66,9 +64,8 @@ public class ObservableInputStream extends ProxyInputStream {
          * @param observers The list of observer callbacks.
          */
         public void setObservers(final List<Observer> observers) {
-            this.observers = observers;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -87,9 +84,8 @@ public class ObservableInputStream extends ProxyInputStream {
 
         @Override
         public ObservableInputStream get() throws IOException {
-            return new ObservableInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -109,9 +105,10 @@ public class ObservableInputStream extends ProxyInputStream {
          *
          * @throws IOException if an I/O error occurs.
          */
-        @SuppressWarnings("unused") // Possibly thrown from subclasses.
+        // Possibly thrown from subclasses.
+        @SuppressWarnings("unused")
         public void closed() throws IOException {
-            // noop
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -123,9 +120,10 @@ public class ObservableInputStream extends ProxyInputStream {
          * @param length The number of bytes, which have been stored in the byte array.
          * @throws IOException if an I/O error occurs.
          */
-        @SuppressWarnings("unused") // Possibly thrown from subclasses.
+        // Possibly thrown from subclasses.
+        @SuppressWarnings("unused")
         public void data(final byte[] buffer, final int offset, final int length) throws IOException {
-            // noop
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -136,9 +134,10 @@ public class ObservableInputStream extends ProxyInputStream {
          *        {@link #finished()} will be invoked instead.
          * @throws IOException if an I/O error occurs.
          */
-        @SuppressWarnings("unused") // Possibly thrown from subclasses.
+        // Possibly thrown from subclasses.
+        @SuppressWarnings("unused")
         public void data(final int value) throws IOException {
-            // noop
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -148,7 +147,7 @@ public class ObservableInputStream extends ProxyInputStream {
          * @throws IOException if an I/O error occurs.
          */
         public void error(final IOException exception) throws IOException {
-            throw exception;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -157,9 +156,10 @@ public class ObservableInputStream extends ProxyInputStream {
          *
          * @throws IOException if an I/O error occurs.
          */
-        @SuppressWarnings("unused") // Possibly thrown from subclasses.
+        // Possibly thrown from subclasses.
+        @SuppressWarnings("unused")
         public void finished() throws IOException {
-            // noop
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -207,22 +207,12 @@ public class ObservableInputStream extends ProxyInputStream {
      * @param observer the observer to add.
      */
     public void add(final Observer observer) {
-        observers.add(observer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() throws IOException {
-        IOException ioe = null;
-        try {
-            super.close();
-        } catch (final IOException e) {
-            ioe = e;
-        }
-        if (ioe == null) {
-            noteClosed();
-        } else {
-            noteError(ioe);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -231,7 +221,7 @@ public class ObservableInputStream extends ProxyInputStream {
      * @throws IOException The underlying {@link InputStream}, or either of the observers has thrown an exception.
      */
     public void consume() throws IOException {
-        IOUtils.consume(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void forEachObserver(final IOConsumer<Observer> action) throws IOException {
@@ -245,7 +235,7 @@ public class ObservableInputStream extends ProxyInputStream {
      * @since 2.9.0
      */
     public List<Observer> getObservers() {
-        return new ArrayList<>(observers);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -254,7 +244,7 @@ public class ObservableInputStream extends ProxyInputStream {
      * @throws IOException Some observer has thrown an exception, which is being passed down.
      */
     protected void noteClosed() throws IOException {
-        forEachObserver(Observer::closed);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -264,7 +254,7 @@ public class ObservableInputStream extends ProxyInputStream {
      * @throws IOException Some observer has thrown an exception, which is being passed down.
      */
     protected void noteDataByte(final int value) throws IOException {
-        forEachObserver(observer -> observer.data(value));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -276,7 +266,7 @@ public class ObservableInputStream extends ProxyInputStream {
      * @throws IOException Some observer has thrown an exception, which is being passed down.
      */
     protected void noteDataBytes(final byte[] buffer, final int offset, final int length) throws IOException {
-        forEachObserver(observer -> observer.data(buffer, offset, length));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -287,7 +277,7 @@ public class ObservableInputStream extends ProxyInputStream {
      *         exception, which has been passed as an argument.
      */
     protected void noteError(final IOException exception) throws IOException {
-        forEachObserver(observer -> observer.error(exception));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -296,7 +286,7 @@ public class ObservableInputStream extends ProxyInputStream {
      * @throws IOException Some observer has thrown an exception, which is being passed down.
      */
     protected void noteFinished() throws IOException {
-        forEachObserver(Observer::finished);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void notify(final byte[] buffer, final int offset, final int result, final IOException ioe) throws IOException {
@@ -313,49 +303,17 @@ public class ObservableInputStream extends ProxyInputStream {
 
     @Override
     public int read() throws IOException {
-        int result = 0;
-        IOException ioe = null;
-        try {
-            result = super.read();
-        } catch (final IOException ex) {
-            ioe = ex;
-        }
-        if (ioe != null) {
-            noteError(ioe);
-            throw ioe;
-        }
-        if (result == EOF) {
-            noteFinished();
-        } else {
-            noteDataByte(result);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] buffer) throws IOException {
-        int result = 0;
-        IOException ioe = null;
-        try {
-            result = super.read(buffer);
-        } catch (final IOException ex) {
-            ioe = ex;
-        }
-        notify(buffer, 0, result, ioe);
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] buffer, final int offset, final int length) throws IOException {
-        int result = 0;
-        IOException ioe = null;
-        try {
-            result = super.read(buffer, offset, length);
-        } catch (final IOException ex) {
-            ioe = ex;
-        }
-        notify(buffer, offset, result, ioe);
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -364,14 +322,13 @@ public class ObservableInputStream extends ProxyInputStream {
      * @param observer the observer to remove
      */
     public void remove(final Observer observer) {
-        observers.remove(observer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Removes all Observers.
      */
     public void removeAllObservers() {
-        observers.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -44,8 +43,7 @@ public interface IOBinaryOperator<T> extends IOBiFunction<T, T, T> {
      * @throws NullPointerException if the argument is null
      */
     static <T> IOBinaryOperator<T> maxBy(final IOComparator<? super T> comparator) {
-        Objects.requireNonNull(comparator);
-        return (a, b) -> comparator.compare(a, b) >= 0 ? a : b;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -59,8 +57,7 @@ public interface IOBinaryOperator<T> extends IOBiFunction<T, T, T> {
      * @throws NullPointerException if the argument is null
      */
     static <T> IOBinaryOperator<T> minBy(final IOComparator<? super T> comparator) {
-        Objects.requireNonNull(comparator);
-        return (a, b) -> comparator.compare(a, b) <= 0 ? a : b;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -70,6 +67,6 @@ public interface IOBinaryOperator<T> extends IOBiFunction<T, T, T> {
      * @return an unchecked BiFunction.
      */
     default BinaryOperator<T> asBinaryOperator() {
-        return (t, u) -> Uncheck.apply(this, t, u);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

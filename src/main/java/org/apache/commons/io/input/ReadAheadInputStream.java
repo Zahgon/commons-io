@@ -14,7 +14,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 // import javax.annotation.concurrent.GuardedBy;
 import java.io.EOFException;
 import java.io.FilterInputStream;
@@ -29,7 +28,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
 /**
@@ -102,7 +100,7 @@ public class ReadAheadInputStream extends FilterInputStream {
          */
         @Override
         public ReadAheadInputStream get() throws IOException {
-            return new ReadAheadInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -112,10 +110,8 @@ public class ReadAheadInputStream extends FilterInputStream {
          * @return {@code this} instance.
          */
         public Builder setExecutorService(final ExecutorService executorService) {
-            this.executorService = executorService;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private static final ThreadLocal<byte[]> BYTE_ARRAY_1 = ThreadLocal.withInitial(() -> new byte[1]);
@@ -127,7 +123,7 @@ public class ReadAheadInputStream extends FilterInputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -197,8 +193,7 @@ public class ReadAheadInputStream extends FilterInputStream {
 
     @SuppressWarnings("resource")
     private ReadAheadInputStream(final Builder builder) throws IOException {
-        this(builder.getInputStream(), builder.getBufferSize(), builder.executorService != null ? builder.executorService : newExecutorService(),
-                builder.executorService == null);
+        this(builder.getInputStream(), builder.getBufferSize(), builder.executorService != null ? builder.executorService : newExecutorService(), builder.executorService == null);
     }
 
     /**
@@ -234,8 +229,7 @@ public class ReadAheadInputStream extends FilterInputStream {
      * @param executorService         An executor service for the read-ahead thread.
      * @param shutdownExecutorService Whether or not to shut down the given ExecutorService on close.
      */
-    private ReadAheadInputStream(final InputStream inputStream, final int bufferSizeInBytes, final ExecutorService executorService,
-            final boolean shutdownExecutorService) {
+    private ReadAheadInputStream(final InputStream inputStream, final int bufferSizeInBytes, final ExecutorService executorService, final boolean shutdownExecutorService) {
         super(Objects.requireNonNull(inputStream, "inputStream"));
         if (bufferSizeInBytes <= 0) {
             throw new IllegalArgumentException("bufferSizeInBytes should be greater than 0, but the value is " + bufferSizeInBytes);
@@ -250,13 +244,7 @@ public class ReadAheadInputStream extends FilterInputStream {
 
     @Override
     public int available() throws IOException {
-        stateChangeLock.lock();
-        // Make sure we have no integer overflow.
-        try {
-            return (int) Math.min(Integer.MAX_VALUE, (long) activeBuffer.remaining() + readAheadBuffer.remaining());
-        } finally {
-            stateChangeLock.unlock();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void checkReadException() throws IOException {
@@ -270,37 +258,7 @@ public class ReadAheadInputStream extends FilterInputStream {
 
     @Override
     public void close() throws IOException {
-        boolean isSafeToCloseUnderlyingInputStream = false;
-        stateChangeLock.lock();
-        try {
-            if (isClosed) {
-                return;
-            }
-            isClosed = true;
-            if (!isReading) {
-                // Nobody is reading, so we can close the underlying input stream in this method.
-                isSafeToCloseUnderlyingInputStream = true;
-                // Flip this to make sure the read ahead task will not close the underlying input stream.
-                isUnderlyingInputStreamBeingClosed = true;
-            }
-        } finally {
-            stateChangeLock.unlock();
-        }
-
-        if (shutdownExecutorService) {
-            try {
-                executorService.shutdownNow();
-                executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);
-            } catch (final InterruptedException e) {
-                final InterruptedIOException iio = new InterruptedIOException(e.getMessage());
-                iio.initCause(e);
-                throw iio;
-            } finally {
-                if (isSafeToCloseUnderlyingInputStream) {
-                    super.close();
-                }
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void closeUnderlyingInputStreamIfNecessary() {
@@ -330,49 +288,12 @@ public class ReadAheadInputStream extends FilterInputStream {
 
     @Override
     public int read() throws IOException {
-        if (activeBuffer.hasRemaining()) {
-            // short path - just get one byte.
-            return activeBuffer.get() & 0xFF;
-        }
-        final byte[] oneByteArray = BYTE_ARRAY_1.get();
-        oneByteArray[0] = 0;
-        return read(oneByteArray, 0, 1) == EOF ? EOF : oneByteArray[0] & 0xFF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] b, final int offset, int len) throws IOException {
-        if (offset < 0 || len < 0 || len > b.length - offset) {
-            throw new IndexOutOfBoundsException();
-        }
-        if (len == 0) {
-            return 0;
-        }
-
-        if (!activeBuffer.hasRemaining()) {
-            // No remaining in active buffer - lock and switch to write ahead buffer.
-            stateChangeLock.lock();
-            try {
-                waitForAsyncReadComplete();
-                if (!readAheadBuffer.hasRemaining()) {
-                    // The first read.
-                    readAsync();
-                    waitForAsyncReadComplete();
-                    if (isEndOfStream()) {
-                        return EOF;
-                    }
-                }
-                // Swap the newly read ahead buffer in place of empty active buffer.
-                swapBuffers();
-                // After swapping buffers, trigger another async read for read ahead buffer.
-                readAsync();
-            } finally {
-                stateChangeLock.unlock();
-            }
-        }
-        len = Math.min(len, activeBuffer.remaining());
-        activeBuffer.get(b, offset, len);
-
-        return len;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -408,7 +329,6 @@ public class ReadAheadInputStream extends FilterInputStream {
             } finally {
                 stateChangeLock.unlock();
             }
-
             // Please note that it is safe to release the lock and read into the read ahead buffer
             // because either of following two conditions will hold:
             //
@@ -471,22 +391,7 @@ public class ReadAheadInputStream extends FilterInputStream {
 
     @Override
     public long skip(final long n) throws IOException {
-        if (n <= 0L) {
-            return 0L;
-        }
-        if (n <= activeBuffer.remaining()) {
-            // Only skipping from active buffer is sufficient
-            activeBuffer.position((int) n + activeBuffer.position());
-            return n;
-        }
-        stateChangeLock.lock();
-        final long skipped;
-        try {
-            skipped = skipInternal(n);
-        } finally {
-            stateChangeLock.unlock();
-        }
-        return skipped;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -510,7 +415,8 @@ public class ReadAheadInputStream extends FilterInputStream {
             int toSkip = (int) n;
             // We need to skip from both active buffer and read ahead buffer
             toSkip -= activeBuffer.remaining();
-            if (toSkip <= 0) { // skipping from activeBuffer already handled.
+            if (toSkip <= 0) {
+                // skipping from activeBuffer already handled.
                 throw new IllegalStateException("Expected toSkip > 0, actual: " + toSkip);
             }
             activeBuffer.position(0);

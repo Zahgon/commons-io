@@ -106,8 +106,7 @@ public class MessageDigestCalculatingInputStream extends ObservableInputStream {
          */
         @Override
         public MessageDigestCalculatingInputStream get() throws IOException {
-            setObservers(Arrays.asList(new MessageDigestMaintainingObserver(messageDigest)));
-            return new MessageDigestCalculatingInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -119,7 +118,7 @@ public class MessageDigestCalculatingInputStream extends ObservableInputStream {
          * @param messageDigest the message digest.
          */
         public void setMessageDigest(final MessageDigest messageDigest) {
-            this.messageDigest = messageDigest;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -134,15 +133,15 @@ public class MessageDigestCalculatingInputStream extends ObservableInputStream {
          * @throws NoSuchAlgorithmException if no Provider supports a MessageDigestSpi implementation for the specified algorithm.
          */
         public void setMessageDigest(final String algorithm) throws NoSuchAlgorithmException {
-            this.messageDigest = MessageDigest.getInstance(algorithm);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
      * Maintains the message digest.
      */
     public static class MessageDigestMaintainingObserver extends Observer {
+
         private final MessageDigest messageDigest;
 
         /**
@@ -157,12 +156,12 @@ public class MessageDigestCalculatingInputStream extends ObservableInputStream {
 
         @Override
         public void data(final byte[] input, final int offset, final int length) throws IOException {
-            messageDigest.update(input, offset, length);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void data(final int input) throws IOException {
-            messageDigest.update((byte) input);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -181,7 +180,7 @@ public class MessageDigestCalculatingInputStream extends ObservableInputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -195,7 +194,7 @@ public class MessageDigestCalculatingInputStream extends ObservableInputStream {
      * @see Provider
      */
     static MessageDigest getDefaultMessageDigest() throws NoSuchAlgorithmException {
-        return MessageDigest.getInstance(DEFAULT_ALGORITHM);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final MessageDigest messageDigest;
@@ -265,6 +264,6 @@ public class MessageDigestCalculatingInputStream extends ObservableInputStream {
      * @return the message digest used
      */
     public MessageDigest getMessageDigest() {
-        return messageDigest;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

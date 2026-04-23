@@ -19,7 +19,6 @@ package org.apache.commons.io.input.buffer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -58,8 +57,7 @@ public class PeekableInputStream extends CircularBufferInputStream {
      * @throws IOException Refilling the buffer failed.
      */
     public boolean peek(final byte[] sourceBuffer) throws IOException {
-        Objects.requireNonNull(sourceBuffer, "sourceBuffer");
-        return peek(sourceBuffer, 0, sourceBuffer.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -73,14 +71,6 @@ public class PeekableInputStream extends CircularBufferInputStream {
      * @throws IOException if there is a problem calling fillBuffer()
      */
     public boolean peek(final byte[] sourceBuffer, final int offset, final int length) throws IOException {
-        Objects.requireNonNull(sourceBuffer, "sourceBuffer");
-        if (sourceBuffer.length > bufferSize) {
-            throw new IllegalArgumentException("Peek request size of " + sourceBuffer.length
-                + " bytes exceeds buffer size of " + bufferSize + " bytes");
-        }
-        if (buffer.getCurrentNumberOfBytes() < sourceBuffer.length) {
-            fillBuffer();
-        }
-        return buffer.peek(sourceBuffer, offset, length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -59,10 +59,14 @@ import java.nio.file.attribute.BasicFileAttributes;
  */
 public class CanExecuteFileFilter extends AbstractFileFilter implements Serializable {
 
-    /** Singleton instance of <em>executable</em> filter */
+    /**
+     * Singleton instance of <em>executable</em> filter
+     */
     public static final IOFileFilter CAN_EXECUTE = new CanExecuteFileFilter();
 
-    /** Singleton instance of not <em>executable</em> filter */
+    /**
+     * Singleton instance of not <em>executable</em> filter
+     */
     public static final IOFileFilter CANNOT_EXECUTE = CAN_EXECUTE.negate();
 
     private static final long serialVersionUID = 3179904805251622989L;
@@ -82,7 +86,7 @@ public class CanExecuteFileFilter extends AbstractFileFilter implements Serializ
      */
     @Override
     public boolean accept(final File file) {
-        return file != null && file.canExecute();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -95,7 +99,6 @@ public class CanExecuteFileFilter extends AbstractFileFilter implements Serializ
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return toFileVisitResult(file != null && Files.isExecutable(file));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

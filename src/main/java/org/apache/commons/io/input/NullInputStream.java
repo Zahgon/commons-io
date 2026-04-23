@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,10 +75,15 @@ public class NullInputStream extends AbstractInputStream {
     public static final NullInputStream INSTANCE = new NullInputStream();
 
     private final long size;
+
     private long position;
+
     private long mark = -1;
+
     private long readLimit;
+
     private final boolean throwEofException;
+
     private final boolean markSupported;
 
     /**
@@ -118,17 +122,7 @@ public class NullInputStream extends AbstractInputStream {
 
     @Override
     public int available() {
-        if (isClosed()) {
-            return 0;
-        }
-        final long avail = size - position;
-        if (avail <= 0) {
-            return 0;
-        }
-        if (avail > Integer.MAX_VALUE) {
-            return Integer.MAX_VALUE;
-        }
-        return (int) avail;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,8 +144,7 @@ public class NullInputStream extends AbstractInputStream {
      */
     @Override
     public void close() throws IOException {
-        super.close();
-        mark = -1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -160,7 +153,7 @@ public class NullInputStream extends AbstractInputStream {
      * @return the current position.
      */
     public long getPosition() {
-        return position;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -169,7 +162,7 @@ public class NullInputStream extends AbstractInputStream {
      * @return The size of the input stream to emulate.
      */
     public long getSize() {
-        return size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -190,11 +183,7 @@ public class NullInputStream extends AbstractInputStream {
      * @since 2.17.0
      */
     public NullInputStream init() {
-        setClosed(false);
-        position = 0;
-        mark = -1;
-        readLimit = 0;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -205,11 +194,7 @@ public class NullInputStream extends AbstractInputStream {
      */
     @Override
     public synchronized void mark(final int readLimit) {
-        if (!markSupported) {
-            throw UnsupportedOperationExceptions.mark();
-        }
-        mark = position;
-        this.readLimit = readLimit;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -219,7 +204,7 @@ public class NullInputStream extends AbstractInputStream {
      */
     @Override
     public boolean markSupported() {
-        return markSupported;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -231,8 +216,7 @@ public class NullInputStream extends AbstractInputStream {
      * @return This implementation always returns zero.
      */
     protected int processByte() {
-        // do nothing - overridable by subclass
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -246,7 +230,7 @@ public class NullInputStream extends AbstractInputStream {
      * @param length The number of bytes.
      */
     protected void processBytes(final byte[] bytes, final int offset, final int length) {
-        // do nothing - overridable by subclass
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -259,12 +243,7 @@ public class NullInputStream extends AbstractInputStream {
      */
     @Override
     public int read() throws IOException {
-        checkOpen();
-        if (position == size) {
-            return handleEof();
-        }
-        position++;
-        return processByte();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -277,7 +256,7 @@ public class NullInputStream extends AbstractInputStream {
      */
     @Override
     public int read(final byte[] bytes) throws IOException {
-        return read(bytes, 0, bytes.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -292,21 +271,7 @@ public class NullInputStream extends AbstractInputStream {
      */
     @Override
     public int read(final byte[] bytes, final int offset, final int length) throws IOException {
-        if (bytes.length == 0 || length == 0) {
-            return 0;
-        }
-        checkOpen();
-        if (position == size) {
-            return handleEof();
-        }
-        position += length;
-        int returnLength = length;
-        if (position > size) {
-            returnLength = length - (int) (position - size);
-            position = size;
-        }
-        processBytes(bytes, offset, returnLength);
-        return returnLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -317,17 +282,7 @@ public class NullInputStream extends AbstractInputStream {
      */
     @Override
     public synchronized void reset() throws IOException {
-        if (!markSupported) {
-            throw UnsupportedOperationExceptions.reset();
-        }
-        if (mark < 0) {
-            throw new IOException("No position has been marked");
-        }
-        if (position > mark + readLimit) {
-            throw new IOException("Marked position [" + mark + "] is no longer valid - passed the read limit [" + readLimit + "]");
-        }
-        position = mark;
-        setClosed(false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -340,20 +295,6 @@ public class NullInputStream extends AbstractInputStream {
      */
     @Override
     public long skip(final long numberOfBytes) throws IOException {
-        if (isClosed()) {
-            checkThrowEof("skip(long)");
-            return EOF;
-        }
-        if (position == size) {
-            return handleEof();
-        }
-        position += numberOfBytes;
-        long returnLength = numberOfBytes;
-        if (position > size) {
-            returnLength = numberOfBytes - (position - size);
-            position = size;
-        }
-        return returnLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

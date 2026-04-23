@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -29,7 +28,7 @@ import java.util.Objects;
 final class IOIteratorAdapter<E> implements IOIterator<E> {
 
     static <E> IOIteratorAdapter<E> adapt(final Iterator<E> delegate) {
-        return new IOIteratorAdapter<>(delegate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final Iterator<E> delegate;
@@ -40,17 +39,16 @@ final class IOIteratorAdapter<E> implements IOIterator<E> {
 
     @Override
     public boolean hasNext() throws IOException {
-        return delegate.hasNext();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E next() throws IOException {
-        return delegate.next();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<E> unwrap() {
-        return delegate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

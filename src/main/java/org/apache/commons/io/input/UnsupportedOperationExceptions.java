@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 /**
@@ -34,8 +33,7 @@ final class UnsupportedOperationExceptions {
      * @return a new instance of UnsupportedOperationException
      */
     static UnsupportedOperationException mark() {
-        // Use the same message as in java.io.InputStream.reset() in OpenJDK 8.0.275-1.
-        return method(MARK_RESET);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -45,7 +43,7 @@ final class UnsupportedOperationExceptions {
      * @return a new instance of UnsupportedOperationException
      */
     static UnsupportedOperationException method(final String method) {
-        return new UnsupportedOperationException(method + " not supported");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -54,7 +52,6 @@ final class UnsupportedOperationExceptions {
      * @return a new instance of UnsupportedOperationException
      */
     static UnsupportedOperationException reset() {
-        // Use the same message as in java.io.InputStream.reset() in OpenJDK 8.0.275-1.
-        return method(MARK_RESET);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.Closeable;
@@ -41,7 +40,7 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      */
     @SuppressWarnings("unchecked")
     default BaseStream<T, B> asBaseStream() {
-        return new UncheckedIOBaseStream<>((S) this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -51,7 +50,7 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      */
     @Override
     default void close() {
-        unwrap().close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -60,9 +59,10 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      * @return See {@link BaseStream#isParallel() delegate}.
      * @see BaseStream#isParallel()
      */
-    @SuppressWarnings("resource") // for unwrap()
+    // for unwrap()
+    @SuppressWarnings("resource")
     default boolean isParallel() {
-        return unwrap().isParallel();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -71,9 +71,10 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      * @return See {@link BaseStream#iterator() delegate}.
      * @see BaseStream#iterator()
      */
-    @SuppressWarnings("resource") // for unwrap()
+    // for unwrap()
+    @SuppressWarnings("resource")
     default IOIterator<T> iterator() {
-        return IOIteratorAdapter.adapt(unwrap().iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,9 +85,10 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      * @throws IOException if an I/O error occurs.
      * @see BaseStream#onClose(Runnable)
      */
-    @SuppressWarnings({"unused", "resource"}) // throws IOException, unwrap()
+    // throws IOException, unwrap()
+    @SuppressWarnings({ "unused", "resource" })
     default S onClose(final IORunnable closeHandler) throws IOException {
-        return wrap(unwrap().onClose(() -> Erase.run(closeHandler)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -95,9 +97,10 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      * @return See {@link BaseStream#parallel() delegate}.
      * @see BaseStream#parallel()
      */
-    @SuppressWarnings({"resource", "unchecked"}) // for unwrap(), this
+    // for unwrap(), this
+    @SuppressWarnings({ "resource", "unchecked" })
     default S parallel() {
-        return isParallel() ? (S) this : wrap(unwrap().parallel());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,9 +109,10 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      * @return See {@link BaseStream#sequential() delegate}.
      * @see BaseStream#sequential()
      */
-    @SuppressWarnings({"resource", "unchecked"}) // for unwrap(), this
+    // for unwrap(), this
+    @SuppressWarnings({ "resource", "unchecked" })
     default S sequential() {
-        return isParallel() ? wrap(unwrap().sequential()) : (S) this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,9 +121,10 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      * @return See {@link BaseStream#spliterator() delegate}.
      * @see BaseStream#spliterator()
      */
-    @SuppressWarnings("resource") // for unwrap()
+    // for unwrap()
+    @SuppressWarnings("resource")
     default IOSpliterator<T> spliterator() {
-        return IOSpliteratorAdapter.adapt(unwrap().spliterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -128,9 +133,10 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      * @return See {@link BaseStream#unordered() delegate}.
      * @see java.util.stream.BaseStream#unordered()
      */
-    @SuppressWarnings("resource") // for unwrap()
+    // for unwrap()
+    @SuppressWarnings("resource")
     default S unordered() {
-        return wrap(unwrap().unordered());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,5 +156,4 @@ public interface IOBaseStream<T, S extends IOBaseStream<T, S, B>, B extends Base
      * @return An IO stream.
      */
     S wrap(B delegate);
-
 }

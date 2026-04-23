@@ -14,7 +14,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +22,6 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
@@ -105,7 +103,7 @@ public final class BufferedFileChannelInputStream extends InputStream {
          */
         @Override
         public BufferedFileChannelInputStream get() throws IOException {
-            return new BufferedFileChannelInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -119,10 +117,8 @@ public final class BufferedFileChannelInputStream extends InputStream {
          * @since 2.18.0
          */
         public Builder setFileChannel(final FileChannel fileChannel) {
-            this.fileChannel = fileChannel;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -132,7 +128,7 @@ public final class BufferedFileChannelInputStream extends InputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final ByteBuffer byteBuffer;
@@ -198,13 +194,7 @@ public final class BufferedFileChannelInputStream extends InputStream {
 
     @Override
     public synchronized int available() throws IOException {
-        if (!fileChannel.isOpen()) {
-            return 0;
-        }
-        if (!refill()) {
-            return 0;
-        }
-        return byteBuffer.remaining();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -237,32 +227,17 @@ public final class BufferedFileChannelInputStream extends InputStream {
 
     @Override
     public synchronized void close() throws IOException {
-        try {
-            fileChannel.close();
-        } finally {
-            clean(byteBuffer);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized int read() throws IOException {
-        if (!refill()) {
-            return EOF;
-        }
-        return byteBuffer.get() & 0xFF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized int read(final byte[] b, final int offset, int len) throws IOException {
-        if (offset < 0 || len < 0 || offset + len < 0 || offset + len > b.length) {
-            throw new IndexOutOfBoundsException();
-        }
-        if (!refill()) {
-            return EOF;
-        }
-        len = Math.min(len, byteBuffer.remaining());
-        byteBuffer.get(b, offset, len);
-        return len;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -287,20 +262,7 @@ public final class BufferedFileChannelInputStream extends InputStream {
 
     @Override
     public synchronized long skip(final long n) throws IOException {
-        if (n <= 0L) {
-            return 0L;
-        }
-        if (byteBuffer.remaining() >= n) {
-            // The buffered content is enough to skip
-            byteBuffer.position(byteBuffer.position() + (int) n);
-            return n;
-        }
-        final long skippedFromBuffer = byteBuffer.remaining();
-        final long toSkipFromFileChannel = n - skippedFromBuffer;
-        // Discard everything we have read in the buffer.
-        byteBuffer.position(0);
-        byteBuffer.flip();
-        return skippedFromBuffer + skipFromFileChannel(toSkipFromFileChannel);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private long skipFromFileChannel(final long n) throws IOException {
@@ -313,5 +275,4 @@ public final class BufferedFileChannelInputStream extends InputStream {
         fileChannel.position(currentFilePosition + n);
         return n;
     }
-
 }

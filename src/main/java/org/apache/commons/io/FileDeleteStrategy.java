@@ -39,7 +39,9 @@ public class FileDeleteStrategy {
      */
     static class ForceFileDeleteStrategy extends FileDeleteStrategy {
 
-        /** Default Constructor */
+        /**
+         * Default Constructor
+         */
         ForceFileDeleteStrategy() {
             super("Force");
         }
@@ -58,8 +60,7 @@ public class FileDeleteStrategy {
          */
         @Override
         protected boolean doDelete(final File fileToDelete) throws IOException {
-            FileUtils.forceDelete(fileToDelete);
-            return true;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -75,7 +76,9 @@ public class FileDeleteStrategy {
      */
     public static final FileDeleteStrategy FORCE = new ForceFileDeleteStrategy();
 
-    /** The name of the strategy. */
+    /**
+     * The name of the strategy.
+     */
     private final String name;
 
     /**
@@ -99,9 +102,7 @@ public class FileDeleteStrategy {
      * @throws IOException if an error occurs during file deletion
      */
     public void delete(final File fileToDelete) throws IOException {
-        if (fileToDelete.exists() && !doDelete(fileToDelete)) {
-            throw new IOException("Deletion failed: " + fileToDelete);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,14 +117,7 @@ public class FileDeleteStrategy {
      * @return true if the file was deleted, or there was no such file
      */
     public boolean deleteQuietly(final File fileToDelete) {
-        if (fileToDelete == null || !fileToDelete.exists()) {
-            return true;
-        }
-        try {
-            return doDelete(fileToDelete);
-        } catch (final IOException ex) {
-            return false;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -145,8 +139,7 @@ public class FileDeleteStrategy {
      * @throws IOException if an error occurs during file deletion
      */
     protected boolean doDelete(final File file) throws IOException {
-        FileUtils.delete(file);
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -156,7 +149,6 @@ public class FileDeleteStrategy {
      */
     @Override
     public String toString() {
-        return "FileDeleteStrategy[" + name + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

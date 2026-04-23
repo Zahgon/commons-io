@@ -24,7 +24,6 @@ import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectStreamClass;
 import java.util.regex.Pattern;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
 /**
@@ -124,8 +123,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder accept(final Class<?>... classes) {
-            predicate.accept(classes);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -136,8 +134,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder accept(final ClassNameMatcher matcher) {
-            predicate.accept(matcher);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -148,8 +145,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder accept(final Pattern pattern) {
-            predicate.accept(pattern);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -161,8 +157,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder accept(final String... patterns) {
-            predicate.accept(patterns);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -188,7 +183,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          */
         @Override
         public ValidatingObjectInputStream get() throws IOException {
-            return new ValidatingObjectInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -198,7 +193,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public ObjectStreamClassPredicate getPredicate() {
-            return predicate;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -209,8 +204,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder reject(final Class<?>... classes) {
-            predicate.reject(classes);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -221,8 +215,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder reject(final ClassNameMatcher matcher) {
-            predicate.reject(matcher);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -233,8 +226,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder reject(final Pattern pattern) {
-            predicate.reject(pattern);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -246,8 +238,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder reject(final String... patterns) {
-            predicate.reject(patterns);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -258,10 +249,8 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
          * @since 2.18.0
          */
         public Builder setPredicate(final ObjectStreamClassPredicate predicate) {
-            this.predicate = predicate != null ? predicate : new ObjectStreamClassPredicate();
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -271,12 +260,13 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @since 2.18.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final ObjectStreamClassPredicate predicate;
 
-    @SuppressWarnings("resource") // caller closes/
+    // caller closes/
+    @SuppressWarnings("resource")
     private ValidatingObjectInputStream(final Builder builder) throws IOException {
         this(builder.getInputStream(), builder.predicate);
     }
@@ -317,8 +307,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @return this instance.
      */
     public ValidatingObjectInputStream accept(final Class<?>... classes) {
-        predicate.accept(classes);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -331,8 +320,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @return this instance.
      */
     public ValidatingObjectInputStream accept(final ClassNameMatcher matcher) {
-        predicate.accept(matcher);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -345,8 +333,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @return this instance.
      */
     public ValidatingObjectInputStream accept(final Pattern pattern) {
-        predicate.accept(pattern);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -360,8 +347,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @return this instance.
      */
     public ValidatingObjectInputStream accept(final String... patterns) {
-        predicate.accept(patterns);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -387,7 +373,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @throws InvalidClassException Thrown with a message containing the class name.
      */
     protected void invalidClassNameFound(final String className) throws InvalidClassException {
-        throw new InvalidClassException("Class name not accepted: " + className);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -402,7 +388,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      */
     @SuppressWarnings("unchecked")
     public <T> T readObjectCast() throws ClassNotFoundException, IOException {
-        return (T) super.readObject();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -415,8 +401,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @return this instance.
      */
     public ValidatingObjectInputStream reject(final Class<?>... classes) {
-        predicate.reject(classes);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -429,8 +414,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @return this instance.
      */
     public ValidatingObjectInputStream reject(final ClassNameMatcher matcher) {
-        predicate.reject(matcher);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -443,8 +427,7 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @return this instance.
      */
     public ValidatingObjectInputStream reject(final Pattern pattern) {
-        predicate.reject(pattern);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -458,13 +441,11 @@ public class ValidatingObjectInputStream extends ObjectInputStream {
      * @return this instance.
      */
     public ValidatingObjectInputStream reject(final String... patterns) {
-        predicate.reject(patterns);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected Class<?> resolveClass(final ObjectStreamClass osc) throws IOException, ClassNotFoundException {
-        checkClassName(osc.getName());
-        return super.resolveClass(osc);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

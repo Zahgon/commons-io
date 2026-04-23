@@ -24,7 +24,6 @@ import java.nio.file.attribute.FileTime;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.file.attribute.FileTimes;
 
 /**
@@ -48,24 +47,17 @@ final class SerializableFileTime implements Serializable {
     }
 
     public int compareTo(final FileTime other) {
-        return fileTime.compareTo(other);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof SerializableFileTime)) {
-            return false;
-        }
-        final SerializableFileTime other = (SerializableFileTime) obj;
-        return Objects.equals(fileTime, other.fileTime);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return fileTime.hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -80,24 +72,24 @@ final class SerializableFileTime implements Serializable {
     }
 
     long to(final TimeUnit unit) {
-        return fileTime.to(unit);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     Instant toInstant() {
-        return fileTime.toInstant();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     long toMillis() {
-        return fileTime.toMillis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return fileTime.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     FileTime unwrap() {
-        return fileTime;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void writeObject(final ObjectOutputStream oos) throws IOException {

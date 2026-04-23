@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.io.IOException;
@@ -46,9 +45,7 @@ public class IOExceptionList extends IOException implements Iterable<Throwable> 
      * @since 2.12.0
      */
     public static void checkEmpty(final List<? extends Throwable> causeList, final Object message) throws IOExceptionList {
-        if (!isEmpty(causeList)) {
-            throw new IOExceptionList(Objects.toString(message, null), causeList);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static boolean isEmpty(final List<? extends Throwable> causeList) {
@@ -97,7 +94,7 @@ public class IOExceptionList extends IOException implements Iterable<Throwable> 
      * @return The list of causes.
      */
     public <T extends Throwable> T getCause(final int index) {
-        return (T) causeList.get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -109,7 +106,7 @@ public class IOExceptionList extends IOException implements Iterable<Throwable> 
      * @return The list of causes.
      */
     public <T extends Throwable> T getCause(final int index, final Class<T> clazz) {
-        return clazz.cast(getCause(index));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -119,7 +116,7 @@ public class IOExceptionList extends IOException implements Iterable<Throwable> 
      * @return The list of causes.
      */
     public <T extends Throwable> List<T> getCauseList() {
-        return (List<T>) new ArrayList<>(causeList);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,12 +127,11 @@ public class IOExceptionList extends IOException implements Iterable<Throwable> 
      * @return The list of causes.
      */
     public <T extends Throwable> List<T> getCauseList(final Class<T> clazz) {
-        return (List<T>) new ArrayList<>(causeList);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<Throwable> iterator() {
-        return getCauseList().iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

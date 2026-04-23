@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import java.io.IOException;
@@ -45,13 +44,12 @@ public abstract class AbstractInputStream extends InputStream {
      * @throws IOException if this instance is closed.
      */
     void checkOpen() throws IOException {
-        Input.checkOpen(!isClosed());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() throws IOException {
-        super.close();
-        closed = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -60,7 +58,7 @@ public abstract class AbstractInputStream extends InputStream {
      * @return whether this instance is closed.
      */
     public boolean isClosed() {
-        return closed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -69,7 +67,6 @@ public abstract class AbstractInputStream extends InputStream {
      * @param closed whether this instance is closed.
      */
     public void setClosed(final boolean closed) {
-        this.closed = closed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

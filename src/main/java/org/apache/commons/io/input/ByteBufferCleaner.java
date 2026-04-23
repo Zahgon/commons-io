@@ -35,12 +35,14 @@ import java.nio.ByteBuffer;
 final class ByteBufferCleaner {
 
     private interface Cleaner {
+
         void clean(ByteBuffer buffer) throws ReflectiveOperationException;
     }
 
     private static final class Java8Cleaner implements Cleaner {
 
         private final Method cleanerMethod;
+
         private final Method cleanMethod;
 
         private Java8Cleaner() throws ReflectiveOperationException, SecurityException {
@@ -50,16 +52,14 @@ final class ByteBufferCleaner {
 
         @Override
         public void clean(final ByteBuffer buffer) throws ReflectiveOperationException {
-            final Object cleaner = cleanerMethod.invoke(buffer);
-            if (cleaner != null) {
-                cleanMethod.invoke(cleaner);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     private static final class Java9Cleaner implements Cleaner {
 
         private final Object theUnsafe;
+
         private final Method invokeCleaner;
 
         private Java9Cleaner() throws ReflectiveOperationException, SecurityException {
@@ -72,7 +72,7 @@ final class ByteBufferCleaner {
 
         @Override
         public void clean(final ByteBuffer buffer) throws ReflectiveOperationException {
-            invokeCleaner.invoke(theUnsafe, buffer);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -85,11 +85,7 @@ final class ByteBufferCleaner {
      * @throws IllegalStateException on internal failure.
      */
     static void clean(final ByteBuffer buffer) {
-        try {
-            INSTANCE.clean(buffer);
-        } catch (final Exception e) {
-            throw new IllegalStateException("Failed to clean direct buffer.", e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static Cleaner getCleaner() {
@@ -111,6 +107,6 @@ final class ByteBufferCleaner {
      * @return {@code true} if cleaning is supported, {@code false} otherwise.
      */
     static boolean isSupported() {
-        return INSTANCE != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

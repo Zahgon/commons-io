@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -39,7 +38,7 @@ public interface IOSpliterator<T> {
      * @return A new IOSpliterator
      */
     static <E> IOSpliterator<E> adapt(final Spliterator<E> iterator) {
-        return IOSpliteratorAdapter.adapt(iterator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -49,7 +48,7 @@ public interface IOSpliterator<T> {
      * @return an {@link UncheckedIOException} {@link Spliterator}.
      */
     default Spliterator<T> asSpliterator() {
-        return new UncheckedIOSpliterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -58,17 +57,16 @@ public interface IOSpliterator<T> {
      * @return a representation of characteristics
      */
     default int characteristics() {
-        return unwrap().characteristics();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Like {@link Spliterator#estimateSize()}.
      *
-     *
      * @return the estimated size, or {@code Long.MAX_VALUE} if infinite, unknown, or too expensive to compute.
      */
     default long estimateSize() {
-        return unwrap().estimateSize();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -78,8 +76,7 @@ public interface IOSpliterator<T> {
      * @throws NullPointerException if the specified action is null
      */
     default void forEachRemaining(final IOConsumer<? super T> action) {
-        while (tryAdvance(action)) { // NOPMD
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,7 +87,7 @@ public interface IOSpliterator<T> {
      */
     @SuppressWarnings("unchecked")
     default IOComparator<? super T> getComparator() {
-        return (IOComparator<T>) unwrap().getComparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -99,7 +96,7 @@ public interface IOSpliterator<T> {
      * @return the exact size, if known, else {@code -1}.
      */
     default long getExactSizeIfKnown() {
-        return unwrap().getExactSizeIfKnown();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -109,7 +106,7 @@ public interface IOSpliterator<T> {
      * @return {@code true} if all the specified characteristics are present, else {@code false}
      */
     default boolean hasCharacteristics(final int characteristics) {
-        return unwrap().hasCharacteristics(characteristics);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -120,7 +117,7 @@ public interface IOSpliterator<T> {
      * @throws NullPointerException if the specified action is null
      */
     default boolean tryAdvance(final IOConsumer<? super T> action) {
-        return unwrap().tryAdvance(Objects.requireNonNull(action, "action").asConsumer());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,7 +127,7 @@ public interface IOSpliterator<T> {
      *         split
      */
     default IOSpliterator<T> trySplit() {
-        return adapt(unwrap().trySplit());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -142,5 +139,4 @@ public interface IOSpliterator<T> {
      * @return the underlying Spliterator.
      */
     Spliterator<T> unwrap();
-
 }

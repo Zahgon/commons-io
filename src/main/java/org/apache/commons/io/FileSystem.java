@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.util.Arrays;
@@ -37,32 +36,22 @@ public enum FileSystem {
      * Generic file system.
      */
     GENERIC(4096, false, false, Integer.MAX_VALUE, Integer.MAX_VALUE, new int[] { 0 }, new String[] {}, false, false, '/'),
-
     /**
      * Linux file system.
      */
-    LINUX(8192, true, true, 255, 4096, new int[] {
-            // KEEP THIS ARRAY SORTED!
-            // @formatter:off
-            // ASCII NUL
-            0,
-             '/'
-            // @formatter:on
+    LINUX(8192, true, true, 255, 4096, new int[] { // KEEP THIS ARRAY SORTED!
+    // @formatter:off
+    // ASCII NUL
+    0, '/' // @formatter:on
     }, new String[] {}, false, false, '/'),
-
     /**
      * MacOS file system.
      */
-    MAC_OSX(4096, true, true, 255, 1024, new int[] {
-            // KEEP THIS ARRAY SORTED!
-            // @formatter:off
-            // ASCII NUL
-            0,
-            '/',
-             ':'
-            // @formatter:on
+    MAC_OSX(4096, true, true, 255, 1024, new int[] { // KEEP THIS ARRAY SORTED!
+    // @formatter:off
+    // ASCII NUL
+    0, '/', ':' // @formatter:on
     }, new String[] {}, false, false, '/'),
-
     /**
      * Windows file system.
      * <p>
@@ -77,27 +66,20 @@ public enum FileSystem {
      *      CreateFileA function - Consoles (microsoft.com)</a>
      */
     // @formatter:off
-    WINDOWS(4096, false, true,
-            255, 32000, // KEEP THIS ARRAY SORTED!
-            new int[] {
-                    // KEEP THIS ARRAY SORTED!
-                    // ASCII NUL
-                    0,
-                    // 1-31 may be allowed in file streams
-                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
-                    29, 30, 31,
-                    '"', '*', '/', ':', '<', '>', '?', '\\', '|'
-            }, new String[] {
-                    "AUX",
-                    "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9",
-                    "COM\u00b2", "COM\u00b3", "COM\u00b9", // Superscript 2 3 1 in that order
-                    "CON", "CONIN$", "CONOUT$",
-                    "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9",
-                    "LPT\u00b2", "LPT\u00b3", "LPT\u00b9", // Superscript 2 3 1 in that order
-                    "NUL", "PRN"
-            }, true, true, '\\');
-    // @formatter:on
+    WINDOWS(4096, false, true, // KEEP THIS ARRAY SORTED!
+    255, // KEEP THIS ARRAY SORTED!
+    32000, new int[] { // KEEP THIS ARRAY SORTED!
+    // ASCII NUL
+    0, // 1-31 may be allowed in file streams
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, '"', '*', '/', ':', '<', '>', '?', '\\', '|' }, new String[] { "AUX", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", // Superscript 2 3 1 in that order
+    "COM\u00b2", // Superscript 2 3 1 in that order
+    "COM\u00b3", // Superscript 2 3 1 in that order
+    "COM\u00b9", "CON", "CONIN$", "CONOUT$", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9", // Superscript 2 3 1 in that order
+    "LPT\u00b2", // Superscript 2 3 1 in that order
+    "LPT\u00b3", // Superscript 2 3 1 in that order
+    "LPT\u00b9", "NUL", "PRN" }, true, true, '\\');
 
+    // @formatter:on
     /**
      * <p>
      * Is {@code true} if this is Linux.
@@ -162,7 +144,7 @@ public enum FileSystem {
      * @return the current file system
      */
     public static FileSystem getCurrent() {
-        return CURRENT;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -194,8 +176,7 @@ public enum FileSystem {
             return System.getProperty(property);
         } catch (final SecurityException ex) {
             // we are not allowed to look at this property
-            System.err.println("Caught a SecurityException reading the system property '" + property
-                    + "'; the SystemUtils property value will default to null.");
+            System.err.println("Caught a SecurityException reading the system property '" + property + "'; the SystemUtils property value will default to null.");
             return null;
         }
     }
@@ -305,15 +286,25 @@ public enum FileSystem {
     }
 
     private final int blockSize;
+
     private final boolean casePreserving;
+
     private final boolean caseSensitive;
+
     private final int[] illegalFileNameChars;
+
     private final int maxFileNameLength;
+
     private final int maxPathLength;
+
     private final String[] reservedFileNames;
+
     private final boolean reservedFileNamesExtensions;
+
     private final boolean supportsDriveLetter;
+
     private final char nameSeparator;
+
     private final char nameSeparatorOther;
 
     /**
@@ -330,9 +321,7 @@ public enum FileSystem {
      * @param supportsDriveLetter Whether this file system support driver letters.
      * @param nameSeparator The name separator, '\\' on Windows, '/' on Linux.
      */
-    FileSystem(final int blockSize, final boolean caseSensitive, final boolean casePreserving,
-        final int maxFileLength, final int maxPathLength, final int[] illegalFileNameChars,
-        final String[] reservedFileNames, final boolean reservedFileNamesExtensions, final boolean supportsDriveLetter, final char nameSeparator) {
+    FileSystem(final int blockSize, final boolean caseSensitive, final boolean casePreserving, final int maxFileLength, final int maxPathLength, final int[] illegalFileNameChars, final String[] reservedFileNames, final boolean reservedFileNamesExtensions, final boolean supportsDriveLetter, final char nameSeparator) {
         this.blockSize = blockSize;
         this.maxFileNameLength = maxFileLength;
         this.maxPathLength = maxPathLength;
@@ -353,7 +342,7 @@ public enum FileSystem {
      * @since 2.12.0
      */
     public int getBlockSize() {
-        return blockSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -362,11 +351,7 @@ public enum FileSystem {
      * @return the illegal characters for this file system.
      */
     public char[] getIllegalFileNameChars() {
-        final char[] chars = new char[illegalFileNameChars.length];
-        for (int i = 0; i < illegalFileNameChars.length; i++) {
-            chars[i] = (char) illegalFileNameChars[i];
-        }
-        return chars;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -376,7 +361,7 @@ public enum FileSystem {
      * @since 2.12.0
      */
     public int[] getIllegalFileNameCodePoints() {
-        return this.illegalFileNameChars.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -385,7 +370,7 @@ public enum FileSystem {
      * @return the maximum length for file names.
      */
     public int getMaxFileNameLength() {
-        return maxFileNameLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -394,7 +379,7 @@ public enum FileSystem {
      * @return the maximum length of the path to a file.
      */
     public int getMaxPathLength() {
-        return maxPathLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -404,7 +389,7 @@ public enum FileSystem {
      * @since 2.12.0
      */
     public char getNameSeparator() {
-        return nameSeparator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -413,7 +398,7 @@ public enum FileSystem {
      * @return the reserved file names.
      */
     public String[] getReservedFileNames() {
-        return reservedFileNames.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -422,7 +407,7 @@ public enum FileSystem {
      * @return Whether this file system preserves case.
      */
     public boolean isCasePreserving() {
-        return casePreserving;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -431,7 +416,7 @@ public enum FileSystem {
      * @return Whether this file system is case-sensitive.
      */
     public boolean isCaseSensitive() {
-        return caseSensitive;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -455,13 +440,7 @@ public enum FileSystem {
      * @return {@code true} if the candidate name is legal
      */
     public boolean isLegalFileName(final CharSequence candidate) {
-        if (candidate == null || candidate.length() == 0 || candidate.length() > maxFileNameLength) {
-            return false;
-        }
-        if (isReservedFileName(candidate)) {
-            return false;
-        }
-        return candidate.chars().noneMatch(this::isIllegalFileNameChar);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -472,8 +451,7 @@ public enum FileSystem {
      * @return {@code true} if the given string is a reserved file name.
      */
     public boolean isReservedFileName(final CharSequence candidate) {
-        final CharSequence test = reservedFileNamesExtensions ? trimExtension(candidate) : candidate;
-        return Arrays.binarySearch(reservedFileNames, test) >= 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -484,7 +462,7 @@ public enum FileSystem {
      * @since 2.12.0
      */
     public String normalizeSeparators(final String path) {
-        return replace(path, nameSeparatorOther, nameSeparator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -500,7 +478,7 @@ public enum FileSystem {
      *      assignment</a>
      */
     public boolean supportsDriveLetter() {
-        return supportsDriveLetter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -516,18 +494,10 @@ public enum FileSystem {
      * @return a String without illegal characters
      */
     public String toLegalFileName(final String candidate, final char replacement) {
-        if (isIllegalFileNameChar(replacement)) {
-            // %s does not work properly with NUL
-            throw new IllegalArgumentException(String.format("The replacement character '%s' cannot be one of the %s illegal characters: %s",
-                replacement == '\0' ? "\\0" : replacement, name(), Arrays.toString(illegalFileNameChars)));
-        }
-        final String truncated = candidate.length() > maxFileNameLength ? candidate.substring(0, maxFileNameLength) : candidate;
-        final int[] array = truncated.chars().map(i -> isIllegalFileNameChar(i) ? replacement : i).toArray();
-        return new String(array, 0, array.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     CharSequence trimExtension(final CharSequence cs) {
-        final int index = indexOf(cs, '.', 0);
-        return index < 0 ? cs : cs.subSequence(0, index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -24,7 +24,6 @@ import java.io.PipedOutputStream;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import org.apache.commons.io.input.QueueInputStream;
 
 /**
@@ -80,7 +79,7 @@ public class QueueOutputStream extends OutputStream {
      * @return QueueInputStream connected to this stream
      */
     public QueueInputStream newQueueInputStream() {
-        return QueueInputStream.builder().setBlockingQueue(blockingQueue).get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,13 +89,6 @@ public class QueueOutputStream extends OutputStream {
      */
     @Override
     public void write(final int b) throws InterruptedIOException {
-        try {
-            blockingQueue.put(0xFF & b);
-        } catch (final InterruptedException e) {
-            Thread.currentThread().interrupt();
-            final InterruptedIOException interruptedIoException = new InterruptedIOException();
-            interruptedIoException.initCause(e);
-            throw interruptedIoException;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

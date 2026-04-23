@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -42,7 +41,7 @@ public interface IOFunction<T, R> {
      */
     @SuppressWarnings("unchecked")
     static <T> IOFunction<T, T> identity() {
-        return Constants.IO_FUNCTION_ID;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -56,8 +55,7 @@ public interface IOFunction<T, R> {
      * @see #compose(IOFunction)
      */
     default IOConsumer<T> andThen(final Consumer<? super R> after) {
-        Objects.requireNonNull(after, "after");
-        return (final T t) -> after.accept(apply(t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,8 +70,7 @@ public interface IOFunction<T, R> {
      * @see #compose(IOFunction)
      */
     default <V> IOFunction<T, V> andThen(final Function<? super R, ? extends V> after) {
-        Objects.requireNonNull(after, "after");
-        return (final T t) -> after.apply(apply(t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,8 +84,7 @@ public interface IOFunction<T, R> {
      * @see #compose(IOFunction)
      */
     default IOConsumer<T> andThen(final IOConsumer<? super R> after) {
-        Objects.requireNonNull(after, "after");
-        return (final T t) -> after.accept(apply(t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -103,8 +99,7 @@ public interface IOFunction<T, R> {
      * @see #compose(IOFunction)
      */
     default <V> IOFunction<T, V> andThen(final IOFunction<? super R, ? extends V> after) {
-        Objects.requireNonNull(after, "after");
-        return (final T t) -> after.apply(apply(t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -123,7 +118,7 @@ public interface IOFunction<T, R> {
      * @since 2.12.0
      */
     default Function<T, R> asFunction() {
-        return t -> Uncheck.apply(this, t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,8 +133,7 @@ public interface IOFunction<T, R> {
      * @see #andThen(IOFunction)
      */
     default <V> IOFunction<V, R> compose(final Function<? super V, ? extends T> before) {
-        Objects.requireNonNull(before, "before");
-        return (final V v) -> apply(before.apply(v));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -154,8 +148,7 @@ public interface IOFunction<T, R> {
      * @see #andThen(IOFunction)
      */
     default <V> IOFunction<V, R> compose(final IOFunction<? super V, ? extends T> before) {
-        Objects.requireNonNull(before, "before");
-        return (final V v) -> apply(before.apply(v));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -169,8 +162,7 @@ public interface IOFunction<T, R> {
      * @see #andThen(IOFunction)
      */
     default IOSupplier<R> compose(final IOSupplier<? extends T> before) {
-        Objects.requireNonNull(before, "before");
-        return () -> apply(before.get());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -184,7 +176,6 @@ public interface IOFunction<T, R> {
      * @see #andThen(IOFunction)
      */
     default IOSupplier<R> compose(final Supplier<? extends T> before) {
-        Objects.requireNonNull(before, "before");
-        return () -> apply(before.get());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

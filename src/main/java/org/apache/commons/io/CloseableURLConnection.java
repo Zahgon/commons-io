@@ -33,11 +33,11 @@ import java.util.Objects;
 final class CloseableURLConnection extends URLConnection implements AutoCloseable {
 
     static CloseableURLConnection open(final URI uri) throws IOException {
-        return open(Objects.requireNonNull(uri, "uri").toURL());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static CloseableURLConnection open(final URL url) throws IOException {
-        return new CloseableURLConnection(url.openConnection());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final URLConnection urlConnection;
@@ -49,227 +49,226 @@ final class CloseableURLConnection extends URLConnection implements AutoCloseabl
 
     @Override
     public void addRequestProperty(final String key, final String value) {
-        urlConnection.addRequestProperty(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() {
-        IOUtils.close(urlConnection);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void connect() throws IOException {
-        urlConnection.connect();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object obj) {
-        return urlConnection.equals(obj);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean getAllowUserInteraction() {
-        return urlConnection.getAllowUserInteraction();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getConnectTimeout() {
-        return urlConnection.getConnectTimeout();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Object getContent() throws IOException {
-        return urlConnection.getContent();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Object getContent(@SuppressWarnings("rawtypes") final Class[] classes) throws IOException {
-        return urlConnection.getContent(classes);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getContentEncoding() {
-        return urlConnection.getContentEncoding();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getContentLength() {
-        return urlConnection.getContentLength();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getContentLengthLong() {
-        return urlConnection.getContentLengthLong();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getContentType() {
-        return urlConnection.getContentType();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getDate() {
-        return urlConnection.getDate();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean getDefaultUseCaches() {
-        return urlConnection.getDefaultUseCaches();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean getDoInput() {
-        return urlConnection.getDoInput();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean getDoOutput() {
-        return urlConnection.getDoOutput();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getExpiration() {
-        return urlConnection.getExpiration();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getHeaderField(final int n) {
-        return urlConnection.getHeaderField(n);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getHeaderField(final String name) {
-        return urlConnection.getHeaderField(name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getHeaderFieldDate(final String name, final long Default) {
-        return urlConnection.getHeaderFieldDate(name, Default);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getHeaderFieldInt(final String name, final int Default) {
-        return urlConnection.getHeaderFieldInt(name, Default);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getHeaderFieldKey(final int n) {
-        return urlConnection.getHeaderFieldKey(n);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getHeaderFieldLong(final String name, final long Default) {
-        return urlConnection.getHeaderFieldLong(name, Default);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Map<String, List<String>> getHeaderFields() {
-        return urlConnection.getHeaderFields();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getIfModifiedSince() {
-        return urlConnection.getIfModifiedSince();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public InputStream getInputStream() throws IOException {
-        return urlConnection.getInputStream();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getLastModified() {
-        return urlConnection.getLastModified();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public OutputStream getOutputStream() throws IOException {
-        return urlConnection.getOutputStream();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Permission getPermission() throws IOException {
-        return urlConnection.getPermission();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getReadTimeout() {
-        return urlConnection.getReadTimeout();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Map<String, List<String>> getRequestProperties() {
-        return urlConnection.getRequestProperties();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getRequestProperty(final String key) {
-        return urlConnection.getRequestProperty(key);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public URL getURL() {
-        return urlConnection.getURL();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean getUseCaches() {
-        return urlConnection.getUseCaches();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return urlConnection.hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setAllowUserInteraction(final boolean allowUserInteraction) {
-        urlConnection.setAllowUserInteraction(allowUserInteraction);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setConnectTimeout(final int timeout) {
-        urlConnection.setConnectTimeout(timeout);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setDefaultUseCaches(final boolean defaultUseCaches) {
-        urlConnection.setDefaultUseCaches(defaultUseCaches);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setDoInput(final boolean doInput) {
-        urlConnection.setDoInput(doInput);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setDoOutput(final boolean doOutput) {
-        urlConnection.setDoOutput(doOutput);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setIfModifiedSince(final long ifModifiedSince) {
-        urlConnection.setIfModifiedSince(ifModifiedSince);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setReadTimeout(final int timeout) {
-        urlConnection.setReadTimeout(timeout);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setRequestProperty(final String key, final String value) {
-        urlConnection.setRequestProperty(key, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void setUseCaches(final boolean useCaches) {
-        urlConnection.setUseCaches(useCaches);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return urlConnection.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

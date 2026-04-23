@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
@@ -29,7 +28,6 @@ import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 import org.apache.commons.io.output.QueueOutputStream;
 
@@ -84,6 +82,7 @@ public class QueueInputStream extends InputStream {
     public static class Builder extends AbstractStreamBuilder<QueueInputStream, Builder> {
 
         private BlockingQueue<Integer> blockingQueue = new LinkedBlockingQueue<>();
+
         private Duration timeout = Duration.ZERO;
 
         /**
@@ -108,7 +107,7 @@ public class QueueInputStream extends InputStream {
          */
         @Override
         public QueueInputStream get() {
-            return new QueueInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -118,8 +117,7 @@ public class QueueInputStream extends InputStream {
          * @return {@code this} instance.
          */
         public Builder setBlockingQueue(final BlockingQueue<Integer> blockingQueue) {
-            this.blockingQueue = blockingQueue != null ? blockingQueue : new LinkedBlockingQueue<>();
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -129,13 +127,8 @@ public class QueueInputStream extends InputStream {
          * @return {@code this} instance.
          */
         public Builder setTimeout(final Duration timeout) {
-            if (timeout != null && timeout.toNanos() < 0) {
-                throw new IllegalArgumentException("timeout must not be negative");
-            }
-            this.timeout = timeout != null ? timeout : Duration.ZERO;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -145,7 +138,7 @@ public class QueueInputStream extends InputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final BlockingQueue<Integer> blockingQueue;
@@ -186,7 +179,7 @@ public class QueueInputStream extends InputStream {
      * @return the blocking queue.
      */
     BlockingQueue<Integer> getBlockingQueue() {
-        return blockingQueue;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -195,7 +188,7 @@ public class QueueInputStream extends InputStream {
      * @return the timeout duration.
      */
     Duration getTimeout() {
-        return Duration.ofNanos(timeoutNanos);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -204,7 +197,7 @@ public class QueueInputStream extends InputStream {
      * @return QueueOutputStream connected to this stream.
      */
     public QueueOutputStream newQueueOutputStream() {
-        return new QueueOutputStream(blockingQueue);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -215,15 +208,7 @@ public class QueueInputStream extends InputStream {
      */
     @Override
     public int read() {
-        try {
-            final Integer value = blockingQueue.poll(timeoutNanos, TimeUnit.NANOSECONDS);
-            return value == null ? EOF : 0xFF & value;
-        } catch (final InterruptedException e) {
-            Thread.currentThread().interrupt();
-            // throw runtime unchecked exception to maintain signature backward-compatibility of
-            // this read method, which does not declare IOException
-            throw new IllegalStateException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -244,33 +229,6 @@ public class QueueInputStream extends InputStream {
      */
     @Override
     public int read(final byte[] b, final int offset, final int length) {
-        if (b == null) {
-            throw new NullPointerException();
-        }
-        if (offset < 0 || length < 0 || length > b.length - offset) {
-            throw new IndexOutOfBoundsException(
-                    String.format("Range [%d, %<d + %d) out of bounds for length %d", offset, length, b.length));
-        }
-        if (length == 0) {
-            return 0;
-        }
-        final List<Integer> drain = new ArrayList<>(Math.min(length, blockingQueue.size()));
-        blockingQueue.drainTo(drain, length);
-        if (drain.isEmpty()) {
-            // no data immediately available. wait for first byte
-            final int value = read();
-            if (value == EOF) {
-                return EOF;
-            }
-            drain.add(value);
-            blockingQueue.drainTo(drain, length - 1);
-        }
-        int i = 0;
-        for (final Integer value : drain) {
-            b[offset + i] = (byte) (0xFF & value);
-            i++;
-        }
-        return i;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

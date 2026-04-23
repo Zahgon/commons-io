@@ -24,7 +24,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.file.PathUtils;
 
@@ -74,10 +73,14 @@ public class PrefixFileFilter extends AbstractFileFilter implements Serializable
 
     private static final long serialVersionUID = 8533897440809599867L;
 
-    /** The file name prefixes to search for */
+    /**
+     * The file name prefixes to search for
+     */
     private final String[] prefixes;
 
-    /** Whether the comparison is case-sensitive. */
+    /**
+     * Whether the comparison is case-sensitive.
+     */
     private final IOCase isCase;
 
     /**
@@ -142,7 +145,7 @@ public class PrefixFileFilter extends AbstractFileFilter implements Serializable
      */
     public PrefixFileFilter(final String prefix, final IOCase ioCase) {
         Objects.requireNonNull(prefix, "prefix");
-        this.prefixes = new String[] {prefix};
+        this.prefixes = new String[] { prefix };
         this.isCase = IOCase.value(ioCase, IOCase.SENSITIVE);
     }
 
@@ -169,7 +172,7 @@ public class PrefixFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public boolean accept(final File file) {
-        return accept(file == null ? null : file.getName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -181,7 +184,7 @@ public class PrefixFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public boolean accept(final File file, final String name) {
-        return accept(name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -194,7 +197,7 @@ public class PrefixFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return toFileVisitResult(accept(PathUtils.getFileName(file, Path::toFile)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean accept(final String name) {
@@ -208,12 +211,6 @@ public class PrefixFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public String toString() {
-        final StringBuilder buffer = new StringBuilder();
-        buffer.append(super.toString());
-        buffer.append("(");
-        append(prefixes, buffer);
-        buffer.append(")");
-        return buffer.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

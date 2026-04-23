@@ -25,7 +25,6 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.Objects;
-
 import org.apache.commons.io.file.PathFilter;
 import org.apache.commons.io.file.PathVisitor;
 import org.apache.commons.io.function.IOSupplier;
@@ -42,7 +41,7 @@ import org.apache.commons.io.function.IOSupplier;
 public abstract class AbstractFileFilter implements IOFileFilter, PathVisitor {
 
     static FileVisitResult toDefaultFileVisitResult(final boolean accept) {
-        return accept ? FileVisitResult.CONTINUE : FileVisitResult.TERMINATE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -82,8 +81,7 @@ public abstract class AbstractFileFilter implements IOFileFilter, PathVisitor {
      */
     @Override
     public boolean accept(final File file) {
-        Objects.requireNonNull(file, "file");
-        return accept(file.getParentFile(), file.getName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -95,34 +93,19 @@ public abstract class AbstractFileFilter implements IOFileFilter, PathVisitor {
      */
     @Override
     public boolean accept(final File dir, final String name) {
-        Objects.requireNonNull(name, "name");
-        return accept(new File(dir, name));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void append(final List<?> list, final StringBuilder buffer) {
-        for (int i = 0; i < list.size(); i++) {
-            if (i > 0) {
-                buffer.append(",");
-            }
-            buffer.append(list.get(i));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void append(final Object[] array, final StringBuilder buffer) {
-        for (int i = 0; i < array.length; i++) {
-            if (i > 0) {
-                buffer.append(",");
-            }
-            buffer.append(array[i]);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     FileVisitResult get(final IOSupplier<FileVisitResult> supplier) {
-        try {
-            return supplier.get();
-        } catch (final IOException e) {
-            return handle(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -133,25 +116,25 @@ public abstract class AbstractFileFilter implements IOFileFilter, PathVisitor {
      * @since 2.9.0
      */
     protected FileVisitResult handle(final Throwable t) {
-        return FileVisitResult.TERMINATE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     boolean isDirectory(final File file) {
-        return file != null && file.isDirectory();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     boolean isFile(final File file) {
-        return file != null && file.isFile();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult postVisitDirectory(final Path dir, final IOException exc) throws IOException {
-        return FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult preVisitDirectory(final Path dir, final BasicFileAttributes attributes) throws IOException {
-        return accept(dir, attributes);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -161,7 +144,7 @@ public abstract class AbstractFileFilter implements IOFileFilter, PathVisitor {
      * @return a FileVisitResult.
      */
     FileVisitResult toFileVisitResult(final boolean accept) {
-        return accept ? onAccept : onReject;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -171,17 +154,16 @@ public abstract class AbstractFileFilter implements IOFileFilter, PathVisitor {
      */
     @Override
     public String toString() {
-        return getClass().getSimpleName();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult visitFile(final Path file, final BasicFileAttributes attributes) throws IOException {
-        return accept(file, attributes);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult visitFileFailed(final Path file, final IOException exc) throws IOException {
-        return FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

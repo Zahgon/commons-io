@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import java.io.IOException;
@@ -108,12 +107,12 @@ public final class ThrottledInputStream extends CountingInputStream {
          */
         @Override
         public ThrottledInputStream get() throws IOException {
-            return new ThrottledInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         // package private for testing.
         double getMaxBytesPerSecond() {
-            return maxBytesPerSecond;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -135,8 +134,7 @@ public final class ThrottledInputStream extends CountingInputStream {
          * @since 2.19.0
          */
         public Builder setMaxBytes(final long value, final ChronoUnit chronoUnit) {
-            setMaxBytes(value, chronoUnit.getDuration());
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -158,8 +156,7 @@ public final class ThrottledInputStream extends CountingInputStream {
          */
         // Consider making public in the future
         Builder setMaxBytes(final long value, final Duration duration) {
-            setMaxBytesPerSecond((double) Objects.requireNonNull(duration, "duration").toMillis() / 1_000 * value);
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -184,11 +181,8 @@ public final class ThrottledInputStream extends CountingInputStream {
          * @throws IllegalArgumentException Thrown if maxBytesPerSecond &lt;= 0.
          */
         public void setMaxBytesPerSecond(final long maxBytesPerSecond) {
-            setMaxBytesPerSecond((double) maxBytesPerSecond);
-            // TODO 3.0
-            // return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -197,26 +191,18 @@ public final class ThrottledInputStream extends CountingInputStream {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     // package private for testing
     static long toSleepMillis(final long bytesRead, final long elapsedMillis, final double maxBytesPerSec) {
-        if (bytesRead <= 0 || maxBytesPerSec <= 0 || elapsedMillis == 0) {
-            return 0;
-        }
-        // We use this class to load the single source file, so the bytesRead
-        // and maxBytesPerSec aren't greater than Double.MAX_VALUE.
-        // We can get the precise sleep time by using the double value.
-        final long millis = (long) (bytesRead / maxBytesPerSec * 1000 - elapsedMillis);
-        if (millis <= 0) {
-            return 0;
-        }
-        return millis;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final double maxBytesPerSecond;
+
     private final long startTime = System.currentTimeMillis();
+
     private Duration totalSleepDuration = Duration.ZERO;
 
     private ThrottledInputStream(final Builder builder) throws IOException {
@@ -229,7 +215,7 @@ public final class ThrottledInputStream extends CountingInputStream {
 
     @Override
     protected void beforeRead(final int n) throws IOException {
-        throttle();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -247,7 +233,7 @@ public final class ThrottledInputStream extends CountingInputStream {
 
     // package private for testing.
     double getMaxBytesPerSecond() {
-        return maxBytesPerSecond;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private long getSleepMillis() {
@@ -261,7 +247,7 @@ public final class ThrottledInputStream extends CountingInputStream {
      */
     // package private for testing
     Duration getTotalSleepDuration() {
-        return totalSleepDuration;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void throttle() throws InterruptedIOException {
@@ -276,10 +262,11 @@ public final class ThrottledInputStream extends CountingInputStream {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "ThrottledInputStream[bytesRead=" + getByteCount() + ", maxBytesPerSec=" + maxBytesPerSecond + ", bytesPerSec=" + getBytesPerSecond()
-                + ", totalSleepDuration=" + totalSleepDuration + ']';
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

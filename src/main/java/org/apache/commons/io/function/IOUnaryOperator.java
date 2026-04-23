@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -39,7 +38,7 @@ public interface IOUnaryOperator<T> extends IOFunction<T, T> {
      * @return a unary operator that always returns its input argument.
      */
     static <T> IOUnaryOperator<T> identity() {
-        return t -> t;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -49,7 +48,6 @@ public interface IOUnaryOperator<T> extends IOFunction<T, T> {
      * @return an unchecked BiFunction.
      */
     default UnaryOperator<T> asUnaryOperator() {
-        return t -> Uncheck.apply(this, t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

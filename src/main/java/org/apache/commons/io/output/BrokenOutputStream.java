@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
 import org.apache.commons.io.function.Erase;
 
 /**
@@ -105,7 +104,7 @@ public class BrokenOutputStream extends OutputStream {
      */
     @Override
     public void close() throws IOException {
-        throw rethrow("close()");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,7 +114,7 @@ public class BrokenOutputStream extends OutputStream {
      */
     @Override
     public void flush() throws IOException {
-        throw rethrow("flush()");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -136,7 +135,6 @@ public class BrokenOutputStream extends OutputStream {
      */
     @Override
     public void write(final int b) throws IOException {
-        throw rethrow("write(int)");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

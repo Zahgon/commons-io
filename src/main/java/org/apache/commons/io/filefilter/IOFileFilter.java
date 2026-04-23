@@ -23,7 +23,6 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.attribute.BasicFileAttributes;
-
 import org.apache.commons.io.file.PathFilter;
 
 /**
@@ -73,7 +72,7 @@ public interface IOFileFilter extends FileFilter, FilenameFilter, PathFilter, Pa
      */
     @Override
     default FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        return AbstractFileFilter.toDefaultFileVisitResult(path != null && accept(path.toFile()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,7 +83,7 @@ public interface IOFileFilter extends FileFilter, FilenameFilter, PathFilter, Pa
      * @since 2.9.0
      */
     default IOFileFilter and(final IOFileFilter fileFilter) {
-        return new AndFileFilter(this, fileFilter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -96,7 +95,7 @@ public interface IOFileFilter extends FileFilter, FilenameFilter, PathFilter, Pa
      */
     @Override
     default boolean matches(final Path path) {
-        return accept(path, null) != FileVisitResult.TERMINATE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,7 +105,7 @@ public interface IOFileFilter extends FileFilter, FilenameFilter, PathFilter, Pa
      * @since 2.9.0
      */
     default IOFileFilter negate() {
-        return new NotFileFilter(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,7 +116,6 @@ public interface IOFileFilter extends FileFilter, FilenameFilter, PathFilter, Pa
      * @since 2.9.0
      */
     default IOFileFilter or(final IOFileFilter fileFilter) {
-        return new OrFileFilter(this, fileFilter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

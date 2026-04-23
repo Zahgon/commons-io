@@ -19,7 +19,6 @@ package org.apache.commons.io.input;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.function.Supplier;
-
 import org.apache.commons.io.function.Erase;
 
 /**
@@ -89,7 +88,7 @@ public class BrokenReader extends Reader {
      */
     @Override
     public void close() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,7 +99,7 @@ public class BrokenReader extends Reader {
      */
     @Override
     public void mark(final int readAheadLimit) throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -114,7 +113,7 @@ public class BrokenReader extends Reader {
      */
     @Override
     public int read(final char[] cbuf, final int off, final int len) throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -125,7 +124,7 @@ public class BrokenReader extends Reader {
      */
     @Override
     public boolean ready() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -135,7 +134,7 @@ public class BrokenReader extends Reader {
      */
     @Override
     public void reset() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -156,7 +155,6 @@ public class BrokenReader extends Reader {
      */
     @Override
     public long skip(final long n) throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

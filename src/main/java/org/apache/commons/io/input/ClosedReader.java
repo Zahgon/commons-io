@@ -17,10 +17,8 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.Reader;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -58,7 +56,7 @@ public class ClosedReader extends Reader {
 
     @Override
     public void close() throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -71,7 +69,6 @@ public class ClosedReader extends Reader {
      */
     @Override
     public int read(final char[] cbuf, final int off, final int len) {
-        return EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

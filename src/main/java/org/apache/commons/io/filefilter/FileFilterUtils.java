@@ -30,7 +30,6 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOCase;
 
@@ -44,12 +43,10 @@ import org.apache.commons.io.IOCase;
 public class FileFilterUtils {
 
     /* Constructed on demand and then cached */
-    private static final IOFileFilter CVS_FILTER = notFileFilter(
-            and(directoryFileFilter(), nameFileFilter("CVS")));
+    private static final IOFileFilter CVS_FILTER = notFileFilter(and(directoryFileFilter(), nameFileFilter("CVS")));
 
     /* Constructed on demand and then cached */
-    private static final IOFileFilter SVN_FILTER = notFileFilter(
-            and(directoryFileFilter(), nameFileFilter(".svn")));
+    private static final IOFileFilter SVN_FILTER = notFileFilter(and(directoryFileFilter(), nameFileFilter(".svn")));
 
     /**
      * Returns a filter that returns true if the file was last modified before
@@ -61,7 +58,7 @@ public class FileFilterUtils {
      * @since 1.2
      */
     public static IOFileFilter ageFileFilter(final Date cutoffDate) {
-        return new AgeFileFilter(cutoffDate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -74,7 +71,7 @@ public class FileFilterUtils {
      * @since 1.2
      */
     public static IOFileFilter ageFileFilter(final Date cutoffDate, final boolean acceptOlder) {
-        return new AgeFileFilter(cutoffDate, acceptOlder);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,7 +85,7 @@ public class FileFilterUtils {
      * @since 1.2
      */
     public static IOFileFilter ageFileFilter(final File cutoffReference) {
-        return new AgeFileFilter(cutoffReference);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -102,7 +99,7 @@ public class FileFilterUtils {
      * @since 1.2
      */
     public static IOFileFilter ageFileFilter(final File cutoffReference, final boolean acceptOlder) {
-        return new AgeFileFilter(cutoffReference, acceptOlder);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,7 +112,7 @@ public class FileFilterUtils {
      * @since 1.2
      */
     public static IOFileFilter ageFileFilter(final long cutoffMillis) {
-        return new AgeFileFilter(cutoffMillis);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -128,7 +125,7 @@ public class FileFilterUtils {
      * @since 1.2
      */
     public static IOFileFilter ageFileFilter(final long cutoffMillis, final boolean acceptOlder) {
-        return new AgeFileFilter(cutoffMillis, acceptOlder);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -142,7 +139,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter and(final IOFileFilter... filters) {
-        return new AndFileFilter(toList(filters));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -169,7 +166,7 @@ public class FileFilterUtils {
      * @see DelegateFileFilter
      */
     public static IOFileFilter asFileFilter(final FileFilter filter) {
-        return new DelegateFileFilter(filter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -181,7 +178,7 @@ public class FileFilterUtils {
      * @see DelegateFileFilter
      */
     public static IOFileFilter asFileFilter(final FilenameFilter filter) {
-        return new DelegateFileFilter(filter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -191,7 +188,7 @@ public class FileFilterUtils {
      * @see DirectoryFileFilter#DIRECTORY
      */
     public static IOFileFilter directoryFileFilter() {
-        return DirectoryFileFilter.DIRECTORY;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -201,7 +198,7 @@ public class FileFilterUtils {
      * @see FalseFileFilter#FALSE
      */
     public static IOFileFilter falseFileFilter() {
-        return FalseFileFilter.FALSE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -211,7 +208,7 @@ public class FileFilterUtils {
      * @see FileFileFilter#INSTANCE
      */
     public static IOFileFilter fileFileFilter() {
-        return FileFileFilter.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -236,11 +233,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static File[] filter(final IOFileFilter filter, final File... files) {
-        Objects.requireNonNull(filter, "filter");
-        if (files == null) {
-            return FileUtils.EMPTY_FILE_ARRAY;
-        }
-        return filterFiles(filter, Stream.of(files), Collectors.toList()).toArray(FileUtils.EMPTY_FILE_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -269,7 +262,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static File[] filter(final IOFileFilter filter, final Iterable<File> files) {
-        return filterList(filter, files).toArray(FileUtils.EMPTY_FILE_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -285,8 +278,7 @@ public class FileFilterUtils {
      * @return a subset of files from the stream that is accepted by the filter.
      * @throws NullPointerException if the filter is {@code null}.
      */
-    private static <R, A> R filterFiles(final IOFileFilter filter, final Stream<File> stream,
-        final Collector<? super File, A, R> collector) {
+    private static <R, A> R filterFiles(final IOFileFilter filter, final Stream<File> stream, final Collector<? super File, A, R> collector) {
         Objects.requireNonNull(filter, "filter");
         Objects.requireNonNull(collector, "collector");
         if (stream == null) {
@@ -320,7 +312,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static List<File> filterList(final IOFileFilter filter, final File... files) {
-        return Arrays.asList(filter(filter, files));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -347,10 +339,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static List<File> filterList(final IOFileFilter filter, final Iterable<File> files) {
-        if (files == null) {
-            return Collections.emptyList();
-        }
-        return filterFiles(filter, StreamSupport.stream(files.spliterator(), false), Collectors.toList());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -379,7 +368,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static Set<File> filterSet(final IOFileFilter filter, final File... files) {
-        return new HashSet<>(Arrays.asList(filter(filter, files)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -406,10 +395,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static Set<File> filterSet(final IOFileFilter filter, final Iterable<File> files) {
-        if (files == null) {
-            return Collections.emptySet();
-        }
-        return filterFiles(filter, StreamSupport.stream(files.spliterator(), false), Collectors.toSet());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -428,7 +414,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter magicNumberFileFilter(final byte[] magicNumber) {
-        return new MagicNumberFileFilter(magicNumber);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -448,7 +434,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter magicNumberFileFilter(final byte[] magicNumber, final long offset) {
-        return new MagicNumberFileFilter(magicNumber, offset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -467,7 +453,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter magicNumberFileFilter(final String magicNumber) {
-        return new MagicNumberFileFilter(magicNumber);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -487,7 +473,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter magicNumberFileFilter(final String magicNumber, final long offset) {
-        return new MagicNumberFileFilter(magicNumber, offset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -500,7 +486,7 @@ public class FileFilterUtils {
      * @since 1.1 (method existed but had a bug in 1.0)
      */
     public static IOFileFilter makeCVSAware(final IOFileFilter filter) {
-        return filter == null ? CVS_FILTER : and(filter, CVS_FILTER);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -512,10 +498,7 @@ public class FileFilterUtils {
      * @since 1.3
      */
     public static IOFileFilter makeDirectoryOnly(final IOFileFilter filter) {
-        if (filter == null) {
-            return DirectoryFileFilter.DIRECTORY;
-        }
-        return DirectoryFileFilter.DIRECTORY.and(filter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -527,10 +510,7 @@ public class FileFilterUtils {
      * @since 1.3
      */
     public static IOFileFilter makeFileOnly(final IOFileFilter filter) {
-        if (filter == null) {
-            return FileFileFilter.INSTANCE;
-        }
-        return FileFileFilter.INSTANCE.and(filter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -543,7 +523,7 @@ public class FileFilterUtils {
      * @since 1.1
      */
     public static IOFileFilter makeSVNAware(final IOFileFilter filter) {
-        return filter == null ? SVN_FILTER : and(filter, SVN_FILTER);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -554,7 +534,7 @@ public class FileFilterUtils {
      * @see NameFileFilter
      */
     public static IOFileFilter nameFileFilter(final String name) {
-        return new NameFileFilter(name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -567,7 +547,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter nameFileFilter(final String name, final IOCase ioCase) {
-        return new NameFileFilter(name, ioCase);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -578,7 +558,7 @@ public class FileFilterUtils {
      * @see NotFileFilter
      */
     public static IOFileFilter notFileFilter(final IOFileFilter filter) {
-        return filter.negate();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -592,7 +572,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter or(final IOFileFilter... filters) {
-        return new OrFileFilter(toList(filters));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -618,7 +598,7 @@ public class FileFilterUtils {
      * @see PrefixFileFilter
      */
     public static IOFileFilter prefixFileFilter(final String prefix) {
-        return new PrefixFileFilter(prefix);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -631,7 +611,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter prefixFileFilter(final String prefix, final IOCase ioCase) {
-        return new PrefixFileFilter(prefix, ioCase);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -643,7 +623,7 @@ public class FileFilterUtils {
      * @since 1.2
      */
     public static IOFileFilter sizeFileFilter(final long threshold) {
-        return new SizeFileFilter(threshold);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -656,7 +636,7 @@ public class FileFilterUtils {
      * @since 1.2
      */
     public static IOFileFilter sizeFileFilter(final long threshold, final boolean acceptLarger) {
-        return new SizeFileFilter(threshold, acceptLarger);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -670,9 +650,7 @@ public class FileFilterUtils {
      * @since 1.3
      */
     public static IOFileFilter sizeRangeFileFilter(final long minSizeInclusive, final long maxSizeInclusive) {
-        final IOFileFilter minimumFilter = new SizeFileFilter(minSizeInclusive, true);
-        final IOFileFilter maximumFilter = new SizeFileFilter(maxSizeInclusive + 1L, false);
-        return minimumFilter.and(maximumFilter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -683,7 +661,7 @@ public class FileFilterUtils {
      * @see SuffixFileFilter
      */
     public static IOFileFilter suffixFileFilter(final String suffix) {
-        return new SuffixFileFilter(suffix);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -696,7 +674,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static IOFileFilter suffixFileFilter(final String suffix, final IOCase ioCase) {
-        return new SuffixFileFilter(suffix, ioCase);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -709,7 +687,7 @@ public class FileFilterUtils {
      * @since 2.0
      */
     public static List<IOFileFilter> toList(final IOFileFilter... filters) {
-        return Stream.of(Objects.requireNonNull(filters, "filters")).map(Objects::requireNonNull).collect(Collectors.toList());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -719,7 +697,7 @@ public class FileFilterUtils {
      * @see TrueFileFilter#TRUE
      */
     public static IOFileFilter trueFileFilter() {
-        return TrueFileFilter.TRUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -727,5 +705,4 @@ public class FileFilterUtils {
      */
     public FileFilterUtils() {
     }
-
 }

@@ -14,14 +14,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.Reader;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -44,7 +41,7 @@ public abstract class UnsynchronizedReader extends Reader {
     /**
      * The skip buffer, defaults to null until allocated in {@link UnsynchronizedReader#skip(long)}.
      */
-    private char skipBuffer[];
+    private char[] skipBuffer;
 
     /**
      * Constructs a new instance.
@@ -59,12 +56,12 @@ public abstract class UnsynchronizedReader extends Reader {
      * @throws IOException if this instance is closed.
      */
     void checkOpen() throws IOException {
-        Input.checkOpen(!isClosed());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() throws IOException {
-        closed = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -73,7 +70,7 @@ public abstract class UnsynchronizedReader extends Reader {
      * @return whether this instance is closed.
      */
     public boolean isClosed() {
-        return closed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -82,7 +79,7 @@ public abstract class UnsynchronizedReader extends Reader {
      * @param closed whether this instance is closed.
      */
     public void setClosed(final boolean closed) {
-        this.closed = closed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -102,21 +99,6 @@ public abstract class UnsynchronizedReader extends Reader {
      */
     @Override
     public long skip(final long n) throws IOException {
-        if (n < 0L) {
-            throw new IllegalArgumentException("skip value < 0");
-        }
-        final int bufSize = (int) Math.min(n, MAX_SKIP_BUFFER_SIZE);
-        if (skipBuffer == null || skipBuffer.length < bufSize) {
-            skipBuffer = new char[bufSize];
-        }
-        long remaining = n;
-        while (remaining > 0) {
-            final int countOrEof = read(skipBuffer, 0, (int) Math.min(remaining, bufSize));
-            if (countOrEof == EOF) {
-                break;
-            }
-            remaining -= countOrEof;
-        }
-        return n - remaining;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

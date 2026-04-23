@@ -99,7 +99,6 @@ import java.util.stream.Stream;
  * <li>the extension - txt</li>
  * </ul>
  *
- *
  * <p>
  * This class works best if directory names end with a separator.
  * If you omit the last separator, it is impossible to determine if the last component
@@ -237,25 +236,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the result path contains the null character ({@code U+0000})
      */
     public static String concat(final String basePath, final String fullFileNameToAdd) {
-        final int prefix = getPrefixLength(fullFileNameToAdd);
-        if (prefix < 0) {
-            return null;
-        }
-        if (prefix > 0) {
-            return normalize(fullFileNameToAdd);
-        }
-        if (basePath == null) {
-            return null;
-        }
-        final int len = basePath.length();
-        if (len == 0) {
-            return normalize(fullFileNameToAdd);
-        }
-        final char ch = basePath.charAt(len - 1);
-        if (isSeparator(ch)) {
-            return normalize(basePath + fullFileNameToAdd);
-        }
-        return normalize(basePath + '/' + fullFileNameToAdd);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -280,18 +261,7 @@ public class FilenameUtils {
      * @see FileUtils#directoryContains(File, File)
      */
     public static boolean directoryContains(final String canonicalParent, final String canonicalChild) {
-        if (isEmpty(canonicalParent) || isEmpty(canonicalChild)) {
-            return false;
-        }
-
-        if (IOCase.SYSTEM.checkEquals(canonicalParent, canonicalChild)) {
-            return false;
-        }
-
-        final char separator = toSeparator(canonicalParent.charAt(0) == UNIX_NAME_SEPARATOR);
-        final String parentWithEndSeparator = canonicalParent.charAt(canonicalParent.length() - 1) == separator ? canonicalParent : canonicalParent + separator;
-
-        return IOCase.SYSTEM.checkStartsWith(canonicalChild, parentWithEndSeparator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -312,7 +282,8 @@ public class FilenameUtils {
         }
         if (prefix >= fileName.length()) {
             if (includeSeparator) {
-                return getPrefix(fileName);  // add end slash if necessary
+                // add end slash if necessary
+                return getPrefix(fileName);
             }
             return fileName;
         }
@@ -320,7 +291,7 @@ public class FilenameUtils {
         if (index < 0) {
             return fileName.substring(0, prefix);
         }
-        int end = index + (includeSeparator ?  1 : 0);
+        int end = index + (includeSeparator ? 1 : 0);
         if (end == 0) {
             end++;
         }
@@ -364,9 +335,7 @@ public class FilenameUtils {
         if (fileName == null) {
             return null;
         }
-
         requireNonNullChars(fileName);
-
         int size = fileName.length();
         if (size == 0) {
             return fileName;
@@ -375,10 +344,9 @@ public class FilenameUtils {
         if (prefix < 0) {
             return null;
         }
-
-        final char[] array = new char[size + 2];  // +1 for possible extra slash, +2 for arraycopy
+        // +1 for possible extra slash, +2 for arraycopy
+        final char[] array = new char[size + 2];
         fileName.getChars(0, fileName.length(), array, 0);
-
         // fix separators throughout
         final char otherSeparator = flipSeparator(separator);
         for (int i = 0; i < array.length; i++) {
@@ -386,14 +354,12 @@ public class FilenameUtils {
                 array[i] = separator;
             }
         }
-
         // add extra separator on the end to simplify code below
         boolean lastIsDirectory = true;
         if (array[size - 1] != separator) {
             array[size++] = separator;
             lastIsDirectory = false;
         }
-
         // adjoining slashes
         // If we get here, prefix can only be 0 or greater, size 1 or greater
         // If prefix is 0, set loop start to 1 to prevent index errors
@@ -404,11 +370,9 @@ public class FilenameUtils {
                 i--;
             }
         }
-
         // period slash
         for (int i = prefix + 1; i < size; i++) {
-            if (array[i] == separator && array[i - 1] == '.' &&
-                    (i == prefix + 1 || array[i - 2] == separator)) {
+            if (array[i] == separator && array[i - 1] == '.' && (i == prefix + 1 || array[i - 2] == separator)) {
                 if (i == size - 1) {
                     lastIsDirectory = true;
                 }
@@ -417,12 +381,9 @@ public class FilenameUtils {
                 i--;
             }
         }
-
         // double period slash
-        outer:
-        for (int i = prefix + 2; i < size; i++) {
-            if (array[i] == separator && array[i - 1] == '.' && array[i - 2] == '.' &&
-                    (i == prefix + 2 || array[i - 3] == separator)) {
+        outer: for (int i = prefix + 2; i < size; i++) {
+            if (array[i] == separator && array[i - 1] == '.' && array[i - 2] == '.' && (i == prefix + 2 || array[i - 3] == separator)) {
                 if (i == prefix + 2) {
                     return null;
                 }
@@ -430,7 +391,7 @@ public class FilenameUtils {
                     lastIsDirectory = true;
                 }
                 int j;
-                for (j = i - 4 ; j >= prefix; j--) {
+                for (j = i - 4; j >= prefix; j--) {
                     if (array[j] == separator) {
                         // remove b/../ from a/b/../c
                         System.arraycopy(array, i + 1, array, j + 1, size - i);
@@ -445,17 +406,20 @@ public class FilenameUtils {
                 i = prefix + 1;
             }
         }
-
-        if (size <= 0) {  // should never be less than 0
+        if (size <= 0) {
+            // should never be less than 0
             return EMPTY_STRING;
         }
-        if (size <= prefix) {  // should never be less than prefix
+        if (size <= prefix) {
+            // should never be less than prefix
             return new String(array, 0, size);
         }
         if (lastIsDirectory && keepSeparator) {
-            return new String(array, 0, size);  // keep trailing separator
+            // keep trailing separator
+            return new String(array, 0, size);
         }
-        return new String(array, 0, size - 1);  // lose trailing separator
+        // lose trailing separator
+        return new String(array, 0, size - 1);
     }
 
     /**
@@ -471,7 +435,7 @@ public class FilenameUtils {
      * @see IOCase#SENSITIVE
      */
     public static boolean equals(final String fileName1, final String fileName2) {
-        return equals(fileName1, fileName2, false, IOCase.SENSITIVE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -486,21 +450,7 @@ public class FilenameUtils {
      * @since 1.3
      */
     public static boolean equals(String fileName1, String fileName2, final boolean normalize, final IOCase ioCase) {
-
-        if (fileName1 == null || fileName2 == null) {
-            return fileName1 == null && fileName2 == null;
-        }
-        if (normalize) {
-            fileName1 = normalize(fileName1);
-            if (fileName1 == null) {
-                return false;
-            }
-            fileName2 = normalize(fileName2);
-            if (fileName2 == null) {
-                return false;
-            }
-        }
-        return IOCase.value(ioCase, IOCase.SENSITIVE).checkEquals(fileName1, fileName2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -516,7 +466,7 @@ public class FilenameUtils {
      * @see IOCase#SENSITIVE
      */
     public static boolean equalsNormalized(final String fileName1, final String fileName2) {
-        return equals(fileName1, fileName2, true, IOCase.SENSITIVE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -534,7 +484,7 @@ public class FilenameUtils {
      * @see IOCase#SYSTEM
      */
     public static boolean equalsNormalizedOnSystem(final String fileName1, final String fileName2) {
-        return equals(fileName1, fileName2, true, IOCase.SYSTEM);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -550,7 +500,7 @@ public class FilenameUtils {
      * @see IOCase#SYSTEM
      */
     public static boolean equalsOnSystem(final String fileName1, final String fileName2) {
-        return equals(fileName1, fileName2, false, IOCase.SYSTEM);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -560,13 +510,7 @@ public class FilenameUtils {
      * @return The Windows or Linux name separator.
      */
     static char flipSeparator(final char ch) {
-        if (ch == UNIX_NAME_SEPARATOR) {
-            return WINDOWS_NAME_SEPARATOR;
-        }
-        if (ch == WINDOWS_NAME_SEPARATOR) {
-            return UNIX_NAME_SEPARATOR;
-        }
-        throw new IllegalArgumentException(String.valueOf(ch));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -614,7 +558,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the file name contains the null character ({@code U+0000})
      */
     public static String getBaseName(final String fileName) {
-        return removeExtension(getName(fileName));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -648,14 +592,7 @@ public class FilenameUtils {
      * the identifier of an Alternate Data Stream, for example "foo.exe:bar.txt".
      */
     public static String getExtension(final String fileName) throws IllegalArgumentException {
-        if (fileName == null) {
-            return null;
-        }
-        final int index = indexOfExtension(fileName);
-        if (index == NOT_FOUND) {
-            return EMPTY_STRING;
-        }
-        return fileName.substring(index + 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -687,7 +624,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the result path contains the null character ({@code U+0000})
      */
     public static String getFullPath(final String fileName) {
-        return doGetFullPath(fileName, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -720,7 +657,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the result path contains the null character ({@code U+0000})
      */
     public static String getFullPathNoEndSeparator(final String fileName) {
-        return doGetFullPath(fileName, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -745,10 +682,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the file name contains the null character ({@code U+0000})
      */
     public static String getName(final String fileName) {
-        if (fileName == null) {
-            return null;
-        }
-        return requireNonNullChars(fileName).substring(indexOfLastSeparator(fileName) + 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -778,7 +712,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the result path contains the null character ({@code U+0000})
      */
     public static String getPath(final String fileName) {
-        return doGetPath(fileName, 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -809,7 +743,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the result path contains the null character ({@code U+0000})
      */
     public static String getPathNoEndSeparator(final String fileName) {
-        return doGetPath(fileName, 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -844,18 +778,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the result contains the null character ({@code U+0000})
      */
     public static String getPrefix(final String fileName) {
-        if (fileName == null) {
-            return null;
-        }
-        final int len = getPrefixLength(fileName);
-        if (len < 0) {
-            return null;
-        }
-        if (len > fileName.length()) {
-            requireNonNullChars(fileName);
-            return fileName + UNIX_NAME_SEPARATOR;
-        }
-        return requireNonNullChars(fileName.substring(0, len));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -902,64 +825,7 @@ public class FilenameUtils {
      * @return the length of the prefix, -1 if invalid or null
      */
     public static int getPrefixLength(final String fileName) {
-        if (fileName == null) {
-            return NOT_FOUND;
-        }
-        final int len = fileName.length();
-        if (len == 0) {
-            return 0;
-        }
-        char ch0 = fileName.charAt(0);
-        if (ch0 == ':') {
-            return NOT_FOUND;
-        }
-        if (len == 1) {
-            if (ch0 == '~') {
-                return 2;  // return a length greater than the input
-            }
-            return isSeparator(ch0) ? 1 : 0;
-        }
-        if (ch0 == '~') {
-            int posUnix = fileName.indexOf(UNIX_NAME_SEPARATOR, 1);
-            int posWin = fileName.indexOf(WINDOWS_NAME_SEPARATOR, 1);
-            if (posUnix == NOT_FOUND && posWin == NOT_FOUND) {
-                return len + 1;  // return a length greater than the input
-            }
-            posUnix = posUnix == NOT_FOUND ? posWin : posUnix;
-            posWin = posWin == NOT_FOUND ? posUnix : posWin;
-            return Math.min(posUnix, posWin) + 1;
-        }
-        final char ch1 = fileName.charAt(1);
-        if (ch1 == ':') {
-            ch0 = Character.toUpperCase(ch0);
-            if (ch0 >= 'A' && ch0 <= 'Z') {
-                if (len == 2 && !FileSystem.getCurrent().supportsDriveLetter()) {
-                    return 0;
-                }
-                if (len == 2 || !isSeparator(fileName.charAt(2))) {
-                    return 2;
-                }
-                return 3;
-            }
-            if (ch0 == UNIX_NAME_SEPARATOR) {
-                return 1;
-            }
-            return NOT_FOUND;
-
-        }
-        if (!isSeparator(ch0) || !isSeparator(ch1)) {
-            return isSeparator(ch0) ? 1 : 0;
-        }
-        int posUnix = fileName.indexOf(UNIX_NAME_SEPARATOR, 2);
-        int posWin = fileName.indexOf(WINDOWS_NAME_SEPARATOR, 2);
-        if (posUnix == NOT_FOUND && posWin == NOT_FOUND || posUnix == 2 || posWin == 2) {
-            return NOT_FOUND;
-        }
-        posUnix = posUnix == NOT_FOUND ? posWin : posUnix;
-        posWin = posWin == NOT_FOUND ? posUnix : posWin;
-        final int pos = Math.min(posUnix, posWin) + 1;
-        final String hostnamePart = fileName.substring(2, pos - 1);
-        return isValidHostName(hostnamePart) ? pos : NOT_FOUND;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -985,19 +851,7 @@ public class FilenameUtils {
      * the identifier of an Alternate Data Stream, for example "foo.exe:bar.txt".
      */
     public static int indexOfExtension(final String fileName) throws IllegalArgumentException {
-        if (fileName == null) {
-            return NOT_FOUND;
-        }
-        if (isSystemWindows()) {
-            // Special handling for NTFS ADS: Don't accept colon in the file name.
-            final int offset = fileName.indexOf(':', getAdsCriticalOffset(fileName));
-            if (offset != -1) {
-                throw new IllegalArgumentException("NTFS ADS separator (':') in file name is forbidden.");
-            }
-        }
-        final int extensionPos = fileName.lastIndexOf(EXTENSION_SEPARATOR);
-        final int lastSeparator = indexOfLastSeparator(fileName);
-        return lastSeparator > extensionPos ? NOT_FOUND : extensionPos;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1013,12 +867,7 @@ public class FilenameUtils {
      * is no such character
      */
     public static int indexOfLastSeparator(final String fileName) {
-        if (fileName == null) {
-            return NOT_FOUND;
-        }
-        final int lastUnixPos = fileName.lastIndexOf(UNIX_NAME_SEPARATOR);
-        final int lastWindowsPos = fileName.lastIndexOf(WINDOWS_NAME_SEPARATOR);
-        return Math.max(lastUnixPos, lastWindowsPos);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static boolean isEmpty(final String string) {
@@ -1038,15 +887,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the file name contains the null character ({@code U+0000})
      */
     public static boolean isExtension(final String fileName, final Collection<String> extensions) {
-        if (fileName == null) {
-            return false;
-        }
-        requireNonNullChars(fileName);
-
-        if (extensions == null || extensions.isEmpty()) {
-            return indexOfExtension(fileName) == NOT_FOUND;
-        }
-        return extensions.contains(getExtension(fileName));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1062,15 +903,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the file name contains the null character ({@code U+0000})
      */
     public static boolean isExtension(final String fileName, final String extension) {
-        if (fileName == null) {
-            return false;
-        }
-        requireNonNullChars(fileName);
-
-        if (isEmpty(extension)) {
-            return indexOfExtension(fileName) == NOT_FOUND;
-        }
-        return getExtension(fileName).equals(extension);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1086,16 +919,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the file name contains the null character ({@code U+0000})
      */
     public static boolean isExtension(final String fileName, final String... extensions) {
-        if (fileName == null) {
-            return false;
-        }
-        requireNonNullChars(fileName);
-
-        if (extensions == null || extensions.length == 0) {
-            return indexOfExtension(fileName) == NOT_FOUND;
-        }
-        final String fileExt = getExtension(fileName);
-        return Stream.of(extensions).anyMatch(fileExt::equals);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1110,7 +934,6 @@ public class FilenameUtils {
         if (!m.matches() || m.groupCount() != 4) {
             return false;
         }
-
         // verify that address subgroups are legal
         for (int i = 1; i <= 4; i++) {
             final String ipSegment = m.group(i);
@@ -1118,13 +941,10 @@ public class FilenameUtils {
             if (iIpSegment > IPV4_MAX_OCTET_VALUE) {
                 return false;
             }
-
             if (ipSegment.length() > 1 && ipSegment.startsWith("0")) {
                 return false;
             }
-
         }
-
         return true;
     }
 
@@ -1140,8 +960,7 @@ public class FilenameUtils {
         if (containsCompressedZeroes && inet6Address.indexOf("::") != inet6Address.lastIndexOf("::")) {
             return false;
         }
-        if (inet6Address.startsWith(":") && !inet6Address.startsWith("::")
-                || inet6Address.endsWith(":") && !inet6Address.endsWith("::")) {
+        if (inet6Address.startsWith(":") && !inet6Address.startsWith("::") || inet6Address.endsWith(":") && !inet6Address.endsWith("::")) {
             return false;
         }
         String[] octets = inet6Address.split(":");
@@ -1159,7 +978,8 @@ public class FilenameUtils {
             return false;
         }
         int validOctets = 0;
-        int emptyOctets = 0; // consecutive empty chunks
+        // consecutive empty chunks
+        int emptyOctets = 0;
         for (int index = 0; index < octets.length; index++) {
             final String octet = octets[index];
             if (octet.isEmpty()) {
@@ -1233,7 +1053,7 @@ public class FilenameUtils {
      * @return true if the system is Windows
      */
     static boolean isSystemWindows() {
-        return SYSTEM_NAME_SEPARATOR == WINDOWS_NAME_SEPARATOR;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1293,7 +1113,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the file name contains the null character ({@code U+0000})
      */
     public static String normalize(final String fileName) {
-        return doNormalize(fileName, SYSTEM_NAME_SEPARATOR, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1342,7 +1162,7 @@ public class FilenameUtils {
      * @since 2.0
      */
     public static String normalize(final String fileName, final boolean unixSeparator) {
-        return doNormalize(fileName, toSeparator(unixSeparator), true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1388,7 +1208,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the file name contains the null character ({@code U+0000})
      */
     public static String normalizeNoEndSeparator(final String fileName) {
-        return doNormalize(fileName, SYSTEM_NAME_SEPARATOR, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1436,7 +1256,7 @@ public class FilenameUtils {
      * @since 2.0
      */
     public static String normalizeNoEndSeparator(final String fileName, final boolean unixSeparator) {
-         return doNormalize(fileName, toSeparator(unixSeparator), false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1460,16 +1280,7 @@ public class FilenameUtils {
      * @throws IllegalArgumentException if the file name contains the null character ({@code U+0000})
      */
     public static String removeExtension(final String fileName) {
-        if (fileName == null) {
-            return null;
-        }
-        requireNonNullChars(fileName);
-
-        final int index = indexOfExtension(fileName);
-        if (index == NOT_FOUND) {
-            return fileName;
-        }
-        return fileName.substring(0, index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1483,8 +1294,7 @@ public class FilenameUtils {
      */
     private static String requireNonNullChars(final String path) {
         if (path.indexOf(0) >= 0) {
-            throw new IllegalArgumentException(
-                "Null character present in file/path name. There are no known legitimate use cases for such data, but several injection attacks may use it");
+            throw new IllegalArgumentException("Null character present in file/path name. There are no known legitimate use cases for such data, but several injection attacks may use it");
         }
         return path;
     }
@@ -1496,7 +1306,7 @@ public class FilenameUtils {
      * @return the updated path.
      */
     public static String separatorsToSystem(final String path) {
-        return FileSystem.getCurrent().normalizeSeparators(path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1506,7 +1316,7 @@ public class FilenameUtils {
      * @return the new path.
      */
     public static String separatorsToUnix(final String path) {
-        return FileSystem.LINUX.normalizeSeparators(path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1516,7 +1326,7 @@ public class FilenameUtils {
      * @return the updated path.
      */
     public static String separatorsToWindows(final String path) {
-        return FileSystem.WINDOWS.normalizeSeparators(path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1528,38 +1338,7 @@ public class FilenameUtils {
      * @return the array of tokens, never null
      */
     static String[] splitOnTokens(final String text) {
-        // used by wildcardMatch
-        // package level so a unit test may run on this
-
-        if (text.indexOf('?') == NOT_FOUND && text.indexOf('*') == NOT_FOUND) {
-            return new String[] { text };
-        }
-
-        final char[] array = text.toCharArray();
-        final ArrayList<String> list = new ArrayList<>();
-        final StringBuilder buffer = new StringBuilder();
-        char prevChar = 0;
-        for (final char ch : array) {
-            if (ch == '?' || ch == '*') {
-                if (buffer.length() != 0) {
-                    list.add(buffer.toString());
-                    buffer.setLength(0);
-                }
-                if (ch == '?') {
-                    list.add("?");
-                } else if (prevChar != '*') { // ch == '*' here; check if previous char was '*'
-                    list.add("*");
-                }
-            } else {
-                buffer.append(ch);
-            }
-            prevChar = ch;
-        }
-        if (buffer.length() != 0) {
-            list.add(buffer.toString());
-        }
-
-        return list.toArray(EMPTY_STRING_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1595,7 +1374,7 @@ public class FilenameUtils {
      * @see IOCase#SENSITIVE
      */
     public static boolean wildcardMatch(final String fileName, final String wildcardMatcher) {
-        return wildcardMatch(fileName, wildcardMatcher, IOCase.SENSITIVE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1613,81 +1392,7 @@ public class FilenameUtils {
      * @since 1.3
      */
     public static boolean wildcardMatch(final String fileName, final String wildcardMatcher, IOCase ioCase) {
-        if (fileName == null && wildcardMatcher == null) {
-            return true;
-        }
-        if (fileName == null || wildcardMatcher == null) {
-            return false;
-        }
-        ioCase = IOCase.value(ioCase, IOCase.SENSITIVE);
-        final String[] wcs = splitOnTokens(wildcardMatcher);
-        boolean anyChars = false;
-        int textIdx = 0;
-        int wcsIdx = 0;
-        final Deque<int[]> backtrack = new ArrayDeque<>(wcs.length);
-
-        // loop around a backtrack stack, to handle complex * matching
-        do {
-            if (!backtrack.isEmpty()) {
-                final int[] array = backtrack.pop();
-                wcsIdx = array[0];
-                textIdx = array[1];
-                anyChars = true;
-            }
-
-            // loop whilst tokens and text left to process
-            while (wcsIdx < wcs.length) {
-
-                if (wcs[wcsIdx].equals("?")) {
-                    // ? so move to next text char
-                    textIdx++;
-                    if (textIdx > fileName.length()) {
-                        break;
-                    }
-                    anyChars = false;
-
-                } else if (wcs[wcsIdx].equals("*")) {
-                    // set any chars status
-                    anyChars = true;
-                    if (wcsIdx == wcs.length - 1) {
-                        textIdx = fileName.length();
-                    }
-
-                } else {
-                    // matching text token
-                    if (anyChars) {
-                        // any chars then try to locate text token
-                        textIdx = ioCase.checkIndexOf(fileName, textIdx, wcs[wcsIdx]);
-                        if (textIdx == NOT_FOUND) {
-                            // token not found
-                            break;
-                        }
-                        final int repeat = ioCase.checkIndexOf(fileName, textIdx + 1, wcs[wcsIdx]);
-                        if (repeat >= 0) {
-                            backtrack.push(new int[] {wcsIdx, repeat});
-                        }
-                    } else if (!ioCase.checkRegionMatches(fileName, textIdx, wcs[wcsIdx])) {
-                        // matching from current position
-                        // couldn't match token
-                        break;
-                    }
-
-                    // matched text token, move text index to end of matched token
-                    textIdx += wcs[wcsIdx].length();
-                    anyChars = false;
-                }
-
-                wcsIdx++;
-            }
-
-            // full match
-            if (wcsIdx == wcs.length && textIdx == fileName.length()) {
-                return true;
-            }
-
-        } while (!backtrack.isEmpty());
-
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1713,7 +1418,7 @@ public class FilenameUtils {
      * @see IOCase#SYSTEM
      */
     public static boolean wildcardMatchOnSystem(final String fileName, final String wildcardMatcher) {
-        return wildcardMatch(fileName, wildcardMatcher, IOCase.SYSTEM);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

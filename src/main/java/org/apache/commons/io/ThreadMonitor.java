@@ -46,7 +46,7 @@ final class ThreadMonitor implements Runnable {
      * @return The monitor thread or {@code null} if the timeout amount is not greater than zero.
      */
     static Thread start(final Duration timeout) {
-        return start(Thread.currentThread(), timeout);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -57,13 +57,7 @@ final class ThreadMonitor implements Runnable {
      * @return The monitor thread or {@code null} if the timeout amount is not greater than zero.
      */
     static Thread start(final Thread thread, final Duration timeout) {
-        if (timeout.isZero() || timeout.isNegative()) {
-            return null;
-        }
-        final Thread monitor = new Thread(new ThreadMonitor(thread, timeout), ThreadMonitor.class.getSimpleName());
-        monitor.setDaemon(true);
-        monitor.start();
-        return monitor;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,9 +66,7 @@ final class ThreadMonitor implements Runnable {
      * @param thread The monitor thread, may be {@code null}.
      */
     static void stop(final Thread thread) {
-        if (thread != null) {
-            thread.interrupt();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final Thread thread;
@@ -99,11 +91,6 @@ final class ThreadMonitor implements Runnable {
      */
     @Override
     public void run() {
-        try {
-            ThreadUtils.sleep(timeout);
-            thread.interrupt();
-        } catch (final InterruptedException ignored) {
-            // timeout not reached
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

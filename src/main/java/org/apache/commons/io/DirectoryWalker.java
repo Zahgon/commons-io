@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Collection;
 import java.util.Objects;
-
 import org.apache.commons.io.file.PathUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.IOFileFilter;
@@ -260,12 +259,19 @@ public abstract class DirectoryWalker<T> {
      */
     public static class CancelException extends IOException {
 
-        /** Serialization id. */
+        /**
+         * Serialization id.
+         */
         private static final long serialVersionUID = 1347339620135041008L;
 
-        /** The file being processed when the exception was thrown. */
+        /**
+         * The file being processed when the exception was thrown.
+         */
         private final File file;
-        /** The file depth when the exception was thrown. */
+
+        /**
+         * The file depth when the exception was thrown.
+         */
         private final int depth;
 
         /**
@@ -300,7 +306,7 @@ public abstract class DirectoryWalker<T> {
          * @return the depth when the operation was cancelled
          */
         public int getDepth() {
-            return depth;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -309,9 +315,10 @@ public abstract class DirectoryWalker<T> {
          * @return the file when the operation was cancelled
          */
         public File getFile() {
-            return file;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
+
     /**
      * The file filter to use to filter files and directories.
      */
@@ -390,11 +397,8 @@ public abstract class DirectoryWalker<T> {
      * @param results  the collection of result objects, may be updated
      * @throws IOException if an I/O Error occurs
      */
-    protected final void checkIfCancelled(final File file, final int depth, final Collection<T> results) throws
-            IOException {
-        if (handleIsCancelled(file, depth, results)) {
-            throw new CancelException(file, depth);
-        }
+    protected final void checkIfCancelled(final File file, final int depth, final Collection<T> results) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -410,10 +414,10 @@ public abstract class DirectoryWalker<T> {
      * @throws IOException if an I/O Error occurs
      * @since 2.0
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
-    protected File[] filterDirectoryContents(final File directory, final int depth, final File... files) throws
-            IOException {
-        return files;
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
+    protected File[] filterDirectoryContents(final File directory, final int depth, final File... files) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -430,10 +434,8 @@ public abstract class DirectoryWalker<T> {
      * containing details at the point of cancellation.
      * @throws IOException if an I/O Error occurs
      */
-    protected void handleCancelled(final File startDirectory, final Collection<T> results,
-                       final CancelException cancel) throws IOException {
-        // re-throw exception - overridable by subclass
-        throw cancel;
+    protected void handleCancelled(final File startDirectory, final Collection<T> results, final CancelException cancel) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -453,11 +455,10 @@ public abstract class DirectoryWalker<T> {
      * @return true to process this directory, false to skip this directory
      * @throws IOException if an I/O Error occurs
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
-    protected boolean handleDirectory(final File directory, final int depth, final Collection<T> results) throws
-            IOException {
-        // do nothing - overridable by subclass
-        return true;  // process directory
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
+    protected boolean handleDirectory(final File directory, final int depth, final Collection<T> results) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -471,10 +472,10 @@ public abstract class DirectoryWalker<T> {
      * @param results  the collection of result objects, may be updated
      * @throws IOException if an I/O Error occurs
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
-    protected void handleDirectoryEnd(final File directory, final int depth, final Collection<T> results) throws
-            IOException {
-        // do nothing - overridable by subclass
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
+    protected void handleDirectoryEnd(final File directory, final int depth, final Collection<T> results) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -488,10 +489,10 @@ public abstract class DirectoryWalker<T> {
      * @param results  the collection of result objects, may be updated
      * @throws IOException if an I/O Error occurs
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
-    protected void handleDirectoryStart(final File directory, final int depth, final Collection<T> results) throws
-            IOException {
-        // do nothing - overridable by subclass
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
+    protected void handleDirectoryStart(final File directory, final int depth, final Collection<T> results) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -503,9 +504,10 @@ public abstract class DirectoryWalker<T> {
      * @param results  the collection of result objects, may be updated
      * @throws IOException if an I/O Error occurs
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void handleEnd(final Collection<T> results) throws IOException {
-        // do nothing - overridable by subclass
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -519,9 +521,10 @@ public abstract class DirectoryWalker<T> {
      * @param results  the collection of result objects, may be updated
      * @throws IOException if an I/O Error occurs
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void handleFile(final File file, final int depth, final Collection<T> results) throws IOException {
-        // do nothing - overridable by subclass
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -562,11 +565,10 @@ public abstract class DirectoryWalker<T> {
      * @return true if the walk has been cancelled
      * @throws IOException if an I/O Error occurs
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
-    protected boolean handleIsCancelled(
-            final File file, final int depth, final Collection<T> results) throws IOException {
-        // do nothing - overridable by subclass
-        return false;  // not cancelled
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
+    protected boolean handleIsCancelled(final File file, final int depth, final Collection<T> results) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -580,10 +582,10 @@ public abstract class DirectoryWalker<T> {
      * @param results  the collection of result objects, may be updated
      * @throws IOException if an I/O Error occurs
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
-    protected void handleRestricted(final File directory, final int depth, final Collection<T> results) throws
-            IOException {
-        // do nothing - overridable by subclass
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
+    protected void handleRestricted(final File directory, final int depth, final Collection<T> results) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -596,9 +598,10 @@ public abstract class DirectoryWalker<T> {
      * @param results  the collection of result objects, may be updated
      * @throws IOException if an I/O Error occurs
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void handleStart(final File startDirectory, final Collection<T> results) throws IOException {
-        // do nothing - overridable by subclass
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -619,14 +622,7 @@ public abstract class DirectoryWalker<T> {
      * @throws IOException if an I/O Error occurs
      */
     protected final void walk(final File startDirectory, final Collection<T> results) throws IOException {
-        Objects.requireNonNull(startDirectory, "startDirectory");
-        try {
-            handleStart(startDirectory, results);
-            walk(startDirectory, 0, results);
-            handleEnd(results);
-        } catch (final CancelException cancel) {
-            handleCancelled(startDirectory, results, cancel);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

@@ -49,17 +49,17 @@ public class MarkShieldInputStream extends ProxyInputStream {
     @SuppressWarnings("sync-override")
     @Override
     public void mark(final int readLimit) {
-        // no-op
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean markSupported() {
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("sync-override")
     @Override
     public void reset() throws IOException {
-        throw UnsupportedOperationExceptions.reset();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

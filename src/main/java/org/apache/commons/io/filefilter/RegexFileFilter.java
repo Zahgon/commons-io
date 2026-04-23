@@ -24,7 +24,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.regex.Pattern;
-
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.file.PathUtils;
 
@@ -98,10 +97,14 @@ public class RegexFileFilter extends AbstractFileFilter implements Serializable 
         return IOCase.isCaseSensitive(ioCase) ? 0 : Pattern.CASE_INSENSITIVE;
     }
 
-    /** The regular expression pattern that will be used to match file names. */
+    /**
+     * The regular expression pattern that will be used to match file names.
+     */
     private final Pattern pattern;
 
-    /** How convert a path to a string. */
+    /**
+     * How convert a path to a string.
+     */
     private final transient Function<Path, String> pathToString;
 
     /**
@@ -170,7 +173,7 @@ public class RegexFileFilter extends AbstractFileFilter implements Serializable 
      */
     @Override
     public boolean accept(final File dir, final String name) {
-        return pattern.matcher(name).matches();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -182,8 +185,7 @@ public class RegexFileFilter extends AbstractFileFilter implements Serializable 
      */
     @Override
     public FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        final String result = pathToString.apply(path);
-        return toFileVisitResult(result != null && pattern.matcher(result).matches());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -193,7 +195,6 @@ public class RegexFileFilter extends AbstractFileFilter implements Serializable 
      */
     @Override
     public String toString() {
-        return "RegexFileFilter [pattern=" + pattern + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

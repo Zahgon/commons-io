@@ -32,7 +32,7 @@ import java.util.Objects;
  * @see Appendable
  * @param <T> The type of the {@link Appendable} wrapped by this AppendableWriter.
  */
-public class AppendableWriter <T extends Appendable> extends Writer {
+public class AppendableWriter<T extends Appendable> extends Writer {
 
     private final T appendable;
 
@@ -54,8 +54,7 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      */
     @Override
     public Writer append(final char c) throws IOException {
-        appendable.append(c);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -67,8 +66,7 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      */
     @Override
     public Writer append(final CharSequence csq) throws IOException {
-        appendable.append(csq);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -82,8 +80,7 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      */
     @Override
     public Writer append(final CharSequence csq, final int start, final int end) throws IOException {
-        appendable.append(csq, start, end);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -93,7 +90,7 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      */
     @Override
     public void close() throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -103,7 +100,7 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      */
     @Override
     public void flush() throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -112,7 +109,7 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      * @return the target appendable
      */
     public T getAppendable() {
-        return appendable;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -125,14 +122,7 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      */
     @Override
     public void write(final char[] cbuf, final int off, final int len) throws IOException {
-        Objects.requireNonNull(cbuf, "cbuf");
-        if (len < 0 || off + len > cbuf.length) {
-            throw new IndexOutOfBoundsException("Array Size=" + cbuf.length +
-                    ", offset=" + off + ", length=" + len);
-        }
-        for (int i = 0; i < len; i++) {
-            appendable.append(cbuf[off + i]);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -143,7 +133,7 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      */
     @Override
     public void write(final int c) throws IOException {
-        appendable.append((char) c);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -156,9 +146,6 @@ public class AppendableWriter <T extends Appendable> extends Writer {
      */
     @Override
     public void write(final String str, final int off, final int len) throws IOException {
-        // appendable.append will add "null" for a null String; add an explicit null check
-        Objects.requireNonNull(str, "str");
-        appendable.append(str, off, off + len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

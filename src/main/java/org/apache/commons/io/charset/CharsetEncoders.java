@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.charset;
 
 import java.nio.charset.Charset;
@@ -38,7 +37,7 @@ public final class CharsetEncoders {
      * @return the given non-null CharsetEncoder or a new default CharsetEncoder.
      */
     public static CharsetEncoder toCharsetEncoder(final CharsetEncoder charsetEncoder) {
-        return toCharsetEncoder(charsetEncoder, () -> Charset.defaultCharset().newEncoder());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -50,12 +49,13 @@ public final class CharsetEncoders {
      * @since 2.13.0
      */
     public static CharsetEncoder toCharsetEncoder(final CharsetEncoder charsetEncoder, final Supplier<CharsetEncoder> defaultSupplier) {
-        return charsetEncoder != null ? charsetEncoder : defaultSupplier.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** No instances. */
+    /**
+     * No instances.
+     */
     private CharsetEncoders() {
         // No instances.
     }
-
 }

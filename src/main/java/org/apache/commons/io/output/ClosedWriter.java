@@ -54,7 +54,7 @@ public class ClosedWriter extends Writer {
 
     @Override
     public void close() throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -64,7 +64,7 @@ public class ClosedWriter extends Writer {
      */
     @Override
     public void flush() throws IOException {
-        throw new IOException("flush() failed: stream is closed");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,6 +77,6 @@ public class ClosedWriter extends Writer {
      */
     @Override
     public void write(final char[] cbuf, final int off, final int len) throws IOException {
-        throw new IOException("write(" + new String(cbuf) + ", " + off + ", " + len + ") failed: stream is closed");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

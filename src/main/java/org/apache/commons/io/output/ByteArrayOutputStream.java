@@ -49,9 +49,8 @@ public class ByteArrayOutputStream extends AbstractByteArrayOutputStream<ByteArr
      * @throws IOException if an I/O error occurs.
      * @since 2.0
      */
-    public static InputStream toBufferedInputStream(final InputStream input)
-            throws IOException {
-        return toBufferedInputStream(input, DEFAULT_SIZE);
+    public static InputStream toBufferedInputStream(final InputStream input) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,12 +76,8 @@ public class ByteArrayOutputStream extends AbstractByteArrayOutputStream<ByteArr
      * @throws IOException if an I/O error occurs.
      * @since 2.5
      */
-    public static InputStream toBufferedInputStream(final InputStream input, final int size)
-        throws IOException {
-        try (ByteArrayOutputStream output = new ByteArrayOutputStream(size)) {
-            output.write(input);
-            return output.toInputStream();
-        }
+    public static InputStream toBufferedInputStream(final InputStream input, final int size) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -114,53 +109,41 @@ public class ByteArrayOutputStream extends AbstractByteArrayOutputStream<ByteArr
      */
     @Override
     public synchronized void reset() {
-        resetImpl();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized int size() {
-        return count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized byte[] toByteArray() {
-        return toByteArrayImpl();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized InputStream toInputStream() {
-        return toInputStream(java.io.ByteArrayInputStream::new);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void write(final byte[] b, final int off, final int len) {
-        if (off < 0
-                || off > b.length
-                || len < 0
-                || off + len > b.length
-                || off + len < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-        if (len == 0) {
-            return;
-        }
-        synchronized (this) {
-            writeImpl(b, off, len);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized int write(final InputStream in) throws IOException {
-        return writeImpl(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void write(final int b) {
-        writeImpl(b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void writeTo(final OutputStream out) throws IOException {
-        writeToImpl(out);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

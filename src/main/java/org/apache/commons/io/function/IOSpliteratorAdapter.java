@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.util.Objects;
@@ -28,7 +27,7 @@ import java.util.Spliterator;
 final class IOSpliteratorAdapter<T> implements IOSpliterator<T> {
 
     static <E> IOSpliteratorAdapter<E> adapt(final Spliterator<E> delegate) {
-        return new IOSpliteratorAdapter<>(delegate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final Spliterator<T> delegate;
@@ -39,7 +38,6 @@ final class IOSpliteratorAdapter<T> implements IOSpliterator<T> {
 
     @Override
     public Spliterator<T> unwrap() {
-        return delegate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

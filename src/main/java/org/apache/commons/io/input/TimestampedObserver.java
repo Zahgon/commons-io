@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-
 import org.apache.commons.io.input.ObservableInputStream.Observer;
 
 /**
@@ -43,6 +41,7 @@ import org.apache.commons.io.input.ObservableInputStream.Observer;
 public class TimestampedObserver extends Observer {
 
     private volatile Instant closeInstant;
+
     private final Instant openInstant = Instant.now();
 
     /**
@@ -54,7 +53,7 @@ public class TimestampedObserver extends Observer {
 
     @Override
     public void closed() throws IOException {
-        closeInstant = Instant.now();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -63,7 +62,7 @@ public class TimestampedObserver extends Observer {
      * @return the instant for when closed was called.
      */
     public Instant getCloseInstant() {
-        return closeInstant;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,7 +71,7 @@ public class TimestampedObserver extends Observer {
      * @return the instant for when this instance was created.
      */
     public Instant getOpenInstant() {
-        return openInstant;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -81,7 +80,7 @@ public class TimestampedObserver extends Observer {
      * @return the Duration between creation and close.
      */
     public Duration getOpenToCloseDuration() {
-        return Duration.between(openInstant, closeInstant);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,7 +89,7 @@ public class TimestampedObserver extends Observer {
      * @return the Duration between creation and now.
      */
     public Duration getOpenToNowDuration() {
-        return Duration.between(openInstant, Instant.now());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,12 +99,11 @@ public class TimestampedObserver extends Observer {
      * @since 2.12.0
      */
     public boolean isClosed() {
-        return closeInstant != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "TimestampedObserver [openInstant=" + openInstant + ", closeInstant=" + closeInstant + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

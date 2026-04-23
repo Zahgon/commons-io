@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -43,42 +42,41 @@ final class UncheckedIOSpliterator<T> implements Spliterator<T> {
 
     @Override
     public int characteristics() {
-        return delegate.characteristics();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long estimateSize() {
-        return delegate.estimateSize();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void forEachRemaining(final Consumer<? super T> action) {
-        Uncheck.accept(delegate::forEachRemaining, action::accept);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Comparator<? super T> getComparator() {
-        return delegate.getComparator().asComparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getExactSizeIfKnown() {
-        return delegate.getExactSizeIfKnown();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean hasCharacteristics(final int characteristics) {
-        return delegate.hasCharacteristics(characteristics);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean tryAdvance(final Consumer<? super T> action) {
-        return Uncheck.apply(delegate::tryAdvance, action::accept);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Spliterator<T> trySplit() {
-        return Uncheck.get(delegate::trySplit).unwrap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

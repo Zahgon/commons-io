@@ -73,7 +73,6 @@ import java.util.stream.Stream;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 import java.util.zip.Checksum;
-
 import org.apache.commons.io.file.AccumulatorPathVisitor;
 import org.apache.commons.io.file.Counters;
 import org.apache.commons.io.file.PathFilter;
@@ -224,25 +223,7 @@ public class FileUtils {
      */
     // See https://issues.apache.org/jira/browse/IO-226 - should the rounding be changed?
     public static String byteCountToDisplaySize(final BigInteger size) {
-        Objects.requireNonNull(size, "size");
-        final String displaySize;
-
-        if (size.divide(ONE_EB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = size.divide(ONE_EB_BI) + " EB";
-        } else if (size.divide(ONE_PB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = size.divide(ONE_PB_BI) + " PB";
-        } else if (size.divide(ONE_TB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = size.divide(ONE_TB_BI) + " TB";
-        } else if (size.divide(ONE_GB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = size.divide(ONE_GB_BI) + " GB";
-        } else if (size.divide(ONE_MB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = size.divide(ONE_MB_BI) + " MB";
-        } else if (size.divide(ONE_KB_BI).compareTo(BigInteger.ZERO) > 0) {
-            displaySize = size.divide(ONE_KB_BI) + " KB";
-        } else {
-            displaySize = size + " bytes";
-        }
-        return displaySize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -261,7 +242,7 @@ public class FileUtils {
      */
     // See https://issues.apache.org/jira/browse/IO-226 - should the rounding be changed?
     public static String byteCountToDisplaySize(final long size) {
-        return byteCountToDisplaySize(BigInteger.valueOf(size));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -281,7 +262,7 @@ public class FileUtils {
      */
     // See https://issues.apache.org/jira/browse/IO-226 - should the rounding be changed?
     public static String byteCountToDisplaySize(final Number size) {
-        return byteCountToDisplaySize(size.longValue());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -345,12 +326,7 @@ public class FileUtils {
      * @since 1.3
      */
     public static Checksum checksum(final File file, final Checksum checksum) throws IOException {
-        checkFileExists(file, PROTOCOL_FILE);
-        Objects.requireNonNull(checksum, "checksum");
-        try (InputStream inputStream = new CheckedInputStream(Files.newInputStream(file.toPath()), checksum)) {
-            IOUtils.consume(inputStream);
-        }
-        return checksum;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -365,7 +341,7 @@ public class FileUtils {
      * @since 1.3
      */
     public static long checksumCRC32(final File file) throws IOException {
-        return checksum(file, new CRC32()).getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -378,7 +354,7 @@ public class FileUtils {
      * @see #forceDelete(File)
      */
     public static void cleanDirectory(final File directory) throws IOException {
-        IOConsumer.forAll(f -> forceDelete(f, false), listFiles(directory, null));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -409,31 +385,7 @@ public class FileUtils {
      * @see PathUtils#fileContentEquals(Path,Path)
      */
     public static boolean contentEquals(final File file1, final File file2) throws IOException {
-        if (file1 == null && file2 == null) {
-            return true;
-        }
-        if (file1 == null || file2 == null) {
-            return false;
-        }
-        final boolean file1Exists = file1.exists();
-        if (file1Exists != file2.exists()) {
-            return false;
-        }
-        if (!file1Exists) {
-            // two not existing files are equal
-            return true;
-        }
-        checkIsFile(file1, "file1");
-        checkIsFile(file2, "file2");
-        if (file1.length() != file2.length()) {
-            // lengths differ, cannot be equal
-            return false;
-        }
-        if (file1.getCanonicalFile().equals(file2.getCanonicalFile())) {
-            // same file
-            return true;
-        }
-        return PathUtils.fileContentEquals(file1.toPath(), file2.toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -456,31 +408,7 @@ public class FileUtils {
      * @since 2.2
      */
     public static boolean contentEqualsIgnoreEOL(final File file1, final File file2, final String charsetName) throws IOException {
-        if (file1 == null && file2 == null) {
-            return true;
-        }
-        if (file1 == null || file2 == null) {
-            return false;
-        }
-        final boolean file1Exists = file1.exists();
-        if (file1Exists != file2.exists()) {
-            return false;
-        }
-        if (!file1Exists) {
-            // two not existing files are equal
-            return true;
-        }
-        checkFileExists(file1, "file1");
-        checkFileExists(file2, "file2");
-        if (file1.getCanonicalFile().equals(file2.getCanonicalFile())) {
-            // same file
-            return true;
-        }
-        final Charset charset = Charsets.toCharset(charsetName);
-        try (Reader input1 = new InputStreamReader(Files.newInputStream(file1.toPath()), charset);
-                Reader input2 = new InputStreamReader(Files.newInputStream(file2.toPath()), charset)) {
-            return IOUtils.contentEqualsIgnoreEOL(input1, input2);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -492,7 +420,7 @@ public class FileUtils {
      * @return an array of {@link File}
      */
     public static File[] convertFileCollectionToFileArray(final Collection<File> files) {
-        return files.toArray(EMPTY_FILE_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -530,7 +458,7 @@ public class FileUtils {
      * @since 1.1
      */
     public static void copyDirectory(final File srcDir, final File destDir) throws IOException {
-        copyDirectory(srcDir, destDir, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -557,9 +485,8 @@ public class FileUtils {
      * @throws IOException if an error occurs, the destination is not writable, or setting the last-modified time didn't succeed
      * @since 1.1
      */
-    public static void copyDirectory(final File srcDir, final File destDir, final boolean preserveFileDate)
-        throws IOException {
-        copyDirectory(srcDir, destDir, null, preserveFileDate);
+    public static void copyDirectory(final File srcDir, final File destDir, final boolean preserveFileDate) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -607,9 +534,8 @@ public class FileUtils {
      * @throws IOException if an error occurs, the destination is not writable, or setting the last-modified time didn't succeed
      * @since 1.4
      */
-    public static void copyDirectory(final File srcDir, final File destDir, final FileFilter filter)
-        throws IOException {
-        copyDirectory(srcDir, destDir, filter, true);
+    public static void copyDirectory(final File srcDir, final File destDir, final FileFilter filter) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -660,7 +586,7 @@ public class FileUtils {
      * @since 1.4
      */
     public static void copyDirectory(final File srcDir, final File destDir, final FileFilter filter, final boolean preserveFileDate) throws IOException {
-        copyDirectory(srcDir, destDir, filter, preserveFileDate, StandardCopyOption.REPLACE_EXISTING, LinkOption.NOFOLLOW_LINKS);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -711,25 +637,8 @@ public class FileUtils {
      * @throws IOException if an error occurs, the destination is not writable, or setting the last-modified time didn't succeed
      * @since 2.8.0
      */
-    public static void copyDirectory(final File srcDir, final File destDir, final FileFilter fileFilter, final boolean preserveFileDate,
-            final CopyOption... copyOptions) throws IOException {
-        Objects.requireNonNull(destDir, "destination");
-        requireDirectoryExists(srcDir, "srcDir");
-        requireCanonicalPathsNotEquals(srcDir, destDir);
-        // Cater for destination being directory within the source directory (see IO-141)
-        List<String> exclusionList = null;
-        final String srcDirCanonicalPath = srcDir.getCanonicalPath();
-        final String destDirCanonicalPath = destDir.getCanonicalPath();
-        if (destDirCanonicalPath.startsWith(srcDirCanonicalPath)) {
-            final File[] srcFiles = listFiles(srcDir, fileFilter);
-            if (srcFiles.length > 0) {
-                exclusionList = new ArrayList<>(srcFiles.length);
-                for (final File srcFile : srcFiles) {
-                    exclusionList.add(new File(destDir, srcFile.getName()).getCanonicalPath());
-                }
-            }
-        }
-        doCopyDirectory(srcDir, destDir, fileFilter, exclusionList, preserveFileDate, copyOptions);
+    public static void copyDirectory(final File srcDir, final File destDir, final FileFilter fileFilter, final boolean preserveFileDate, final CopyOption... copyOptions) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -758,9 +667,7 @@ public class FileUtils {
      * @since 1.2
      */
     public static void copyDirectoryToDirectory(final File sourceDir, final File destinationDir) throws IOException {
-        Objects.requireNonNull(sourceDir, "sourceDir");
-        requireDirectoryIfExists(destinationDir, "destinationDir");
-        copyDirectory(sourceDir, new File(destinationDir, sourceDir.getName()), true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -787,7 +694,7 @@ public class FileUtils {
      * @see #copyFile(File, File, boolean)
      */
     public static void copyFile(final File srcFile, final File destFile) throws IOException {
-        copyFile(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -814,7 +721,7 @@ public class FileUtils {
      * @see #copyFile(File, File, boolean, CopyOption...)
      */
     public static void copyFile(final File srcFile, final File destFile, final boolean preserveFileDate) throws IOException {
-        copyFile(srcFile, destFile, preserveFileDate, StandardCopyOption.REPLACE_EXISTING);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -851,19 +758,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static void copyFile(final File srcFile, final File destFile, final boolean preserveFileDate, final CopyOption... copyOptions) throws IOException {
-        Objects.requireNonNull(destFile, "destination");
-        checkFileExists(srcFile, "srcFile");
-        requireCanonicalPathsNotEquals(srcFile, destFile);
-        createParentDirectories(destFile);
-        if (destFile.exists()) {
-            checkFileExists(destFile, "destFile");
-        }
-        final Path srcPath = srcFile.toPath();
-        Files.copy(srcPath, destFile.toPath(), copyOptions);
-        // On Windows, the last modified time is copied by default.
-        if (preserveFileDate && !Files.isSymbolicLink(srcPath) && !setTimes(srcFile, destFile)) {
-            throw new IOException("Cannot set the file time.");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -885,7 +780,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static void copyFile(final File srcFile, final File destFile, final CopyOption... copyOptions) throws IOException {
-        copyFile(srcFile, destFile, true, copyOptions);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -903,9 +798,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static long copyFile(final File input, final OutputStream output) throws IOException {
-        try (InputStream fis = Files.newInputStream(input.toPath())) {
-            return IOUtils.copyLarge(fis, output);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -930,7 +823,7 @@ public class FileUtils {
      * @see #copyFile(File, File, boolean)
      */
     public static void copyFileToDirectory(final File srcFile, final File destDir) throws IOException {
-        copyFileToDirectory(srcFile, destDir, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -957,9 +850,7 @@ public class FileUtils {
      * @since 1.3
      */
     public static void copyFileToDirectory(final File sourceFile, final File destinationDir, final boolean preserveFileDate) throws IOException {
-        Objects.requireNonNull(sourceFile, "sourceFile");
-        requireDirectoryIfExists(destinationDir, "destinationDir");
-        copyFile(sourceFile, new File(destinationDir, sourceFile.getName()), preserveFileDate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -984,9 +875,7 @@ public class FileUtils {
      * @since 2.0
      */
     public static void copyInputStreamToFile(final InputStream source, final File destination) throws IOException {
-        try (InputStream inputStream = source) {
-            copyToFile(inputStream, destination);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1017,14 +906,7 @@ public class FileUtils {
      * @since 2.6
      */
     public static void copyToDirectory(final File sourceFile, final File destinationDir) throws IOException {
-        Objects.requireNonNull(sourceFile, "sourceFile");
-        if (sourceFile.isFile()) {
-            copyFileToDirectory(sourceFile, destinationDir);
-        } else if (sourceFile.isDirectory()) {
-            copyDirectoryToDirectory(sourceFile, destinationDir);
-        } else {
-            throw new FileNotFoundException("The source " + sourceFile + " does not exist");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1051,10 +933,7 @@ public class FileUtils {
      * @since 2.6
      */
     public static void copyToDirectory(final Iterable<File> sourceIterable, final File destinationDir) throws IOException {
-        Objects.requireNonNull(sourceIterable, "sourceIterable");
-        for (final File src : sourceIterable) {
-            copyFileToDirectory(src, destinationDir);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1076,9 +955,7 @@ public class FileUtils {
      * @since 2.5
      */
     public static void copyToFile(final InputStream inputStream, final File file) throws IOException {
-        try (OutputStream out = newOutputStream(file, false)) {
-            IOUtils.copy(inputStream, out);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1102,9 +979,7 @@ public class FileUtils {
      * @throws IOException if an IO error occurs during copying
      */
     public static void copyURLToFile(final URL source, final File destination) throws IOException {
-        final Path path = destination.toPath();
-        PathUtils.createParentDirectories(path);
-        PathUtils.copy(source::openStream, path, StandardCopyOption.REPLACE_EXISTING);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1126,15 +1001,8 @@ public class FileUtils {
      * @throws IOException if an IO error occurs during copying
      * @since 2.0
      */
-    public static void copyURLToFile(final URL source, final File destination, final int connectionTimeoutMillis, final int readTimeoutMillis)
-        throws IOException {
-        try (CloseableURLConnection urlConnection = CloseableURLConnection.open(source)) {
-            urlConnection.setConnectTimeout(connectionTimeoutMillis);
-            urlConnection.setReadTimeout(readTimeoutMillis);
-            try (InputStream stream = urlConnection.getInputStream()) {
-                copyInputStreamToFile(stream, destination);
-            }
-        }
+    public static void copyURLToFile(final URL source, final File destination, final int connectionTimeoutMillis, final int readTimeoutMillis) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1148,7 +1016,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static File createParentDirectories(final File file) throws IOException {
-        return mkdirs(getParentFile(file));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1158,7 +1026,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static File current() {
-        return PathUtils.current().toFile();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1176,36 +1044,7 @@ public class FileUtils {
      * {@code null}.
      */
     static String decodeUrl(final String url) {
-        String decoded = url;
-        if (url != null && url.indexOf('%') >= 0) {
-            final int n = url.length();
-            final StringBuilder builder = new StringBuilder();
-            final ByteBuffer byteBuffer = ByteBuffer.allocate(n);
-            for (int i = 0; i < n; ) {
-                if (url.charAt(i) == '%') {
-                    try {
-                        do {
-                            final byte octet = (byte) Integer.parseInt(url.substring(i + 1, i + 3), 16);
-                            byteBuffer.put(octet);
-                            i += 3;
-                        } while (i < n && url.charAt(i) == '%');
-                        continue;
-                    } catch (final IndexOutOfBoundsException | NumberFormatException ignored) {
-                        // malformed percent-encoded octet, fall through and
-                        // append characters literally
-                    } finally {
-                        if (byteBuffer.position() > 0) {
-                            byteBuffer.flip();
-                            builder.append(StandardCharsets.UTF_8.decode(byteBuffer).toString());
-                            byteBuffer.clear();
-                        }
-                    }
-                }
-                builder.append(url.charAt(i++));
-            }
-            decoded = builder.toString();
-        }
-        return decoded;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1220,9 +1059,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static File delete(final File file) throws IOException {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        Files.delete(file.toPath());
-        return file;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1234,14 +1071,7 @@ public class FileUtils {
      * @throws IllegalArgumentException if {@code directory} is not a directory
      */
     public static void deleteDirectory(final File directory) throws IOException {
-        Objects.requireNonNull(directory, "directory");
-        if (!directory.exists()) {
-            return;
-        }
-        if (!isSymlink(directory)) {
-            cleanDirectory(directory);
-        }
-        delete(directory);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1277,21 +1107,7 @@ public class FileUtils {
      * @since 1.4
      */
     public static boolean deleteQuietly(final File file) {
-        if (file == null) {
-            return false;
-        }
-        try {
-            if (file.isDirectory()) {
-                cleanDirectory(file);
-            }
-        } catch (final Exception ignored) {
-            // ignore
-        }
-        try {
-            return file.delete();
-        } catch (final Exception ignored) {
-            return false;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1318,14 +1134,7 @@ public class FileUtils {
      * @since 2.2
      */
     public static boolean directoryContains(final File directory, final File child) throws IOException {
-        requireDirectoryExists(directory, "directory");
-
-        if (child == null || !child.exists()) {
-            return false;
-        }
-
-        // Canonicalize paths (normalizes relative paths)
-        return FilenameUtils.directoryContains(directory.getCanonicalPath(), child.getCanonicalPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1342,8 +1151,7 @@ public class FileUtils {
      * @throws IllegalArgumentException if {@code destDir} is not writable
      * @throws SecurityException See {@link File#mkdirs()}.
      */
-    private static void doCopyDirectory(final File srcDir, final File destDir, final FileFilter fileFilter, final List<String> exclusionList,
-        final boolean preserveDirDate, final CopyOption... copyOptions) throws IOException {
+    private static void doCopyDirectory(final File srcDir, final File destDir, final FileFilter fileFilter, final List<String> exclusionList, final boolean preserveDirDate, final CopyOption... copyOptions) throws IOException {
         // recurse dirs, copy files.
         final File[] srcFiles = listFiles(srcDir, fileFilter);
         requireDirectoryIfExists(destDir, "destDir");
@@ -1380,7 +1188,7 @@ public class FileUtils {
      * @throws IOException           in case deletion is unsuccessful.
      */
     public static void forceDelete(final File file) throws IOException {
-        forceDelete(file, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1400,7 +1208,8 @@ public class FileUtils {
      * @throws IOException           in case deletion is unsuccessful.
      */
     private static void forceDelete(final File file, final boolean strict) throws IOException {
-        checkExists(file, strict); // fail-fast
+        // fail-fast
+        checkExists(file, strict);
         final Counters.PathCounters deleteCounters;
         try {
             deleteCounters = PathUtils.delete(file.toPath(), PathUtils.EMPTY_LINK_OPTION_ARRAY, StandardDeleteOption.OVERRIDE_READ_ONLY);
@@ -1427,12 +1236,7 @@ public class FileUtils {
      * @throws IOException          in case deletion is unsuccessful.
      */
     public static void forceDeleteOnExit(final File file) throws IOException {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        if (file.isDirectory()) {
-            deleteDirectoryOnExit(file);
-        } else {
-            file.deleteOnExit();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1449,7 +1253,7 @@ public class FileUtils {
      * @see File#mkdirs()
      */
     public static void forceMkdir(final File directory) throws IOException {
-        mkdirs(directory);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1467,7 +1271,7 @@ public class FileUtils {
      * @since 2.5
      */
     public static void forceMkdirParent(final File file) throws IOException {
-        forceMkdir(getParentFile(Objects.requireNonNull(file, PROTOCOL_FILE)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1479,13 +1283,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static File getFile(final File directory, final String... names) {
-        Objects.requireNonNull(directory, "directory");
-        Objects.requireNonNull(names, "names");
-        File file = directory;
-        for (final String name : names) {
-            file = new File(file, name);
-        }
-        return file;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1496,16 +1294,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static File getFile(final String... names) {
-        Objects.requireNonNull(names, "names");
-        File file = null;
-        for (final String name : names) {
-            if (file == null) {
-                file = new File(name);
-            } else {
-                file = new File(file, name);
-            }
-        }
-        return file;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1525,7 +1314,7 @@ public class FileUtils {
      * @since 2.0
      */
     public static File getTempDirectory() {
-        return new File(getTempDirectoryPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1540,7 +1329,7 @@ public class FileUtils {
      * @since 2.0
      */
     public static String getTempDirectoryPath() {
-        return System.getProperty("java.io.tmpdir");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1550,7 +1339,7 @@ public class FileUtils {
      * @since 2.0
      */
     public static File getUserDirectory() {
-        return new File(getUserDirectoryPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1560,7 +1349,7 @@ public class FileUtils {
      * @since 2.0
      */
     public static String getUserDirectoryPath() {
-        return System.getProperty("user.home");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1578,7 +1367,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static boolean isDirectory(final File file, final LinkOption... options) {
-        return file != null && Files.isDirectory(file.toPath(), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1592,7 +1381,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static boolean isEmptyDirectory(final File directory) throws IOException {
-        return PathUtils.isEmptyDirectory(directory.toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1616,7 +1405,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileNewer(final File file, final ChronoLocalDate chronoLocalDate) {
-        return isFileNewer(file, chronoLocalDate, LocalTime.MAX);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1640,9 +1429,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileNewer(final File file, final ChronoLocalDate chronoLocalDate, final LocalTime localTime) {
-        Objects.requireNonNull(chronoLocalDate, "chronoLocalDate");
-        Objects.requireNonNull(localTime, "localTime");
-        return isFileNewer(file, chronoLocalDate.atTime(localTime));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1659,9 +1446,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static boolean isFileNewer(final File file, final ChronoLocalDate chronoLocalDate, final OffsetTime offsetTime) {
-        Objects.requireNonNull(chronoLocalDate, "chronoLocalDate");
-        Objects.requireNonNull(offsetTime, "offsetTime");
-        return isFileNewer(file, chronoLocalDate.atTime(offsetTime.toLocalTime()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1684,7 +1469,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileNewer(final File file, final ChronoLocalDateTime<?> chronoLocalDateTime) {
-        return isFileNewer(file, chronoLocalDateTime, ZoneId.systemDefault());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1701,9 +1486,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileNewer(final File file, final ChronoLocalDateTime<?> chronoLocalDateTime, final ZoneId zoneId) {
-        Objects.requireNonNull(chronoLocalDateTime, "chronoLocalDateTime");
-        Objects.requireNonNull(zoneId, "zoneId");
-        return isFileNewer(file, chronoLocalDateTime.atZone(zoneId));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1718,9 +1501,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileNewer(final File file, final ChronoZonedDateTime<?> chronoZonedDateTime) {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        Objects.requireNonNull(chronoZonedDateTime, "chronoZonedDateTime");
-        return Uncheck.getAsBoolean(() -> PathUtils.isNewer(file.toPath(), chronoZonedDateTime));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1734,8 +1515,7 @@ public class FileUtils {
      * @throws NullPointerException if the file or date is {@code null}.
      */
     public static boolean isFileNewer(final File file, final Date date) {
-        Objects.requireNonNull(date, "date");
-        return isFileNewer(file, date.getTime());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1749,7 +1529,7 @@ public class FileUtils {
      * @throws UncheckedIOException if the reference file doesn't exist.
      */
     public static boolean isFileNewer(final File file, final File reference) {
-        return Uncheck.getAsBoolean(() -> PathUtils.isNewer(file.toPath(), reference.toPath()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1763,8 +1543,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static boolean isFileNewer(final File file, final FileTime fileTime) throws IOException {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        return PathUtils.isNewer(file.toPath(), fileTime);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1778,8 +1557,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileNewer(final File file, final Instant instant) {
-        Objects.requireNonNull(instant, "instant");
-        return Uncheck.getAsBoolean(() -> PathUtils.isNewer(file.toPath(), instant));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1793,8 +1571,7 @@ public class FileUtils {
      * @throws NullPointerException if the file is {@code null}.
      */
     public static boolean isFileNewer(final File file, final long timeMillis) {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        return Uncheck.getAsBoolean(() -> PathUtils.isNewer(file.toPath(), timeMillis));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1808,8 +1585,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static boolean isFileNewer(final File file, final OffsetDateTime offsetDateTime) {
-        Objects.requireNonNull(offsetDateTime, "offsetDateTime");
-        return isFileNewer(file, offsetDateTime.toInstant());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1835,7 +1611,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileOlder(final File file, final ChronoLocalDate chronoLocalDate) {
-        return isFileOlder(file, chronoLocalDate, LocalTime.MAX);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1860,9 +1636,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileOlder(final File file, final ChronoLocalDate chronoLocalDate, final LocalTime localTime) {
-        Objects.requireNonNull(chronoLocalDate, "chronoLocalDate");
-        Objects.requireNonNull(localTime, "localTime");
-        return isFileOlder(file, chronoLocalDate.atTime(localTime));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1879,9 +1653,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static boolean isFileOlder(final File file, final ChronoLocalDate chronoLocalDate, final OffsetTime offsetTime) {
-        Objects.requireNonNull(chronoLocalDate, "chronoLocalDate");
-        Objects.requireNonNull(offsetTime, "offsetTime");
-        return isFileOlder(file, chronoLocalDate.atTime(offsetTime.toLocalTime()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1905,7 +1677,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileOlder(final File file, final ChronoLocalDateTime<?> chronoLocalDateTime) {
-        return isFileOlder(file, chronoLocalDateTime, ZoneId.systemDefault());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1922,9 +1694,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileOlder(final File file, final ChronoLocalDateTime<?> chronoLocalDateTime, final ZoneId zoneId) {
-        Objects.requireNonNull(chronoLocalDateTime, "chronoLocalDateTime");
-        Objects.requireNonNull(zoneId, "zoneId");
-        return isFileOlder(file, chronoLocalDateTime.atZone(zoneId));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1939,8 +1709,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileOlder(final File file, final ChronoZonedDateTime<?> chronoZonedDateTime) {
-        Objects.requireNonNull(chronoZonedDateTime, "chronoZonedDateTime");
-        return isFileOlder(file, chronoZonedDateTime.toInstant());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1953,8 +1722,7 @@ public class FileUtils {
      * @throws UncheckedIOException if an I/O error occurs
      */
     public static boolean isFileOlder(final File file, final Date date) {
-        Objects.requireNonNull(date, "date");
-        return isFileOlder(file, date.getTime());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1968,7 +1736,7 @@ public class FileUtils {
      * @throws UncheckedIOException if an I/O error occurs
      */
     public static boolean isFileOlder(final File file, final File reference) throws FileNotFoundException {
-        return Uncheck.getAsBoolean(() -> PathUtils.isOlder(file.toPath(), reference.toPath()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1982,8 +1750,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static boolean isFileOlder(final File file, final FileTime fileTime) throws IOException {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        return PathUtils.isOlder(file.toPath(), fileTime);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1996,8 +1763,7 @@ public class FileUtils {
      * @since 2.8.0
      */
     public static boolean isFileOlder(final File file, final Instant instant) {
-        Objects.requireNonNull(instant, "instant");
-        return Uncheck.getAsBoolean(() -> PathUtils.isOlder(file.toPath(), instant));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2011,8 +1777,7 @@ public class FileUtils {
      * @throws UncheckedIOException if an I/O error occurs
      */
     public static boolean isFileOlder(final File file, final long timeMillis) {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        return Uncheck.getAsBoolean(() -> PathUtils.isOlder(file.toPath(), timeMillis));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2025,8 +1790,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static boolean isFileOlder(final File file, final OffsetDateTime offsetDateTime) {
-        Objects.requireNonNull(offsetDateTime, "offsetDateTime");
-        return isFileOlder(file, offsetDateTime.toInstant());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2054,7 +1818,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static boolean isRegularFile(final File file, final LinkOption... options) {
-        return file != null && Files.isRegularFile(file.toPath(), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2069,7 +1833,7 @@ public class FileUtils {
      * @see Files#isSymbolicLink(Path)
      */
     public static boolean isSymlink(final File file) {
-        return file != null && Files.isSymbolicLink(file.toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2093,7 +1857,7 @@ public class FileUtils {
      * @since 1.2
      */
     public static Iterator<File> iterateFiles(final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
-        return listFiles(directory, fileFilter, dirFilter).iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2111,7 +1875,7 @@ public class FileUtils {
      * @since 1.2
      */
     public static Iterator<File> iterateFiles(final File directory, final String[] extensions, final boolean recursive) {
-        return StreamIterator.iterator(Uncheck.get(() -> streamFiles(directory, recursive, extensions)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2138,7 +1902,7 @@ public class FileUtils {
      * @since 2.2
      */
     public static Iterator<File> iterateFilesAndDirs(final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
-        return listFilesAndDirs(directory, fileFilter, dirFilter).iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2159,10 +1923,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static long lastModified(final File file) throws IOException {
-        // https://bugs.openjdk.java.net/browse/JDK-8177809
-        // File.lastModified() is losing milliseconds (always ends in 000)
-        // This bug is in OpenJDK 8 and 9, and fixed in 10.
-        return lastModifiedFileTime(file).toMillis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2180,10 +1941,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static FileTime lastModifiedFileTime(final File file) throws IOException {
-        // https://bugs.openjdk.java.net/browse/JDK-8177809
-        // File.lastModified() is losing milliseconds (always ends in 000)
-        // This bug is in OpenJDK 8 and 9, and fixed in 10.
-        return Files.getLastModifiedTime(Objects.requireNonNull(file, PROTOCOL_FILE).toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2204,10 +1962,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static long lastModifiedUnchecked(final File file) {
-        // https://bugs.openjdk.java.net/browse/JDK-8177809
-        // File.lastModified() is losing milliseconds (always ends in 000)
-        // This bug is in OpenJDK 8 and 9, and fixed in 10.
-        return Uncheck.apply(FileUtils::lastModified, file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2223,7 +1978,7 @@ public class FileUtils {
      * @since 1.3
      */
     public static LineIterator lineIterator(final File file) throws IOException {
-        return lineIterator(file, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2262,30 +2017,18 @@ public class FileUtils {
      * @throws IOException if an I/O error occurs.
      * @since 1.2
      */
-    @SuppressWarnings("resource") // Caller closes the result LineIterator.
+    // Caller closes the result LineIterator.
+    @SuppressWarnings("resource")
     public static LineIterator lineIterator(final File file, final String charsetName) throws IOException {
-        InputStream inputStream = null;
-        try {
-            inputStream = Files.newInputStream(file.toPath());
-            return IOUtils.lineIterator(inputStream, charsetName);
-        } catch (final IOException | RuntimeException ex) {
-            IOUtils.closeQuietly(inputStream, ex::addSuppressed);
-            throw ex;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    private static AccumulatorPathVisitor listAccumulate(final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter,
-            final FileVisitOption... options) throws IOException {
+    private static AccumulatorPathVisitor listAccumulate(final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter, final FileVisitOption... options) throws IOException {
         final boolean isDirFilterSet = dirFilter != null;
         final FileEqualsFileFilter rootDirFilter = new FileEqualsFileFilter(directory);
         final PathFilter dirPathFilter = isDirFilterSet ? rootDirFilter.or(dirFilter) : rootDirFilter;
         // @formatter:off
-        final AccumulatorPathVisitor visitor = AccumulatorPathVisitor.builder()
-                .setPathCounters(Counters.noopPathCounters())
-                .setFileFilter(fileFilter)
-                .setDirectoryFilter(dirPathFilter)
-                .setVisitFileFailedFunction((p, e) -> FileVisitResult.CONTINUE)
-                .get();
+        final AccumulatorPathVisitor visitor = AccumulatorPathVisitor.builder().setPathCounters(Counters.noopPathCounters()).setFileFilter(fileFilter).setDirectoryFilter(dirPathFilter).setVisitFileFailedFunction((p, e) -> FileVisitResult.CONTINUE).get();
         // @formatter:on
         final Set<FileVisitOption> optionSet = new HashSet<>();
         if (options != null) {
@@ -2347,9 +2090,7 @@ public class FileUtils {
      * @see org.apache.commons.io.filefilter.NameFileFilter
      */
     public static Collection<File> listFiles(final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
-        final AccumulatorPathVisitor visitor = Uncheck
-            .apply(d -> listAccumulate(d, FileFileFilter.INSTANCE.and(fileFilter), dirFilter, FileVisitOption.FOLLOW_LINKS), directory);
-        return toList(visitor.getFileList().stream().map(Path::toFile));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2390,11 +2131,7 @@ public class FileUtils {
      * @return a collection of {@link File} with the matching files
      */
     public static Collection<File> listFiles(final File directory, final String[] extensions, final boolean recursive) {
-        // IO-856: Don't use NIO to path walk, allocate as little as possible while traversing.
-        final List<File> files = new ArrayList<>();
-        final FilenameFilter filter = extensions != null ? toSuffixFileFilter(extensions) : TrueFileFilter.INSTANCE;
-        listFiles(directory, files, recursive, filter);
-        return files;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2417,11 +2154,7 @@ public class FileUtils {
      * @since 2.2
      */
     public static Collection<File> listFilesAndDirs(final File directory, final IOFileFilter fileFilter, final IOFileFilter dirFilter) {
-        final AccumulatorPathVisitor visitor = Uncheck.apply(d -> listAccumulate(d, fileFilter, dirFilter, FileVisitOption.FOLLOW_LINKS),
-            directory);
-        final List<Path> list = visitor.getFileList();
-        list.addAll(visitor.getDirList());
-        return toList(list.stream().map(Path::toFile));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2460,20 +2193,7 @@ public class FileUtils {
      * @since 1.4
      */
     public static void moveDirectory(final File srcDir, final File destDir) throws IOException {
-        Objects.requireNonNull(destDir, "destination");
-        requireDirectoryExists(srcDir, "srcDir");
-        requireAbsent(destDir, "destDir");
-        if (!srcDir.renameTo(destDir)) {
-            if (destDir.getCanonicalPath().startsWith(srcDir.getCanonicalPath() + File.separator)) {
-                throw new IOException("Cannot move directory: " + srcDir + " to a subdirectory of itself: " + destDir);
-            }
-            copyDirectory(srcDir, destDir);
-            deleteDirectory(srcDir);
-            if (srcDir.exists()) {
-                throw new IOException("Failed to delete original directory '" + srcDir +
-                        "' after copy to '" + destDir + "'");
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2495,17 +2215,7 @@ public class FileUtils {
      * @since 1.4
      */
     public static void moveDirectoryToDirectory(final File source, final File destDir, final boolean createDestDir) throws IOException {
-        validateMoveParameters(source, destDir);
-        if (!destDir.isDirectory()) {
-            if (destDir.exists()) {
-                throw new IOException("Destination '" + destDir + "' is not a directory");
-            }
-            if (!createDestDir) {
-                throw new FileNotFoundException("Destination directory '" + destDir + "' does not exist [createDestDir=" + false + "]");
-            }
-            mkdirs(destDir);
-        }
-        moveDirectory(source, new File(destDir, source.getName()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2527,7 +2237,7 @@ public class FileUtils {
      * @since 1.4
      */
     public static void moveFile(final File srcFile, final File destFile) throws IOException {
-        moveFile(srcFile, destFile, StandardCopyOption.COPY_ATTRIBUTES);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2547,18 +2257,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static void moveFile(final File srcFile, final File destFile, final CopyOption... copyOptions) throws IOException {
-        Objects.requireNonNull(destFile, "destFile");
-        checkFileExists(srcFile, "srcFile");
-        requireAbsent(destFile, "destFile");
-        final boolean rename = srcFile.renameTo(destFile);
-        if (!rename) {
-            // Don't interfere with file date on move, handled by StandardCopyOption.COPY_ATTRIBUTES
-            copyFile(srcFile, destFile, false, copyOptions);
-            if (!srcFile.delete()) {
-                deleteQuietly(destFile);
-                throw new IOException("Failed to delete original file '" + srcFile + "' after copy to '" + destFile + "'");
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2582,12 +2281,7 @@ public class FileUtils {
      * @since 1.4
      */
     public static void moveFileToDirectory(final File srcFile, final File destDir, final boolean createDestDir) throws IOException {
-        validateMoveParameters(srcFile, destDir);
-        if (!destDir.exists() && createDestDir) {
-            mkdirs(destDir);
-        }
-        requireDirectoryExists(destDir, "destDir");
-        moveFile(srcFile, new File(destDir, srcFile.getName()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2611,12 +2305,7 @@ public class FileUtils {
      * @since 1.4
      */
     public static void moveToDirectory(final File src, final File destDir, final boolean createDestDir) throws IOException {
-        validateMoveParameters(src, destDir);
-        if (src.isDirectory()) {
-            moveDirectoryToDirectory(src, destDir, createDestDir);
-        } else {
-            moveFileToDirectory(src, destDir, createDestDir);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2631,7 +2320,7 @@ public class FileUtils {
      * @since 2.12.0
      */
     public static OutputStream newOutputStream(final File file, final boolean append) throws IOException {
-        return PathUtils.newOutputStream(Objects.requireNonNull(file, PROTOCOL_FILE).toPath(), append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2654,8 +2343,7 @@ public class FileUtils {
      * @since 1.3
      */
     public static FileInputStream openInputStream(final File file) throws IOException {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        return new FileInputStream(file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2682,7 +2370,7 @@ public class FileUtils {
      * @since 1.3
      */
     public static FileOutputStream openOutputStream(final File file) throws IOException {
-        return openOutputStream(file, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2710,13 +2398,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static FileOutputStream openOutputStream(final File file, final boolean append) throws IOException {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        if (file.exists()) {
-            checkIsFile(file, PROTOCOL_FILE);
-        } else {
-            createParentDirectories(file);
-        }
-        return new FileOutputStream(file, append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2731,8 +2413,7 @@ public class FileUtils {
      * @since 1.1
      */
     public static byte[] readFileToByteArray(final File file) throws IOException {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        return Files.readAllBytes(file.toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2765,7 +2446,7 @@ public class FileUtils {
      * @since 2.3
      */
     public static String readFileToString(final File file, final Charset charsetName) throws IOException {
-        return IOUtils.toString(() -> Files.newInputStream(file.toPath()), Charsets.toCharset(charsetName));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2781,7 +2462,7 @@ public class FileUtils {
      * @since 2.3
      */
     public static String readFileToString(final File file, final String charsetName) throws IOException {
-        return readFileToString(file, Charsets.toCharset(charsetName));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2814,7 +2495,7 @@ public class FileUtils {
      * @since 2.3
      */
     public static List<String> readLines(final File file, final Charset charset) throws IOException {
-        return Files.readAllLines(file.toPath(), Charsets.toCharset(charset));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2830,7 +2511,7 @@ public class FileUtils {
      * @since 1.1
      */
     public static List<String> readLines(final File file, final String charsetName) throws IOException {
-        return readLines(file, Charsets.toCharset(charsetName));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static void requireAbsent(final File file, final String name) throws FileExistsException {
@@ -2850,8 +2531,7 @@ public class FileUtils {
     private static void requireCanonicalPathsNotEquals(final File file1, final File file2) throws IOException {
         final String canonicalPath = file1.getCanonicalPath();
         if (canonicalPath.equals(file2.getCanonicalPath())) {
-            throw new IllegalArgumentException(String
-                .format("File canonical paths are equal: '%s' (file1='%s', file2='%s')", canonicalPath, file1, file2));
+            throw new IllegalArgumentException(String.format("File canonical paths are equal: '%s' (file1='%s', file2='%s')", canonicalPath, file1, file2));
         }
     }
 
@@ -2941,7 +2621,7 @@ public class FileUtils {
      * @since 2.0
      */
     public static long sizeOf(final File file) {
-        return Uncheck.getAsLong(() -> PathUtils.sizeOf(file.toPath()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2963,7 +2643,7 @@ public class FileUtils {
      * @since 2.4
      */
     public static BigInteger sizeOfAsBigInteger(final File file) {
-        return Uncheck.get(() -> PathUtils.sizeOfAsBigInteger(file.toPath()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2982,12 +2662,7 @@ public class FileUtils {
      * @throws UncheckedIOException if an IO error occurs.
      */
     public static long sizeOfDirectory(final File directory) {
-        try {
-            requireDirectoryExists(directory, "directory");
-        } catch (final FileNotFoundException e) {
-            throw new UncheckedIOException(e);
-        }
-        return Uncheck.getAsLong(() -> PathUtils.sizeOfDirectory(directory.toPath()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3001,12 +2676,7 @@ public class FileUtils {
      * @since 2.4
      */
     public static BigInteger sizeOfDirectoryAsBigInteger(final File directory) {
-        try {
-            requireDirectoryExists(directory, "directory");
-        } catch (final FileNotFoundException e) {
-            throw new UncheckedIOException(e);
-        }
-        return Uncheck.get(() -> PathUtils.sizeOfDirectoryAsBigInteger(directory.toPath()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3025,12 +2695,7 @@ public class FileUtils {
      * @since 2.9.0
      */
     public static Stream<File> streamFiles(final File directory, final boolean recursive, final String... extensions) throws IOException {
-        // @formatter:off
-        final IOFileFilter filter = extensions == null
-            ? FileFileFilter.INSTANCE
-            : FileFileFilter.INSTANCE.and(toSuffixFileFilter(extensions));
-        // @formatter:on
-        return PathUtils.walk(directory.toPath(), filter, toMaxDepth(recursive), false, FileVisitOption.FOLLOW_LINKS).map(Path::toFile);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3048,11 +2713,7 @@ public class FileUtils {
      * if the URL's protocol is not {@code file}
      */
     public static File toFile(final URL url) {
-        if (url == null || !isFileProtocol(url)) {
-            return null;
-        }
-        final String fileName = url.getFile().replace('/', File.separatorChar);
-        return new File(decodeUrl(fileName));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3077,20 +2738,7 @@ public class FileUtils {
      * @since 1.1
      */
     public static File[] toFiles(final URL... urls) {
-        if (IOUtils.length(urls) == 0) {
-            return EMPTY_FILE_ARRAY;
-        }
-        final File[] files = new File[urls.length];
-        for (int i = 0; i < urls.length; i++) {
-            final URL url = urls[i];
-            if (url != null) {
-                if (!isFileProtocol(url)) {
-                    throw new IllegalArgumentException("Can only convert file URL to a File: " + url);
-                }
-                files[i] = toFile(url);
-            }
-        }
-        return files;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3141,7 +2789,7 @@ public class FileUtils {
      * @throws IOException if setting the last-modified time failed or an I/O problem occurs.
      */
     public static void touch(final File file) throws IOException {
-        PathUtils.touch(Objects.requireNonNull(file, PROTOCOL_FILE).toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3156,12 +2804,7 @@ public class FileUtils {
      * @throws NullPointerException if any argument is null
      */
     public static URL[] toURLs(final File... files) throws IOException {
-        Objects.requireNonNull(files, "files");
-        final URL[] urls = new URL[files.length];
-        for (int i = 0; i < urls.length; i++) {
-            urls[i] = files[i].toURI().toURL();
-        }
-        return urls;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3198,8 +2841,7 @@ public class FileUtils {
      * @throws NullPointerException if the file is {@code null}
      */
     public static boolean waitFor(final File file, final int seconds) {
-        Objects.requireNonNull(file, PROTOCOL_FILE);
-        return PathUtils.waitFor(file.toPath(), Duration.ofSeconds(seconds), PathUtils.EMPTY_LINK_OPTION_ARRAY);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3241,7 +2883,7 @@ public class FileUtils {
      * @since 2.3
      */
     public static void write(final File file, final CharSequence data, final Charset charset) throws IOException {
-        write(file, data, charset, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3256,7 +2898,7 @@ public class FileUtils {
      * @since 2.3
      */
     public static void write(final File file, final CharSequence data, final Charset charset, final boolean append) throws IOException {
-        writeStringToFile(file, Objects.toString(data, null), charset, append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3270,7 +2912,7 @@ public class FileUtils {
      * @since 2.0
      */
     public static void write(final File file, final CharSequence data, final String charsetName) throws IOException {
-        write(file, data, charsetName, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3286,11 +2928,10 @@ public class FileUtils {
      * @since 2.1
      */
     public static void write(final File file, final CharSequence data, final String charsetName, final boolean append) throws IOException {
-        write(file, data, Charsets.toCharset(charsetName), append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     // Must be called with a directory
-
     /**
      * Writes a byte array to a file creating the file if it does not exist.
      * The parent directories of the file will be created if they do not exist.
@@ -3301,7 +2942,7 @@ public class FileUtils {
      * @since 1.1
      */
     public static void writeByteArrayToFile(final File file, final byte[] data) throws IOException {
-        writeByteArrayToFile(file, data, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3315,7 +2956,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static void writeByteArrayToFile(final File file, final byte[] data, final boolean append) throws IOException {
-        writeByteArrayToFile(file, data, 0, data.length, append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3331,7 +2972,7 @@ public class FileUtils {
      * @since 2.5
      */
     public static void writeByteArrayToFile(final File file, final byte[] data, final int off, final int len) throws IOException {
-        writeByteArrayToFile(file, data, off, len, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3349,9 +2990,7 @@ public class FileUtils {
      * @since 2.5
      */
     public static void writeByteArrayToFile(final File file, final byte[] data, final int off, final int len, final boolean append) throws IOException {
-        try (OutputStream out = newOutputStream(file, append)) {
-            out.write(data, off, len);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3365,7 +3004,7 @@ public class FileUtils {
      * @since 1.3
      */
     public static void writeLines(final File file, final Collection<?> lines) throws IOException {
-        writeLines(file, null, lines, null, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3381,7 +3020,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static void writeLines(final File file, final Collection<?> lines, final boolean append) throws IOException {
-        writeLines(file, null, lines, null, append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3396,7 +3035,7 @@ public class FileUtils {
      * @since 1.3
      */
     public static void writeLines(final File file, final Collection<?> lines, final String lineEnding) throws IOException {
-        writeLines(file, null, lines, lineEnding, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3413,7 +3052,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static void writeLines(final File file, final Collection<?> lines, final String lineEnding, final boolean append) throws IOException {
-        writeLines(file, null, lines, lineEnding, append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3430,7 +3069,7 @@ public class FileUtils {
      * @since 1.1
      */
     public static void writeLines(final File file, final String charsetName, final Collection<?> lines) throws IOException {
-        writeLines(file, charsetName, lines, null, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3448,7 +3087,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static void writeLines(final File file, final String charsetName, final Collection<?> lines, final boolean append) throws IOException {
-        writeLines(file, charsetName, lines, null, append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3466,7 +3105,7 @@ public class FileUtils {
      * @since 1.1
      */
     public static void writeLines(final File file, final String charsetName, final Collection<?> lines, final String lineEnding) throws IOException {
-        writeLines(file, charsetName, lines, lineEnding, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3484,11 +3123,8 @@ public class FileUtils {
      * @throws java.io.UnsupportedEncodingException if the encoding is not supported by the VM
      * @since 2.1
      */
-    public static void writeLines(final File file, final String charsetName, final Collection<?> lines, final String lineEnding, final boolean append)
-        throws IOException {
-        try (OutputStream out = new BufferedOutputStream(newOutputStream(file, append))) {
-            IOUtils.writeLines(lines, lineEnding, out, charsetName);
-        }
+    public static void writeLines(final File file, final String charsetName, final Collection<?> lines, final String lineEnding, final boolean append) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3531,7 +3167,7 @@ public class FileUtils {
      * @since 2.4
      */
     public static void writeStringToFile(final File file, final String data, final Charset charset) throws IOException {
-        writeStringToFile(file, data, charset, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3547,9 +3183,7 @@ public class FileUtils {
      * @since 2.3
      */
     public static void writeStringToFile(final File file, final String data, final Charset charset, final boolean append) throws IOException {
-        try (OutputStream out = newOutputStream(file, append)) {
-            IOUtils.write(data, out, charset);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3563,7 +3197,7 @@ public class FileUtils {
      * @throws java.io.UnsupportedEncodingException if the encoding is not supported by the VM
      */
     public static void writeStringToFile(final File file, final String data, final String charsetName) throws IOException {
-        writeStringToFile(file, data, charsetName, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3580,7 +3214,7 @@ public class FileUtils {
      * @since 2.1
      */
     public static void writeStringToFile(final File file, final String data, final String charsetName, final boolean append) throws IOException {
-        writeStringToFile(file, data, Charsets.toCharset(charsetName), append);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -3589,8 +3223,8 @@ public class FileUtils {
      * @deprecated TODO Make private in 3.0.
      */
     @Deprecated
-    public FileUtils() { //NOSONAR
+    public FileUtils() {
+        //NOSONAR
         // empty
     }
-
 }

@@ -78,12 +78,16 @@ import java.nio.file.attribute.BasicFileAttributes;
  */
 public class HiddenFileFilter extends AbstractFileFilter implements Serializable {
 
-    /** Singleton instance of <em>hidden</em> filter */
-    public static final IOFileFilter HIDDEN  = new HiddenFileFilter();
+    /**
+     * Singleton instance of <em>hidden</em> filter
+     */
+    public static final IOFileFilter HIDDEN = new HiddenFileFilter();
 
     private static final long serialVersionUID = 8930842316112759062L;
 
-    /** Singleton instance of <em>visible</em> filter */
+    /**
+     * Singleton instance of <em>visible</em> filter
+     */
     public static final IOFileFilter VISIBLE = HIDDEN.negate();
 
     /**
@@ -101,7 +105,7 @@ public class HiddenFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public boolean accept(final File file) {
-        return file == null || file.isHidden();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -114,7 +118,6 @@ public class HiddenFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return get(() -> toFileVisitResult(file == null || Files.isHidden(file)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

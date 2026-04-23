@@ -19,7 +19,6 @@ package org.apache.commons.io.output;
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
@@ -70,12 +69,12 @@ public class ProxyOutputStream extends FilterOutputStream {
          */
         @Override
         public ProxyOutputStream get() throws IOException {
-            return new ProxyOutputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
-    @SuppressWarnings("resource") // caller closes
+    // caller closes
+    @SuppressWarnings("resource")
     ProxyOutputStream(final Builder builder) throws IOException {
         // the delegate is stored in a protected superclass variable named 'out'
         super(builder.getOutputStream());
@@ -105,9 +104,10 @@ public class ProxyOutputStream extends FilterOutputStream {
      * @throws IOException if the post-processing fails
      * @since 2.0
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void afterWrite(final int n) throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -123,9 +123,10 @@ public class ProxyOutputStream extends FilterOutputStream {
      * @throws IOException if the pre-processing fails
      * @since 2.0
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void beforeWrite(final int n) throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -134,7 +135,7 @@ public class ProxyOutputStream extends FilterOutputStream {
      */
     @Override
     public void close() throws IOException {
-        IOUtils.close(out, this::handleIOException);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -143,11 +144,7 @@ public class ProxyOutputStream extends FilterOutputStream {
      */
     @Override
     public void flush() throws IOException {
-        try {
-            out.flush();
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -160,7 +157,7 @@ public class ProxyOutputStream extends FilterOutputStream {
      * @since 2.0
      */
     protected void handleIOException(final IOException e) throws IOException {
-        throw e;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -171,8 +168,7 @@ public class ProxyOutputStream extends FilterOutputStream {
      * @since 2.19.0
      */
     public ProxyOutputStream setReference(final OutputStream out) {
-        this.out = out;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -184,7 +180,7 @@ public class ProxyOutputStream extends FilterOutputStream {
      * @return the underlying {@link OutputStream}.
      */
     OutputStream unwrap() {
-        return out;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -194,14 +190,7 @@ public class ProxyOutputStream extends FilterOutputStream {
      */
     @Override
     public void write(final byte[] bts) throws IOException {
-        try {
-            final int len = IOUtils.length(bts);
-            beforeWrite(len);
-            out.write(bts);
-            afterWrite(len);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -213,13 +202,7 @@ public class ProxyOutputStream extends FilterOutputStream {
      */
     @Override
     public void write(final byte[] bts, final int st, final int end) throws IOException {
-        try {
-            beforeWrite(end);
-            out.write(bts, st, end);
-            afterWrite(end);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -229,13 +212,6 @@ public class ProxyOutputStream extends FilterOutputStream {
      */
     @Override
     public void write(final int b) throws IOException {
-        try {
-            beforeWrite(1);
-            out.write(b);
-            afterWrite(1);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

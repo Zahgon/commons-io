@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +25,6 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileChannel.MapMode;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
 /**
@@ -122,7 +120,7 @@ public final class MemoryMappedFileInputStream extends AbstractInputStream {
          */
         @Override
         public MemoryMappedFileInputStream get() throws IOException {
-            return new MemoryMappedFileInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -141,11 +139,13 @@ public final class MemoryMappedFileInputStream extends AbstractInputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final int bufferSize;
+
     private final FileChannel channel;
+
     private ByteBuffer buffer = EMPTY_BUFFER;
 
     /**
@@ -166,8 +166,7 @@ public final class MemoryMappedFileInputStream extends AbstractInputStream {
 
     @Override
     public int available() throws IOException {
-        //return buffer != null ? buffer.remaining(): 0;
-        return buffer.remaining();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void cleanBuffer() {
@@ -178,16 +177,11 @@ public final class MemoryMappedFileInputStream extends AbstractInputStream {
 
     @Override
     public void close() throws IOException {
-        if (!isClosed()) {
-            cleanBuffer();
-            buffer = EMPTY_BUFFER;
-            channel.close();
-            super.close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     int getBufferSize() {
-        return bufferSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void nextBuffer() throws IOException {
@@ -204,45 +198,16 @@ public final class MemoryMappedFileInputStream extends AbstractInputStream {
 
     @Override
     public int read() throws IOException {
-        checkOpen();
-        if (!buffer.hasRemaining()) {
-            nextBuffer();
-            if (!buffer.hasRemaining()) {
-                return EOF;
-            }
-        }
-        return Short.toUnsignedInt(buffer.get());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] b, final int off, final int len) throws IOException {
-        checkOpen();
-        if (!buffer.hasRemaining()) {
-            nextBuffer();
-            if (!buffer.hasRemaining()) {
-                return EOF;
-            }
-        }
-        final int numBytes = Math.min(buffer.remaining(), len);
-        buffer.get(b, off, numBytes);
-        return numBytes;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long skip(final long n) throws IOException {
-        checkOpen();
-        if (n <= 0) {
-            return 0;
-        }
-        if (n <= buffer.remaining()) {
-            buffer.position((int) (buffer.position() + n));
-            return n;
-        }
-        final long remainingInFile = channel.size() - nextBufferPosition;
-        final long skipped = buffer.remaining() + Math.min(remainingInFile, n - buffer.remaining());
-        nextBufferPosition += skipped - buffer.remaining();
-        nextBuffer();
-        return skipped;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -63,7 +63,7 @@ public class NullOutputStream extends OutputStream {
      */
     @Override
     public void write(final byte[] b) throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -75,7 +75,7 @@ public class NullOutputStream extends OutputStream {
      */
     @Override
     public void write(final byte[] b, final int off, final int len) {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -85,7 +85,6 @@ public class NullOutputStream extends OutputStream {
      */
     @Override
     public void write(final int b) {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

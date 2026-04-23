@@ -20,7 +20,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
-
 import org.apache.commons.io.build.AbstractOrigin;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
@@ -82,6 +81,7 @@ public class UnsynchronizedByteArrayInputStream extends InputStream {
     public static class Builder extends AbstractStreamBuilder<UnsynchronizedByteArrayInputStream, Builder> {
 
         private int offset;
+
         private int length;
 
         /**
@@ -118,13 +118,12 @@ public class UnsynchronizedByteArrayInputStream extends InputStream {
          */
         @Override
         public UnsynchronizedByteArrayInputStream get() throws IOException {
-            return new UnsynchronizedByteArrayInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Builder setByteArray(final byte[] origin) {
-            length = Objects.requireNonNull(origin, "origin").length;
-            return super.setByteArray(origin);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -134,11 +133,7 @@ public class UnsynchronizedByteArrayInputStream extends InputStream {
          * @return {@code this} instance.
          */
         public Builder setLength(final int length) {
-            if (length < 0) {
-                throw new IllegalArgumentException("length cannot be negative");
-            }
-            this.length = length;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -148,13 +143,8 @@ public class UnsynchronizedByteArrayInputStream extends InputStream {
          * @return {@code this} instance.
          */
         public Builder setOffset(final int offset) {
-            if (offset < 0) {
-                throw new IllegalArgumentException("offset cannot be negative");
-            }
-            this.offset = offset;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -168,7 +158,7 @@ public class UnsynchronizedByteArrayInputStream extends InputStream {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static int minPosLen(final byte[] data, final int defaultValue) {
@@ -261,72 +251,43 @@ public class UnsynchronizedByteArrayInputStream extends InputStream {
 
     @Override
     public int available() {
-        return offset < eod ? eod - offset : 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("sync-override")
     @Override
     public void mark(final int readLimit) {
-        this.markedOffset = this.offset;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean markSupported() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read() {
-        return offset < eod ? data[offset++] & 0xff : END_OF_STREAM;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] dest) {
-        Objects.requireNonNull(dest, "dest");
-        return read(dest, 0, dest.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] dest, final int off, final int len) {
-        Objects.requireNonNull(dest, "dest");
-        if (off < 0 || len < 0 || off + len > dest.length) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        if (offset >= eod) {
-            return END_OF_STREAM;
-        }
-
-        int actualLen = eod - offset;
-        if (len < actualLen) {
-            actualLen = len;
-        }
-        if (actualLen <= 0) {
-            return 0;
-        }
-        System.arraycopy(data, offset, dest, off, actualLen);
-        offset += actualLen;
-        return actualLen;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("sync-override")
     @Override
     public void reset() {
-        this.offset = this.markedOffset;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long skip(final long n) {
-        if (n < 0) {
-            throw new IllegalArgumentException("Skipping backward is not supported");
-        }
-
-        long actualSkip = eod - offset;
-        if (n < actualSkip) {
-            actualSkip = n;
-        }
-
-        offset = Math.addExact(offset, Math.toIntExact(n));
-        return actualSkip;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

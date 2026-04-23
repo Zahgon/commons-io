@@ -163,13 +163,7 @@ public class FileSystemUtils {
      * @throws IllegalArgumentException if the path is invalid.
      */
     static long getFreeSpace(final String pathStr) throws IOException {
-        final Path path = Paths.get(Objects.requireNonNull(pathStr, "pathStr"));
-        if (Files.exists(path)) {
-            // Need an absolute path for input like "" to work
-            return Files.getFileStore(path.toAbsolutePath()).getUsableSpace();
-            // return path.toAbsolutePath().toFile().getUsableSpace();
-        }
-        throw new IllegalArgumentException(path.toString());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -181,5 +175,4 @@ public class FileSystemUtils {
     public FileSystemUtils() {
         // empty
     }
-
 }

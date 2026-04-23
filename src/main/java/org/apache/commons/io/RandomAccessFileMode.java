@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.io.File;
@@ -25,7 +24,6 @@ import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Objects;
-
 import org.apache.commons.io.function.IOConsumer;
 import org.apache.commons.io.function.IOFunction;
 
@@ -45,16 +43,16 @@ public enum RandomAccessFileMode {
      * @see RandomAccessFile#RandomAccessFile(File, String)
      * @see RandomAccessFile#RandomAccessFile(String, String)
      */
-    READ_ONLY(RandomAccessFileMode.R, 1), // NOPMD bug https://github.com/pmd/pmd/issues/5263
-
+    // NOPMD bug https://github.com/pmd/pmd/issues/5263
+    READ_ONLY(RandomAccessFileMode.R, 1),
     /**
      * Defines mode {@value #RW} to open a {@link RandomAccessFile} for reading and writing.
      *
      * @see RandomAccessFile#RandomAccessFile(File, String)
      * @see RandomAccessFile#RandomAccessFile(String, String)
      */
-    READ_WRITE(RandomAccessFileMode.RW, 2), // NOPMD bug https://github.com/pmd/pmd/issues/5263
-
+    // NOPMD bug https://github.com/pmd/pmd/issues/5263
+    READ_WRITE(RandomAccessFileMode.RW, 2),
     /**
      * Defines mode {@value #RWS} to open a {@link RandomAccessFile} for reading and writing, as with {@value #RW}, and also require that every update to the
      * file's content or metadata be written synchronously to the underlying storage device.
@@ -63,8 +61,8 @@ public enum RandomAccessFileMode {
      * @see RandomAccessFile#RandomAccessFile(String, String)
      * @see StandardOpenOption#SYNC
      */
-    READ_WRITE_SYNC_ALL(RandomAccessFileMode.RWS, 4), // NOPMD bug https://github.com/pmd/pmd/issues/5263
-
+    // NOPMD bug https://github.com/pmd/pmd/issues/5263
+    READ_WRITE_SYNC_ALL(RandomAccessFileMode.RWS, 4),
     /**
      * Defines mode {@value #RWD} to open a {@link RandomAccessFile} for reading and writing, as with {@value #RW}, and also require that every update to the
      * file's content be written synchronously to the underlying storage device.
@@ -73,11 +71,15 @@ public enum RandomAccessFileMode {
      * @see RandomAccessFile#RandomAccessFile(String, String)
      * @see StandardOpenOption#DSYNC
      */
-    READ_WRITE_SYNC_CONTENT(RandomAccessFileMode.RWD, 3); // NOPMD bug https://github.com/pmd/pmd/issues/5263
+    // NOPMD bug https://github.com/pmd/pmd/issues/5263
+    READ_WRITE_SYNC_CONTENT(RandomAccessFileMode.RWD, 3);
 
     private static final String R = "r";
+
     private static final String RW = "rw";
+
     private static final String RWD = "rwd";
+
     private static final String RWS = "rws";
 
     /**
@@ -92,32 +94,7 @@ public enum RandomAccessFileMode {
      * @since 2.18.0
      */
     public static RandomAccessFileMode valueOf(final OpenOption... openOption) {
-        RandomAccessFileMode bestFit = READ_ONLY;
-        for (final OpenOption option : openOption) {
-            if (option instanceof StandardOpenOption) {
-                switch ((StandardOpenOption) option) {
-                case WRITE:
-                    if (!bestFit.implies(READ_WRITE)) {
-                        bestFit = READ_WRITE;
-                    }
-                    break;
-                case DSYNC:
-                    if (!bestFit.implies(READ_WRITE_SYNC_CONTENT)) {
-                        bestFit = READ_WRITE_SYNC_CONTENT;
-                    }
-                    break;
-                case SYNC:
-                    if (!bestFit.implies(READ_WRITE_SYNC_ALL)) {
-                        bestFit = READ_WRITE_SYNC_ALL;
-                    }
-                    break;
-                default:
-                    // explicit case skip (spotbugs)
-                    continue;
-                }
-            }
-        }
-        return bestFit;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -129,17 +106,7 @@ public enum RandomAccessFileMode {
      * @since 2.18.0
      */
     public static RandomAccessFileMode valueOfMode(final String mode) {
-        switch (mode) {
-        case R:
-            return READ_ONLY;
-        case RW:
-            return READ_WRITE;
-        case RWD:
-            return READ_WRITE_SYNC_CONTENT;
-        case RWS:
-            return READ_WRITE_SYNC_ALL;
-        }
-        throw new IllegalArgumentException(mode);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final int level;
@@ -164,9 +131,7 @@ public enum RandomAccessFileMode {
      * @since 2.18.0
      */
     public void accept(final Path file, final IOConsumer<RandomAccessFile> consumer) throws IOException {
-        try (RandomAccessFile raf = create(file)) {
-            consumer.accept(raf);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -184,9 +149,7 @@ public enum RandomAccessFileMode {
      * @since 2.18.0
      */
     public <T> T apply(final Path file, final IOFunction<RandomAccessFile, T> function) throws IOException {
-        try (RandomAccessFile raf = create(file)) {
-            return function.apply(raf);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -200,7 +163,7 @@ public enum RandomAccessFileMode {
      * @throws FileNotFoundException See {@link IORandomAccessFile#IORandomAccessFile(File, String)}.
      */
     public RandomAccessFile create(final File file) throws FileNotFoundException {
-        return new IORandomAccessFile(file, mode);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -211,7 +174,7 @@ public enum RandomAccessFileMode {
      * @throws FileNotFoundException See {@link IORandomAccessFile#IORandomAccessFile(File, String)}.
      */
     public RandomAccessFile create(final Path file) throws FileNotFoundException {
-        return create(Objects.requireNonNull(file.toFile(), "file"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -225,7 +188,7 @@ public enum RandomAccessFileMode {
      * @throws FileNotFoundException See {@link IORandomAccessFile#IORandomAccessFile(File, String)}.
      */
     public RandomAccessFile create(final String name) throws FileNotFoundException {
-        return new IORandomAccessFile(name, mode);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -256,7 +219,7 @@ public enum RandomAccessFileMode {
      * @since 2.18.0
      */
     public String getMode() {
-        return mode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -275,8 +238,7 @@ public enum RandomAccessFileMode {
      * @since 2.18.0
      */
     public boolean implies(final RandomAccessFileMode other) {
-        // Note: The method name "implies" is inspired by java.security.Permission.implies(Permission)
-        return getLevel() >= other.getLevel();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -288,7 +250,6 @@ public enum RandomAccessFileMode {
      * @since 2.18.0
      */
     public IORandomAccessFile io(final String name) throws FileNotFoundException {
-        return new IORandomAccessFile(name, mode);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

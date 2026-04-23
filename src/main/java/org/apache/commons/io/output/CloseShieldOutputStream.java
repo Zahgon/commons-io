@@ -38,7 +38,7 @@ public class CloseShieldOutputStream extends ProxyOutputStream {
      * @since 2.9.0
      */
     public static CloseShieldOutputStream wrap(final OutputStream outputStream) {
-        return new CloseShieldOutputStream(outputStream);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -61,7 +61,6 @@ public class CloseShieldOutputStream extends ProxyOutputStream {
      */
     @Override
     public void close() {
-        out = ClosedOutputStream.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

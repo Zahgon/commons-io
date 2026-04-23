@@ -17,10 +17,8 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.function.IOBiConsumer;
 
@@ -95,31 +93,37 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     abstract static class AbstractBuilder<T extends AbstractBuilder<T>> extends ProxyInputStream.AbstractBuilder<BoundedInputStream, T> {
 
-        /** The current count of bytes counted. */
+        /**
+         * The current count of bytes counted.
+         */
         private long count;
 
-        /** The max count of bytes to read. */
+        /**
+         * The max count of bytes to read.
+         */
         private long maxCount = EOF;
 
         private IOBiConsumer<Long, Long> onMaxCount = IOBiConsumer.noop();
 
-        /** Flag if {@link #close()} should be propagated, {@code true} by default. */
+        /**
+         * Flag if {@link #close()} should be propagated, {@code true} by default.
+         */
         private boolean propagateClose = true;
 
         long getCount() {
-            return count;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         long getMaxCount() {
-            return maxCount;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         IOBiConsumer<Long, Long> getOnMaxCount() {
-            return onMaxCount;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         boolean isPropagateClose() {
-            return propagateClose;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -135,8 +139,7 @@ public class BoundedInputStream extends ProxyInputStream {
          * @return {@code this} instance.
          */
         public T setCount(final long count) {
-            this.count = Math.max(0, count);
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -149,8 +152,7 @@ public class BoundedInputStream extends ProxyInputStream {
          * @return {@code this} instance.
          */
         public T setMaxCount(final long maxCount) {
-            this.maxCount = Math.max(EOF, maxCount);
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -168,8 +170,7 @@ public class BoundedInputStream extends ProxyInputStream {
          * @since 2.18.0
          */
         public T setOnMaxCount(final IOBiConsumer<Long, Long> onMaxCount) {
-            this.onMaxCount = onMaxCount != null ? onMaxCount : IOBiConsumer.noop();
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -183,10 +184,8 @@ public class BoundedInputStream extends ProxyInputStream {
          * @return {@code this} instance.
          */
         public T setPropagateClose(final boolean propagateClose) {
-            this.propagateClose = propagateClose;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     //@formatter:off
@@ -278,9 +277,8 @@ public class BoundedInputStream extends ProxyInputStream {
          */
         @Override
         public BoundedInputStream get() throws IOException {
-            return new BoundedInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -290,16 +288,22 @@ public class BoundedInputStream extends ProxyInputStream {
      * @since 2.16.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The current count of bytes counted. */
+    /**
+     * The current count of bytes counted.
+     */
     private long count;
 
-    /** The current mark. */
+    /**
+     * The current mark.
+     */
     private long mark;
 
-    /** The max count of bytes to read. */
+    /**
+     * The max count of bytes to read.
+     */
     private final long maxCount;
 
     private final IOBiConsumer<Long, Long> onMaxCount;
@@ -364,10 +368,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     protected synchronized void afterRead(final int n) throws IOException {
-        if (n != EOF) {
-            count += n;
-        }
-        super.afterRead(n);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -375,11 +376,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public int available() throws IOException {
-        if (isMaxCount()) {
-            onMaxLength(maxCount, getCount());
-            return 0;
-        }
-        return in.available();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -389,9 +386,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public void close() throws IOException {
-        if (propagateClose) {
-            super.close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -401,7 +396,7 @@ public class BoundedInputStream extends ProxyInputStream {
      * @since 2.12.0
      */
     public synchronized long getCount() {
-        return count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -411,7 +406,7 @@ public class BoundedInputStream extends ProxyInputStream {
      * @since 2.16.0
      */
     public long getMaxCount() {
-        return maxCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -433,7 +428,7 @@ public class BoundedInputStream extends ProxyInputStream {
      * @since 2.16.0
      */
     public long getRemaining() {
-        return Math.max(0, getMaxCount() - getCount());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean isMaxCount() {
@@ -446,7 +441,7 @@ public class BoundedInputStream extends ProxyInputStream {
      * @return {@code true} if calling {@link #close()} propagates to the {@code close()} method of the underlying stream or {@code false} if it does not.
      */
     public boolean isPropagateClose() {
-        return propagateClose;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -456,8 +451,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public synchronized void mark(final int readLimit) {
-        in.mark(readLimit);
-        mark = count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -467,7 +461,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public boolean markSupported() {
-        return in.markSupported();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -482,9 +476,9 @@ public class BoundedInputStream extends ProxyInputStream {
      * @since 2.12.0
      */
     @SuppressWarnings("unused")
-    // TODO Rename to onMaxCount for 3.0
-    protected void onMaxLength(final long max, final long count) throws IOException {
-        onMaxCount.accept(max, count);
+    protected // TODO Rename to onMaxCount for 3.0
+    void onMaxLength(final long max, final long count) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -495,11 +489,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public int read() throws IOException {
-        if (isMaxCount()) {
-            onMaxLength(maxCount, getCount());
-            return EOF;
-        }
-        return super.read();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -511,7 +501,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public int read(final byte[] b) throws IOException {
-        return read(b, 0, b.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -525,11 +515,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public int read(final byte[] b, final int off, final int len) throws IOException {
-        if (isMaxCount()) {
-            onMaxLength(maxCount, getCount());
-            return EOF;
-        }
-        return super.read(b, off, (int) toReadLen(len));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -539,8 +525,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public synchronized void reset() throws IOException {
-        in.reset();
-        count = mark;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -564,9 +549,7 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public synchronized long skip(final long n) throws IOException {
-        final long skip = super.skip(toReadLen(n));
-        count += skip;
-        return skip;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private long toReadLen(final long len) {
@@ -580,6 +563,6 @@ public class BoundedInputStream extends ProxyInputStream {
      */
     @Override
     public String toString() {
-        return in.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

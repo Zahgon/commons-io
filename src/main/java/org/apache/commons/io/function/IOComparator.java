@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -38,7 +37,7 @@ public interface IOComparator<T> {
      * @return an UncheckedIOException BiFunction.
      */
     default Comparator<T> asComparator() {
-        return (t, u) -> Uncheck.compare(this, t, u);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

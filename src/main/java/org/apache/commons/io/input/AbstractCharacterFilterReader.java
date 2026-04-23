@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.FilterReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -65,34 +64,16 @@ public abstract class AbstractCharacterFilterReader extends FilterReader {
      * @return true if the given character should be filtered out, false to keep the character.
      */
     protected boolean filter(final int ch) {
-        return skip.test(ch);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read() throws IOException {
-        int ch;
-        do {
-            ch = in.read();
-        } while (ch != EOF && filter(ch));
-        return ch;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final char[] cbuf, final int off, final int len) throws IOException {
-        final int read = super.read(cbuf, off, len);
-        if (read == EOF) {
-            return EOF;
-        }
-        int pos = off - 1;
-        for (int readPos = off; readPos < off + read; readPos++) {
-            if (filter(cbuf[readPos])) {
-                continue;
-            }
-            pos++;
-            if (pos < readPos) {
-                cbuf[pos] = cbuf[readPos];
-            }
-        }
-        return pos - off + 1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

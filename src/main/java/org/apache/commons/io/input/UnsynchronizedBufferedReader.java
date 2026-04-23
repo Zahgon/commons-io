@@ -14,18 +14,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.CR;
 import static org.apache.commons.io.IOUtils.EOF;
 import static org.apache.commons.io.IOUtils.LF;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.Reader;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -113,9 +110,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      * Peeks at the next input character, refilling the buffer if necessary. If this character is a newline character ("\n"), it is discarded.
      */
     final void chompNewline() throws IOException {
-        if ((pos != end || fillBuf() != EOF) && buf[pos] == LF) {
-            pos++;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,11 +121,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     @Override
     public void close() throws IOException {
-        if (!isClosed()) {
-            in.close();
-            buf = null;
-            super.close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,7 +131,6 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     private int fillBuf() throws IOException {
         // assert(pos == end);
-
         if (mark == EOF || pos - mark >= markLimit) {
             /* mark isn't set or has exceeded its limit. use the whole buffer */
             final int result = in.read(buf, 0, buf.length);
@@ -151,7 +141,6 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
             }
             return result;
         }
-
         if (mark == 0 && markLimit > buf.length) {
             /* the only way to make room when mark=0 is by growing the buffer */
             int newLength = buf.length * 2;
@@ -168,7 +157,6 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
             end -= mark;
             mark = 0;
         }
-
         /* Set the new position and mark position */
         final int count = in.read(buf, pos, buf.length - pos);
         if (count != EOF) {
@@ -189,12 +177,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     @Override
     public void mark(final int markLimit) throws IOException {
-        if (markLimit < 0) {
-            throw new IllegalArgumentException();
-        }
-        checkOpen();
-        this.markLimit = markLimit;
-        mark = pos;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -206,7 +189,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     @Override
     public boolean markSupported() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -216,10 +199,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      * @throws IOException If an I/O error occurs
      */
     public int peek() throws IOException {
-        mark(1);
-        final int c = read();
-        reset();
-        return c;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -231,11 +211,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      * @throws IOException If an I/O error occurs
      */
     public int peek(final char[] buf) throws IOException {
-        final int n = buf.length;
-        mark(n);
-        final int c = read(buf, 0, n);
-        reset();
-        return c;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -248,12 +224,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     @Override
     public int read() throws IOException {
-        checkOpen();
-        /* Are there buffered characters available? */
-        if (pos < end || fillBuf() != EOF) {
-            return buf[pos++];
-        }
-        return EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -271,56 +242,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     @Override
     public int read(final char[] buffer, int offset, final int length) throws IOException {
-        checkOpen();
-        if (offset < 0 || offset > buffer.length - length || length < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-        int outstanding = length;
-        while (outstanding > 0) {
-
-            /*
-             * If there are bytes in the buffer, grab those first.
-             */
-            final int available = end - pos;
-            if (available > 0) {
-                final int count = available >= outstanding ? outstanding : available;
-                System.arraycopy(buf, pos, buffer, offset, count);
-                pos += count;
-                offset += count;
-                outstanding -= count;
-            }
-
-            /*
-             * Before attempting to read from the underlying stream, make sure we really, really want to. We won't bother if we're done, or if we've already got
-             * some bytes and reading from the underlying stream would block.
-             */
-            if (outstanding == 0 || outstanding < length && !in.ready()) {
-                break;
-            }
-
-            // assert(pos == end);
-
-            /*
-             * If we're unmarked and the requested size is greater than our buffer, read the bytes directly into the caller's buffer. We don't read into smaller
-             * buffers because that could result in a many reads.
-             */
-            if ((mark == -1 || pos - mark >= markLimit) && outstanding >= buf.length) {
-                final int count = in.read(buffer, offset, outstanding);
-                if (count > 0) {
-                    outstanding -= count;
-                    mark = -1;
-                }
-
-                break; // assume the source stream gave us all that it could
-            }
-
-            if (fillBuf() == EOF) {
-                break; // source is exhausted
-            }
-        }
-
-        final int count = length - outstanding;
-        return count > 0 || count == length ? count : EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -331,74 +253,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      * @throws IOException if this reader is closed or some other I/O error occurs.
      */
     public String readLine() throws IOException {
-        checkOpen();
-        /* has the underlying stream been exhausted? */
-        if (pos == end && fillBuf() == EOF) {
-            return null;
-        }
-        for (int charPos = pos; charPos < end; charPos++) {
-            final char ch = buf[charPos];
-            if (ch > CR) {
-                continue;
-            }
-            if (ch == LF) {
-                final String res = new String(buf, pos, charPos - pos);
-                pos = charPos + 1;
-                return res;
-            }
-            if (ch == CR) {
-                final String res = new String(buf, pos, charPos - pos);
-                pos = charPos + 1;
-                if ((pos < end || fillBuf() != EOF) && buf[pos] == LF) {
-                    pos++;
-                }
-                return res;
-            }
-        }
-
-        char eol = NUL;
-        final StringBuilder result = new StringBuilder(80);
-        /* Typical Line Length */
-
-        result.append(buf, pos, end - pos);
-        while (true) {
-            pos = end;
-
-            /* Are there buffered characters available? */
-            if (eol == LF) {
-                return result.toString();
-            }
-            // attempt to fill buffer
-            if (fillBuf() == EOF) {
-                // characters or null.
-                return result.length() > 0 || eol != NUL ? result.toString() : null;
-            }
-            for (int charPos = pos; charPos < end; charPos++) {
-                final char c = buf[charPos];
-                if (eol != NUL) {
-                    if (eol == CR && c == LF) {
-                        if (charPos > pos) {
-                            result.append(buf, pos, charPos - pos - 1);
-                        }
-                        pos = charPos + 1;
-                    } else {
-                        if (charPos > pos) {
-                            result.append(buf, pos, charPos - pos - 1);
-                        }
-                        pos = charPos;
-                    }
-                    return result.toString();
-                }
-                if (c == LF || c == CR) {
-                    eol = c;
-                }
-            }
-            if (eol == NUL) {
-                result.append(buf, pos, end - pos);
-            } else {
-                result.append(buf, pos, end - pos - 1);
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -412,8 +267,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     @Override
     public boolean ready() throws IOException {
-        checkOpen();
-        return end - pos > 0 || in.ready();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -425,11 +279,7 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     @Override
     public void reset() throws IOException {
-        checkOpen();
-        if (mark == -1) {
-            throw new IOException("mark == -1");
-        }
-        pos = mark;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -446,33 +296,6 @@ public class UnsynchronizedBufferedReader extends UnsynchronizedReader {
      */
     @Override
     public long skip(final long amount) throws IOException {
-        if (amount < 0) {
-            throw new IllegalArgumentException();
-        }
-        checkOpen();
-        if (amount < 1) {
-            return 0;
-        }
-        if (end - pos >= amount) {
-            pos += Math.toIntExact(amount);
-            return amount;
-        }
-
-        long read = end - pos;
-        pos = end;
-        while (read < amount) {
-            if (fillBuf() == EOF) {
-                return read;
-            }
-            if (end - pos >= amount - read) {
-                pos += Math.toIntExact(amount - read);
-                return amount;
-            }
-            // Couldn't get all the characters, skip what we read
-            read += end - pos;
-            pos = end;
-        }
-        return amount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

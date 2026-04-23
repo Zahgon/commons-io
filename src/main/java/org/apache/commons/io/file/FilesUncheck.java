@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.io.BufferedReader;
@@ -45,7 +44,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BiPredicate;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.function.Uncheck;
 
 /**
@@ -70,7 +68,7 @@ public final class FilesUncheck {
      * @see Files#copy(InputStream, Path,CopyOption...)
      */
     public static long copy(final InputStream in, final Path target, final CopyOption... options) {
-        return Uncheck.apply(Files::copy, in, target, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -83,7 +81,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static long copy(final Path source, final OutputStream out) {
-        return Uncheck.apply(Files::copy, source, out);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,7 +95,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path copy(final Path source, final Path target, final CopyOption... options) {
-        return Uncheck.apply(Files::copy, source, target, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -110,7 +108,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createDirectories(final Path dir, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::createDirectories, dir, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -123,7 +121,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createDirectory(final Path dir, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::createDirectory, dir, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -136,7 +134,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createFile(final Path path, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::createFile, path, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -149,7 +147,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createLink(final Path link, final Path existing) {
-        return Uncheck.apply(Files::createLink, link, existing);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -163,7 +161,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createSymbolicLink(final Path link, final Path target, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::createSymbolicLink, link, target, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -177,7 +175,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createTempDirectory(final Path dir, final String prefix, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::createTempDirectory, dir, prefix, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -190,7 +188,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createTempDirectory(final String prefix, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::createTempDirectory, prefix, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -205,7 +203,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createTempFile(final Path dir, final String prefix, final String suffix, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::createTempFile, dir, prefix, suffix, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -219,7 +217,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path createTempFile(final String prefix, final String suffix, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::createTempFile, prefix, suffix, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -229,7 +227,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static void delete(final Path path) {
-        Uncheck.accept(Files::delete, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -240,7 +238,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static boolean deleteIfExists(final Path path) {
-        return Uncheck.apply(Files::deleteIfExists, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -258,9 +256,8 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      * @since 2.14.0
      */
-    public static Stream<Path> find(final Path start, final int maxDepth, final BiPredicate<Path, BasicFileAttributes> matcher,
-            final FileVisitOption... options) {
-        return Uncheck.apply(Files::find, start, maxDepth, matcher, options);
+    public static Stream<Path> find(final Path start, final int maxDepth, final BiPredicate<Path, BasicFileAttributes> matcher, final FileVisitOption... options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -274,7 +271,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Object getAttribute(final Path path, final String attribute, final LinkOption... options) {
-        return Uncheck.apply(Files::getAttribute, path, attribute, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -285,7 +282,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static FileStore getFileStore(final Path path) {
-        return Uncheck.apply(Files::getFileStore, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -298,7 +295,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static FileTime getLastModifiedTime(final Path path, final LinkOption... options) {
-        return Uncheck.apply(Files::getLastModifiedTime, path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -311,7 +308,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static UserPrincipal getOwner(final Path path, final LinkOption... options) {
-        return Uncheck.apply(Files::getOwner, path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -324,7 +321,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Set<PosixFilePermission> getPosixFilePermissions(final Path path, final LinkOption... options) {
-        return Uncheck.apply(Files::getPosixFilePermissions, path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -335,7 +332,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static boolean isHidden(final Path path) {
-        return Uncheck.apply(Files::isHidden, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -348,7 +345,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static boolean isSameFile(final Path path, final Path path2) {
-        return Uncheck.apply(Files::isSameFile, path, path2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -363,7 +360,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Stream<String> lines(final Path path) {
-        return Uncheck.apply(Files::lines, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -379,7 +376,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Stream<String> lines(final Path path, final Charset cs) {
-        return Uncheck.apply(Files::lines, path, cs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -394,7 +391,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Stream<Path> list(final Path dir) {
-        return Uncheck.apply(Files::list, dir);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -408,7 +405,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static Path move(final Path source, final Path target, final CopyOption... options) {
-        return Uncheck.apply(Files::move, source, target, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -420,7 +417,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static BufferedReader newBufferedReader(final Path path) {
-        return Uncheck.apply(Files::newBufferedReader, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -433,7 +430,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static BufferedReader newBufferedReader(final Path path, final Charset cs) {
-        return Uncheck.apply(Files::newBufferedReader, path, cs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -447,7 +444,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static BufferedWriter newBufferedWriter(final Path path, final Charset cs, final OpenOption... options) {
-        return Uncheck.apply(Files::newBufferedWriter, path, cs, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -460,7 +457,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static BufferedWriter newBufferedWriter(final Path path, final OpenOption... options) {
-        return Uncheck.apply(Files::newBufferedWriter, path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -473,7 +470,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static SeekableByteChannel newByteChannel(final Path path, final OpenOption... options) {
-        return Uncheck.apply(Files::newByteChannel, path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -487,7 +484,7 @@ public final class FilesUncheck {
      * @throws UncheckedIOException Wraps an {@link IOException}.
      */
     public static SeekableByteChannel newByteChannel(final Path path, final Set<? extends OpenOption> options, final FileAttribute<?>... attrs) {
-        return Uncheck.apply(Files::newByteChannel, path, options, attrs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -501,7 +498,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static DirectoryStream<Path> newDirectoryStream(final Path dir) {
-        return Uncheck.apply(Files::newDirectoryStream, dir);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -517,7 +514,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static DirectoryStream<Path> newDirectoryStream(final Path dir, final DirectoryStream.Filter<? super Path> filter) {
-        return Uncheck.apply(Files::newDirectoryStream, dir, filter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -533,7 +530,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static DirectoryStream<Path> newDirectoryStream(final Path dir, final String glob) {
-        return Uncheck.apply(Files::newDirectoryStream, dir, glob);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -545,7 +542,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static InputStream newInputStream(final Path path, final OpenOption... options) {
-        return Uncheck.apply(Files::newInputStream, path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -557,7 +554,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static OutputStream newOutputStream(final Path path, final OpenOption... options) {
-        return Uncheck.apply(Files::newOutputStream, path, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -568,7 +565,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static String probeContentType(final Path path) {
-        return Uncheck.apply(Files::probeContentType, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -578,7 +575,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static byte[] readAllBytes(final Path path) {
-        return Uncheck.apply(Files::readAllBytes, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -588,7 +585,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static List<String> readAllLines(final Path path) {
-        return Uncheck.apply(Files::readAllLines, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -600,7 +597,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static List<String> readAllLines(final Path path, final Charset cs) {
-        return Uncheck.apply(Files::readAllLines, path, cs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -614,7 +611,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static <A extends BasicFileAttributes> A readAttributes(final Path path, final Class<A> type, final LinkOption... options) {
-        return Uncheck.apply(Files::readAttributes, path, type, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -627,7 +624,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Map<String, Object> readAttributes(final Path path, final String attributes, final LinkOption... options) {
-        return Uncheck.apply(Files::readAttributes, path, attributes, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -638,7 +635,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path readSymbolicLink(final Path link) {
-        return Uncheck.apply(Files::readSymbolicLink, link);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -652,7 +649,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path setAttribute(final Path path, final String attribute, final Object value, final LinkOption... options) {
-        return Uncheck.apply(Files::setAttribute, path, attribute, value, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -664,7 +661,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path setLastModifiedTime(final Path path, final FileTime time) {
-        return Uncheck.apply(Files::setLastModifiedTime, path, time);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -676,7 +673,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path setOwner(final Path path, final UserPrincipal owner) {
-        return Uncheck.apply(Files::setOwner, path, owner);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -688,7 +685,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path setPosixFilePermissions(final Path path, final Set<PosixFilePermission> perms) {
-        return Uncheck.apply(Files::setPosixFilePermissions, path, perms);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -698,7 +695,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static long size(final Path path) {
-        return Uncheck.apply(Files::size, path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -714,7 +711,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Stream<Path> walk(final Path start, final FileVisitOption... options) {
-        return Uncheck.apply(Files::walk, start, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -731,7 +728,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Stream<Path> walk(final Path start, final int maxDepth, final FileVisitOption... options) {
-        return Uncheck.apply(Files::walk, start, maxDepth, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -743,7 +740,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path walkFileTree(final Path start, final FileVisitor<? super Path> visitor) {
-        return Uncheck.apply(Files::walkFileTree, start, visitor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -757,7 +754,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path walkFileTree(final Path start, final Set<FileVisitOption> options, final int maxDepth, final FileVisitor<? super Path> visitor) {
-        return Uncheck.apply(Files::walkFileTree, start, options, maxDepth, visitor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -770,7 +767,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path write(final Path path, final byte[] bytes, final OpenOption... options) {
-        return Uncheck.apply(Files::write, path, bytes, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -784,7 +781,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path write(final Path path, final Iterable<? extends CharSequence> lines, final Charset cs, final OpenOption... options) {
-        return Uncheck.apply(Files::write, path, lines, cs, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -797,7 +794,7 @@ public final class FilesUncheck {
      * @return See delegate.
      */
     public static Path write(final Path path, final Iterable<? extends CharSequence> lines, final OpenOption... options) {
-        return Uncheck.apply(Files::write, path, lines, options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.output;
 
 import java.io.IOException;
@@ -27,31 +26,34 @@ import java.io.IOException;
  *
  * @since 2.8.0
  */
-public class NullAppendable implements Appendable { // NOPMD Class will be final in 3.0.
+public class // NOPMD Class will be final in 3.0.
+NullAppendable implements // NOPMD Class will be final in 3.0.
+Appendable {
 
     /**
      * A singleton.
      */
     public static final NullAppendable INSTANCE = new NullAppendable();
 
-    /** Use the singleton. */
+    /**
+     * Use the singleton.
+     */
     private NullAppendable() {
         // no instances.
     }
 
     @Override
     public Appendable append(final char c) throws IOException {
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Appendable append(final CharSequence csq) throws IOException {
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Appendable append(final CharSequence csq, final int start, final int end) throws IOException {
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

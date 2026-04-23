@@ -46,12 +46,14 @@ import java.util.Objects;
 public class FileCleaningTracker {
 
     // Note: fields are package protected to allow use by test cases
-
     /**
      * The reaper thread.
      */
     private final class Reaper extends Thread {
-        /** Constructs a new Reaper */
+
+        /**
+         * Constructs a new Reaper
+         */
         Reaper() {
             super("File Reaper");
             setPriority(MAX_PRIORITY);
@@ -64,20 +66,7 @@ public class FileCleaningTracker {
          */
         @Override
         public void run() {
-            // thread exits when exitWhenFinished is true and there are no more tracked objects
-            while (!exitWhenFinished || !trackers.isEmpty()) {
-                try {
-                    // Wait for a tracker to remove.
-                    final Tracker tracker = (Tracker) q.remove(); // cannot return null
-                    trackers.remove(tracker);
-                    if (!tracker.delete()) {
-                        deleteFailures.add(tracker.getPath());
-                    }
-                    tracker.clear();
-                } catch (final InterruptedException e) {
-                    continue;
-                }
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -104,8 +93,7 @@ public class FileCleaningTracker {
          * @param marker  the marker object used to track the file, not null
          * @param queue  the queue on to which the tracker will be pushed, not null
          */
-        Tracker(final String path, final FileDeleteStrategy deleteStrategy, final Object marker,
-                final ReferenceQueue<? super Object> queue) {
+        Tracker(final String path, final FileDeleteStrategy deleteStrategy, final Object marker, final ReferenceQueue<? super Object> queue) {
             super(marker, queue);
             this.path = path;
             this.deleteStrategy = deleteStrategy == null ? FileDeleteStrategy.NORMAL : deleteStrategy;
@@ -118,7 +106,7 @@ public class FileCleaningTracker {
          *         {@code false} otherwise.
          */
         public boolean delete() {
-            return deleteStrategy.deleteQuietly(new File(path));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -127,7 +115,7 @@ public class FileCleaningTracker {
          * @return the path
          */
         public String getPath() {
-            return path;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -139,7 +127,8 @@ public class FileCleaningTracker {
     /**
      * Collection of {@link Tracker} instances in existence.
      */
-    final Collection<Tracker> trackers = Collections.synchronizedSet(new HashSet<>()); // synchronized
+    // synchronized
+    final Collection<Tracker> trackers = Collections.synchronizedSet(new HashSet<>());
 
     /**
      * Collection of File paths that failed to delete.
@@ -170,8 +159,7 @@ public class FileCleaningTracker {
      * @param marker  the marker object used to track the file, not null
      * @param deleteStrategy  the strategy to delete the file, null means normal
      */
-    private synchronized void addTracker(final String path, final Object marker, final FileDeleteStrategy
-            deleteStrategy) {
+    private synchronized void addTracker(final String path, final Object marker, final FileDeleteStrategy deleteStrategy) {
         // synchronized block protects reaper
         if (exitWhenFinished) {
             throw new IllegalStateException("No new trackers can be added once exitWhenFinished() is called");
@@ -206,13 +194,7 @@ public class FileCleaningTracker {
      * Once called, no new objects can be tracked by the file cleaner.
      */
     public synchronized void exitWhenFinished() {
-        // synchronized block protects reaper
-        exitWhenFinished = true;
-        if (reaper != null) {
-            synchronized (reaper) {
-                reaper.interrupt();
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -222,7 +204,7 @@ public class FileCleaningTracker {
      * @since 2.0
      */
     public List<String> getDeleteFailures() {
-        return new ArrayList<>(deleteFailures);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -232,7 +214,7 @@ public class FileCleaningTracker {
      * @return the number of files being tracked
      */
     public int getTrackCount() {
-        return trackers.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -245,7 +227,7 @@ public class FileCleaningTracker {
      * @throws NullPointerException if the file is null
      */
     public void track(final File file, final Object marker) {
-        track(file, marker, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -259,8 +241,7 @@ public class FileCleaningTracker {
      * @throws NullPointerException if the file is null
      */
     public void track(final File file, final Object marker, final FileDeleteStrategy deleteStrategy) {
-        Objects.requireNonNull(file, "file");
-        addTracker(file.getPath(), marker, deleteStrategy);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -274,7 +255,7 @@ public class FileCleaningTracker {
      * @since 2.14.0
      */
     public void track(final Path file, final Object marker) {
-        track(file, marker, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -289,8 +270,7 @@ public class FileCleaningTracker {
      * @since 2.14.0
      */
     public void track(final Path file, final Object marker, final FileDeleteStrategy deleteStrategy) {
-        Objects.requireNonNull(file, "file");
-        addTracker(file.toAbsolutePath().toString(), marker, deleteStrategy);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -303,7 +283,7 @@ public class FileCleaningTracker {
      * @throws NullPointerException if the path is null
      */
     public void track(final String path, final Object marker) {
-        track(path, marker, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -317,8 +297,6 @@ public class FileCleaningTracker {
      * @throws NullPointerException if the path is null
      */
     public void track(final String path, final Object marker, final FileDeleteStrategy deleteStrategy) {
-        Objects.requireNonNull(path, "path");
-        addTracker(path, marker, deleteStrategy);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -14,14 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.output;
 
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UncheckedIOException;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 import org.apache.commons.io.function.Uncheck;
 
@@ -92,9 +90,8 @@ public final class UncheckedFilterOutputStream extends FilterOutputStream {
          */
         @Override
         public UncheckedFilterOutputStream get() throws IOException {
-            return new UncheckedFilterOutputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -103,7 +100,7 @@ public final class UncheckedFilterOutputStream extends FilterOutputStream {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -112,7 +109,8 @@ public final class UncheckedFilterOutputStream extends FilterOutputStream {
      * @param builder the buider.
      * @throws IOException if an I/O error occurs converting to an {@link OutputStream} using {@link #getOutputStream()}.
      */
-    @SuppressWarnings("resource") // Caller closes.
+    // Caller closes.
+    @SuppressWarnings("resource")
     private UncheckedFilterOutputStream(final Builder builder) throws IOException {
         super(builder.getOutputStream());
     }
@@ -122,7 +120,7 @@ public final class UncheckedFilterOutputStream extends FilterOutputStream {
      */
     @Override
     public void close() throws UncheckedIOException {
-        Uncheck.run(super::close);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,7 +128,7 @@ public final class UncheckedFilterOutputStream extends FilterOutputStream {
      */
     @Override
     public void flush() throws UncheckedIOException {
-        Uncheck.run(super::flush);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,7 +136,7 @@ public final class UncheckedFilterOutputStream extends FilterOutputStream {
      */
     @Override
     public void write(final byte[] b) throws UncheckedIOException {
-        Uncheck.accept(super::write, b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -146,7 +144,7 @@ public final class UncheckedFilterOutputStream extends FilterOutputStream {
      */
     @Override
     public void write(final byte[] b, final int off, final int len) throws UncheckedIOException {
-        Uncheck.accept(super::write, b, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -154,7 +152,6 @@ public final class UncheckedFilterOutputStream extends FilterOutputStream {
      */
     @Override
     public void write(final int b) throws UncheckedIOException {
-        Uncheck.accept(super::write, b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

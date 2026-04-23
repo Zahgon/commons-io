@@ -65,7 +65,7 @@ public class TrueFileFilter implements IOFileFilter, Serializable {
      */
     @Override
     public boolean accept(final File file) {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,7 +77,7 @@ public class TrueFileFilter implements IOFileFilter, Serializable {
      */
     @Override
     public boolean accept(final File dir, final String name) {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,28 +90,26 @@ public class TrueFileFilter implements IOFileFilter, Serializable {
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public IOFileFilter and(final IOFileFilter fileFilter) {
-        // TRUE AND expression <=> expression
-        return fileFilter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public IOFileFilter negate() {
-        return FalseFileFilter.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public IOFileFilter or(final IOFileFilter fileFilter) {
-        // TRUE OR expression <=> true
-        return INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return TO_STRING;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

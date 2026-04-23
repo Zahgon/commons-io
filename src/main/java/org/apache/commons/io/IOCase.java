@@ -44,12 +44,10 @@ public enum IOCase {
      * The constant for case-sensitive regardless of operating system.
      */
     SENSITIVE("Sensitive", true),
-
     /**
      * The constant for case-insensitive regardless of operating system.
      */
     INSENSITIVE("Insensitive", false),
-
     /**
      * The constant for case sensitivity determined by the current operating system.
      * Windows is case-insensitive when comparing file names, Unix is case-sensitive.
@@ -66,7 +64,9 @@ public enum IOCase {
      */
     SYSTEM("System", FileSystem.getCurrent().isCaseSensitive());
 
-    /** Serialization version. */
+    /**
+     * Serialization version.
+     */
     private static final long serialVersionUID = -6343169151696340687L;
 
     /**
@@ -77,8 +77,7 @@ public enum IOCase {
      * @throws IllegalArgumentException if the name is invalid
      */
     public static IOCase forName(final String name) {
-        return Stream.of(values()).filter(ioCase -> ioCase.getName().equals(name)).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Illegal IOCase name: " + name));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -89,7 +88,7 @@ public enum IOCase {
      * @since 2.10.0
      */
     public static boolean isCaseSensitive(final IOCase ioCase) {
-        return ioCase != null && ioCase.isCaseSensitive();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -101,13 +100,17 @@ public enum IOCase {
      * @since 2.12.0
      */
     public static IOCase value(final IOCase value, final IOCase defaultValue) {
-        return value != null ? value : defaultValue;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The enumeration name. */
+    /**
+     * The enumeration name.
+     */
     private final String name;
 
-    /** The sensitivity flag. */
+    /**
+     * The sensitivity flag.
+     */
     private final transient boolean sensitive;
 
     /**
@@ -134,9 +137,7 @@ public enum IOCase {
      * @throws NullPointerException if either string is null.
      */
     public int checkCompareTo(final String str1, final String str2) {
-        Objects.requireNonNull(str1, "str1");
-        Objects.requireNonNull(str2, "str2");
-        return sensitive ? str1.compareTo(str2) : str1.compareToIgnoreCase(str2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -151,11 +152,7 @@ public enum IOCase {
      * @return true if equal using the case rules, false if either input is null.
      */
     public boolean checkEndsWith(final String str, final String end) {
-        if (str == null || end == null) {
-            return false;
-        }
-        final int endLen = end.length();
-        return str.regionMatches(!sensitive, str.length() - endLen, end, 0, endLen);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -170,7 +167,7 @@ public enum IOCase {
      * @return true if equal using the case rules.
      */
     public boolean checkEquals(final String str1, final String str2) {
-        return str1 == str2 || str1 != null && (sensitive ? str1.equals(str2) : str1.equalsIgnoreCase(str2));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -189,17 +186,7 @@ public enum IOCase {
      * @since 2.0
      */
     public int checkIndexOf(final String str, final int strStartIndex, final String search) {
-        if (str != null && search != null) {
-            final int endIndex = str.length() - search.length();
-            if (endIndex >= strStartIndex) {
-                for (int i = strStartIndex; i <= endIndex; i++) {
-                    if (checkRegionMatches(str, i, search)) {
-                        return i;
-                    }
-                }
-            }
-        }
-        return -1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -215,7 +202,7 @@ public enum IOCase {
      * @return true if equal using the case rules.
      */
     public boolean checkRegionMatches(final String str, final int strStartIndex, final String search) {
-        return str != null && search != null && str.regionMatches(!sensitive, strStartIndex, search, 0, search.length());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -230,7 +217,7 @@ public enum IOCase {
      * @return true if equal using the case rules, false if either input is null.
      */
     public boolean checkStartsWith(final String str, final String start) {
-        return str != null && start != null && str.regionMatches(!sensitive, 0, start, 0, start.length());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -239,7 +226,7 @@ public enum IOCase {
      * @return the name of the constant
      */
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -248,7 +235,7 @@ public enum IOCase {
      * @return true if case-sensitive.
      */
     public boolean isCaseSensitive() {
-        return sensitive;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -268,7 +255,6 @@ public enum IOCase {
      */
     @Override
     public String toString() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

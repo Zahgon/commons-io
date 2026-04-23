@@ -39,10 +39,7 @@ abstract class AbstractFileComparator implements Comparator<File> {
      * @since 2.0
      */
     public File[] sort(final File... files) {
-        if (files != null) {
-            Arrays.sort(files, this);
-        }
-        return files;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -56,10 +53,7 @@ abstract class AbstractFileComparator implements Comparator<File> {
      * @since 2.0
      */
     public List<File> sort(final List<File> files) {
-        if (files != null) {
-            files.sort(this);
-        }
-        return files;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -69,6 +63,6 @@ abstract class AbstractFileComparator implements Comparator<File> {
      */
     @Override
     public String toString() {
-        return getClass().getSimpleName();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

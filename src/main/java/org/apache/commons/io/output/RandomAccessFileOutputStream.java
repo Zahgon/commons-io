@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.output;
 
 import java.io.File;
@@ -22,7 +21,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.nio.file.StandardOpenOption;
-
 import org.apache.commons.io.build.AbstractOrigin;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 
@@ -86,9 +84,8 @@ public final class RandomAccessFileOutputStream extends OutputStream {
          */
         @Override
         public RandomAccessFileOutputStream get() throws IOException {
-            return new RandomAccessFileOutputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -97,7 +94,7 @@ public final class RandomAccessFileOutputStream extends OutputStream {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final RandomAccessFile randomAccessFile;
@@ -108,15 +105,13 @@ public final class RandomAccessFileOutputStream extends OutputStream {
 
     @Override
     public void close() throws IOException {
-        this.randomAccessFile.close();
-        super.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("resource")
     @Override
     public void flush() throws IOException {
-        randomAccessFile.getChannel().force(true);
-        super.flush();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,12 +121,11 @@ public final class RandomAccessFileOutputStream extends OutputStream {
      * @since 2.19.0
      */
     public RandomAccessFile getRandomAccessFile() {
-        return randomAccessFile;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void write(final int b) throws IOException {
-        randomAccessFile.write(b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

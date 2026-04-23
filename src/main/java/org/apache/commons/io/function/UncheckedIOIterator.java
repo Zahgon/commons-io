@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -45,16 +44,16 @@ final class UncheckedIOIterator<E> implements Iterator<E> {
 
     @Override
     public boolean hasNext() {
-        return Uncheck.getAsBoolean(delegate::hasNext);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public E next() {
-        return Uncheck.get(delegate::next);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void remove() {
-        Uncheck.run(delegate::remove);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

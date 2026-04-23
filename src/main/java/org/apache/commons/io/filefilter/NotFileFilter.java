@@ -37,7 +37,9 @@ public class NotFileFilter extends AbstractFileFilter implements Serializable {
 
     private static final long serialVersionUID = 6131563330944994230L;
 
-    /** The filter */
+    /**
+     * The filter
+     */
     private final IOFileFilter filter;
 
     /**
@@ -59,7 +61,7 @@ public class NotFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File file) {
-        return !filter.accept(file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -71,7 +73,7 @@ public class NotFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File file, final String name) {
-        return !filter.accept(file, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,7 +86,7 @@ public class NotFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return not(filter.accept(file, attributes));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private FileVisitResult not(final FileVisitResult accept) {
@@ -98,7 +100,6 @@ public class NotFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public String toString() {
-        return "NOT (" + filter.toString() + ")";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

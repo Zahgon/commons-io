@@ -58,8 +58,7 @@ public class NullWriter extends Writer {
      */
     @Override
     public Writer append(final char c) {
-        //to /dev/null
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -70,8 +69,7 @@ public class NullWriter extends Writer {
      */
     @Override
     public Writer append(final CharSequence csq) {
-        //to /dev/null
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,20 +82,23 @@ public class NullWriter extends Writer {
      */
     @Override
     public Writer append(final CharSequence csq, final int start, final int end) {
-        //to /dev/null
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** @see java.io.Writer#close() */
+    /**
+     * @see java.io.Writer#close()
+     */
     @Override
     public void close() {
-        //to /dev/null
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** @see java.io.Writer#flush() */
+    /**
+     * @see java.io.Writer#flush()
+     */
     @Override
     public void flush() {
-        //to /dev/null
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,7 +107,7 @@ public class NullWriter extends Writer {
      */
     @Override
     public void write(final char[] chr) {
-        //to /dev/null
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,7 +118,7 @@ public class NullWriter extends Writer {
      */
     @Override
     public void write(final char[] chr, final int st, final int end) {
-        //to /dev/null
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,7 +127,7 @@ public class NullWriter extends Writer {
      */
     @Override
     public void write(final int b) {
-        //to /dev/null
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -135,7 +136,7 @@ public class NullWriter extends Writer {
      */
     @Override
     public void write(final String str) {
-        //to /dev/null
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -146,7 +147,6 @@ public class NullWriter extends Writer {
      */
     @Override
     public void write(final String str, final int st, final int end) {
-        //to /dev/null
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

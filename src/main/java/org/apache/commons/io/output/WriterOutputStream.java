@@ -29,7 +29,6 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
@@ -105,6 +104,7 @@ public class WriterOutputStream extends OutputStream {
     public static class Builder extends AbstractStreamBuilder<WriterOutputStream, Builder> {
 
         private CharsetDecoder charsetDecoder;
+
         private boolean writeImmediately;
 
         /**
@@ -137,21 +137,17 @@ public class WriterOutputStream extends OutputStream {
          */
         @Override
         public WriterOutputStream get() throws IOException {
-            return new WriterOutputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Builder setCharset(final Charset charset) {
-            super.setCharset(charset);
-            this.charsetDecoder = getCharset().newDecoder();
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Builder setCharset(final String charset) {
-            super.setCharset(charset);
-            this.charsetDecoder = getCharset().newDecoder();
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -161,9 +157,7 @@ public class WriterOutputStream extends OutputStream {
          * @return {@code this} instance.
          */
         public Builder setCharsetDecoder(final CharsetDecoder charsetDecoder) {
-            this.charsetDecoder = charsetDecoder != null ? charsetDecoder : getCharsetDefault().newDecoder();
-            super.setCharset(this.charsetDecoder.charset());
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -177,10 +171,8 @@ public class WriterOutputStream extends OutputStream {
          * @return {@code this} instance.
          */
         public Builder setWriteImmediately(final boolean writeImmediately) {
-            this.writeImmediately = writeImmediately;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private static final int BUFFER_SIZE = IOUtils.DEFAULT_BUFFER_SIZE;
@@ -192,7 +184,7 @@ public class WriterOutputStream extends OutputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -206,7 +198,6 @@ public class WriterOutputStream extends OutputStream {
         }
         final String TEST_STRING_2 = "v\u00e9s";
         final byte[] bytes = TEST_STRING_2.getBytes(charset);
-
         final CharsetDecoder charsetDecoder2 = charset.newDecoder();
         final ByteBuffer bb2 = ByteBuffer.allocate(16);
         final CharBuffer cb2 = CharBuffer.allocate(TEST_STRING_2.length());
@@ -217,20 +208,18 @@ public class WriterOutputStream extends OutputStream {
             try {
                 charsetDecoder2.decode(bb2, cb2, i == len - 1);
             } catch (final IllegalArgumentException e) {
-                throw new UnsupportedOperationException("UTF-16 requested when running on an IBM JDK with broken UTF-16 support. "
-                        + "Please find a JDK that supports UTF-16 if you intend to use UF-16 with WriterOutputStream");
+                throw new UnsupportedOperationException("UTF-16 requested when running on an IBM JDK with broken UTF-16 support. " + "Please find a JDK that supports UTF-16 if you intend to use UF-16 with WriterOutputStream");
             }
             bb2.compact();
         }
         cb2.rewind();
         if (!TEST_STRING_2.equals(cb2.toString())) {
-            throw new UnsupportedOperationException("UTF-16 requested when running on an IBM JDK with broken UTF-16 support. "
-                    + "Please find a JDK that supports UTF-16 if you intend to use UF-16 with WriterOutputStream");
+            throw new UnsupportedOperationException("UTF-16 requested when running on an IBM JDK with broken UTF-16 support. " + "Please find a JDK that supports UTF-16 if you intend to use UF-16 with WriterOutputStream");
         }
-
     }
 
     private final Writer writer;
+
     private final CharsetDecoder decoder;
 
     private final boolean writeImmediately;
@@ -245,7 +234,8 @@ public class WriterOutputStream extends OutputStream {
      */
     private final CharBuffer decoderOut;
 
-    @SuppressWarnings("resource") // caller closes.
+    // caller closes.
+    @SuppressWarnings("resource")
     private WriterOutputStream(final Builder builder) throws IOException {
         this(builder.getWriter(), builder.charsetDecoder, builder.getBufferSize(), builder.writeImmediately);
     }
@@ -290,13 +280,7 @@ public class WriterOutputStream extends OutputStream {
     @Deprecated
     public WriterOutputStream(final Writer writer, final Charset charset, final int bufferSize, final boolean writeImmediately) {
         // @formatter:off
-        this(writer,
-            Charsets.toCharset(charset).newDecoder()
-                    .onMalformedInput(CodingErrorAction.REPLACE)
-                    .onUnmappableCharacter(CodingErrorAction.REPLACE)
-                    .replaceWith("?"),
-             bufferSize,
-             writeImmediately);
+        this(writer, Charsets.toCharset(charset).newDecoder().onMalformedInput(CodingErrorAction.REPLACE).onUnmappableCharacter(CodingErrorAction.REPLACE).replaceWith("?"), bufferSize, writeImmediately);
         // @formatter:on
     }
 
@@ -372,9 +356,7 @@ public class WriterOutputStream extends OutputStream {
      */
     @Override
     public void close() throws IOException {
-        processInput(true);
-        flushOutput();
-        writer.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -385,8 +367,7 @@ public class WriterOutputStream extends OutputStream {
      */
     @Override
     public void flush() throws IOException {
-        flushOutput();
-        writer.flush();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -435,7 +416,7 @@ public class WriterOutputStream extends OutputStream {
      */
     @Override
     public void write(final byte[] b) throws IOException {
-        write(b, 0, b.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -448,16 +429,7 @@ public class WriterOutputStream extends OutputStream {
      */
     @Override
     public void write(final byte[] b, int off, int len) throws IOException {
-        while (len > 0) {
-            final int c = Math.min(len, decoderIn.remaining());
-            decoderIn.put(b, off, c);
-            processInput(false);
-            len -= c;
-            off += c;
-        }
-        if (writeImmediately) {
-            flushOutput();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -468,6 +440,6 @@ public class WriterOutputStream extends OutputStream {
      */
     @Override
     public void write(final int b) throws IOException {
-        write(new byte[] { (byte) b }, 0, 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +30,6 @@ import java.nio.charset.CharsetEncoder;
 import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
 import java.util.Objects;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
@@ -143,18 +141,16 @@ public class ReaderInputStream extends AbstractInputStream {
          */
         @Override
         public ReaderInputStream get() throws IOException {
-            return new ReaderInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         CharsetEncoder getCharsetEncoder() {
-            return charsetEncoder;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Builder setCharset(final Charset charset) {
-            super.setCharset(charset);
-            charsetEncoder = newEncoder(getCharset());
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -164,11 +160,8 @@ public class ReaderInputStream extends AbstractInputStream {
          * @return {@code this} instance.
          */
         public Builder setCharsetEncoder(final CharsetEncoder newEncoder) {
-            charsetEncoder = CharsetEncoders.toCharsetEncoder(newEncoder, () -> newEncoder(getCharsetDefault()));
-            super.setCharset(charsetEncoder.charset());
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -178,27 +171,20 @@ public class ReaderInputStream extends AbstractInputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static int checkMinBufferSize(final CharsetEncoder charsetEncoder, final int bufferSize) {
-        final float minRequired = minBufferSize(charsetEncoder);
-        if (bufferSize < minRequired) {
-            throw new IllegalArgumentException(String.format("Buffer size %,d must be at least %s for a CharsetEncoder %s.", bufferSize, minRequired,
-                    charsetEncoder.charset().displayName()));
-        }
-        return bufferSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static float minBufferSize(final CharsetEncoder charsetEncoder) {
-        return charsetEncoder.maxBytesPerChar() * 2;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static CharsetEncoder newEncoder(final Charset charset) {
         // @formatter:off
-        return Charsets.toCharset(charset).newEncoder()
-                .onMalformedInput(CodingErrorAction.REPLACE)
-                .onUnmappableCharacter(CodingErrorAction.REPLACE);
+        return Charsets.toCharset(charset).newEncoder().onMalformedInput(CodingErrorAction.REPLACE).onUnmappableCharacter(CodingErrorAction.REPLACE);
         // @formatter:on
     }
 
@@ -210,6 +196,7 @@ public class ReaderInputStream extends AbstractInputStream {
      * CharBuffer used as input for the decoder. It should be reasonably large as we read data from the underlying Reader into this buffer.
      */
     private final CharBuffer encoderIn;
+
     /**
      * ByteBuffer used as output for the decoder. This buffer can be small as it is only used to transfer data from the decoder to the buffer provided by the
      * caller.
@@ -220,7 +207,8 @@ public class ReaderInputStream extends AbstractInputStream {
 
     private boolean endOfInput;
 
-    @SuppressWarnings("resource") // caller closes.
+    // caller closes.
+    @SuppressWarnings("resource")
     private ReaderInputStream(final Builder builder) throws IOException {
         this(builder.getReader(), builder.charsetEncoder, builder.getBufferSize());
     }
@@ -268,11 +256,7 @@ public class ReaderInputStream extends AbstractInputStream {
     @Deprecated
     public ReaderInputStream(final Reader reader, final Charset charset, final int bufferSize) {
         // @formatter:off
-        this(reader,
-            Charsets.toCharset(charset).newEncoder()
-                    .onMalformedInput(CodingErrorAction.REPLACE)
-                    .onUnmappableCharacter(CodingErrorAction.REPLACE),
-             bufferSize);
+        this(reader, Charsets.toCharset(charset).newEncoder().onMalformedInput(CodingErrorAction.REPLACE).onUnmappableCharacter(CodingErrorAction.REPLACE), bufferSize);
         // @formatter:on
     }
 
@@ -353,10 +337,7 @@ public class ReaderInputStream extends AbstractInputStream {
 
     @Override
     public int available() throws IOException {
-        if (encoderOut.hasRemaining()) {
-            return encoderOut.remaining();
-        }
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -366,8 +347,7 @@ public class ReaderInputStream extends AbstractInputStream {
      */
     @Override
     public void close() throws IOException {
-        reader.close();
-        super.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -410,7 +390,7 @@ public class ReaderInputStream extends AbstractInputStream {
      * @return the CharsetEncoder.
      */
     CharsetEncoder getCharsetEncoder() {
-        return charsetEncoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -421,16 +401,7 @@ public class ReaderInputStream extends AbstractInputStream {
      */
     @Override
     public int read() throws IOException {
-        checkOpen();
-        for (;;) {
-            if (encoderOut.hasRemaining()) {
-                return encoderOut.get() & 0xFF;
-            }
-            fillBuffer();
-            if (endOfInput && !encoderOut.hasRemaining()) {
-                return EOF;
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -442,7 +413,7 @@ public class ReaderInputStream extends AbstractInputStream {
      */
     @Override
     public int read(final byte[] b) throws IOException {
-        return read(b, 0, b.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -456,27 +427,6 @@ public class ReaderInputStream extends AbstractInputStream {
      */
     @Override
     public int read(final byte[] array, int off, int len) throws IOException {
-        Objects.requireNonNull(array, "array");
-        if (len < 0 || off < 0 || off + len > array.length) {
-            throw new IndexOutOfBoundsException("Array size=" + array.length + ", offset=" + off + ", length=" + len);
-        }
-        int read = 0;
-        if (len == 0) {
-            return 0; // Always return 0 if len == 0
-        }
-        while (len > 0) {
-            if (encoderOut.hasRemaining()) { // Data from the last read not fully copied
-                final int c = Math.min(encoderOut.remaining(), len);
-                encoderOut.get(array, off, c);
-                off += c;
-                len -= c;
-                read += c;
-            } else if (endOfInput) { // Already reach EOF in the last read
-                break;
-            } else { // Read again
-                fillBuffer();
-            }
-        }
-        return read == 0 && endOfInput ? EOF : read;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

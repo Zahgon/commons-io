@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.filefilter;
 
 import java.io.File;
@@ -33,6 +32,7 @@ import java.util.Objects;
 public class FileEqualsFileFilter extends AbstractFileFilter {
 
     private final File file;
+
     private final Path path;
 
     /**
@@ -47,11 +47,11 @@ public class FileEqualsFileFilter extends AbstractFileFilter {
 
     @Override
     public boolean accept(final File file) {
-        return Objects.equals(this.file, file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        return toFileVisitResult(Objects.equals(this.path, path));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.UUID;
-
 import org.apache.commons.io.TaggedIOException;
 
 /**
@@ -86,7 +85,7 @@ public class TaggedOutputStream extends ProxyOutputStream {
      */
     @Override
     protected void handleIOException(final IOException e) throws IOException {
-        throw new TaggedIOException(e, tag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,7 +96,7 @@ public class TaggedOutputStream extends ProxyOutputStream {
      *         {@code false} otherwise
      */
     public boolean isCauseOf(final Exception exception) {
-        return TaggedIOException.isTaggedWith(exception, tag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -111,7 +110,6 @@ public class TaggedOutputStream extends ProxyOutputStream {
      * @throws IOException original exception, if any, thrown by this stream
      */
     public void throwIfCauseOf(final Exception exception) throws IOException {
-        TaggedIOException.throwCauseIfTaggedWith(exception, tag);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

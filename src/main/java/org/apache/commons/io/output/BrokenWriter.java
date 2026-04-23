@@ -19,7 +19,6 @@ package org.apache.commons.io.output;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.function.Supplier;
-
 import org.apache.commons.io.function.Erase;
 
 /**
@@ -89,7 +88,7 @@ public class BrokenWriter extends Writer {
      */
     @Override
     public void close() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -99,7 +98,7 @@ public class BrokenWriter extends Writer {
      */
     @Override
     public void flush() throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -121,7 +120,6 @@ public class BrokenWriter extends Writer {
      */
     @Override
     public void write(final char[] cbuf, final int off, final int len) throws IOException {
-        throw rethrow();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

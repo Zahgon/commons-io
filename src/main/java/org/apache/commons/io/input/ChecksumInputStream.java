@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
@@ -149,7 +148,7 @@ public final class ChecksumInputStream extends CountingInputStream {
          */
         @Override
         public ChecksumInputStream get() throws IOException {
-            return new ChecksumInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -160,8 +159,7 @@ public final class ChecksumInputStream extends CountingInputStream {
          * @return {@code this} instance.
          */
         public Builder setChecksum(final Checksum checksum) {
-            this.checksum = checksum;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -175,8 +173,7 @@ public final class ChecksumInputStream extends CountingInputStream {
          * @return {@code this} instance.
          */
         public Builder setCountThreshold(final long countThreshold) {
-            this.countThreshold = countThreshold;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -186,10 +183,8 @@ public final class ChecksumInputStream extends CountingInputStream {
          * @return {@code this} instance.
          */
         public Builder setExpectedChecksumValue(final long expectedChecksumValue) {
-            this.expectedChecksumValue = expectedChecksumValue;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -198,10 +193,12 @@ public final class ChecksumInputStream extends CountingInputStream {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** The expected checksum. */
+    /**
+     * The expected checksum.
+     */
     private final long expectedChecksumValue;
 
     /**
@@ -227,12 +224,7 @@ public final class ChecksumInputStream extends CountingInputStream {
 
     @Override
     protected synchronized void afterRead(final int n) throws IOException {
-        super.afterRead(n);
-        if ((countThreshold > 0 && getByteCount() >= countThreshold || n == EOF)
-                && expectedChecksumValue != getChecksum().getValue()) {
-            // Validate when past the threshold or at EOF
-            throw new IOException("Checksum verification failed.");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -250,7 +242,6 @@ public final class ChecksumInputStream extends CountingInputStream {
      * @return bytes remaining to read, a negative number means the threshold is unbound.
      */
     public long getRemaining() {
-        return countThreshold - getByteCount();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

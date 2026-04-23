@@ -28,7 +28,9 @@ import java.io.OutputStream;
  */
 public class CountingOutputStream extends ProxyOutputStream {
 
-    /** The count of bytes that have passed. */
+    /**
+     * The count of bytes that have passed.
+     */
     private long count;
 
     /**
@@ -48,7 +50,7 @@ public class CountingOutputStream extends ProxyOutputStream {
      */
     @Override
     protected synchronized void beforeWrite(final int n) {
-        count += n;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -63,7 +65,7 @@ public class CountingOutputStream extends ProxyOutputStream {
      * @since 1.3
      */
     public synchronized long getByteCount() {
-        return this.count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -78,11 +80,7 @@ public class CountingOutputStream extends ProxyOutputStream {
      * @throws ArithmeticException if the byte count is too large
      */
     public int getCount() {
-        final long result = getByteCount();
-        if (result > Integer.MAX_VALUE) {
-            throw new ArithmeticException("The byte count " + result + " is too large to be converted to an int");
-        }
-        return (int) result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,9 +95,7 @@ public class CountingOutputStream extends ProxyOutputStream {
      * @since 1.3
      */
     public synchronized long resetByteCount() {
-        final long tmp = this.count;
-        this.count = 0;
-        return tmp;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -114,11 +110,6 @@ public class CountingOutputStream extends ProxyOutputStream {
      * @throws ArithmeticException if the byte count is too large
      */
     public int resetCount() {
-        final long result = resetByteCount();
-        if (result > Integer.MAX_VALUE) {
-            throw new ArithmeticException("The byte count " + result + " is too large to be converted to an int");
-        }
-        return (int) result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

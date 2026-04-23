@@ -32,7 +32,7 @@ import java.io.Writer;
  * @see Appendable
  * @param <T> The type of the {@link Appendable} wrapped by this AppendableOutputStream.
  */
-public class AppendableOutputStream <T extends Appendable> extends OutputStream {
+public class AppendableOutputStream<T extends Appendable> extends OutputStream {
 
     private final T appendable;
 
@@ -51,7 +51,7 @@ public class AppendableOutputStream <T extends Appendable> extends OutputStream 
      * @return the target appendable
      */
     public T getAppendable() {
-        return appendable;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -62,7 +62,6 @@ public class AppendableOutputStream <T extends Appendable> extends OutputStream 
      */
     @Override
     public void write(final int b) throws IOException {
-        appendable.append((char) b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

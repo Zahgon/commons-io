@@ -18,7 +18,6 @@ package org.apache.commons.io.output;
 
 import java.io.IOException;
 import java.io.OutputStream;
-
 import org.apache.commons.io.function.IOConsumer;
 import org.apache.commons.io.function.IOFunction;
 
@@ -93,8 +92,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * @param outputStreamGetter Gets the output stream.
      * @since 2.9.0
      */
-    public ThresholdingOutputStream(final int threshold, final IOConsumer<ThresholdingOutputStream> thresholdConsumer,
-        final IOFunction<ThresholdingOutputStream, OutputStream> outputStreamGetter) {
+    public ThresholdingOutputStream(final int threshold, final IOConsumer<ThresholdingOutputStream> thresholdConsumer, final IOFunction<ThresholdingOutputStream, OutputStream> outputStreamGetter) {
         this.threshold = threshold < 0 ? 0 : threshold;
         this.thresholdConsumer = thresholdConsumer == null ? IOConsumer.noop() : thresholdConsumer;
         this.outputStreamGetter = outputStreamGetter == null ? NOOP_OS_GETTER : outputStreamGetter;
@@ -108,10 +106,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * @throws IOException if an error occurs.
      */
     protected void checkThreshold(final int count) throws IOException {
-        if (!thresholdExceeded && written + count > threshold) {
-            thresholdExceeded = true;
-            thresholdReached();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -121,13 +116,7 @@ public class ThresholdingOutputStream extends OutputStream {
      */
     @Override
     public void close() throws IOException {
-        try {
-            flush();
-        } catch (final IOException ignored) {
-            // ignore
-        }
-        // TODO for 4.0: Replace with getOutputStream()
-        getStream().close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -135,11 +124,11 @@ public class ThresholdingOutputStream extends OutputStream {
      *
      * @throws IOException if an error occurs.
      */
-    @SuppressWarnings("resource") // the underlying stream is managed by a subclass.
+    // the underlying stream is managed by a subclass.
+    @SuppressWarnings("resource")
     @Override
     public void flush() throws IOException {
-        // TODO for 4.0: Replace with getOutputStream()
-        getStream().flush();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -148,7 +137,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * @return The number of bytes written.
      */
     public long getByteCount() {
-        return written;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -160,7 +149,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * @since 2.14.0
      */
     protected OutputStream getOutputStream() throws IOException {
-        return outputStreamGetter.apply(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -182,7 +171,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * @return The threshold point, in bytes.
      */
     public int getThreshold() {
-        return threshold;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -191,7 +180,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * @return {@code true} if the threshold has been reached; {@code false} otherwise.
      */
     public boolean isThresholdExceeded() {
-        return written > threshold;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -199,8 +188,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * triggered again.
      */
     protected void resetByteCount() {
-        this.thresholdExceeded = false;
-        this.written = 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -210,7 +198,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * @since 2.5
      */
     protected void setByteCount(final long count) {
-        this.written = count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -220,7 +208,7 @@ public class ThresholdingOutputStream extends OutputStream {
      * @throws IOException if an error occurs.
      */
     protected void thresholdReached() throws IOException {
-        thresholdConsumer.accept(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -229,13 +217,11 @@ public class ThresholdingOutputStream extends OutputStream {
      * @param b The array of bytes to be written.
      * @throws IOException if an error occurs.
      */
-    @SuppressWarnings("resource") // the underlying stream is managed by a subclass.
+    // the underlying stream is managed by a subclass.
+    @SuppressWarnings("resource")
     @Override
     public void write(final byte[] b) throws IOException {
-        checkThreshold(b.length);
-        // TODO for 4.0: Replace with getOutputStream()
-        getStream().write(b);
-        written += b.length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -246,15 +232,11 @@ public class ThresholdingOutputStream extends OutputStream {
      * @param len The number of bytes to write.
      * @throws IOException if an error occurs.
      */
-    @SuppressWarnings("resource") // the underlying stream is managed by a subclass.
+    // the underlying stream is managed by a subclass.
+    @SuppressWarnings("resource")
     @Override
     public void write(final byte[] b, final int off, final int len) throws IOException {
-        // TODO we could write the sub-array up the threshold, fire the event,
-        // and then write the rest so the event is always fired at the precise point.
-        checkThreshold(len);
-        // TODO for 4.0: Replace with getOutputStream()
-        getStream().write(b, off, len);
-        written += len;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -263,12 +245,10 @@ public class ThresholdingOutputStream extends OutputStream {
      * @param b The byte to be written.
      * @throws IOException if an error occurs.
      */
-    @SuppressWarnings("resource") // the underlying stream is managed by a subclass.
+    // the underlying stream is managed by a subclass.
+    @SuppressWarnings("resource")
     @Override
     public void write(final int b) throws IOException {
-        checkThreshold(1);
-        // TODO for 4.0: Replace with getOutputStream()
-        getStream().write(b);
-        written++;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

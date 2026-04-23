@@ -33,7 +33,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileSystem;
 import org.apache.commons.io.StandardLineSeparator;
@@ -120,12 +119,12 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
          */
         @Override
         public ReversedLinesFileReader get() throws IOException {
-            return new ReversedLinesFileReader(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private final class FilePart {
+
         private final long partNumber;
 
         private final byte[] data;
@@ -147,9 +146,9 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
             final int dataLength = length + (leftOverOfLastFilePart != null ? leftOverOfLastFilePart.length : 0);
             this.data = new byte[dataLength];
             final long off = (partNumber - 1) * blockSize;
-
             // read data
-            if (partNumber > 0 /* file not empty */) {
+            if (partNumber > 0) /* file not empty */
+            {
                 channel.position(off);
                 final int countRead = channel.read(ByteBuffer.wrap(data, 0, length));
                 if (countRead != length) {
@@ -204,56 +203,49 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
          *
          * @return the line or null
          */
-        private String readLine() { //NOPMD Bug in PMD
-
+        private String readLine() {
+            //NOPMD Bug in PMD
             String line = null;
             int newLineMatchByteCount;
-
             final boolean isLastFilePart = partNumber == 1;
-
             int i = currentLastBytePos;
             while (i > -1) {
-
                 if (!isLastFilePart && i < avoidNewlineSplitBufferSize) {
                     // avoidNewlineSplitBuffer: for all except the last file part we
                     // take a few bytes to the next file part to avoid splitting of newlines
                     createLeftOver();
-                    break; // skip last few bytes and leave it to the next file part
+                    // skip last few bytes and leave it to the next file part
+                    break;
                 }
-
                 // check for newline
-                if ((newLineMatchByteCount = getNewLineMatchByteCount(data, i)) > 0 /* found newline */) {
+                if ((newLineMatchByteCount = getNewLineMatchByteCount(data, i)) > 0) /* found newline */
+                {
                     final int lineStart = i + 1;
                     final int lineLengthBytes = currentLastBytePos - lineStart + 1;
-
                     if (lineLengthBytes < 0) {
                         throw new IllegalStateException("Unexpected negative line length=" + lineLengthBytes);
                     }
                     final byte[] lineData = Arrays.copyOfRange(data, lineStart, lineStart + lineLengthBytes);
-
                     line = new String(lineData, charset);
-
                     currentLastBytePos = i - newLineMatchByteCount;
-                    break; // found line
+                    // found line
+                    break;
                 }
-
                 // move cursor
                 i -= byteDecrement;
-
                 // end of file part handling
                 if (i < 0) {
                     createLeftOver();
-                    break; // end of file part
+                    // end of file part
+                    break;
                 }
             }
-
             // last file part handling
             if (isLastFilePart && leftOver != null) {
                 // there will be partNumber line break anymore, this is the first line of the file
                 line = new String(leftOver, charset);
                 leftOver = null;
             }
-
             return line;
         }
 
@@ -264,19 +256,15 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
          * @throws IOException if there was a problem reading the file
          */
         private FilePart rollOver() throws IOException {
-
             if (currentLastBytePos > -1) {
-                throw new IllegalStateException("Current currentLastCharPos unexpectedly positive... "
-                        + "last readLine() should have returned something! currentLastCharPos=" + currentLastBytePos);
+                throw new IllegalStateException("Current currentLastCharPos unexpectedly positive... " + "last readLine() should have returned something! currentLastCharPos=" + currentLastBytePos);
             }
-
             if (partNumber > 1) {
                 return new FilePart(partNumber - 1, blockSize, leftOver);
             }
             // NO 1 was the last FilePart, we're finished
             if (leftOver != null) {
-                throw new IllegalStateException("Unexpected leftover of the last block: leftOverOfThisFilePart="
-                        + new String(leftOver, charset));
+                throw new IllegalStateException("Unexpected leftover of the last block: leftOverOfThisFilePart=" + new String(leftOver, charset));
             }
             return null;
         }
@@ -293,18 +281,27 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final int blockSize;
+
     private final Charset charset;
+
     private final SeekableByteChannel channel;
+
     private final long totalByteLength;
+
     private final long totalBlockCount;
+
     private final byte[][] newLineSequences;
+
     private final int avoidNewlineSplitBufferSize;
+
     private final int byteDecrement;
+
     private FilePart currentFilePart;
+
     private boolean trailingNewlineOfFileSkipped;
 
     private ReversedLinesFileReader(final Builder builder) throws IOException {
@@ -316,12 +313,13 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
         if (maxBytesPerChar == 1f || this.charset == StandardCharsets.UTF_8) {
             // all one byte encodings are partNumber problem
             byteDecrement = 1;
-        } else if (this.charset == Charset.forName("Shift_JIS") || // Same as for UTF-8
-                // http://www.herongyang.com/Unicode/JIS-Shift-JIS-Encoding.html
-                this.charset == Charset.forName("windows-31j") || // Windows code page 932 (Japanese)
-                this.charset == Charset.forName("x-windows-949") || // Windows code page 949 (Korean)
-                this.charset == Charset.forName("gbk") || // Windows code page 936 (Simplified Chinese)
-                this.charset == Charset.forName("x-windows-950")) { // Windows code page 950 (Traditional Chinese)
+        } else if (// Same as for UTF-8
+        this.charset == Charset.forName("Shift_JIS") || // http://www.herongyang.com/Unicode/JIS-Shift-JIS-Encoding.html
+        this.charset == // Windows code page 932 (Japanese)
+        Charset.forName("windows-31j") || // Windows code page 949 (Korean)
+        this.charset == Charset.forName("x-windows-949") || // Windows code page 936 (Simplified Chinese)
+        this.charset == Charset.forName("gbk") || this.charset == Charset.forName("x-windows-950")) {
+            // Windows code page 950 (Traditional Chinese)
             byteDecrement = 1;
         } else if (this.charset == StandardCharsets.UTF_16BE || this.charset == StandardCharsets.UTF_16LE) {
             // UTF-16 new line sequences are not allowed as second tuple of four byte
@@ -335,8 +333,7 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
         }
         // NOTE: The new line sequences are matched in the order given, so it is
         // important that \r\n is BEFORE \n
-        this.newLineSequences = new byte[][] { StandardLineSeparator.CRLF.getBytes(this.charset), StandardLineSeparator.LF.getBytes(this.charset),
-                StandardLineSeparator.CR.getBytes(this.charset) };
+        this.newLineSequences = new byte[][] { StandardLineSeparator.CRLF.getBytes(this.charset), StandardLineSeparator.LF.getBytes(this.charset), StandardLineSeparator.CR.getBytes(this.charset) };
         this.avoidNewlineSplitBufferSize = newLineSequences[0].length;
         // Open file
         this.channel = Files.newByteChannel(builder.getPath(), StandardOpenOption.READ);
@@ -471,39 +468,12 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
      */
     @Override
     public void close() throws IOException {
-        channel.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public IOIterator<String> iterator() {
-        return new IOIterator<String>() {
-
-            private String next;
-
-            @Override
-            public boolean hasNext() throws IOException {
-                if (next == null) {
-                    next = readLine();
-                }
-                return next != null;
-            }
-
-            @Override
-            public String next() throws IOException {
-                if (next == null) {
-                    next = readLine();
-                }
-                final String tmp = next;
-                next = null;
-                return tmp;
-            }
-
-            @Override
-            public Iterator<String> unwrap() {
-                return null;
-            }
-
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -513,21 +483,7 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
      * @throws IOException if an I/O error occurs.
      */
     public String readLine() throws IOException {
-        String line = currentFilePart.readLine();
-        while (line == null) {
-            currentFilePart = currentFilePart.rollOver();
-            if (currentFilePart == null) {
-                // partNumber more FileParts: we're done, leave line set to null
-                break;
-            }
-            line = currentFilePart.readLine();
-        }
-        // aligned behavior with BufferedReader that doesn't return a last, empty line
-        if (EMPTY_STRING.equals(line) && !trailingNewlineOfFileSkipped) {
-            trailingNewlineOfFileSkipped = true;
-            line = readLine();
-        }
-        return line;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -546,18 +502,7 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
      * @since 2.8.0
      */
     public List<String> readLines(final int lineCount) throws IOException {
-        if (lineCount < 0) {
-            throw new IllegalArgumentException("lineCount < 0");
-        }
-        final ArrayList<String> arrayList = new ArrayList<>(lineCount);
-        for (int i = 0; i < lineCount; i++) {
-            final String line = readLine();
-            if (line == null) {
-                return arrayList;
-            }
-            arrayList.add(line);
-        }
-        return arrayList;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -573,14 +518,11 @@ public class ReversedLinesFileReader implements Closeable, IOIterable<String> {
      * @since 2.8.0
      */
     public String toString(final int lineCount) throws IOException {
-        final List<String> lines = readLines(lineCount);
-        Collections.reverse(lines);
-        return lines.isEmpty() ? EMPTY_STRING : String.join(System.lineSeparator(), lines) + System.lineSeparator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterable<String> unwrap() {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

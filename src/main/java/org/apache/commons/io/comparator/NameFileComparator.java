@@ -19,7 +19,6 @@ package org.apache.commons.io.comparator;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Comparator;
-
 import org.apache.commons.io.IOCase;
 
 /**
@@ -58,25 +57,39 @@ public class NameFileComparator extends AbstractFileComparator implements Serial
 
     private static final long serialVersionUID = 8397947749814525798L;
 
-    /** Case-sensitive name comparator instance (see {@link IOCase#SENSITIVE}) */
+    /**
+     * Case-sensitive name comparator instance (see {@link IOCase#SENSITIVE})
+     */
     public static final Comparator<File> NAME_COMPARATOR = new NameFileComparator();
 
-    /** Reverse case-sensitive name comparator instance (see {@link IOCase#SENSITIVE}) */
+    /**
+     * Reverse case-sensitive name comparator instance (see {@link IOCase#SENSITIVE})
+     */
     public static final Comparator<File> NAME_REVERSE = new ReverseFileComparator(NAME_COMPARATOR);
 
-    /** Case-insensitive name comparator instance (see {@link IOCase#INSENSITIVE}) */
+    /**
+     * Case-insensitive name comparator instance (see {@link IOCase#INSENSITIVE})
+     */
     public static final Comparator<File> NAME_INSENSITIVE_COMPARATOR = new NameFileComparator(IOCase.INSENSITIVE);
 
-    /** Reverse case-insensitive name comparator instance (see {@link IOCase#INSENSITIVE}) */
+    /**
+     * Reverse case-insensitive name comparator instance (see {@link IOCase#INSENSITIVE})
+     */
     public static final Comparator<File> NAME_INSENSITIVE_REVERSE = new ReverseFileComparator(NAME_INSENSITIVE_COMPARATOR);
 
-    /** System sensitive name comparator instance (see {@link IOCase#SYSTEM}) */
+    /**
+     * System sensitive name comparator instance (see {@link IOCase#SYSTEM})
+     */
     public static final Comparator<File> NAME_SYSTEM_COMPARATOR = new NameFileComparator(IOCase.SYSTEM);
 
-    /** Reverse system sensitive name comparator instance (see {@link IOCase#SYSTEM}) */
+    /**
+     * Reverse system sensitive name comparator instance (see {@link IOCase#SYSTEM})
+     */
     public static final Comparator<File> NAME_SYSTEM_REVERSE = new ReverseFileComparator(NAME_SYSTEM_COMPARATOR);
 
-    /** Whether the comparison is case-sensitive. */
+    /**
+     * Whether the comparison is case-sensitive.
+     */
     private final IOCase ioCase;
 
     /**
@@ -107,7 +120,7 @@ public class NameFileComparator extends AbstractFileComparator implements Serial
      */
     @Override
     public int compare(final File file1, final File file2) {
-        return ioCase.checkCompareTo(file1.getName(), file2.getName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,6 +130,6 @@ public class NameFileComparator extends AbstractFileComparator implements Serial
      */
     @Override
     public String toString() {
-        return super.toString() + "[ioCase=" + ioCase + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

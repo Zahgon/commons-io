@@ -24,7 +24,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.file.PathUtils;
 
@@ -74,10 +73,14 @@ public class NameFileFilter extends AbstractFileFilter implements Serializable {
 
     private static final long serialVersionUID = 176844364689077340L;
 
-    /** The file names to search for */
+    /**
+     * The file names to search for
+     */
     private final String[] names;
 
-    /** Whether the comparison is case-sensitive. */
+    /**
+     * Whether the comparison is case-sensitive.
+     */
     private final IOCase ioCase;
 
     /**
@@ -138,7 +141,7 @@ public class NameFileFilter extends AbstractFileFilter implements Serializable {
      */
     public NameFileFilter(final String name, final IOCase ioCase) {
         Objects.requireNonNull(name, "name");
-        this.names = new String[] {name};
+        this.names = new String[] { name };
         this.ioCase = toIOCase(ioCase);
     }
 
@@ -163,7 +166,7 @@ public class NameFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File file) {
-        return file != null && acceptBaseName(file.getName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,7 +178,7 @@ public class NameFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File dir, final String name) {
-        return acceptBaseName(name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -188,7 +191,7 @@ public class NameFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        return toFileVisitResult(acceptBaseName(PathUtils.getFileNameString(path)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean acceptBaseName(final String baseName) {
@@ -206,12 +209,6 @@ public class NameFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public String toString() {
-        final StringBuilder buffer = new StringBuilder();
-        buffer.append(super.toString());
-        buffer.append("(");
-        append(names, buffer);
-        buffer.append(")");
-        return buffer.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

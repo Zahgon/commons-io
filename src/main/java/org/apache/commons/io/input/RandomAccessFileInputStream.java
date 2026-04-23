@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import java.io.File;
@@ -22,7 +21,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.util.Objects;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractOrigin;
 import org.apache.commons.io.build.AbstractStreamBuilder;
@@ -92,7 +90,7 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
          */
         @Override
         public RandomAccessFileInputStream get() throws IOException {
-            return new RandomAccessFileInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -102,8 +100,7 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
          * @return {@code this} instance.
          */
         public Builder setCloseOnClose(final boolean propagateClose) {
-            this.propagateClose = propagateClose;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -112,11 +109,11 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
          * @param randomAccessFile the RandomAccessFile to stream.
          * @return {@code this} instance.
          */
-        @Override // MUST keep this method for binary compatibility since the super version of this method uses a generic which compiles to Object.
-        public Builder setRandomAccessFile(final RandomAccessFile randomAccessFile) { // NOPMD see above.
-            return super.setRandomAccessFile(randomAccessFile);
+        // MUST keep this method for binary compatibility since the super version of this method uses a generic which compiles to Object.
+        @Override
+        public Builder setRandomAccessFile(final RandomAccessFile randomAccessFile) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -126,13 +123,15 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final boolean propagateClose;
+
     private final RandomAccessFile randomAccessFile;
 
-    @SuppressWarnings("resource") // caller closes.
+    // caller closes.
+    @SuppressWarnings("resource")
     private RandomAccessFileInputStream(final Builder builder) throws IOException {
         this(builder.getRandomAccessFile(), builder.propagateClose);
     }
@@ -172,7 +171,7 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
      */
     @Override
     public int available() throws IOException {
-        return Math.toIntExact(Math.min(availableLong(), Integer.MAX_VALUE));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -182,15 +181,12 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
      * @throws IOException If an I/O error occurs.
      */
     public long availableLong() throws IOException {
-        return isClosed() ? 0 : randomAccessFile.length() - randomAccessFile.getFilePointer();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() throws IOException {
-        super.close();
-        if (propagateClose) {
-            randomAccessFile.close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -204,8 +200,7 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
      * @since 2.19.0
      */
     public long copy(final long pos, final long size, final OutputStream os) throws IOException {
-        randomAccessFile.seek(pos);
-        return IOUtils.copyLarge(this, os, 0, size);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -214,7 +209,7 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
      * @return the underlying file.
      */
     public RandomAccessFile getRandomAccessFile() {
-        return randomAccessFile;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -223,39 +218,26 @@ public class RandomAccessFileInputStream extends AbstractInputStream {
      * @return Whether to close the underlying file when this stream is closed.
      */
     public boolean isCloseOnClose() {
-        return propagateClose;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read() throws IOException {
-        return randomAccessFile.read();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] bytes) throws IOException {
-        return randomAccessFile.read(bytes);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] bytes, final int offset, final int length) throws IOException {
-        return randomAccessFile.read(bytes, offset, length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long skip(final long skipCount) throws IOException {
-        if (skipCount <= 0) {
-            return 0;
-        }
-        final long filePointer = randomAccessFile.getFilePointer();
-        final long fileLength = randomAccessFile.length();
-        if (filePointer >= fileLength) {
-            return 0;
-        }
-        final long targetPos = filePointer + skipCount;
-        final long newPos = targetPos > fileLength ? fileLength - 1 : targetPos;
-        if (newPos > 0) {
-            randomAccessFile.seek(newPos);
-        }
-        return randomAccessFile.getFilePointer() - filePointer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

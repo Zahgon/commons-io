@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.Reader;
 import java.io.Serializable;
 import java.util.Objects;
@@ -39,13 +38,19 @@ public class CharSequenceReader extends Reader implements Serializable {
 
     private static final long serialVersionUID = 3724187752191401220L;
 
-    /** Source for reading. */
+    /**
+     * Source for reading.
+     */
     private final CharSequence charSequence;
 
-    /** Reading index. */
+    /**
+     * Reading index.
+     */
     private int idx;
 
-    /** Reader mark. */
+    /**
+     * Reader mark.
+     */
     private int mark;
 
     /**
@@ -133,11 +138,9 @@ public class CharSequenceReader extends Reader implements Serializable {
         }
         // Don't check the start and end indexes against the CharSequence,
         // to let it grow and shrink without breaking existing behavior.
-
         this.charSequence = charSequence != null ? charSequence : "";
         this.start = start;
         this.end = end;
-
         this.idx = start;
         this.mark = start;
     }
@@ -147,8 +150,7 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public void close() {
-        idx = start;
-        mark = start;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -171,7 +173,7 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public void mark(final int readAheadLimit) {
-        mark = idx;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -181,7 +183,7 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public boolean markSupported() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -192,10 +194,7 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public int read() {
-        if (idx >= end()) {
-            return EOF;
-        }
-        return charSequence.charAt(idx++);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -209,44 +208,7 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public int read(final char[] array, final int offset, final int length) {
-        if (idx >= end()) {
-            return EOF;
-        }
-        Objects.requireNonNull(array, "array");
-        if (length < 0 || offset < 0 || offset + length > array.length) {
-            throw new IndexOutOfBoundsException("Array Size=" + array.length +
-                    ", offset=" + offset + ", length=" + length);
-        }
-
-        if (charSequence instanceof String) {
-            final int count = Math.min(length, end() - idx);
-            ((String) charSequence).getChars(idx, idx + count, array, offset);
-            idx += count;
-            return count;
-        }
-        if (charSequence instanceof StringBuilder) {
-            final int count = Math.min(length, end() - idx);
-            ((StringBuilder) charSequence).getChars(idx, idx + count, array, offset);
-            idx += count;
-            return count;
-        }
-        if (charSequence instanceof StringBuffer) {
-            final int count = Math.min(length, end() - idx);
-            ((StringBuffer) charSequence).getChars(idx, idx + count, array, offset);
-            idx += count;
-            return count;
-        }
-
-        int count = 0;
-        for (int i = 0; i < length; i++) {
-            final int c = read();
-            if (c == EOF) {
-                return count;
-            }
-            array[offset + i] = (char) c;
-            count++;
-        }
-        return count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -256,7 +218,7 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public boolean ready() {
-        return idx < end();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -265,7 +227,7 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public void reset() {
-        idx = mark;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -276,16 +238,7 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public long skip(final long n) {
-        if (n < 0) {
-            throw new IllegalArgumentException("Number of characters to skip is less than zero: " + n);
-        }
-        if (idx >= end()) {
-            return 0;
-        }
-        final int dest = (int) Math.min(end(), idx + n);
-        final int count = dest - idx;
-        idx = dest;
-        return count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -305,6 +258,6 @@ public class CharSequenceReader extends Reader implements Serializable {
      */
     @Override
     public String toString() {
-        return charSequence.subSequence(start(), end()).toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.build;
 
 import java.io.ByteArrayInputStream;
@@ -38,7 +37,6 @@ import java.nio.file.StandardOpenOption;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.Arrays;
 import java.util.Objects;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IORandomAccessFile;
 import org.apache.commons.io.IOUtils;
@@ -76,8 +74,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @param <T> the type of instances to build.
      * @param <B> the type of builder subclass.
      */
-    public abstract static class AbstractRandomAccessFileOrigin<T extends RandomAccessFile, B extends AbstractRandomAccessFileOrigin<T, B>>
-            extends AbstractOrigin<T, B> {
+    public abstract static class AbstractRandomAccessFileOrigin<T extends RandomAccessFile, B extends AbstractRandomAccessFileOrigin<T, B>> extends AbstractOrigin<T, B> {
 
         /**
          * A {@link RandomAccessFile} origin.
@@ -93,53 +90,48 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
 
         @Override
         public byte[] getByteArray() throws IOException {
-            final long longLen = origin.length();
-            if (longLen > Integer.MAX_VALUE) {
-                throw new IllegalStateException("Origin too large.");
-            }
-            return RandomAccessFiles.read(origin, 0, (int) longLen);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public byte[] getByteArray(final long position, final int length) throws IOException {
-            return RandomAccessFiles.read(origin, position, length);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public CharSequence getCharSequence(final Charset charset) throws IOException {
-            return new String(getByteArray(), charset);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @SuppressWarnings("resource")
         @Override
         public InputStream getInputStream(final OpenOption... options) throws IOException {
-            return BufferedFileChannelInputStream.builder().setFileChannel(origin.getChannel()).get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public OutputStream getOutputStream(final OpenOption... options) throws IOException {
-            return RandomAccessFileOutputStream.builder().setRandomAccessFile(origin).get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public T getRandomAccessFile(final OpenOption... openOption) {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Reader getReader(final Charset charset) throws IOException {
-            return new InputStreamReader(getInputStream(), Charsets.toCharset(charset));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Writer getWriter(final Charset charset, final OpenOption... options) throws IOException {
-            return new OutputStreamWriter(getOutputStream(options), Charsets.toCharset(charset));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public long size() throws IOException {
-            return origin.length();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -159,8 +151,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
 
         @Override
         public byte[] getByteArray() {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -171,19 +162,18 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public InputStream getInputStream(final OpenOption... options) throws IOException {
-            return new ByteArrayInputStream(origin);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Reader getReader(final Charset charset) throws IOException {
-            return new InputStreamReader(getInputStream(), Charsets.toCharset(charset));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public long size() throws IOException {
-            return origin.length;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -202,8 +192,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
 
         @Override
         public byte[] getByteArray() {
-            // TODO Pass in a Charset? Consider if call sites actually need this.
-            return origin.toString().getBytes(Charset.defaultCharset());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -214,8 +203,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public CharSequence getCharSequence(final Charset charset) {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -226,8 +214,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public InputStream getInputStream(final OpenOption... options) throws IOException {
-            // TODO Pass in a Charset? Consider if call sites actually need this.
-            return CharSequenceInputStream.builder().setCharSequence(getCharSequence(Charset.defaultCharset())).get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -238,14 +225,13 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public Reader getReader(final Charset charset) throws IOException {
-            return new CharSequenceReader(get());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public long size() throws IOException {
-            return origin.length();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -267,22 +253,18 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
 
         @Override
         public byte[] getByteArray(final long position, final int length) throws IOException {
-            try (RandomAccessFile raf = RandomAccessFileMode.READ_ONLY.create(origin)) {
-                return RandomAccessFiles.read(raf, position, length);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public File getFile() {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Path getPath() {
-            return get().toPath();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -304,7 +286,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
 
         @Override
         public byte[] getByteArray() throws IOException {
-            return IOUtils.toByteArray(origin);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -315,15 +297,13 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public InputStream getInputStream(final OpenOption... options) {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Reader getReader(final Charset charset) throws IOException {
-            return new InputStreamReader(getInputStream(), Charsets.toCharset(charset));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -345,14 +325,13 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
         @SuppressWarnings("resource")
         @Override
         public File getFile() {
-            return get().getFile();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Path getPath() {
-            return getFile().toPath();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -380,8 +359,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public OutputStream getOutputStream(final OpenOption... options) {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -392,7 +370,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public Writer getWriter(final Charset charset, final OpenOption... options) throws IOException {
-            return new OutputStreamWriter(origin, Charsets.toCharset(charset));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -415,20 +393,18 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
 
         @Override
         public byte[] getByteArray(final long position, final int length) throws IOException {
-            return RandomAccessFileMode.READ_ONLY.apply(origin, raf -> RandomAccessFiles.read(raf, position, length));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public File getFile() {
-            return get().toFile();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Path getPath() {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -451,7 +427,6 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
         public RandomAccessFileOrigin(final RandomAccessFile origin) {
             super(origin);
         }
-
     }
 
     /**
@@ -473,8 +448,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
 
         @Override
         public byte[] getByteArray() throws IOException {
-            // TODO Pass in a Charset? Consider if call sites actually need this.
-            return IOUtils.toByteArray(origin, Charset.defaultCharset());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -485,7 +459,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public CharSequence getCharSequence(final Charset charset) throws IOException {
-            return IOUtils.toString(origin);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -496,8 +470,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public InputStream getInputStream(final OpenOption... options) throws IOException {
-            // TODO Pass in a Charset? Consider if call sites actually need this.
-            return ReaderInputStream.builder().setReader(origin).setCharset(Charset.defaultCharset()).get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -508,8 +481,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public Reader getReader(final Charset charset) throws IOException {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -519,6 +491,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
     public static class URIOrigin extends AbstractOrigin<URI, URIOrigin> {
 
         private static final String SCHEME_HTTPS = "https";
+
         private static final String SCHEME_HTTP = "http";
 
         /**
@@ -532,26 +505,17 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
 
         @Override
         public File getFile() {
-            return getPath().toFile();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public InputStream getInputStream(final OpenOption... options) throws IOException {
-            final URI uri = get();
-            final String scheme = uri.getScheme();
-            final FileSystemProvider fileSystemProvider = FileSystemProviders.installed().getFileSystemProvider(scheme);
-            if (fileSystemProvider != null) {
-                return Files.newInputStream(fileSystemProvider.getPath(uri), options);
-            }
-            if (SCHEME_HTTP.equalsIgnoreCase(scheme) || SCHEME_HTTPS.equalsIgnoreCase(scheme)) {
-                return uri.toURL().openStream();
-            }
-            return Files.newInputStream(getPath(), options);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Path getPath() {
-            return Paths.get(get());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -580,8 +544,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public OutputStream getOutputStream(final OpenOption... options) throws IOException {
-            // TODO Pass in a Charset? Consider if call sites actually need this.
-            return WriterOutputStream.builder().setWriter(origin).setCharset(Charset.defaultCharset()).get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -595,8 +558,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
          */
         @Override
         public Writer getWriter(final Charset charset, final OpenOption... options) throws IOException {
-            // No conversion
-            return get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -621,7 +583,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      */
     @Override
     public T get() {
-        return origin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -632,7 +594,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @throws UnsupportedOperationException if the origin cannot be converted to a Path.
      */
     public byte[] getByteArray() throws IOException {
-        return Files.readAllBytes(getPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -647,13 +609,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @since 2.13.0
      */
     public byte[] getByteArray(final long position, final int length) throws IOException {
-        final byte[] bytes = getByteArray();
-        // Checks for int overflow.
-        final int start = Math.toIntExact(position);
-        if (start < 0 || length < 0 || start + length < 0 || start + length > bytes.length) {
-            throw new IllegalArgumentException("Couldn't read array (start: " + start + ", length: " + length + ", data length: " + bytes.length + ").");
-        }
-        return Arrays.copyOfRange(bytes, start, start + length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -665,7 +621,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @throws UnsupportedOperationException if the origin cannot be converted to a Path.
      */
     public CharSequence getCharSequence(final Charset charset) throws IOException {
-        return new String(getByteArray(), charset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -675,8 +631,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @throws UnsupportedOperationException if this method is not implemented in a concrete subclass.
      */
     public File getFile() {
-        throw new UnsupportedOperationException(
-                String.format("%s#getFile() for %s origin %s", getSimpleClassName(), origin.getClass().getSimpleName(), origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -688,7 +643,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @throws UnsupportedOperationException if the origin cannot be converted to a Path.
      */
     public InputStream getInputStream(final OpenOption... options) throws IOException {
-        return Files.newInputStream(getPath(), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -700,7 +655,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @throws UnsupportedOperationException if the origin cannot be converted to a Path.
      */
     public OutputStream getOutputStream(final OpenOption... options) throws IOException {
-        return Files.newOutputStream(getPath(), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -710,8 +665,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @throws UnsupportedOperationException if this method is not implemented in a concrete subclass.
      */
     public Path getPath() {
-        throw new UnsupportedOperationException(
-                String.format("%s#getPath() for %s origin %s", getSimpleClassName(), origin.getClass().getSimpleName(), origin));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -724,7 +678,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @since 2.18.0
      */
     public RandomAccessFile getRandomAccessFile(final OpenOption... openOption) throws FileNotFoundException {
-        return RandomAccessFileMode.valueOf(openOption).create(getFile());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -735,7 +689,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @throws IOException if an I/O error occurs opening the file.
      */
     public Reader getReader(final Charset charset) throws IOException {
-        return Files.newBufferedReader(getPath(), Charsets.toCharset(charset));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private String getSimpleClassName() {
@@ -752,7 +706,7 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @throws UnsupportedOperationException if the origin cannot be converted to a Path.
      */
     public Writer getWriter(final Charset charset, final OpenOption... options) throws IOException {
-        return Files.newBufferedWriter(getPath(), Charsets.toCharset(charset), options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -763,11 +717,11 @@ public abstract class AbstractOrigin<T, B extends AbstractOrigin<T, B>> extends 
      * @since 2.13.0
      */
     public long size() throws IOException {
-        return Files.size(getPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return getSimpleClassName() + "[" + origin.toString() + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

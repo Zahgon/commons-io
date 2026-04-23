@@ -41,7 +41,7 @@ public class TailerListenerAdapter implements TailerListener {
      * @since 2.5
      */
     public void endOfFileReached() {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -49,7 +49,7 @@ public class TailerListenerAdapter implements TailerListener {
      */
     @Override
     public void fileNotFound() {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -60,7 +60,7 @@ public class TailerListenerAdapter implements TailerListener {
      */
     @Override
     public void fileRotated() {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -70,7 +70,7 @@ public class TailerListenerAdapter implements TailerListener {
      */
     @Override
     public void handle(final Exception ex) {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -80,7 +80,7 @@ public class TailerListenerAdapter implements TailerListener {
      */
     @Override
     public void handle(final String line) {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -91,6 +91,6 @@ public class TailerListenerAdapter implements TailerListener {
      */
     @Override
     public void init(final Tailer tailer) {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

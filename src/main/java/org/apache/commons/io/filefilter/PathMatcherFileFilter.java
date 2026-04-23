@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.filefilter;
 
 import java.io.File;
@@ -42,11 +41,11 @@ public class PathMatcherFileFilter extends AbstractFileFilter {
 
     @Override
     public boolean accept(final File file) {
-        return file != null && matches(file.toPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean matches(final Path path) {
-        return pathMatcher.matches(path);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

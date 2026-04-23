@@ -24,7 +24,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.file.PathUtils;
 
@@ -75,10 +74,14 @@ public class SuffixFileFilter extends AbstractFileFilter implements Serializable
 
     private static final long serialVersionUID = -3389157631240246157L;
 
-    /** The file name suffixes to search for */
+    /**
+     * The file name suffixes to search for
+     */
     private final String[] suffixes;
 
-    /** Whether the comparison is case-sensitive. */
+    /**
+     * Whether the comparison is case-sensitive.
+     */
     private final IOCase ioCase;
 
     /**
@@ -143,7 +146,7 @@ public class SuffixFileFilter extends AbstractFileFilter implements Serializable
      */
     public SuffixFileFilter(final String suffix, final IOCase ioCase) {
         Objects.requireNonNull(suffix, "suffix");
-        this.suffixes = new String[] {suffix};
+        this.suffixes = new String[] { suffix };
         this.ioCase = IOCase.value(ioCase, IOCase.SENSITIVE);
     }
 
@@ -170,7 +173,7 @@ public class SuffixFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public boolean accept(final File file) {
-        return accept(file.getName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -182,7 +185,7 @@ public class SuffixFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public boolean accept(final File file, final String name) {
-        return accept(name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -195,7 +198,7 @@ public class SuffixFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        return toFileVisitResult(accept(PathUtils.getFileNameString(path)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean accept(final String name) {
@@ -209,12 +212,6 @@ public class SuffixFileFilter extends AbstractFileFilter implements Serializable
      */
     @Override
     public String toString() {
-        final StringBuilder buffer = new StringBuilder();
-        buffer.append(super.toString());
-        buffer.append("(");
-        append(suffixes, buffer);
-        buffer.append(")");
-        return buffer.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

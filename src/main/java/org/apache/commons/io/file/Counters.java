@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.math.BigInteger;
@@ -33,7 +32,9 @@ public class Counters {
     private static class AbstractPathCounters implements PathCounters {
 
         private final Counter byteCounter;
+
         private final Counter directoryCounter;
+
         private final Counter fileCounter;
 
         /**
@@ -51,26 +52,17 @@ public class Counters {
 
         @Override
         public boolean equals(final Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof AbstractPathCounters)) {
-                return false;
-            }
-            final AbstractPathCounters other = (AbstractPathCounters) obj;
-            return Objects.equals(byteCounter, other.byteCounter)
-                && Objects.equals(directoryCounter, other.directoryCounter)
-                && Objects.equals(fileCounter, other.fileCounter);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Counter getByteCounter() {
-            return byteCounter;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Counter getDirectoryCounter() {
-            return directoryCounter;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -80,27 +72,23 @@ public class Counters {
          */
         @Override
         public Counter getFileCounter() {
-            return this.fileCounter;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(byteCounter, directoryCounter, fileCounter);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void reset() {
-            byteCounter.reset();
-            directoryCounter.reset();
-            fileCounter.reset();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return String.format("%,d files, %,d directories, %,d bytes", Long.valueOf(fileCounter.get()),
-                Long.valueOf(directoryCounter.get()), Long.valueOf(byteCounter.get()));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -112,55 +100,47 @@ public class Counters {
 
         @Override
         public void add(final long val) {
-            value = value.add(BigInteger.valueOf(val));
-
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(final Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof Counter)) {
-                return false;
-            }
-            final Counter other = (Counter) obj;
-            return Objects.equals(value, other.getBigInteger());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public long get() {
-            return value.longValueExact();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public BigInteger getBigInteger() {
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Long getLong() {
-            return Long.valueOf(value.longValueExact());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void increment() {
-            value = value.add(BigInteger.ONE);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void reset() {
-            value = BigInteger.ZERO;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return value.toString();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -175,7 +155,6 @@ public class Counters {
         protected BigIntegerPathCounters() {
             super(bigIntegerCounter(), bigIntegerCounter(), bigIntegerCounter());
         }
-
     }
 
     /**
@@ -220,9 +199,8 @@ public class Counters {
          * Resets this count to 0.
          */
         default void reset() {
-            // binary compat, do nothing
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -234,55 +212,47 @@ public class Counters {
 
         @Override
         public void add(final long add) {
-            value += add;
-
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(final Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof Counter)) {
-                return false;
-            }
-            final Counter other = (Counter) obj;
-            return value == other.get();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public long get() {
-            return value;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public BigInteger getBigInteger() {
-            return BigInteger.valueOf(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Long getLong() {
-            return Long.valueOf(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void increment() {
-            value++;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void reset() {
-            value = 0L;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public String toString() {
-            return Long.toString(value);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -297,7 +267,6 @@ public class Counters {
         protected LongPathCounters() {
             super(longCounter(), longCounter(), longCounter());
         }
-
     }
 
     /**
@@ -309,27 +278,27 @@ public class Counters {
 
         @Override
         public void add(final long add) {
-            // noop
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public long get() {
-            return 0;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public BigInteger getBigInteger() {
-            return BigInteger.ZERO;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Long getLong() {
-            return 0L;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void increment() {
-            // noop
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -340,9 +309,8 @@ public class Counters {
          */
         @Override
         public String toString() {
-            return "0";
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -358,7 +326,6 @@ public class Counters {
         private NoopPathCounters() {
             super(noopCounter(), noopCounter(), noopCounter());
         }
-
     }
 
     /**
@@ -391,9 +358,8 @@ public class Counters {
          * Resets the counts to 0.
          */
         default void reset() {
-            // binary compat, do nothing
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -402,7 +368,7 @@ public class Counters {
      * @return a new BigInteger Counter.
      */
     public static Counter bigIntegerCounter() {
-        return new BigIntegerCounter();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -411,7 +377,7 @@ public class Counters {
      * @return a new BigInteger PathCounters.
      */
     public static PathCounters bigIntegerPathCounters() {
-        return new BigIntegerPathCounters();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -420,7 +386,7 @@ public class Counters {
      * @return a new long Counter.
      */
     public static Counter longCounter() {
-        return new LongCounter();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -429,7 +395,7 @@ public class Counters {
      * @return a new BigInteger PathCounters.
      */
     public static PathCounters longPathCounters() {
-        return new LongPathCounters();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -439,7 +405,7 @@ public class Counters {
      * @since 2.9.0
      */
     public static Counter noopCounter() {
-        return NoopCounter.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -449,7 +415,7 @@ public class Counters {
      * @since 2.9.0
      */
     public static PathCounters noopPathCounters() {
-        return NoopPathCounters.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

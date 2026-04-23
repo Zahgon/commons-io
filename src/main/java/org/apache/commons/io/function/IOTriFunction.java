@@ -50,8 +50,7 @@ public interface IOTriFunction<T, U, V, R> {
      * @throws NullPointerException if after is null
      */
     default <W> IOTriFunction<T, U, V, W> andThen(final IOFunction<? super R, ? extends W> after) {
-        Objects.requireNonNull(after);
-        return (final T t, final U u, final V v) -> after.apply(apply(t, u, v));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -64,5 +63,4 @@ public interface IOTriFunction<T, U, V, R> {
      * @throws IOException if an I/O error occurs.
      */
     R apply(T t, U u, V v) throws IOException;
-
 }

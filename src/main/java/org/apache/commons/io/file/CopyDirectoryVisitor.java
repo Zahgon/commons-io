@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.io.IOException;
@@ -26,7 +25,6 @@ import java.nio.file.ProviderMismatchException;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.Objects;
-
 import org.apache.commons.io.file.Counters.PathCounters;
 
 /**
@@ -41,7 +39,9 @@ public class CopyDirectoryVisitor extends CountingPathVisitor {
     }
 
     private final CopyOption[] copyOptions;
+
     private final Path sourceDirectory;
+
     private final Path targetDirectory;
 
     /**
@@ -70,8 +70,7 @@ public class CopyDirectoryVisitor extends CountingPathVisitor {
      * @param copyOptions Specifies how the copying should be done.
      * @since 2.9.0
      */
-    public CopyDirectoryVisitor(final PathCounters pathCounter, final PathFilter fileFilter, final PathFilter dirFilter, final Path sourceDirectory,
-        final Path targetDirectory, final CopyOption... copyOptions) {
+    public CopyDirectoryVisitor(final PathCounters pathCounter, final PathFilter fileFilter, final PathFilter dirFilter, final Path sourceDirectory, final Path targetDirectory, final CopyOption... copyOptions) {
         super(pathCounter, fileFilter, dirFilter);
         this.sourceDirectory = sourceDirectory;
         this.targetDirectory = targetDirectory;
@@ -87,23 +86,12 @@ public class CopyDirectoryVisitor extends CountingPathVisitor {
      * @since 2.8.0
      */
     protected void copy(final Path sourceFile, final Path targetFile) throws IOException {
-        Files.copy(sourceFile, targetFile, copyOptions);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!super.equals(obj)) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final CopyDirectoryVisitor other = (CopyDirectoryVisitor) obj;
-        return Arrays.equals(copyOptions, other.copyOptions) && Objects.equals(sourceDirectory, other.sourceDirectory)
-            && Objects.equals(targetDirectory, other.targetDirectory);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -113,7 +101,7 @@ public class CopyDirectoryVisitor extends CountingPathVisitor {
      * @since 2.8.0
      */
     public CopyOption[] getCopyOptions() {
-        return copyOptions.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -123,7 +111,7 @@ public class CopyDirectoryVisitor extends CountingPathVisitor {
      * @since 2.8.0
      */
     public Path getSourceDirectory() {
-        return sourceDirectory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -133,25 +121,17 @@ public class CopyDirectoryVisitor extends CountingPathVisitor {
      * @since 2.8.0
      */
     public Path getTargetDirectory() {
-        return targetDirectory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + Arrays.hashCode(copyOptions);
-        return prime * result + Objects.hash(sourceDirectory, targetDirectory);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
-    public FileVisitResult preVisitDirectory(final Path directory, final BasicFileAttributes attributes)
-        throws IOException {
-        final Path newTargetDir = resolveRelativeAsString(directory);
-        if (Files.notExists(newTargetDir)) {
-            Files.createDirectory(newTargetDir);
-        }
-        return super.preVisitDirectory(directory, attributes);
+    public FileVisitResult preVisitDirectory(final Path directory, final BasicFileAttributes attributes) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -170,12 +150,6 @@ public class CopyDirectoryVisitor extends CountingPathVisitor {
 
     @Override
     public FileVisitResult visitFile(final Path sourceFile, final BasicFileAttributes attributes) throws IOException {
-        final Path targetFile = resolveRelativeAsString(sourceFile);
-        if (accept(sourceFile, attributes)) {
-            copy(sourceFile, targetFile);
-            updateFileCounters(targetFile, attributes);
-        }
-        return FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

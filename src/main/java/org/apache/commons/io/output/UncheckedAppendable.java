@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.output;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public interface UncheckedAppendable extends Appendable {
      * @return a new instance.
      */
     static UncheckedAppendable on(final Appendable appendable) {
-        return new UncheckedAppendableImpl(appendable);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

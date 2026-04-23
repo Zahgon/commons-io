@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -41,7 +40,7 @@ public interface IOIterator<E> {
      * @since 2.17.0
      */
     static <E> IOIterator<E> adapt(final Iterable<E> iterable) {
-        return IOIteratorAdapter.adapt(iterable.iterator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -52,7 +51,7 @@ public interface IOIterator<E> {
      * @return A new IOIterator
      */
     static <E> IOIterator<E> adapt(final Iterator<E> iterator) {
-        return IOIteratorAdapter.adapt(iterator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -62,7 +61,7 @@ public interface IOIterator<E> {
      * @return an {@link UncheckedIOException} {@link Iterator}.
      */
     default Iterator<E> asIterator() {
-        return new UncheckedIOIterator<>(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,10 +71,7 @@ public interface IOIterator<E> {
      * @throws IOException if an I/O error occurs.
      */
     default void forEachRemaining(final IOConsumer<? super E> action) throws IOException {
-        Objects.requireNonNull(action);
-        while (hasNext()) {
-            action.accept(next());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -102,7 +98,7 @@ public interface IOIterator<E> {
      */
     @SuppressWarnings("unused")
     default void remove() throws IOException {
-        unwrap().remove();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -113,5 +109,4 @@ public interface IOIterator<E> {
      * @return the underlying Iterator.
      */
     Iterator<E> unwrap();
-
 }

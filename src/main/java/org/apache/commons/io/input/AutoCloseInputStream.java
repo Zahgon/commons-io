@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -90,9 +89,8 @@ public class AutoCloseInputStream extends ProxyInputStream {
          */
         @Override
         public AutoCloseInputStream get() throws IOException {
-            return new AutoCloseInputStream(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -102,7 +100,7 @@ public class AutoCloseInputStream extends ProxyInputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private AutoCloseInputStream(final Builder builder) throws IOException {
@@ -115,7 +113,8 @@ public class AutoCloseInputStream extends ProxyInputStream {
      * @param in underlying input stream
      * @deprecated Use {@link #builder()}, {@link Builder}, and {@link Builder#get()}
      */
-    @SuppressWarnings("resource") // ClosedInputStream.nonNull() doesn't allocate
+    // ClosedInputStream.nonNull() doesn't allocate
+    @SuppressWarnings("resource")
     @Deprecated
     public AutoCloseInputStream(final InputStream in) {
         super(ClosedInputStream.ifNull(in));
@@ -130,10 +129,7 @@ public class AutoCloseInputStream extends ProxyInputStream {
      */
     @Override
     protected void afterRead(final int n) throws IOException {
-        if (n == EOF) {
-            close();
-        }
-        super.afterRead(n);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,8 +146,7 @@ public class AutoCloseInputStream extends ProxyInputStream {
      */
     @Override
     public void close() throws IOException {
-        super.close();
-        in = ClosedInputStream.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -162,8 +157,6 @@ public class AutoCloseInputStream extends ProxyInputStream {
      */
     @Override
     protected void finalize() throws Throwable {
-        close();
-        super.finalize();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

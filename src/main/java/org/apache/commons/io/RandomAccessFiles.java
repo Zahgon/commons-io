@@ -14,14 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.SeekableByteChannel;
 import java.util.Objects;
-
 import org.apache.commons.io.channels.FileChannels;
 
 /**
@@ -40,25 +38,10 @@ public class RandomAccessFiles {
      * @throws IOException if an I/O error occurs.
      * @since 2.15.0
      */
-    @SuppressWarnings("resource") // See comments
+    // See comments
+    @SuppressWarnings("resource")
     public static boolean contentEquals(final RandomAccessFile raf1, final RandomAccessFile raf2) throws IOException {
-        // Short-circuit test
-        if (Objects.equals(raf1, raf2)) {
-            return true;
-        }
-        // Short-circuit test
-        final long length1 = length(raf1);
-        final long length2 = length(raf2);
-        if (length1 != length2) {
-            return false;
-        }
-        if (length1 == 0 && length2 == 0) {
-            return true;
-        }
-        // Dig in and to the work
-        // We do not close FileChannels because that would close the owning RandomAccessFile.
-        // Instead, the caller is assumed to manage the given RandomAccessFile objects.
-        return FileChannels.contentEquals((SeekableByteChannel) raf1.getChannel(), raf2.getChannel(), IOUtils.DEFAULT_BUFFER_SIZE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static long length(final RandomAccessFile raf) throws IOException {
@@ -76,8 +59,7 @@ public class RandomAccessFiles {
      *                     other I/O error occurs.
      */
     public static byte[] read(final RandomAccessFile input, final long position, final int length) throws IOException {
-        input.seek(position);
-        return IOUtils.toByteArray(input::read, length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -89,8 +71,7 @@ public class RandomAccessFiles {
      * @since 2.15.0
      */
     public static RandomAccessFile reset(final RandomAccessFile raf) throws IOException {
-        raf.seek(0);
-        return raf;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

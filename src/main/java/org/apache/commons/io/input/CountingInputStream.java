@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -33,7 +32,9 @@ import java.io.InputStream;
 @Deprecated
 public class CountingInputStream extends ProxyInputStream {
 
-    /** The count of bytes read. */
+    /**
+     * The count of bytes read.
+     */
     private long count;
 
     /**
@@ -62,10 +63,7 @@ public class CountingInputStream extends ProxyInputStream {
      */
     @Override
     protected synchronized void afterRead(final int n) throws IOException {
-        if (n != EOF) {
-            count += n;
-        }
-        super.afterRead(n);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -80,7 +78,7 @@ public class CountingInputStream extends ProxyInputStream {
      * @since 1.3
      */
     public synchronized long getByteCount() {
-        return count;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,9 +114,7 @@ public class CountingInputStream extends ProxyInputStream {
      * @since 1.3
      */
     public synchronized long resetByteCount() {
-        final long tmp = count;
-        count = 0;
-        return tmp;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -153,9 +149,6 @@ public class CountingInputStream extends ProxyInputStream {
      */
     @Override
     public synchronized long skip(final long length) throws IOException {
-        final long skip = super.skip(length);
-        count += skip;
-        return skip;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

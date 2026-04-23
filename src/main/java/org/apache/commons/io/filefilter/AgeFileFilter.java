@@ -23,7 +23,6 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Instant;
 import java.util.Date;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.file.PathUtils;
 
@@ -80,10 +79,14 @@ public class AgeFileFilter extends AbstractFileFilter implements Serializable {
 
     private static final long serialVersionUID = -2132740084016138541L;
 
-    /** Whether the files accepted will be older or newer. */
+    /**
+     * Whether the files accepted will be older or newer.
+     */
     private final boolean acceptOlder;
 
-    /** The cutoff time threshold measured in milliseconds since the epoch (00:00:00 GMT, January 1, 1970). */
+    /**
+     * The cutoff time threshold measured in milliseconds since the epoch (00:00:00 GMT, January 1, 1970).
+     */
     private final Instant cutoffInstant;
 
     /**
@@ -184,7 +187,7 @@ public class AgeFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File file) {
-        return acceptOlder != FileUtils.isFileNewer(file, cutoffInstant);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -201,7 +204,7 @@ public class AgeFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return get(() -> toFileVisitResult(acceptOlder != PathUtils.isNewer(file, cutoffInstant)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -211,7 +214,6 @@ public class AgeFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public String toString() {
-        final String condition = acceptOlder ? "<=" : ">";
-        return super.toString() + "(" + condition + cutoffInstant + ")";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

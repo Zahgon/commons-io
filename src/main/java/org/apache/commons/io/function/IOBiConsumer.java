@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -42,7 +41,7 @@ public interface IOBiConsumer<T, U> {
      */
     @SuppressWarnings("unchecked")
     static <T, U> IOBiConsumer<T, U> noop() {
-        return Constants.IO_BI_CONSUMER;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -65,11 +64,7 @@ public interface IOBiConsumer<T, U> {
      * @throws NullPointerException if {@code after} is null
      */
     default IOBiConsumer<T, U> andThen(final IOBiConsumer<? super T, ? super U> after) {
-        Objects.requireNonNull(after);
-        return (t, u) -> {
-            accept(t, u);
-            after.accept(t, u);
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -81,7 +76,6 @@ public interface IOBiConsumer<T, U> {
      * @since 2.12.0
      */
     default BiConsumer<T, U> asBiConsumer() {
-        return (t, u) -> Uncheck.accept(this, t, u);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

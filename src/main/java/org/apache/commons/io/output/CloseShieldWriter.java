@@ -38,7 +38,7 @@ public class CloseShieldWriter extends ProxyWriter {
      * @since 2.9.0
      */
     public static CloseShieldWriter wrap(final Writer writer) {
-        return new CloseShieldWriter(writer);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -60,7 +60,6 @@ public class CloseShieldWriter extends ProxyWriter {
      */
     @Override
     public void close() {
-        out = ClosedWriter.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

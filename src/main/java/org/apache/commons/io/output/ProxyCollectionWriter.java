@@ -20,7 +20,6 @@ import java.io.FilterWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Collection;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -64,9 +63,10 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      * @param n number of chars written
      * @throws IOException if the post-processing fails
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void afterWrite(final int n) throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -79,14 +79,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public Writer append(final char c) throws IOException {
-        try {
-            beforeWrite(1);
-            super.append(c);
-            afterWrite(1);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -98,15 +91,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public Writer append(final CharSequence csq) throws IOException {
-        try {
-            final int len = IOUtils.length(csq);
-            beforeWrite(len);
-            super.append(csq);
-            afterWrite(len);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -120,14 +105,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public Writer append(final CharSequence csq, final int start, final int end) throws IOException {
-        try {
-            beforeWrite(end - start);
-            super.append(csq, start, end);
-            afterWrite(end - start);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -141,9 +119,10 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      * @param n number of chars to be written
      * @throws IOException if the pre-processing fails
      */
-    @SuppressWarnings("unused") // Possibly thrown from subclasses.
+    // Possibly thrown from subclasses.
+    @SuppressWarnings("unused")
     protected void beforeWrite(final int n) throws IOException {
-        // noop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -153,11 +132,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public void close() throws IOException {
-        try {
-            super.close();
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -167,11 +142,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public void flush() throws IOException {
-        try {
-            super.flush();
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -185,7 +156,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      * @throws IOException if an I/O error occurs.
      */
     protected void handleIOException(final IOException e) throws IOException {
-        throw e;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -196,14 +167,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public void write(final char[] cbuf) throws IOException {
-        try {
-            final int len = IOUtils.length(cbuf);
-            beforeWrite(len);
-            super.write(cbuf);
-            afterWrite(len);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -216,13 +180,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public void write(final char[] cbuf, final int off, final int len) throws IOException {
-        try {
-            beforeWrite(len);
-            super.write(cbuf, off, len);
-            afterWrite(len);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -233,13 +191,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public void write(final int c) throws IOException {
-        try {
-            beforeWrite(1);
-            super.write(c);
-            afterWrite(1);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -250,14 +202,7 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public void write(final String str) throws IOException {
-        try {
-            final int len = IOUtils.length(str);
-            beforeWrite(len);
-            super.write(str);
-            afterWrite(len);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -270,13 +215,6 @@ public class ProxyCollectionWriter extends FilterCollectionWriter {
      */
     @Override
     public void write(final String str, final int off, final int len) throws IOException {
-        try {
-            beforeWrite(len);
-            super.write(str, off, len);
-            afterWrite(len);
-        } catch (final IOException e) {
-            handleIOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.io.input.buffer;
 
 import java.util.Objects;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -32,8 +31,11 @@ import org.apache.commons.io.IOUtils;
 public class CircularByteBuffer {
 
     private final byte[] buffer;
+
     private int startOffset;
+
     private int endOffset;
+
     private int currentNumberOfBytes;
 
     /**
@@ -64,14 +66,7 @@ public class CircularByteBuffer {
      *                               or {@link #getSpace()}, to prevent this exception.
      */
     public void add(final byte value) {
-        if (currentNumberOfBytes >= buffer.length) {
-            throw new IllegalStateException("No space available");
-        }
-        buffer[endOffset] = value;
-        ++currentNumberOfBytes;
-        if (++endOffset == buffer.length) {
-            endOffset = 0;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,32 +83,14 @@ public class CircularByteBuffer {
      * @throws NullPointerException     The byte array {@code targetBuffer} is null.
      */
     public void add(final byte[] targetBuffer, final int offset, final int length) {
-        Objects.requireNonNull(targetBuffer, "Buffer");
-        if (offset < 0 || offset >= targetBuffer.length) {
-            throw new IllegalArgumentException("Illegal offset: " + offset);
-        }
-        if (length < 0) {
-            throw new IllegalArgumentException("Illegal length: " + length);
-        }
-        if (currentNumberOfBytes + length > buffer.length) {
-            throw new IllegalStateException("No space available");
-        }
-        for (int i = 0; i < length; i++) {
-            buffer[endOffset] = targetBuffer[offset + i];
-            if (++endOffset == buffer.length) {
-                endOffset = 0;
-            }
-        }
-        currentNumberOfBytes += length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Removes all bytes from the buffer.
      */
     public void clear() {
-        startOffset = 0;
-        endOffset = 0;
-        currentNumberOfBytes = 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -122,7 +99,7 @@ public class CircularByteBuffer {
      * @return the number of bytes
      */
     public int getCurrentNumberOfBytes() {
-        return currentNumberOfBytes;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -131,7 +108,7 @@ public class CircularByteBuffer {
      * @return the number of bytes that can be added
      */
     public int getSpace() {
-        return buffer.length - currentNumberOfBytes;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,7 +117,7 @@ public class CircularByteBuffer {
      * @return true whether the buffer is currently holding at least a single byte.
      */
     public boolean hasBytes() {
-        return currentNumberOfBytes > 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -152,7 +129,7 @@ public class CircularByteBuffer {
      * @see #getSpace()
      */
     public boolean hasSpace() {
-        return currentNumberOfBytes < buffer.length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -164,7 +141,7 @@ public class CircularByteBuffer {
      * @see #getSpace()
      */
     public boolean hasSpace(final int count) {
-        return currentNumberOfBytes + count <= buffer.length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -183,26 +160,7 @@ public class CircularByteBuffer {
      * @throws NullPointerException     The byte array {@code sourceBuffer} is null.
      */
     public boolean peek(final byte[] sourceBuffer, final int offset, final int length) {
-        Objects.requireNonNull(sourceBuffer, "Buffer");
-        if (offset < 0 || offset >= sourceBuffer.length) {
-            throw new IllegalArgumentException("Illegal offset: " + offset);
-        }
-        if (length < 0 || length > buffer.length) {
-            throw new IllegalArgumentException("Illegal length: " + length);
-        }
-        if (length < currentNumberOfBytes) {
-            return false;
-        }
-        int localOffset = startOffset;
-        for (int i = 0; i < length; i++) {
-            if (buffer[localOffset] != sourceBuffer[i + offset]) {
-                return false;
-            }
-            if (++localOffset == buffer.length) {
-                localOffset = 0;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -214,15 +172,7 @@ public class CircularByteBuffer {
      *                               or {@link #getCurrentNumberOfBytes()}, to prevent this exception.
      */
     public byte read() {
-        if (currentNumberOfBytes <= 0) {
-            throw new IllegalStateException("No bytes available.");
-        }
-        final byte b = buffer[startOffset];
-        --currentNumberOfBytes;
-        if (++startOffset == buffer.length) {
-            startOffset = 0;
-        }
-        return b;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -240,29 +190,6 @@ public class CircularByteBuffer {
      *                                  exception.
      */
     public void read(final byte[] targetBuffer, final int targetOffset, final int length) {
-        Objects.requireNonNull(targetBuffer, "targetBuffer");
-        if (targetOffset < 0 || targetOffset >= targetBuffer.length) {
-            throw new IllegalArgumentException("Illegal offset: " + targetOffset);
-        }
-        if (length < 0 || length > buffer.length) {
-            throw new IllegalArgumentException("Illegal length: " + length);
-        }
-        if (targetOffset + length > targetBuffer.length) {
-            throw new IllegalArgumentException("The supplied byte array contains only "
-                    + targetBuffer.length + " bytes, but offset, and length would require "
-                    + (targetOffset + length - 1));
-        }
-        if (currentNumberOfBytes < length) {
-            throw new IllegalStateException("Currently, there are only " + currentNumberOfBytes
-                    + "in the buffer, not " + length);
-        }
-        int offset = targetOffset;
-        for (int i = 0; i < length; i++) {
-            targetBuffer[offset++] = buffer[startOffset];
-            --currentNumberOfBytes;
-            if (++startOffset == buffer.length) {
-                startOffset = 0;
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

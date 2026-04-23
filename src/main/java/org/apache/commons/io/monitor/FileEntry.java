@@ -22,7 +22,6 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.attribute.FileTime;
 import java.util.Objects;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.file.attribute.FileTimes;
 
@@ -57,28 +56,44 @@ public class FileEntry implements Serializable {
 
     static final FileEntry[] EMPTY_FILE_ENTRY_ARRAY = {};
 
-    /** The parent. */
+    /**
+     * The parent.
+     */
     private final FileEntry parent;
 
-    /** My children. */
+    /**
+     * My children.
+     */
     private FileEntry[] children;
 
-    /** Monitored file. */
+    /**
+     * Monitored file.
+     */
     private final File file;
 
-    /** Monitored file name. */
+    /**
+     * Monitored file name.
+     */
     private String name;
 
-    /** Whether the file exists. */
+    /**
+     * Whether the file exists.
+     */
     private boolean exists;
 
-    /** Whether the file is a directory or not. */
+    /**
+     * Whether the file is a directory or not.
+     */
     private boolean directory;
 
-    /** The file's last modified timestamp. */
+    /**
+     * The file's last modified timestamp.
+     */
     private SerializableFileTime lastModified = SerializableFileTime.EPOCH;
 
-    /** The file's length. */
+    /**
+     * The file's length.
+     */
     private long length;
 
     /**
@@ -110,7 +125,7 @@ public class FileEntry implements Serializable {
      * directory is empty
      */
     public FileEntry[] getChildren() {
-        return children != null ? children : EMPTY_FILE_ENTRY_ARRAY;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -119,7 +134,7 @@ public class FileEntry implements Serializable {
      * @return the file being monitored
      */
     public File getFile() {
-        return file;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -129,7 +144,7 @@ public class FileEntry implements Serializable {
      * @return the last modified time in milliseconds.
      */
     public long getLastModified() {
-        return lastModified.toMillis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -139,7 +154,7 @@ public class FileEntry implements Serializable {
      * @since 2.12.0
      */
     public FileTime getLastModifiedFileTime() {
-        return lastModified.unwrap();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -148,7 +163,7 @@ public class FileEntry implements Serializable {
      * @return the length
      */
     public long getLength() {
-        return length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -157,7 +172,7 @@ public class FileEntry implements Serializable {
      * @return the level
      */
     public int getLevel() {
-        return parent == null ? 0 : parent.getLevel() + 1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -166,7 +181,7 @@ public class FileEntry implements Serializable {
      * @return the file name
      */
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,7 +190,7 @@ public class FileEntry implements Serializable {
      * @return the parent entry
      */
     public FileEntry getParent() {
-        return parent;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -184,7 +199,7 @@ public class FileEntry implements Serializable {
      * @return whether the file is a directory or not
      */
     public boolean isDirectory() {
-        return directory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -194,7 +209,7 @@ public class FileEntry implements Serializable {
      * @return whether the file existed
      */
     public boolean isExists() {
-        return exists;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -208,7 +223,7 @@ public class FileEntry implements Serializable {
      * @return a new child instance
      */
     public FileEntry newChildInstance(final File file) {
-        return new FileEntry(this, file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -228,26 +243,7 @@ public class FileEntry implements Serializable {
      * @return {@code true} if the file has changed, otherwise {@code false}
      */
     public boolean refresh(final File file) {
-        // cache original values
-        final boolean origExists = exists;
-        final SerializableFileTime origLastModified = lastModified;
-        final boolean origDirectory = directory;
-        final long origLength = length;
-
-        // refresh the values
-        name = file.getName();
-        exists = Files.exists(file.toPath());
-        directory = exists && file.isDirectory();
-        try {
-            setLastModified(exists ? FileUtils.lastModifiedFileTime(file) : FileTimes.EPOCH);
-        } catch (final IOException e) {
-            setLastModified(SerializableFileTime.EPOCH);
-        }
-        length = exists && !directory ? file.length() : 0;
-
-        // Return if there are changes
-        return exists != origExists || !lastModified.equals(origLastModified) || directory != origDirectory
-            || length != origLength;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -256,7 +252,7 @@ public class FileEntry implements Serializable {
      * @param children This directory's files, may be null
      */
     public void setChildren(final FileEntry... children) {
-        this.children = children;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -265,7 +261,7 @@ public class FileEntry implements Serializable {
      * @param directory whether the file is a directory or not
      */
     public void setDirectory(final boolean directory) {
-        this.directory = directory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -275,7 +271,7 @@ public class FileEntry implements Serializable {
      * @param exists whether the file exists or not
      */
     public void setExists(final boolean exists) {
-        this.exists = exists;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -285,7 +281,7 @@ public class FileEntry implements Serializable {
      * @since 2.12.0
      */
     public void setLastModified(final FileTime lastModified) {
-        setLastModified(new SerializableFileTime(lastModified));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -295,11 +291,11 @@ public class FileEntry implements Serializable {
      * @param lastModified The last modified time in milliseconds.
      */
     public void setLastModified(final long lastModified) {
-        setLastModified(FileTime.fromMillis(lastModified));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setLastModified(final SerializableFileTime lastModified) {
-        this.lastModified = lastModified;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -308,7 +304,7 @@ public class FileEntry implements Serializable {
      * @param length the length
      */
     public void setLength(final long length) {
-        this.length = length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -317,6 +313,6 @@ public class FileEntry implements Serializable {
      * @param name the file name
      */
     public void setName(final String name) {
-        this.name = name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

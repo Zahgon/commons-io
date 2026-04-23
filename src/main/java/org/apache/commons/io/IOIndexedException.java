@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.io.IOException;
@@ -27,6 +26,7 @@ import java.io.IOException;
 public class IOIndexedException extends IOException {
 
     private static final long serialVersionUID = 1L;
+
     /**
      * Converts input to a suitable String for exception message.
      *
@@ -35,11 +35,7 @@ public class IOIndexedException extends IOException {
      * @return A message.
      */
     protected static String toMessage(final int index, final Throwable cause) {
-        // Letting index be any int
-        final String unspecified = "Null";
-        final String name = cause == null ? unspecified : cause.getClass().getSimpleName();
-        final String msg = cause == null ? unspecified : cause.getMessage();
-        return String.format("%s #%,d: %s", name, index, msg);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -64,7 +60,6 @@ public class IOIndexedException extends IOException {
      * @return index of this exception.
      */
     public int getIndex() {
-        return index;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -18,7 +18,6 @@ package org.apache.commons.io.output;
 
 import java.io.IOException;
 import java.io.OutputStream;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -43,9 +42,7 @@ public class DemuxOutputStream extends OutputStream {
      * @return the OutputStream that was previously active
      */
     public OutputStream bindStream(final OutputStream output) {
-        final OutputStream stream = outputStreamThreadLocal.get();
-        outputStreamThreadLocal.set(output);
-        return stream;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -54,10 +51,11 @@ public class DemuxOutputStream extends OutputStream {
      * @throws IOException
      *             if an error occurs
      */
-    @SuppressWarnings("resource") // we actually close the stream here
+    // we actually close the stream here
+    @SuppressWarnings("resource")
     @Override
     public void close() throws IOException {
-        IOUtils.close(outputStreamThreadLocal.get());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,11 +66,7 @@ public class DemuxOutputStream extends OutputStream {
      */
     @Override
     public void flush() throws IOException {
-        @SuppressWarnings("resource")
-        final OutputStream output = outputStreamThreadLocal.get();
-        if (null != output) {
-            output.flush();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -85,10 +79,6 @@ public class DemuxOutputStream extends OutputStream {
      */
     @Override
     public void write(final int ch) throws IOException {
-        @SuppressWarnings("resource")
-        final OutputStream output = outputStreamThreadLocal.get();
-        if (null != output) {
-            output.write(ch);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

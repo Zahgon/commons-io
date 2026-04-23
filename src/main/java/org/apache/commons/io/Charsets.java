@@ -59,7 +59,6 @@ public class Charsets {
     // This class should only contain Charset instances for required encodings. This guarantees that it will load
     // correctly and without delay on all Java platforms.
     //
-
     private static final SortedMap<String, Charset> STANDARD_CHARSET_MAP;
 
     static {
@@ -165,7 +164,7 @@ public class Charsets {
      * @since 2.20.0
      */
     public static boolean isAlias(final Charset charset, final String charsetName) {
-        return charsetName != null && (charset.name().equalsIgnoreCase(charsetName) || charset.aliases().stream().anyMatch(charsetName::equalsIgnoreCase));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -176,7 +175,7 @@ public class Charsets {
      * @since 2.20.0
      */
     public static boolean isUTF8(final Charset charset) {
-        return isUTF8Alias(toCharset(charset).name());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -202,7 +201,7 @@ public class Charsets {
      * @since 2.5
      */
     public static SortedMap<String, Charset> requiredCharsets() {
-        return STANDARD_CHARSET_MAP;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -214,7 +213,7 @@ public class Charsets {
      * @see Charset#defaultCharset()
      */
     public static Charset toCharset(final Charset charset) {
-        return charset == null ? Charset.defaultCharset() : charset;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -226,7 +225,7 @@ public class Charsets {
      * @since 2.12.0
      */
     public static Charset toCharset(final Charset charset, final Charset defaultCharset) {
-        return charset == null ? defaultCharset : charset;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -238,7 +237,7 @@ public class Charsets {
      * @see Charset#defaultCharset()
      */
     public static Charset toCharset(final String charsetName) throws UnsupportedCharsetException {
-        return toCharset(charsetName, Charset.defaultCharset());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -251,7 +250,7 @@ public class Charsets {
      * @since 2.12.0
      */
     public static Charset toCharset(final String charsetName, final Charset defaultCharset) throws UnsupportedCharsetException {
-        return charsetName == null ? defaultCharset : Charset.forName(charsetName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -267,11 +266,7 @@ public class Charsets {
      * @since 2.20.0
      */
     public static Charset toCharsetDefault(final String charsetName, final Charset defaultCharset) {
-        try {
-            return toCharset(charsetName);
-        } catch (final RuntimeException ignored) {
-            return toCharset(defaultCharset);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

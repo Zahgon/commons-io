@@ -14,11 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -29,7 +27,6 @@ import java.nio.charset.CharsetEncoder;
 import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
 import java.util.Objects;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.build.AbstractStreamBuilder;
@@ -112,18 +109,16 @@ public class CharSequenceInputStream extends InputStream {
          */
         @Override
         public CharSequenceInputStream get() {
-            return Uncheck.get(() -> new CharSequenceInputStream(this));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         CharsetEncoder getCharsetEncoder() {
-            return charsetEncoder;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Builder setCharset(final Charset charset) {
-            super.setCharset(charset);
-            charsetEncoder = newEncoder(getCharset());
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -134,11 +129,8 @@ public class CharSequenceInputStream extends InputStream {
          * @since 2.13.0
          */
         public Builder setCharsetEncoder(final CharsetEncoder newEncoder) {
-            charsetEncoder = CharsetEncoders.toCharsetEncoder(newEncoder, () -> newEncoder(getCharsetDefault()));
-            super.setCharset(charsetEncoder.charset());
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private static final int NO_MARK = -1;
@@ -150,21 +142,25 @@ public class CharSequenceInputStream extends InputStream {
      * @since 2.12.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static CharsetEncoder newEncoder(final Charset charset) {
         // @formatter:off
-        return Charsets.toCharset(charset).newEncoder()
-                .onMalformedInput(CodingErrorAction.REPLACE)
-                .onUnmappableCharacter(CodingErrorAction.REPLACE);
+        return Charsets.toCharset(charset).newEncoder().onMalformedInput(CodingErrorAction.REPLACE).onUnmappableCharacter(CodingErrorAction.REPLACE);
         // @formatter:on
     }
 
     private final ByteBuffer bBuf;
-    private int bBufMark; // position in bBuf
+
+    // position in bBuf
+    private int bBufMark;
+
     private final CharBuffer cBuf;
-    private int cBufMark; // position in cBuf
+
+    // position in cBuf
+    private int cBufMark;
+
     private final CharsetEncoder charsetEncoder;
 
     private CharSequenceInputStream(final Builder builder) {
@@ -248,12 +244,12 @@ public class CharSequenceInputStream extends InputStream {
      */
     @Override
     public int available() throws IOException {
-        return this.bBuf.remaining();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() throws IOException {
-        bBuf.position(bBuf.limit());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -277,7 +273,7 @@ public class CharSequenceInputStream extends InputStream {
      * @return the CharsetEncoder.
      */
     CharsetEncoder getCharsetEncoder() {
-        return charsetEncoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -286,116 +282,36 @@ public class CharSequenceInputStream extends InputStream {
      */
     @Override
     public synchronized void mark(final int readLimit) {
-        this.cBufMark = this.cBuf.position();
-        this.bBufMark = this.bBuf.position();
-        this.cBuf.mark();
-        this.bBuf.mark();
-        // It would be nice to be able to use mark & reset on the cBuf and bBuf;
-        // however the bBuf is re-used so that won't work
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean markSupported() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read() throws IOException {
-        for (;;) {
-            if (this.bBuf.hasRemaining()) {
-                return this.bBuf.get() & 0xFF;
-            }
-            fillBuffer();
-            if (!this.bBuf.hasRemaining() && !this.cBuf.hasRemaining()) {
-                return EOF;
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] b) throws IOException {
-        return read(b, 0, b.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] array, int off, int len) throws IOException {
-        Objects.requireNonNull(array, "array");
-        if (len < 0 || off + len > array.length) {
-            throw new IndexOutOfBoundsException("Array Size=" + array.length + ", offset=" + off + ", length=" + len);
-        }
-        if (len == 0) {
-            return 0; // must return 0 for zero length read
-        }
-        if (!this.bBuf.hasRemaining() && !this.cBuf.hasRemaining()) {
-            return EOF;
-        }
-        int bytesRead = 0;
-        while (len > 0) {
-            if (this.bBuf.hasRemaining()) {
-                final int chunk = Math.min(this.bBuf.remaining(), len);
-                this.bBuf.get(array, off, chunk);
-                off += chunk;
-                len -= chunk;
-                bytesRead += chunk;
-            } else {
-                fillBuffer();
-                if (!this.bBuf.hasRemaining() && !this.cBuf.hasRemaining()) {
-                    break;
-                }
-            }
-        }
-        return bytesRead == 0 && !this.cBuf.hasRemaining() ? EOF : bytesRead;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void reset() throws IOException {
-        //
-        // This is not the most efficient implementation, as it re-encodes from the beginning.
-        //
-        // Since the bBuf is re-used, in general it's necessary to re-encode the data.
-        //
-        // It should be possible to apply some optimizations however:
-        // + use mark/reset on the cBuf and bBuf. This would only work if the buffer had not been (re)filled since
-        // the mark. The code would have to catch InvalidMarkException - does not seem possible to check if mark is
-        // valid otherwise. + Try saving the state of the cBuf before each fillBuffer; it might be possible to
-        // restart from there.
-        //
-        if (this.cBufMark != NO_MARK) {
-            // if cBuf is at 0, we have not started reading anything, so skip re-encoding
-            if (this.cBuf.position() != 0) {
-                this.charsetEncoder.reset();
-                this.cBuf.rewind();
-                this.bBuf.rewind();
-                this.bBuf.limit(0); // rewind does not clear the buffer
-                while (this.cBuf.position() < this.cBufMark) {
-                    this.bBuf.rewind(); // empty the buffer (we only refill when empty during normal processing)
-                    this.bBuf.limit(0);
-                    fillBuffer();
-                }
-            }
-            if (this.cBuf.position() != this.cBufMark) {
-                throw new IllegalStateException("Unexpected CharBuffer position: actual=" + cBuf.position() + " " +
-                        "expected=" + this.cBufMark);
-            }
-            this.bBuf.position(this.bBufMark);
-            this.cBufMark = NO_MARK;
-            this.bBufMark = NO_MARK;
-        }
-        mark(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long skip(long n) throws IOException {
-        //
-        // This could be made more efficient by using position to skip within the current buffer.
-        //
-        long skipped = 0;
-        while (n > 0 && available() > 0) {
-            this.read();
-            n--;
-            skipped++;
-        }
-        return skipped;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

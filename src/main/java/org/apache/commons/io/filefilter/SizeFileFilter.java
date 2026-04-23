@@ -72,10 +72,14 @@ public class SizeFileFilter extends AbstractFileFilter implements Serializable {
 
     private static final long serialVersionUID = 7388077430788600069L;
 
-    /** Whether the files accepted will be larger or smaller. */
+    /**
+     * Whether the files accepted will be larger or smaller.
+     */
     private final boolean acceptLarger;
 
-    /** The size threshold. */
+    /**
+     * The size threshold.
+     */
     private final long size;
 
     /**
@@ -120,7 +124,7 @@ public class SizeFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File file) {
-        return accept(file != null ? file.length() : 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean accept(final long length) {
@@ -140,7 +144,7 @@ public class SizeFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return get(() -> toFileVisitResult(accept(Files.size(file))));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,13 +154,11 @@ public class SizeFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public String toString() {
-        final String condition = acceptLarger ? ">=" : "<";
-        return super.toString() + "(" + condition + size + ")";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
-        return toFileVisitResult(accept(Files.size(file)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

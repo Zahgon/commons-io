@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -40,7 +39,7 @@ public interface IOSupplier<T> {
      * @since 2.12.0
      */
     default Supplier<T> asSupplier() {
-        return this::getUnchecked;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -61,6 +60,6 @@ public interface IOSupplier<T> {
      * @since 2.17.0
      */
     default T getUnchecked() throws UncheckedIOException {
-        return Uncheck.get(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

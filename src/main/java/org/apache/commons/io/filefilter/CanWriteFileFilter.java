@@ -58,10 +58,14 @@ import java.nio.file.attribute.BasicFileAttributes;
  */
 public class CanWriteFileFilter extends AbstractFileFilter implements Serializable {
 
-    /** Singleton instance of <em>writable</em> filter */
+    /**
+     * Singleton instance of <em>writable</em> filter
+     */
     public static final IOFileFilter CAN_WRITE = new CanWriteFileFilter();
 
-    /** Singleton instance of not <em>writable</em> filter */
+    /**
+     * Singleton instance of not <em>writable</em> filter
+     */
     public static final IOFileFilter CANNOT_WRITE = CAN_WRITE.negate();
 
     private static final long serialVersionUID = 5132005214688990379L;
@@ -80,7 +84,7 @@ public class CanWriteFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public boolean accept(final File file) {
-        return file != null && file.canWrite();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -93,7 +97,6 @@ public class CanWriteFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return toFileVisitResult(file != null && Files.isWritable(file));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

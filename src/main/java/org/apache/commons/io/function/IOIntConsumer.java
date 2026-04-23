@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -56,11 +55,7 @@ public interface IOIntConsumer {
      * @throws NullPointerException if {@code after} is null
      */
     default IOIntConsumer andThen(final IOIntConsumer after) {
-        Objects.requireNonNull(after);
-        return (final int i) -> {
-            accept(i);
-            after.accept(i);
-        };
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -69,7 +64,7 @@ public interface IOIntConsumer {
      * @return an UncheckedIOException IntConsumer.
      */
     default Consumer<Integer> asConsumer() {
-        return i -> Uncheck.accept(this, i);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -78,7 +73,6 @@ public interface IOIntConsumer {
      * @return an UncheckedIOException IntConsumer.
      */
     default IntConsumer asIntConsumer() {
-        return i -> Uncheck.accept(this, i);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

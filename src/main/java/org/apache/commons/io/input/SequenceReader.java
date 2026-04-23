@@ -17,14 +17,12 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.SequenceInputStream;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-
 import org.apache.commons.io.function.Uncheck;
 
 /**
@@ -38,6 +36,7 @@ import org.apache.commons.io.function.Uncheck;
 public class SequenceReader extends Reader {
 
     private Reader reader;
+
     private final Iterator<? extends Reader> readers;
 
     /**
@@ -66,9 +65,7 @@ public class SequenceReader extends Reader {
      */
     @Override
     public void close() throws IOException {
-        do { // NOPMD
-             // empty
-        } while (nextReader() != null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -96,15 +93,7 @@ public class SequenceReader extends Reader {
      */
     @Override
     public int read() throws IOException {
-        int c = EOF;
-        while (reader != null) {
-            c = reader.read();
-            if (c != EOF) {
-                break;
-            }
-            nextReader();
-        }
-        return c;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /*
@@ -114,27 +103,6 @@ public class SequenceReader extends Reader {
      */
     @Override
     public int read(final char[] cbuf, int off, int len) throws IOException {
-        Objects.requireNonNull(cbuf, "cbuf");
-        if (len < 0 || off < 0 || off + len > cbuf.length) {
-            throw new IndexOutOfBoundsException("Array Size=" + cbuf.length + ", offset=" + off + ", length=" + len);
-        }
-        int count = 0;
-        while (reader != null) {
-            final int readLen = reader.read(cbuf, off, len);
-            if (readLen == EOF) {
-                nextReader();
-            } else {
-                count += readLen;
-                off += readLen;
-                len -= readLen;
-                if (len <= 0) {
-                    break;
-                }
-            }
-        }
-        if (count > 0) {
-            return count;
-        }
-        return EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

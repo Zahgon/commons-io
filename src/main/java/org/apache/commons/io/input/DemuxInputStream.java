@@ -17,10 +17,8 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -44,9 +42,7 @@ public class DemuxInputStream extends InputStream {
      * @return the InputStream that was previously active
      */
     public InputStream bindStream(final InputStream input) {
-        final InputStream oldValue = inputStreamLocal.get();
-        inputStreamLocal.set(input);
-        return oldValue;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -54,10 +50,11 @@ public class DemuxInputStream extends InputStream {
      *
      * @throws IOException if an error occurs
      */
-    @SuppressWarnings("resource") // we actually close the stream here
+    // we actually close the stream here
+    @SuppressWarnings("resource")
     @Override
     public void close() throws IOException {
-        IOUtils.close(inputStreamLocal.get());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,10 +65,6 @@ public class DemuxInputStream extends InputStream {
      */
     @Override
     public int read() throws IOException {
-        final InputStream inputStream = inputStreamLocal.get();
-        if (null != inputStream) {
-            return inputStream.read();
-        }
-        return EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

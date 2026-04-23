@@ -14,14 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.output;
 
 import java.io.FilterWriter;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.io.Writer;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 import org.apache.commons.io.function.Uncheck;
 
@@ -92,9 +90,8 @@ public final class UncheckedFilterWriter extends FilterWriter {
          */
         @Override
         public UncheckedFilterWriter get() throws IOException {
-            return new UncheckedFilterWriter(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -103,7 +100,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -114,7 +111,8 @@ public final class UncheckedFilterWriter extends FilterWriter {
      * @throws NullPointerException if {@code builder} the its {@code Writer} is {@code null}.
      * @throws IOException          if an I/O error occurs converting to an {@link Writer} using {@link #getWriter()}.
      */
-    @SuppressWarnings("resource") // Caller closes.
+    // Caller closes.
+    @SuppressWarnings("resource")
     private UncheckedFilterWriter(final Builder builder) throws IOException {
         super(builder.getWriter());
     }
@@ -124,7 +122,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public Writer append(final char c) throws UncheckedIOException {
-        return Uncheck.apply(super::append, c);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -132,7 +130,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public Writer append(final CharSequence csq) throws UncheckedIOException {
-        return Uncheck.apply(super::append, csq);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,7 +138,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public Writer append(final CharSequence csq, final int start, final int end) throws UncheckedIOException {
-        return Uncheck.apply(super::append, csq, start, end);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -148,7 +146,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public void close() throws UncheckedIOException {
-        Uncheck.run(super::close);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -156,7 +154,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public void flush() throws UncheckedIOException {
-        Uncheck.run(super::flush);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -164,7 +162,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public void write(final char[] cbuf) throws UncheckedIOException {
-        Uncheck.accept(super::write, cbuf);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -172,7 +170,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public void write(final char[] cbuf, final int off, final int len) throws UncheckedIOException {
-        Uncheck.accept(super::write, cbuf, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -180,7 +178,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public void write(final int c) throws UncheckedIOException {
-        Uncheck.accept(super::write, c);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -188,7 +186,7 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public void write(final String str) throws UncheckedIOException {
-        Uncheck.accept(super::write, str);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -196,7 +194,6 @@ public final class UncheckedFilterWriter extends FilterWriter {
      */
     @Override
     public void write(final String str, final int off, final int len) throws UncheckedIOException {
-        Uncheck.accept(super::write, str, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

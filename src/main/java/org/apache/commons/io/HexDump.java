@@ -21,7 +21,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.Objects;
-
 import org.apache.commons.io.output.CloseShieldOutputStream;
 
 /**
@@ -44,16 +43,9 @@ public class HexDump {
     @Deprecated
     public static final String EOL = System.lineSeparator();
 
-    private static final char[] HEX_CODES =
-            {
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'A', 'B', 'C', 'D', 'E', 'F'
-            };
+    private static final char[] HEX_CODES = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
-    private static final int[] SHIFTS =
-            {
-                28, 24, 20, 16, 12, 8, 4, 0
-            };
+    private static final int[] SHIFTS = { 28, 24, 20, 16, 12, 8, 4, 0 };
 
     /**
      * Dumps an array of bytes to an Appendable. The output is formatted
@@ -69,9 +61,8 @@ public class HexDump {
      * @throws NullPointerException if the output appendable is null
      * @since 2.12.0
      */
-    public static void dump(final byte[] data, final Appendable appendable)
-            throws IOException {
-        dump(data, 0, appendable, 0, data.length);
+    public static void dump(final byte[] data, final Appendable appendable) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -101,53 +92,8 @@ public class HexDump {
      * @throws NullPointerException if the output appendable is null
      * @since 2.12.0
      */
-    public static void dump(final byte[] data, final long offset,
-                            final Appendable appendable, final int index,
-                            final int length)
-            throws IOException, ArrayIndexOutOfBoundsException {
-        Objects.requireNonNull(appendable, "appendable");
-        if (index < 0 || index >= data.length) {
-            throw new ArrayIndexOutOfBoundsException(
-                    "illegal index: " + index + " into array of length "
-                    + data.length);
-        }
-        long display_offset = offset + index;
-        final StringBuilder buffer = new StringBuilder(74);
-
-        // TODO Use Objects.checkFromIndexSize(index, length, data.length) when upgrading to JDK9
-        if (length < 0 || index + length > data.length) {
-            throw new ArrayIndexOutOfBoundsException(String.format("Range [%s, %<s + %s) out of bounds for length %s", index, length, data.length));
-        }
-
-        final int endIndex = index + length;
-
-        for (int j = index; j < endIndex; j += 16) {
-            int chars_read = endIndex - j;
-
-            if (chars_read > 16) {
-                chars_read = 16;
-            }
-            dump(buffer, display_offset).append(' ');
-            for (int k = 0; k < 16; k++) {
-                if (k < chars_read) {
-                    dump(buffer, data[k + j]);
-                } else {
-                    buffer.append("  ");
-                }
-                buffer.append(' ');
-            }
-            for (int k = 0; k < chars_read; k++) {
-                if (data[k + j] >= ' ' && data[k + j] < 127) {
-                    buffer.append((char) data[k + j]);
-                } else {
-                    buffer.append('.');
-                }
-            }
-            buffer.append(System.lineSeparator());
-            appendable.append(buffer);
-            buffer.setLength(0);
-            display_offset += chars_read;
-        }
+    public static void dump(final byte[] data, final long offset, final Appendable appendable, final int index, final int length) throws IOException, ArrayIndexOutOfBoundsException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -183,15 +129,10 @@ public class HexDump {
      *         outside the data array's bounds
      * @throws NullPointerException if the output stream is null
      */
-    @SuppressWarnings("resource") // Caller closes stream
-    public static void dump(final byte[] data, final long offset,
-                            final OutputStream stream, final int index)
-            throws IOException, ArrayIndexOutOfBoundsException {
-        Objects.requireNonNull(stream, "stream");
-
-        try (OutputStreamWriter out = new OutputStreamWriter(CloseShieldOutputStream.wrap(stream), Charset.defaultCharset())) {
-            dump(data, offset, out, index, data.length - index);
-        }
+    // Caller closes stream
+    @SuppressWarnings("resource")
+    public static void dump(final byte[] data, final long offset, final OutputStream stream, final int index) throws IOException, ArrayIndexOutOfBoundsException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -227,5 +168,4 @@ public class HexDump {
      */
     public HexDump() {
     }
-
 }

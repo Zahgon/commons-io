@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.util.Objects;
@@ -46,7 +45,6 @@ abstract class IOBaseStreamAdapter<T, S extends IOBaseStream<T, S, B>, B extends
 
     @Override
     public B unwrap() {
-        return delegate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

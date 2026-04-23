@@ -34,7 +34,9 @@ import java.lang.reflect.Proxy;
  */
 public class ClassLoaderObjectInputStream extends ObjectInputStream {
 
-    /** The class loader to use. */
+    /**
+     * The class loader to use.
+     */
     private final ClassLoader classLoader;
 
     /**
@@ -45,9 +47,7 @@ public class ClassLoaderObjectInputStream extends ObjectInputStream {
      * @throws IOException in case of an I/O error
      * @throws StreamCorruptedException if the stream is corrupted
      */
-    public ClassLoaderObjectInputStream(
-            final ClassLoader classLoader, final InputStream inputStream)
-            throws IOException, StreamCorruptedException {
+    public ClassLoaderObjectInputStream(final ClassLoader classLoader, final InputStream inputStream) throws IOException, StreamCorruptedException {
         super(inputStream);
         this.classLoader = classLoader;
     }
@@ -62,14 +62,8 @@ public class ClassLoaderObjectInputStream extends ObjectInputStream {
      * @throws ClassNotFoundException if the Class cannot be found
      */
     @Override
-    protected Class<?> resolveClass(final ObjectStreamClass objectStreamClass)
-            throws IOException, ClassNotFoundException {
-        try {
-            return Class.forName(objectStreamClass.getName(), false, classLoader);
-        } catch (final ClassNotFoundException cnfe) {
-            // delegate to super class loader which can resolve primitives
-            return super.resolveClass(objectStreamClass);
-        }
+    protected Class<?> resolveClass(final ObjectStreamClass objectStreamClass) throws IOException, ClassNotFoundException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -84,17 +78,7 @@ public class ClassLoaderObjectInputStream extends ObjectInputStream {
      * @since 2.1
      */
     @Override
-    protected Class<?> resolveProxyClass(final String[] interfaces) throws IOException,
-            ClassNotFoundException {
-        final Class<?>[] interfaceClasses = new Class[interfaces.length];
-        for (int i = 0; i < interfaces.length; i++) {
-            interfaceClasses[i] = Class.forName(interfaces[i], false, classLoader);
-        }
-        try {
-            return Proxy.getProxyClass(classLoader, interfaceClasses);
-        } catch (final IllegalArgumentException e) {
-            return super.resolveProxyClass(interfaces);
-        }
+    protected Class<?> resolveProxyClass(final String[] interfaces) throws IOException, ClassNotFoundException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

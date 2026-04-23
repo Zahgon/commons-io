@@ -59,7 +59,7 @@ public class ClosedOutputStream extends OutputStream {
      */
     @Override
     public void flush() throws IOException {
-        throw new IOException("flush() failed: stream is closed");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -71,8 +71,8 @@ public class ClosedOutputStream extends OutputStream {
      * @throws IOException always thrown
      */
     @Override
-    public void write(final byte b[], final int off, final int len) throws IOException {
-        throw new IOException("write(byte[], int, int) failed: stream is closed");
+    public void write(final byte[] b, final int off, final int len) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -83,6 +83,6 @@ public class ClosedOutputStream extends OutputStream {
      */
     @Override
     public void write(final int b) throws IOException {
-        throw new IOException("write(int) failed: stream is closed");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

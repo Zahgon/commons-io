@@ -19,7 +19,6 @@ package org.apache.commons.io.comparator;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Comparator;
-
 import org.apache.commons.io.IOCase;
 
 /**
@@ -57,25 +56,39 @@ public class PathFileComparator extends AbstractFileComparator implements Serial
 
     private static final long serialVersionUID = 6527501707585768673L;
 
-    /** Case-sensitive path comparator instance (see {@link IOCase#SENSITIVE}) */
+    /**
+     * Case-sensitive path comparator instance (see {@link IOCase#SENSITIVE})
+     */
     public static final Comparator<File> PATH_COMPARATOR = new PathFileComparator();
 
-    /** Reverse case-sensitive path comparator instance (see {@link IOCase#SENSITIVE}) */
+    /**
+     * Reverse case-sensitive path comparator instance (see {@link IOCase#SENSITIVE})
+     */
     public static final Comparator<File> PATH_REVERSE = new ReverseFileComparator(PATH_COMPARATOR);
 
-    /** Case-insensitive path comparator instance (see {@link IOCase#INSENSITIVE}) */
+    /**
+     * Case-insensitive path comparator instance (see {@link IOCase#INSENSITIVE})
+     */
     public static final Comparator<File> PATH_INSENSITIVE_COMPARATOR = new PathFileComparator(IOCase.INSENSITIVE);
 
-    /** Reverse case-insensitive path comparator instance (see {@link IOCase#INSENSITIVE}) */
+    /**
+     * Reverse case-insensitive path comparator instance (see {@link IOCase#INSENSITIVE})
+     */
     public static final Comparator<File> PATH_INSENSITIVE_REVERSE = new ReverseFileComparator(PATH_INSENSITIVE_COMPARATOR);
 
-    /** System sensitive path comparator instance (see {@link IOCase#SYSTEM}) */
+    /**
+     * System sensitive path comparator instance (see {@link IOCase#SYSTEM})
+     */
     public static final Comparator<File> PATH_SYSTEM_COMPARATOR = new PathFileComparator(IOCase.SYSTEM);
 
-    /** Reverse system sensitive path comparator instance (see {@link IOCase#SYSTEM}) */
+    /**
+     * Reverse system sensitive path comparator instance (see {@link IOCase#SYSTEM})
+     */
     public static final Comparator<File> PATH_SYSTEM_REVERSE = new ReverseFileComparator(PATH_SYSTEM_COMPARATOR);
 
-    /** Whether the comparison is case-sensitive. */
+    /**
+     * Whether the comparison is case-sensitive.
+     */
     private final IOCase ioCase;
 
     /**
@@ -106,7 +119,7 @@ public class PathFileComparator extends AbstractFileComparator implements Serial
      */
     @Override
     public int compare(final File file1, final File file2) {
-        return ioCase.checkCompareTo(file1.getPath(), file2.getPath());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,6 +129,6 @@ public class PathFileComparator extends AbstractFileComparator implements Serial
      */
     @Override
     public String toString() {
-        return super.toString() + "[ioCase=" + ioCase + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

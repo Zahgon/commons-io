@@ -25,7 +25,6 @@ import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadFactory;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.ThreadUtils;
 
 /**
@@ -40,9 +39,13 @@ public final class FileAlterationMonitor implements Runnable {
     private static final FileAlterationObserver[] EMPTY_ARRAY = {};
 
     private final long intervalMillis;
+
     private final List<FileAlterationObserver> observers = new CopyOnWriteArrayList<>();
+
     private Thread thread;
+
     private ThreadFactory threadFactory;
+
     private volatile boolean running;
 
     /**
@@ -72,12 +75,7 @@ public final class FileAlterationMonitor implements Runnable {
      */
     public FileAlterationMonitor(final long interval, final Collection<FileAlterationObserver> observers) {
         // @formatter:off
-        this(interval,
-            Optional
-                .ofNullable(observers)
-                .orElse(Collections.emptyList())
-                .toArray(EMPTY_ARRAY)
-        );
+        this(interval, Optional.ofNullable(observers).orElse(Collections.emptyList()).toArray(EMPTY_ARRAY));
         // @formatter:on
     }
 
@@ -101,9 +99,7 @@ public final class FileAlterationMonitor implements Runnable {
      * @param observer The file system observer to add
      */
     public void addObserver(final FileAlterationObserver observer) {
-        if (observer != null) {
-            observers.add(observer);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -112,7 +108,7 @@ public final class FileAlterationMonitor implements Runnable {
      * @return the interval
      */
     public long getInterval() {
-        return intervalMillis;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -122,7 +118,7 @@ public final class FileAlterationMonitor implements Runnable {
      * @return The set of {@link FileAlterationObserver}
      */
     public Iterable<FileAlterationObserver> getObservers() {
-        return new ArrayList<>(observers);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -131,9 +127,7 @@ public final class FileAlterationMonitor implements Runnable {
      * @param observer The file system observer to remove
      */
     public void removeObserver(final FileAlterationObserver observer) {
-        if (observer != null) {
-            observers.removeIf(observer::equals);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -141,17 +135,7 @@ public final class FileAlterationMonitor implements Runnable {
      */
     @Override
     public void run() {
-        while (running) {
-            observers.forEach(FileAlterationObserver::checkAndNotify);
-            if (!running) {
-                break;
-            }
-            try {
-                ThreadUtils.sleep(Duration.ofMillis(intervalMillis));
-            } catch (final InterruptedException ignored) {
-                // ignore
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -160,7 +144,7 @@ public final class FileAlterationMonitor implements Runnable {
      * @param threadFactory the thread factory
      */
     public synchronized void setThreadFactory(final ThreadFactory threadFactory) {
-        this.threadFactory = threadFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -169,19 +153,7 @@ public final class FileAlterationMonitor implements Runnable {
      * @throws Exception if an error occurs initializing the observer
      */
     public synchronized void start() throws Exception {
-        if (running) {
-            throw new IllegalStateException("Monitor is already running");
-        }
-        for (final FileAlterationObserver observer : observers) {
-            observer.initialize();
-        }
-        running = true;
-        if (threadFactory != null) {
-            thread = threadFactory.newThread(this);
-        } else {
-            thread = new Thread(this);
-        }
-        thread.start();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -190,7 +162,7 @@ public final class FileAlterationMonitor implements Runnable {
      * @throws Exception if an error occurs initializing the observer
      */
     public synchronized void stop() throws Exception {
-        stop(intervalMillis);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -202,18 +174,6 @@ public final class FileAlterationMonitor implements Runnable {
      * @since 2.1
      */
     public synchronized void stop(final long stopInterval) throws Exception {
-        if (!running) {
-            throw new IllegalStateException("Monitor is not running");
-        }
-        running = false;
-        try {
-            thread.interrupt();
-            thread.join(stopInterval);
-        } catch (final InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-        for (final FileAlterationObserver observer : observers) {
-            observer.destroy();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

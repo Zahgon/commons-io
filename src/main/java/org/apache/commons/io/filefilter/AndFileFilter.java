@@ -46,7 +46,9 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
 
     private static final long serialVersionUID = 7215974688563965257L;
 
-    /** The list of file filters. */
+    /**
+     * The list of file filters.
+     */
     private final List<IOFileFilter> fileFilters;
 
     /**
@@ -116,7 +118,7 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      */
     @Override
     public boolean accept(final File file) {
-        return !isEmpty() && fileFilters.stream().allMatch(fileFilter -> fileFilter.accept(file));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -124,7 +126,7 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      */
     @Override
     public boolean accept(final File file, final String name) {
-        return !isEmpty() && fileFilters.stream().allMatch(fileFilter -> fileFilter.accept(file, name));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -133,8 +135,7 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return isEmpty() ? FileVisitResult.TERMINATE
-                : toDefaultFileVisitResult(fileFilters.stream().allMatch(fileFilter -> fileFilter.accept(file, attributes) == FileVisitResult.CONTINUE));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -142,7 +143,7 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      */
     @Override
     public void addFileFilter(final IOFileFilter fileFilter) {
-        fileFilters.add(Objects.requireNonNull(fileFilter, "fileFilter"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -152,7 +153,7 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      * @since 2.9.0
      */
     public void addFileFilter(final IOFileFilter... fileFilters) {
-        Stream.of(Objects.requireNonNull(fileFilters, "fileFilters")).forEach(this::addFileFilter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -160,7 +161,7 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      */
     @Override
     public List<IOFileFilter> getFileFilters() {
-        return Collections.unmodifiableList(fileFilters);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean isEmpty() {
@@ -172,7 +173,7 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      */
     @Override
     public boolean removeFileFilter(final IOFileFilter ioFileFilter) {
-        return fileFilters.remove(ioFileFilter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -180,8 +181,7 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      */
     @Override
     public void setFileFilters(final List<IOFileFilter> fileFilters) {
-        this.fileFilters.clear();
-        this.fileFilters.addAll(fileFilters);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -191,12 +191,6 @@ public class AndFileFilter extends AbstractFileFilter implements ConditionalFile
      */
     @Override
     public String toString() {
-        final StringBuilder buffer = new StringBuilder();
-        buffer.append(super.toString());
-        buffer.append("(");
-        append(fileFilters, buffer);
-        buffer.append(")");
-        return buffer.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

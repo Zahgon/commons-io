@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -39,11 +38,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T, U> void accept(final IOBiConsumer<T, U> consumer, final T t, final U u) {
-        try {
-            consumer.accept(t, u);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -55,11 +50,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T> void accept(final IOConsumer<T> consumer, final T t) {
-        try {
-            consumer.accept(t);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -71,11 +62,7 @@ public final class Uncheck {
      * @since 2.18.0
      */
     public static void accept(final IOIntConsumer consumer, final int i) {
-        try {
-            consumer.accept(i);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -91,11 +78,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T, U, V> void accept(final IOTriConsumer<T, U, V> consumer, final T t, final U u, final V v) {
-        try {
-            consumer.accept(t, u, v);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -111,11 +94,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T, U, R> R apply(final IOBiFunction<T, U, R> function, final T t, final U u) {
-        try {
-            return function.apply(t, u);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -129,11 +108,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T, R> R apply(final IOFunction<T, R> function, final T t) {
-        try {
-            return function.apply(t);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -153,11 +128,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T, U, V, W, R> R apply(final IOQuadFunction<T, U, V, W, R> function, final T t, final U u, final V v, final W w) {
-        try {
-            return function.apply(t, u, v, w);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,11 +146,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T, U, V, R> R apply(final IOTriFunction<T, U, V, R> function, final T t, final U u, final V v) {
-        try {
-            return function.apply(t, u, v);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -193,11 +160,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T> int compare(final IOComparator<T> comparator, final T t, final T u) {
-        try {
-            return comparator.compare(t, u);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -209,11 +172,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T> T get(final IOSupplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -226,11 +185,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static <T> T get(final IOSupplier<T> supplier, final Supplier<String> message) {
-        try {
-            return supplier.get();
-        } catch (final IOException e) {
-            throw wrap(e, message);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -242,11 +197,7 @@ public final class Uncheck {
      * @since 2.19.0
      */
     public static boolean getAsBoolean(final IOBooleanSupplier supplier) {
-        try {
-            return supplier.getAsBoolean();
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -258,11 +209,7 @@ public final class Uncheck {
      * @since 2.14.0
      */
     public static int getAsInt(final IOIntSupplier supplier) {
-        try {
-            return supplier.getAsInt();
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -275,11 +222,7 @@ public final class Uncheck {
      * @since 2.14.0
      */
     public static int getAsInt(final IOIntSupplier supplier, final Supplier<String> message) {
-        try {
-            return supplier.getAsInt();
-        } catch (final IOException e) {
-            throw wrap(e, message);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -291,11 +234,7 @@ public final class Uncheck {
      * @since 2.14.0
      */
     public static long getAsLong(final IOLongSupplier supplier) {
-        try {
-            return supplier.getAsLong();
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -308,11 +247,7 @@ public final class Uncheck {
      * @since 2.14.0
      */
     public static long getAsLong(final IOLongSupplier supplier, final Supplier<String> message) {
-        try {
-            return supplier.getAsLong();
-        } catch (final IOException e) {
-            throw wrap(e, message);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -322,11 +257,7 @@ public final class Uncheck {
      * @throws UncheckedIOException if an I/O error occurs.
      */
     public static void run(final IORunnable runnable) {
-        try {
-            runnable.run();
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -338,11 +269,7 @@ public final class Uncheck {
      * @since 2.14.0
      */
     public static void run(final IORunnable runnable, final Supplier<String> message) {
-        try {
-            runnable.run();
-        } catch (final IOException e) {
-            throw wrap(e, message);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -354,11 +281,7 @@ public final class Uncheck {
      * @return {@code true} if the input argument matches the predicate, otherwise {@code false}.
      */
     public static <T> boolean test(final IOPredicate<T> predicate, final T t) {
-        try {
-            return predicate.test(t);
-        } catch (final IOException e) {
-            throw wrap(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

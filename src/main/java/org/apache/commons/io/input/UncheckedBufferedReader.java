@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.input;
 
 import java.io.BufferedReader;
@@ -22,7 +21,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.UncheckedIOException;
 import java.nio.CharBuffer;
-
 import org.apache.commons.io.build.AbstractStreamBuilder;
 import org.apache.commons.io.function.Uncheck;
 
@@ -100,10 +98,8 @@ public final class UncheckedBufferedReader extends BufferedReader {
          */
         @Override
         public UncheckedBufferedReader get() {
-            // This an unchecked class, so this method is as well.
-            return Uncheck.get(() -> new UncheckedBufferedReader(this));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     /**
@@ -112,7 +108,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      * @return a new {@link Builder}.
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -132,7 +128,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public void close() throws UncheckedIOException {
-        Uncheck.run(super::close);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,7 +136,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public void mark(final int readAheadLimit) throws UncheckedIOException {
-        Uncheck.accept(super::mark, readAheadLimit);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -148,7 +144,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public int read() throws UncheckedIOException {
-        return Uncheck.getAsInt(super::read);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -156,7 +152,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public int read(final char[] cbuf) throws UncheckedIOException {
-        return Uncheck.apply(super::read, cbuf);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -164,7 +160,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public int read(final char[] cbuf, final int off, final int len) throws UncheckedIOException {
-        return Uncheck.apply(super::read, cbuf, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -172,7 +168,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public int read(final CharBuffer target) throws UncheckedIOException {
-        return Uncheck.apply(super::read, target);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -180,7 +176,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public String readLine() throws UncheckedIOException {
-        return Uncheck.get(super::readLine);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -188,7 +184,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public boolean ready() throws UncheckedIOException {
-        return Uncheck.getAsBoolean(super::ready);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -196,7 +192,7 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public void reset() throws UncheckedIOException {
-        Uncheck.run(super::reset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -204,7 +200,6 @@ public final class UncheckedBufferedReader extends BufferedReader {
      */
     @Override
     public long skip(final long n) throws UncheckedIOException {
-        return Uncheck.apply(super::skip, n);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

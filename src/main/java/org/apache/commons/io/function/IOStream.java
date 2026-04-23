@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -41,7 +40,6 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-
 import org.apache.commons.io.IOExceptionList;
 
 /**
@@ -60,7 +58,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return a new IOStream.
      */
     static <T> IOStream<T> adapt(final Stream<T> stream) {
-        return IOStreamAdapter.adapt(stream);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -71,7 +69,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @see Stream#empty()
      */
     static <T> IOStream<T> empty() {
-        return IOStreamAdapter.adapt(Stream.empty());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -83,28 +81,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return a new sequential {@code IOStream}.
      */
     static <T> IOStream<T> iterate(final T seed, final IOUnaryOperator<T> f) {
-        Objects.requireNonNull(f);
-        final Iterator<T> iterator = new Iterator<T>() {
-            @SuppressWarnings("unchecked")
-            T t = (T) IOStreams.NONE;
-
-            @Override
-            public boolean hasNext() {
-                return true;
-            }
-
-            @Override
-            public T next() throws NoSuchElementException {
-                try {
-                    return t = t == IOStreams.NONE ? seed : f.apply(t);
-                } catch (final IOException e) {
-                    final NoSuchElementException nsee = new NoSuchElementException();
-                    nsee.initCause(e);
-                    throw nsee;
-                }
-            }
-        };
-        return adapt(StreamSupport.stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED | Spliterator.IMMUTABLE), false));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,7 +94,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return the new stream on {@code values} or {@link Stream#empty()}.
      */
     static <T> IOStream<T> of(final Iterable<T> values) {
-        return values == null ? empty() : adapt(StreamSupport.stream(values.spliterator(), false));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -127,9 +104,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @param values the elements of the new stream, may be {@code null}.
      * @return the new stream on {@code values} or {@link Stream#empty()}.
      */
-    @SafeVarargs // Creating a stream from an array is safe
+    // Creating a stream from an array is safe
+    @SafeVarargs
     static <T> IOStream<T> of(final T... values) {
-        return values == null || values.length == 0 ? empty() : adapt(Arrays.stream(values));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -140,7 +118,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return a singleton sequential stream
      */
     static <T> IOStream<T> of(final T t) {
-        return adapt(Stream.of(t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,9 +128,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#allMatch(java.util.function.Predicate)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default boolean allMatch(final IOPredicate<? super T> predicate) throws IOException {
-        return unwrap().allMatch(t -> Erase.test(predicate, t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -162,9 +141,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#anyMatch(java.util.function.Predicate)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default boolean anyMatch(final IOPredicate<? super T> predicate) throws IOException {
-        return unwrap().anyMatch(t -> Erase.test(predicate, t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -183,7 +163,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#collect(Collector)}.
      */
     default <R, A> R collect(final Collector<? super T, A, R> collector) {
-        return unwrap().collect(collector);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -202,9 +182,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      *         {@link Stream#collect(java.util.function.Supplier, java.util.function.BiConsumer, java.util.function.BiConsumer)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default <R> R collect(final IOSupplier<R> supplier, final IOBiConsumer<R, ? super T> accumulator, final IOBiConsumer<R, R> combiner) throws IOException {
-        return unwrap().collect(() -> Erase.get(supplier), (t, u) -> Erase.accept(accumulator, t, u), (t, u) -> Erase.accept(combiner, t, u));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -213,7 +194,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#count()}.
      */
     default long count() {
-        return unwrap().count();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -222,7 +203,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#distinct()}.
      */
     default IOStream<T> distinct() {
-        return adapt(unwrap().distinct());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -232,9 +213,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#filter(java.util.function.Predicate)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default IOStream<T> filter(final IOPredicate<? super T> predicate) throws IOException {
-        return adapt(unwrap().filter(t -> Erase.test(predicate, t)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -243,7 +225,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#findAny()}.
      */
     default Optional<T> findAny() {
-        return unwrap().findAny();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -252,7 +234,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#findFirst()}.
      */
     default Optional<T> findFirst() {
-        return unwrap().findFirst();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -263,9 +245,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#flatMap(java.util.function.Function)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings({ "unused", "resource" }) // thrown by Erase; resource closed by caller.
+    // thrown by Erase; resource closed by caller.
+    @SuppressWarnings({ "unused", "resource" })
     default <R> IOStream<R> flatMap(final IOFunction<? super T, ? extends IOStream<? extends R>> mapper) throws IOException {
-        return adapt(unwrap().flatMap(t -> Erase.apply(mapper, t).unwrap()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -280,9 +263,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#flatMapToDouble(java.util.function.Function)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default DoubleStream flatMapToDouble(final IOFunction<? super T, ? extends DoubleStream> mapper) throws IOException {
-        return unwrap().flatMapToDouble(t -> Erase.apply(mapper, t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -297,9 +281,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#flatMapToInt(java.util.function.Function)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default IntStream flatMapToInt(final IOFunction<? super T, ? extends IntStream> mapper) throws IOException {
-        return unwrap().flatMapToInt(t -> Erase.apply(mapper, t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -314,9 +299,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#flatMapToLong(java.util.function.Function)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default LongStream flatMapToLong(final IOFunction<? super T, ? extends LongStream> mapper) throws IOException {
-        return unwrap().flatMapToLong(t -> Erase.apply(mapper, t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -326,7 +312,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @throws IOExceptionList if any I/O errors occur.
      */
     default void forAll(final IOConsumer<T> action) throws IOExceptionList {
-        forAll(action, (i, e) -> e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -337,24 +323,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @throws IOExceptionList if any I/O errors occur.
      */
     default void forAll(final IOConsumer<T> action, final BiFunction<Integer, IOException, IOException> exSupplier) throws IOExceptionList {
-        final AtomicReference<List<IOException>> causeList = new AtomicReference<>();
-        final AtomicInteger index = new AtomicInteger();
-        final IOConsumer<T> safeAction = IOStreams.toIOConsumer(action);
-        unwrap().forEach(e -> {
-            try {
-                safeAction.accept(e);
-            } catch (final IOException innerEx) {
-                if (causeList.get() == null) {
-                    // Only allocate if required
-                    causeList.set(new ArrayList<>());
-                }
-                if (exSupplier != null) {
-                    causeList.get().add(exSupplier.apply(index.get(), innerEx));
-                }
-            }
-            index.incrementAndGet();
-        });
-        IOExceptionList.checkEmpty(causeList.get(), null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -363,9 +332,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @param action Like {@link Stream#forEach(java.util.function.Consumer)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default void forEach(final IOConsumer<? super T> action) throws IOException {
-        unwrap().forEach(e -> Erase.accept(action, e));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -374,9 +344,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @param action Like {@link Stream#forEachOrdered(java.util.function.Consumer)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default void forEachOrdered(final IOConsumer<? super T> action) throws IOException {
-        unwrap().forEachOrdered(e -> Erase.accept(action, e));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -386,7 +357,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#limit(long)}.
      */
     default IOStream<T> limit(final long maxSize) {
-        return adapt(unwrap().limit(maxSize));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -397,9 +368,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#map(java.util.function.Function)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default <R> IOStream<R> map(final IOFunction<? super T, ? extends R> mapper) throws IOException {
-        return adapt(unwrap().map(t -> Erase.apply(mapper, t)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -416,7 +388,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#mapToDouble(ToDoubleFunction)}.
      */
     default DoubleStream mapToDouble(final ToDoubleFunction<? super T> mapper) {
-        return unwrap().mapToDouble(mapper);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -433,7 +405,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#mapToInt(ToIntFunction)}.
      */
     default IntStream mapToInt(final ToIntFunction<? super T> mapper) {
-        return unwrap().mapToInt(mapper);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -450,7 +422,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#mapToLong(ToLongFunction)}.
      */
     default LongStream mapToLong(final ToLongFunction<? super T> mapper) {
-        return unwrap().mapToLong(mapper);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -460,9 +432,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#max(java.util.Comparator)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default Optional<T> max(final IOComparator<? super T> comparator) throws IOException {
-        return unwrap().max((t, u) -> Erase.compare(comparator, t, u));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -472,9 +445,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#min(java.util.Comparator)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default Optional<T> min(final IOComparator<? super T> comparator) throws IOException {
-        return unwrap().min((t, u) -> Erase.compare(comparator, t, u));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -484,9 +458,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#noneMatch(java.util.function.Predicate)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default boolean noneMatch(final IOPredicate<? super T> predicate) throws IOException {
-        return unwrap().noneMatch(t -> Erase.test(predicate, t));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -496,9 +471,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#peek(java.util.function.Consumer)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default IOStream<T> peek(final IOConsumer<? super T> action) throws IOException {
-        return adapt(unwrap().peek(t -> Erase.accept(action, t)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -508,9 +484,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#reduce(java.util.function.BinaryOperator)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default Optional<T> reduce(final IOBinaryOperator<T> accumulator) throws IOException {
-        return unwrap().reduce((t, u) -> Erase.apply(accumulator, t, u));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -521,9 +498,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#reduce(Object, java.util.function.BinaryOperator)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default T reduce(final T identity, final IOBinaryOperator<T> accumulator) throws IOException {
-        return unwrap().reduce(identity, (t, u) -> Erase.apply(accumulator, t, u));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -536,9 +514,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#reduce(Object, BiFunction, java.util.function.BinaryOperator)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default <U> U reduce(final U identity, final IOBiFunction<U, ? super T, U> accumulator, final IOBinaryOperator<U> combiner) throws IOException {
-        return unwrap().reduce(identity, (t, u) -> Erase.apply(accumulator, t, u), (t, u) -> Erase.apply(combiner, t, u));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -548,7 +527,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#skip(long)}.
      */
     default IOStream<T> skip(final long n) {
-        return adapt(unwrap().skip(n));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -557,7 +536,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#sorted()}.
      */
     default IOStream<T> sorted() {
-        return adapt(unwrap().sorted());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -567,9 +546,10 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#sorted(java.util.Comparator)}.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("unused") // thrown by Erase.
+    // thrown by Erase.
+    @SuppressWarnings("unused")
     default IOStream<T> sorted(final IOComparator<? super T> comparator) throws IOException {
-        return adapt(unwrap().sorted((t, u) -> Erase.compare(comparator, t, u)));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -578,7 +558,7 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return {@link Stream#toArray()}.
      */
     default Object[] toArray() {
-        return unwrap().toArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -596,7 +576,6 @@ public interface IOStream<T> extends IOBaseStream<T, IOStream<T>, Stream<T>> {
      * @return Like {@link Stream#toArray(IntFunction)}.
      */
     default <A> A[] toArray(final IntFunction<A[]> generator) {
-        return unwrap().toArray(generator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

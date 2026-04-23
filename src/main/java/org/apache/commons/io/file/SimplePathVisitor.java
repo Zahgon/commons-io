@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.io.IOException;
@@ -22,7 +21,6 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.util.Objects;
-
 import org.apache.commons.io.build.AbstractSupplier;
 import org.apache.commons.io.function.IOBiFunction;
 
@@ -52,7 +50,7 @@ public abstract class SimplePathVisitor extends SimpleFileVisitor<Path> implemen
         }
 
         IOBiFunction<Path, IOException, FileVisitResult> getVisitFileFailedFunction() {
-            return visitFileFailedFunction;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -65,10 +63,8 @@ public abstract class SimplePathVisitor extends SimpleFileVisitor<Path> implemen
          * @return this instance.
          */
         public B setVisitFileFailedFunction(final IOBiFunction<Path, IOException, FileVisitResult> visitFileFailedFunction) {
-            this.visitFileFailedFunction = visitFileFailedFunction;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     private final IOBiFunction<Path, IOException, FileVisitResult> visitFileFailedFunction;
@@ -100,6 +96,6 @@ public abstract class SimplePathVisitor extends SimpleFileVisitor<Path> implemen
 
     @Override
     public FileVisitResult visitFileFailed(final Path file, final IOException exc) throws IOException {
-        return visitFileFailedFunction.apply(file, exc);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -80,13 +79,7 @@ public class TeeReader extends ProxyReader {
      */
     @Override
     public void close() throws IOException {
-        try {
-            super.close();
-        } finally {
-            if (closeBranch) {
-                branch.close();
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,11 +90,7 @@ public class TeeReader extends ProxyReader {
      */
     @Override
     public int read() throws IOException {
-        final int ch = super.read();
-        if (ch != EOF) {
-            branch.write(ch);
-        }
-        return ch;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -113,11 +102,7 @@ public class TeeReader extends ProxyReader {
      */
     @Override
     public int read(final char[] chr) throws IOException {
-        final int n = super.read(chr);
-        if (n != EOF) {
-            branch.write(chr, 0, n);
-        }
-        return n;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -131,11 +116,7 @@ public class TeeReader extends ProxyReader {
      */
     @Override
     public int read(final char[] chr, final int st, final int end) throws IOException {
-        final int n = super.read(chr, st, end);
-        if (n != EOF) {
-            branch.write(chr, st, n);
-        }
-        return n;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,22 +128,6 @@ public class TeeReader extends ProxyReader {
      */
     @Override
     public int read(final CharBuffer target) throws IOException {
-        final int originalPosition = target.position();
-        final int n = super.read(target);
-        if (n != EOF) {
-            // Appending can only be done after resetting the CharBuffer to the
-            // right position and limit.
-            final int newPosition = target.position();
-            final int newLimit = target.limit();
-            try {
-                target.position(originalPosition).limit(newPosition);
-                branch.append(target);
-            } finally {
-                // Reset the CharBuffer as if the appending never happened.
-                target.position(newPosition).limit(newLimit);
-            }
-        }
-        return n;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

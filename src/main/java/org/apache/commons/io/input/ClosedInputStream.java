@@ -17,10 +17,8 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -56,7 +54,7 @@ public class ClosedInputStream extends InputStream {
      * @return {@link #INSTANCE} if the given InputStream is null, otherwise returns the given input stream.
      */
     static InputStream ifNull(final InputStream in) {
-        return in != null ? in : INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -73,7 +71,7 @@ public class ClosedInputStream extends InputStream {
      */
     @Override
     public int read() {
-        return EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -86,7 +84,6 @@ public class ClosedInputStream extends InputStream {
      */
     @Override
     public int read(final byte[] b, final int off, final int len) throws IOException {
-        return EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

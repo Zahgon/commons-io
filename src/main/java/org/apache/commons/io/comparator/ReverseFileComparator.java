@@ -33,6 +33,7 @@ import java.util.Objects;
 final class ReverseFileComparator extends AbstractFileComparator implements Serializable {
 
     private static final long serialVersionUID = -4808255005272229056L;
+
     private final Comparator<File> delegate;
 
     /**
@@ -54,7 +55,7 @@ final class ReverseFileComparator extends AbstractFileComparator implements Seri
      */
     @Override
     public int compare(final File file1, final File file2) {
-        return delegate.compare(file2, file1); // parameters switched round
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -64,7 +65,6 @@ final class ReverseFileComparator extends AbstractFileComparator implements Seri
      */
     @Override
     public String toString() {
-        return super.toString() + "[" + delegate.toString() + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

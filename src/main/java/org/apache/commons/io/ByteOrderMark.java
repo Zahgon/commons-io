@@ -155,19 +155,7 @@ public class ByteOrderMark implements Serializable {
      */
     @Override
     public boolean equals(final Object obj) {
-        if (!(obj instanceof ByteOrderMark)) {
-            return false;
-        }
-        final ByteOrderMark bom = (ByteOrderMark) obj;
-        if (bytes.length != bom.length()) {
-            return false;
-        }
-        for (int i = 0; i < bytes.length; i++) {
-            if (bytes[i] != bom.get(i)) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -177,7 +165,7 @@ public class ByteOrderMark implements Serializable {
      * @return The specified byte
      */
     public int get(final int pos) {
-        return bytes[pos];
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -186,11 +174,7 @@ public class ByteOrderMark implements Serializable {
      * @return a copy of the BOM's bytes
      */
     public byte[] getBytes() {
-        final byte[] copy = IOUtils.byteArray(bytes.length);
-        for (int i = 0; i < bytes.length; i++) {
-            copy[i] = (byte) bytes[i];
-        }
-        return copy;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -199,11 +183,11 @@ public class ByteOrderMark implements Serializable {
      * @return the character set name
      */
     public String getCharsetName() {
-        return charsetName;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     int[] getRawBytes() {
-        return bytes;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -214,11 +198,7 @@ public class ByteOrderMark implements Serializable {
      */
     @Override
     public int hashCode() {
-        int hashCode = getClass().hashCode();
-        for (final int b : bytes) {
-            hashCode += b;
-        }
-        return hashCode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -227,7 +207,7 @@ public class ByteOrderMark implements Serializable {
      * @return the length of the BOM's bytes
      */
     public int length() {
-        return bytes.length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -238,23 +218,7 @@ public class ByteOrderMark implements Serializable {
      * @since 2.19.0
      */
     public boolean matches(final int[] test) {
-        // Our test are never null.
-        if (bytes == test) {
-            return true;
-        }
-        if (test == null) {
-            return false;
-        }
-        final int length = bytes.length;
-        if (test.length < length) {
-            return false;
-        }
-        for (int i = 0; i < length; i++) {
-            if (bytes[i] != test[i]) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -264,20 +228,6 @@ public class ByteOrderMark implements Serializable {
      */
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getClass().getSimpleName());
-        builder.append('[');
-        builder.append(charsetName);
-        builder.append(": ");
-        for (int i = 0; i < bytes.length; i++) {
-            if (i > 0) {
-                builder.append(",");
-            }
-            builder.append("0x");
-            builder.append(Integer.toHexString(0xFF & bytes[i]).toUpperCase(Locale.ROOT));
-        }
-        builder.append(']');
-        return builder.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -29,7 +29,8 @@ import java.util.regex.Pattern;
  */
 final class RegexpClassNameMatcher implements ClassNameMatcher {
 
-    private final Pattern pattern; // Class is thread-safe
+    // Class is thread-safe
+    private final Pattern pattern;
 
     /**
      * Constructs an object based on the specified pattern.
@@ -52,6 +53,6 @@ final class RegexpClassNameMatcher implements ClassNameMatcher {
 
     @Override
     public boolean matches(final String className) {
-        return pattern.matcher(className).matches();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

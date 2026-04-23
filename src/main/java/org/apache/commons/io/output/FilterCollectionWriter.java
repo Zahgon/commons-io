@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.output;
 
 import java.io.FilterWriter;
@@ -25,7 +24,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.IOExceptionList;
 import org.apache.commons.io.IOIndexedException;
 import org.apache.commons.io.function.IOConsumer;
@@ -76,23 +74,24 @@ public class FilterCollectionWriter extends Writer {
 
     @Override
     public Writer append(final char c) throws IOException {
-        return forAllWriters(w -> w.append(c));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Writer append(final CharSequence csq) throws IOException {
-        return forAllWriters(w -> w.append(csq));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Writer append(final CharSequence csq, final int start, final int end) throws IOException {
-        return forAllWriters(w -> w.append(csq, start, end));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    @SuppressWarnings("resource") // no allocation
+    // no allocation
+    @SuppressWarnings("resource")
     @Override
     public void close() throws IOException {
-        forAllWriters(Writer::close);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,10 +99,11 @@ public class FilterCollectionWriter extends Writer {
      *
      * @throws IOException If an I/O error occurs
      */
-    @SuppressWarnings("resource") // no allocation
+    // no allocation
+    @SuppressWarnings("resource")
     @Override
     public void flush() throws IOException {
-        forAllWriters(Writer::flush);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private FilterCollectionWriter forAllWriters(final IOConsumer<Writer> action) throws IOExceptionList {
@@ -111,10 +111,11 @@ public class FilterCollectionWriter extends Writer {
         return this;
     }
 
-    @SuppressWarnings("resource") // no allocation
+    // no allocation
+    @SuppressWarnings("resource")
     @Override
     public void write(final char[] cbuf) throws IOException {
-        forAllWriters(w -> w.write(cbuf));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -125,10 +126,11 @@ public class FilterCollectionWriter extends Writer {
      * @param len  Number of characters to be written
      * @throws IOException If an I/O error occurs
      */
-    @SuppressWarnings("resource") // no allocation
+    // no allocation
+    @SuppressWarnings("resource")
     @Override
     public void write(final char[] cbuf, final int off, final int len) throws IOException {
-        forAllWriters(w -> w.write(cbuf, off, len));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -136,16 +138,18 @@ public class FilterCollectionWriter extends Writer {
      *
      * @throws IOException If an I/O error occurs
      */
-    @SuppressWarnings("resource") // no allocation
+    // no allocation
+    @SuppressWarnings("resource")
     @Override
     public void write(final int c) throws IOException {
-        forAllWriters(w -> w.write(c));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    @SuppressWarnings("resource") // no allocation
+    // no allocation
+    @SuppressWarnings("resource")
     @Override
     public void write(final String str) throws IOException {
-        forAllWriters(w -> w.write(str));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -156,14 +160,14 @@ public class FilterCollectionWriter extends Writer {
      * @param len Number of characters to be written
      * @throws IOException If an I/O error occurs
      */
-    @SuppressWarnings("resource") // no allocation
+    // no allocation
+    @SuppressWarnings("resource")
     @Override
     public void write(final String str, final int off, final int len) throws IOException {
-        forAllWriters(w -> w.write(str, off, len));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private Stream<Writer> writers() {
         return writers.stream().filter(Objects::nonNull);
     }
-
 }

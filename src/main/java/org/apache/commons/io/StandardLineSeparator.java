@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io;
 
 import java.nio.charset.Charset;
@@ -31,12 +30,10 @@ public enum StandardLineSeparator {
      * Carriage return. This is the line ending used on macOS 9 and earlier.
      */
     CR("\r"),
-
     /**
      * Carriage return followed by line feed. This is the line ending used on Windows.
      */
     CRLF("\r\n"),
-
     /**
      * Line feed. This is the line ending used on Linux and macOS X and later.
      */
@@ -60,7 +57,7 @@ public enum StandardLineSeparator {
      * @return the bytes for this instance encoded using the given Charset.
      */
     public byte[] getBytes(final Charset charset) {
-        return lineSeparator.getBytes(charset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -69,6 +66,6 @@ public enum StandardLineSeparator {
      * @return the String value of this instance.
      */
     public String getString() {
-        return lineSeparator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -17,7 +17,6 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -73,8 +72,7 @@ public class TeeInputStream extends ProxyInputStream {
      * @param closeBranch flag for closing also the output stream when this
      *                    stream is closed
      */
-    public TeeInputStream(
-            final InputStream input, final OutputStream branch, final boolean closeBranch) {
+    public TeeInputStream(final InputStream input, final OutputStream branch, final boolean closeBranch) {
         super(input);
         this.branch = branch;
         this.closeBranch = closeBranch;
@@ -89,13 +87,7 @@ public class TeeInputStream extends ProxyInputStream {
      */
     @Override
     public void close() throws IOException {
-        try {
-            super.close();
-        } finally {
-            if (closeBranch) {
-                branch.close();
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -107,11 +99,7 @@ public class TeeInputStream extends ProxyInputStream {
      */
     @Override
     public int read() throws IOException {
-        final int ch = super.read();
-        if (ch != EOF) {
-            branch.write(ch);
-        }
-        return ch;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -124,11 +112,7 @@ public class TeeInputStream extends ProxyInputStream {
      */
     @Override
     public int read(final byte[] bts) throws IOException {
-        final int n = super.read(bts);
-        if (n != EOF) {
-            branch.write(bts, 0, n);
-        }
-        return n;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -143,11 +127,6 @@ public class TeeInputStream extends ProxyInputStream {
      */
     @Override
     public int read(final byte[] bts, final int st, final int end) throws IOException {
-        final int n = super.read(bts, st, end);
-        if (n != EOF) {
-            branch.write(bts, st, n);
-        }
-        return n;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

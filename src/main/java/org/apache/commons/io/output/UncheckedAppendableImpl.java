@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.output;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.Objects;
-
 import org.apache.commons.io.function.Uncheck;
 
 /**
@@ -41,25 +39,21 @@ final class UncheckedAppendableImpl implements UncheckedAppendable {
 
     @Override
     public UncheckedAppendable append(final char c) {
-        Uncheck.apply(appendable::append, c);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public UncheckedAppendable append(final CharSequence csq) {
-        Uncheck.apply(appendable::append, csq);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public UncheckedAppendable append(final CharSequence csq, final int start, final int end) {
-        Uncheck.apply(appendable::append, csq, start, end);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return appendable.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

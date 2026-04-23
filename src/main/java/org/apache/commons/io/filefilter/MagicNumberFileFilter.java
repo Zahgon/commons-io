@@ -28,7 +28,6 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.Objects;
-
 import org.apache.commons.io.RandomAccessFileMode;
 import org.apache.commons.io.RandomAccessFiles;
 
@@ -177,7 +176,6 @@ public class MagicNumberFileFilter extends AbstractFileFilter implements Seriali
         if (offset < 0) {
             throw new IllegalArgumentException("The offset cannot be negative");
         }
-
         this.magicNumbers = magicNumbers.clone();
         this.byteOffset = offset;
     }
@@ -249,15 +247,7 @@ public class MagicNumberFileFilter extends AbstractFileFilter implements Seriali
      */
     @Override
     public boolean accept(final File file) {
-        if (isFile(file) && file.canRead()) {
-            try {
-                return RandomAccessFileMode.READ_ONLY.apply(file.toPath(),
-                        raf -> Arrays.equals(magicNumbers, RandomAccessFiles.read(raf, byteOffset, magicNumbers.length)));
-            } catch (final IOException ignored) {
-                // Do nothing, fall through and do not accept file
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -278,22 +268,7 @@ public class MagicNumberFileFilter extends AbstractFileFilter implements Seriali
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        if (file != null && Files.isRegularFile(file) && Files.isReadable(file)) {
-            try {
-                try (FileChannel fileChannel = FileChannel.open(file)) {
-                    final ByteBuffer byteBuffer = ByteBuffer.allocate(this.magicNumbers.length);
-                    fileChannel.position(byteOffset);
-                    final int read = fileChannel.read(byteBuffer);
-                    if (read != magicNumbers.length) {
-                        return FileVisitResult.TERMINATE;
-                    }
-                    return toFileVisitResult(Arrays.equals(this.magicNumbers, byteBuffer.array()));
-                }
-            } catch (final IOException ignored) {
-                // Do nothing, fall through and do not accept file
-            }
-        }
-        return FileVisitResult.TERMINATE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -304,13 +279,6 @@ public class MagicNumberFileFilter extends AbstractFileFilter implements Seriali
      */
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder(super.toString());
-        builder.append("(");
-        // TODO perhaps use hex if value is not printable
-        builder.append(new String(magicNumbers, Charset.defaultCharset()));
-        builder.append(",");
-        builder.append(this.byteOffset);
-        builder.append(")");
-        return builder.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

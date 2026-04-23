@@ -42,6 +42,6 @@ final class WildcardClassNameMatcher implements ClassNameMatcher {
 
     @Override
     public boolean matches(final String className) {
-        return FilenameUtils.wildcardMatch(className, pattern);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -17,13 +17,11 @@
 package org.apache.commons.io.input.buffer;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.BufferedInputStream;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -34,13 +32,19 @@ import org.apache.commons.io.IOUtils;
  */
 public class CircularBufferInputStream extends FilterInputStream {
 
-    /** Internal buffer. */
+    /**
+     * Internal buffer.
+     */
     protected final CircularByteBuffer buffer;
 
-    /** Internal buffer size. */
+    /**
+     * Internal buffer size.
+     */
     protected final int bufferSize;
 
-    /** Whether we've seen the input stream EOF. */
+    /**
+     * Whether we've seen the input stream EOF.
+     */
     private boolean eof;
 
     /**
@@ -59,7 +63,8 @@ public class CircularBufferInputStream extends FilterInputStream {
      * @param inputStream The input stream, which is being buffered.
      * @param bufferSize The size of the {@link CircularByteBuffer}, which is used internally.
      */
-    @SuppressWarnings("resource") // Caller closes InputStream
+    // Caller closes InputStream
+    @SuppressWarnings("resource")
     public CircularBufferInputStream(final InputStream inputStream, final int bufferSize) {
         super(Objects.requireNonNull(inputStream, "inputStream"));
         if (bufferSize <= 0) {
@@ -72,9 +77,7 @@ public class CircularBufferInputStream extends FilterInputStream {
 
     @Override
     public void close() throws IOException {
-        super.close();
-        eof = true;
-        buffer.clear();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -83,22 +86,7 @@ public class CircularBufferInputStream extends FilterInputStream {
      * @throws IOException in case of an error while reading from the input stream.
      */
     protected void fillBuffer() throws IOException {
-        if (eof) {
-            return;
-        }
-        int space = buffer.getSpace();
-        final byte[] buf = IOUtils.byteArray(space);
-        while (space > 0) {
-            final int res = in.read(buf, 0, space);
-            if (res == EOF) {
-                eof = true;
-                return;
-            }
-            if (res > 0) {
-                buffer.add(buf, 0, res);
-                space -= res;
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -109,36 +97,16 @@ public class CircularBufferInputStream extends FilterInputStream {
      * @throws IOException in case of an error while reading from the input stream.
      */
     protected boolean haveBytes(final int count) throws IOException {
-        if (buffer.getCurrentNumberOfBytes() < count) {
-            fillBuffer();
-        }
-        return buffer.hasBytes();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read() throws IOException {
-        if (!haveBytes(1)) {
-            return EOF;
-        }
-        return buffer.read() & 0xFF; // return unsigned byte
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(final byte[] targetBuffer, final int offset, final int length) throws IOException {
-        Objects.requireNonNull(targetBuffer, "targetBuffer");
-        if (offset < 0) {
-            throw new IllegalArgumentException("Offset must not be negative");
-        }
-        if (length < 0) {
-            throw new IllegalArgumentException("Length must not be negative");
-        }
-        if (!haveBytes(length)) {
-            return EOF;
-        }
-        final int result = Math.min(length, buffer.getCurrentNumberOfBytes());
-        for (int i = 0; i < result; i++) {
-            targetBuffer[offset + i] = buffer.read();
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

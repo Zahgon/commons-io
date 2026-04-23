@@ -17,12 +17,10 @@
 package org.apache.commons.io.input;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.DataInput;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.io.EndianUtils;
 
 /**
@@ -52,7 +50,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public boolean readBoolean() throws IOException, EOFException {
-        return 0 != readByte();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -64,7 +62,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public byte readByte() throws IOException, EOFException {
-        return (byte) in.read();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -76,7 +74,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public char readChar() throws IOException, EOFException {
-        return (char) readShort();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,7 +86,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public double readDouble() throws IOException, EOFException {
-        return EndianUtils.readSwappedDouble(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,7 +98,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public float readFloat() throws IOException, EOFException {
-        return EndianUtils.readSwappedFloat(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -112,7 +110,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public void readFully(final byte[] data) throws IOException, EOFException {
-        readFully(data, 0, data.length);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,18 +124,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public void readFully(final byte[] data, final int offset, final int length) throws IOException, EOFException {
-        int remaining = length;
-
-        while (remaining > 0) {
-            final int location = offset + length - remaining;
-            final int count = read(data, location, remaining);
-
-            if (EOF == count) {
-                throw new EOFException();
-            }
-
-            remaining -= count;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -149,7 +136,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public int readInt() throws IOException, EOFException {
-        return EndianUtils.readSwappedInteger(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -162,7 +149,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public String readLine() throws IOException, EOFException {
-        throw UnsupportedOperationExceptions.method("readLine");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -174,7 +161,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public long readLong() throws IOException, EOFException {
-        return EndianUtils.readSwappedLong(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -186,7 +173,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public short readShort() throws IOException, EOFException {
-        return EndianUtils.readSwappedShort(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -198,7 +185,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public int readUnsignedByte() throws IOException, EOFException {
-        return in.read();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -210,7 +197,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public int readUnsignedShort() throws IOException, EOFException {
-        return EndianUtils.readSwappedUnsignedShort(in);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -223,7 +210,7 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public String readUTF() throws IOException, EOFException {
-        throw UnsupportedOperationExceptions.method("readUTF");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -235,7 +222,6 @@ public class SwappedDataInputStream extends ProxyInputStream implements DataInpu
      */
     @Override
     public int skipBytes(final int count) throws IOException {
-        return (int) in.skip(count);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

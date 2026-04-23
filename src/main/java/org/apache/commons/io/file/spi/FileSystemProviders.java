@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file.spi;
 
 import java.net.URI;
@@ -31,9 +30,11 @@ import java.util.Objects;
  *
  * @since 2.9.0
  */
-public class FileSystemProviders { // NOPMD Class will be final in 3.0.
+public class // NOPMD Class will be final in 3.0.
+FileSystemProviders {
 
     private static final String SCHEME_FILE = "file";
+
     private static final FileSystemProviders INSTALLED = new FileSystemProviders(FileSystemProvider.installedProviders());
 
     /**
@@ -42,9 +43,10 @@ public class FileSystemProviders { // NOPMD Class will be final in 3.0.
      * @param path The Path to query
      * @return the {@link FileSystemProvider} for the given Path.
      */
-    @SuppressWarnings("resource") // FileSystem is not allocated here.
+    // FileSystem is not allocated here.
+    @SuppressWarnings("resource")
     public static FileSystemProvider getFileSystemProvider(final Path path) {
-        return Objects.requireNonNull(path, "path").getFileSystem().provider();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -54,7 +56,7 @@ public class FileSystemProviders { // NOPMD Class will be final in 3.0.
      * @see FileSystemProvider#installedProviders()
      */
     public static FileSystemProviders installed() {
-        return INSTALLED;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final List<FileSystemProvider> providers;
@@ -72,15 +74,10 @@ public class FileSystemProviders { // NOPMD Class will be final in 3.0.
      * @param scheme The scheme to query.
      * @return the {@link FileSystemProvider} for the given URI or null.
      */
-    @SuppressWarnings("resource") // FileSystems.getDefault() returns a constant.
+    // FileSystems.getDefault() returns a constant.
+    @SuppressWarnings("resource")
     public FileSystemProvider getFileSystemProvider(final String scheme) {
-        Objects.requireNonNull(scheme, "scheme");
-        // Check default provider first to avoid loading of installed providers.
-        if (scheme.equalsIgnoreCase(SCHEME_FILE)) {
-            return FileSystems.getDefault().provider();
-        }
-        // Find provider.
-        return providers.stream().filter(provider -> provider.getScheme().equalsIgnoreCase(scheme)).findFirst().orElse(null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,7 +87,7 @@ public class FileSystemProviders { // NOPMD Class will be final in 3.0.
      * @return the {@link FileSystemProvider} for the given URI or null.
      */
     public FileSystemProvider getFileSystemProvider(final URI uri) {
-        return getFileSystemProvider(Objects.requireNonNull(uri, "uri").getScheme());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,7 +97,6 @@ public class FileSystemProviders { // NOPMD Class will be final in 3.0.
      * @return the {@link FileSystemProvider} for the given URI or null.
      */
     public FileSystemProvider getFileSystemProvider(final URL url) {
-        return getFileSystemProvider(Objects.requireNonNull(url, "url").getProtocol());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

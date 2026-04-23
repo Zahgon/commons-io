@@ -37,9 +37,14 @@ public class DelegateFileFilter extends AbstractFileFilter implements Serializab
 
     private static final long serialVersionUID = -8723373124984771318L;
 
-    /** The File filter */
+    /**
+     * The File filter
+     */
     private final transient FileFilter fileFilter;
-    /** The Filename filter */
+
+    /**
+     * The Filename filter
+     */
     private final transient FilenameFilter fileNameFilter;
 
     /**
@@ -72,10 +77,7 @@ public class DelegateFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public boolean accept(final File file) {
-        if (fileFilter != null) {
-            return fileFilter.accept(file);
-        }
-        return super.accept(file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,10 +89,7 @@ public class DelegateFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public boolean accept(final File dir, final String name) {
-        if (fileNameFilter != null) {
-            return fileNameFilter.accept(dir, name);
-        }
-        return super.accept(dir, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,8 +99,6 @@ public class DelegateFileFilter extends AbstractFileFilter implements Serializab
      */
     @Override
     public String toString() {
-        final String delegate = Objects.toString(fileFilter, Objects.toString(fileNameFilter, null));
-        return super.toString() + "(" + delegate + ")";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

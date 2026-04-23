@@ -97,7 +97,7 @@ public class FileFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File file) {
-        return isFile(file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -110,7 +110,6 @@ public class FileFileFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public FileVisitResult accept(final Path file, final BasicFileAttributes attributes) {
-        return toFileVisitResult(file != null && Files.isRegularFile(file));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

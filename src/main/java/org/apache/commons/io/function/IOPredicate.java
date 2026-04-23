@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
@@ -39,7 +38,7 @@ public interface IOPredicate<T> {
      */
     @SuppressWarnings("unchecked")
     static <T> IOPredicate<T> alwaysFalse() {
-        return (IOPredicate<T>) Constants.IO_PREDICATE_FALSE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -50,7 +49,7 @@ public interface IOPredicate<T> {
      */
     @SuppressWarnings("unchecked")
     static <T> IOPredicate<T> alwaysTrue() {
-        return (IOPredicate<T>) Constants.IO_PREDICATE_TRUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -61,7 +60,7 @@ public interface IOPredicate<T> {
      * @return a predicate that tests if two arguments are equal using {@link Objects#equals(Object, Object)}
      */
     static <T> IOPredicate<T> isEqual(final Object target) {
-        return null == target ? Objects::isNull : object -> target.equals(object);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -80,8 +79,7 @@ public interface IOPredicate<T> {
      * @throws NullPointerException if other is null
      */
     default IOPredicate<T> and(final IOPredicate<? super T> other) {
-        Objects.requireNonNull(other);
-        return t -> test(t) && other.test(t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -91,7 +89,7 @@ public interface IOPredicate<T> {
      * @return an UncheckedIOException Predicate.
      */
     default Predicate<T> asPredicate() {
-        return t -> Uncheck.test(this, t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -100,7 +98,7 @@ public interface IOPredicate<T> {
      * @return a predicate that represents the logical negation of this predicate
      */
     default IOPredicate<T> negate() {
-        return t -> !test(t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -119,8 +117,7 @@ public interface IOPredicate<T> {
      * @throws NullPointerException if other is null
      */
     default IOPredicate<T> or(final IOPredicate<? super T> other) {
-        Objects.requireNonNull(other);
-        return t -> test(t) || other.test(t);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -131,5 +128,4 @@ public interface IOPredicate<T> {
      * @throws IOException if an I/O error occurs.
      */
     boolean test(T t) throws IOException;
-
 }

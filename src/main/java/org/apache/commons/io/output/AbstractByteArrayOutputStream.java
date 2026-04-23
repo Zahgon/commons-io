@@ -17,7 +17,6 @@
 package org.apache.commons.io.output;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -27,7 +26,6 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.ClosedInputStream;
@@ -82,22 +80,34 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
 
     static final int DEFAULT_SIZE = 1024;
 
-    /** The list of buffers, which grows and never reduces. */
+    /**
+     * The list of buffers, which grows and never reduces.
+     */
     private final List<byte[]> buffers = new ArrayList<>();
 
-    /** The total count of bytes written. */
+    /**
+     * The total count of bytes written.
+     */
     protected int count;
 
-    /** The current buffer. */
+    /**
+     * The current buffer.
+     */
     private byte[] currentBuffer;
 
-    /** The index of the current buffer. */
+    /**
+     * The index of the current buffer.
+     */
     private int currentBufferIndex = -1;
 
-    /** The total count of bytes in all the filled buffers. */
+    /**
+     * The total count of bytes in all the filled buffers.
+     */
     private int filledBufferSum;
 
-    /** Flag to indicate if the buffers can be reused after reset */
+    /**
+     * Flag to indicate if the buffers can be reused after reset
+     */
     private boolean reuseBuffers = true;
 
     /**
@@ -114,7 +124,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      */
     @SuppressWarnings("unchecked")
     protected T asThis() {
-        return (T) this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -127,7 +137,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      */
     @Override
     public void close() throws IOException {
-        //nop
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -137,26 +147,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @param newCount  the size of the buffer if one is created
      */
     protected void needNewBuffer(final int newCount) {
-        if (currentBufferIndex < buffers.size() - 1) {
-            // Recycling old buffer
-            filledBufferSum += currentBuffer.length;
-            currentBufferIndex++;
-            currentBuffer = buffers.get(currentBufferIndex);
-        } else {
-            // Creating new buffer
-            final int newBufferSize;
-            if (currentBuffer == null) {
-                // prevents 0 size buffers
-                newBufferSize = newCount > 0 ? newCount : DEFAULT_SIZE;
-                filledBufferSum = 0;
-            } else {
-                newBufferSize = Math.max(currentBuffer.length << 1, newCount - filledBufferSum);
-                filledBufferSum += currentBuffer.length;
-            }
-            currentBufferIndex++;
-            currentBuffer = IOUtils.byteArray(newBufferSize);
-            buffers.add(currentBuffer);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -172,19 +163,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @see ByteArrayOutputStream#reset()
      */
     protected void resetImpl() {
-        count = 0;
-        filledBufferSum = 0;
-        currentBufferIndex = 0;
-        if (reuseBuffers) {
-            currentBuffer = buffers.get(currentBufferIndex);
-        } else {
-            //Throw away old buffers
-            currentBuffer = null;
-            final int size = buffers.get(0).length;
-            buffers.clear();
-            needNewBuffer(size);
-            reuseBuffers = true;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -211,22 +190,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @see java.io.ByteArrayOutputStream#toByteArray()
      */
     protected byte[] toByteArrayImpl() {
-        int remaining = count;
-        if (remaining == 0) {
-            return IOUtils.EMPTY_BYTE_ARRAY;
-        }
-        final byte[] newBuf = IOUtils.byteArray(remaining);
-        int pos = 0;
-        for (final byte[] buf : buffers) {
-            final int c = Math.min(buf.length, remaining);
-            System.arraycopy(buf, 0, newBuf, pos, c);
-            pos += c;
-            remaining -= c;
-            if (remaining == 0) {
-                break;
-            }
-        }
-        return newBuf;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -256,23 +220,10 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @see #reset()
      * @since 2.7
      */
-    @SuppressWarnings("resource") // The result InputStream MUST be managed by the call site.
+    // The result InputStream MUST be managed by the call site.
+    @SuppressWarnings("resource")
     protected <T extends InputStream> InputStream toInputStream(final InputStreamConstructor<T> isConstructor) {
-        int remaining = count;
-        if (remaining == 0) {
-            return ClosedInputStream.INSTANCE;
-        }
-        final List<T> list = new ArrayList<>(buffers.size());
-        for (final byte[] buf : buffers) {
-            final int c = Math.min(buf.length, remaining);
-            list.add(isConstructor.construct(buf, 0, c));
-            remaining -= c;
-            if (remaining == 0) {
-                break;
-            }
-        }
-        reuseBuffers = false;
-        return new SequenceInputStream(Collections.enumeration(list));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -300,7 +251,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @since 2.5
      */
     public String toString(final Charset charset) {
-        return new String(toByteArray(), charset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -313,7 +264,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @see java.io.ByteArrayOutputStream#toString(String)
      */
     public String toString(final String enc) throws UnsupportedEncodingException {
-        return new String(toByteArray(), enc);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -324,8 +275,8 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @since 2.19.0
      */
     @Override
-    public void write(final byte b[]) {
-        write(b, 0, b.length);
+    public void write(final byte[] b) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
@@ -340,8 +291,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @since 2.19.0
      */
     public T write(final CharSequence data, final Charset charset) {
-        write(data.toString().getBytes(Charsets.toCharset(charset)));
-        return asThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -367,19 +317,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @param len The number of bytes to write
      */
     protected void writeImpl(final byte[] b, final int off, final int len) {
-        final int newCount = count + len;
-        int remaining = len;
-        int inBufferPos = count - filledBufferSum;
-        while (remaining > 0) {
-            final int part = Math.min(remaining, currentBuffer.length - inBufferPos);
-            System.arraycopy(b, off + len - remaining, currentBuffer, inBufferPos, part);
-            remaining -= part;
-            if (remaining > 0) {
-                needNewBuffer(newCount);
-                inBufferPos = 0;
-            }
-        }
-        count = newCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -394,20 +332,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @since 2.7
      */
     protected int writeImpl(final InputStream in) throws IOException {
-        int readCount = 0;
-        int inBufferPos = count - filledBufferSum;
-        int n = in.read(currentBuffer, inBufferPos, currentBuffer.length - inBufferPos);
-        while (n != EOF) {
-            readCount += n;
-            inBufferPos += n;
-            count += n;
-            if (inBufferPos == currentBuffer.length) {
-                needNewBuffer(currentBuffer.length);
-                inBufferPos = 0;
-            }
-            n = in.read(currentBuffer, inBufferPos, currentBuffer.length - inBufferPos);
-        }
-        return readCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -415,13 +340,7 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @param b the byte to write
      */
     protected void writeImpl(final int b) {
-        int inBufferPos = count - filledBufferSum;
-        if (inBufferPos == currentBuffer.length) {
-            needNewBuffer(count + 1);
-            inBufferPos = 0;
-        }
-        currentBuffer[inBufferPos] = (byte) b;
-        count++;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -443,15 +362,6 @@ public abstract class AbstractByteArrayOutputStream<T extends AbstractByteArrayO
      * @see java.io.ByteArrayOutputStream#writeTo(OutputStream)
      */
     protected void writeToImpl(final OutputStream out) throws IOException {
-        int remaining = count;
-        for (final byte[] buf : buffers) {
-            final int c = Math.min(buf.length, remaining);
-            out.write(buf, 0, c);
-            remaining -= c;
-            if (remaining == 0) {
-                break;
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

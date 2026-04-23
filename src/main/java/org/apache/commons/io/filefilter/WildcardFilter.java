@@ -25,7 +25,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.file.PathUtils;
 
@@ -87,7 +86,9 @@ public class WildcardFilter extends AbstractFileFilter implements Serializable {
 
     private static final long serialVersionUID = -5037645902506953517L;
 
-    /** The wildcards that will be used to match file names. */
+    /**
+     * The wildcards that will be used to match file names.
+     */
     private final String[] wildcards;
 
     /**
@@ -132,10 +133,7 @@ public class WildcardFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File file) {
-        if (isDirectory(file)) {
-            return false;
-        }
-        return Stream.of(wildcards).anyMatch(wildcard -> FilenameUtils.wildcardMatch(file.getName(), wildcard));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,10 +145,7 @@ public class WildcardFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public boolean accept(final File dir, final String name) {
-        if (dir != null && new File(dir, name).isDirectory()) {
-            return false;
-        }
-        return Stream.of(wildcards).anyMatch(wildcard -> FilenameUtils.wildcardMatch(name, wildcard));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -163,12 +158,6 @@ public class WildcardFilter extends AbstractFileFilter implements Serializable {
      */
     @Override
     public FileVisitResult accept(final Path path, final BasicFileAttributes attributes) {
-        if (Files.isDirectory(path)) {
-            return FileVisitResult.TERMINATE;
-        }
-        return toDefaultFileVisitResult(
-                Stream.of(wildcards).anyMatch(wildcard -> FilenameUtils.wildcardMatch(PathUtils.getFileNameString(path), wildcard)));
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.io.IOException;
@@ -26,7 +25,6 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.Objects;
-
 import org.apache.commons.io.file.Counters.PathCounters;
 
 /**
@@ -42,7 +40,7 @@ public class DeletingPathVisitor extends CountingPathVisitor {
      * @return a new instance configured with a BigInteger {@link PathCounters}.
      */
     public static DeletingPathVisitor withBigIntegerCounters() {
-        return new DeletingPathVisitor(Counters.bigIntegerPathCounters());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -51,11 +49,13 @@ public class DeletingPathVisitor extends CountingPathVisitor {
      * @return a new instance configured with a long {@link PathCounters}.
      */
     public static DeletingPathVisitor withLongCounters() {
-        return new DeletingPathVisitor(Counters.longPathCounters());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final String[] skip;
+
     private final boolean overrideReadOnly;
+
     private final LinkOption[] linkOptions;
 
     /**
@@ -111,63 +111,26 @@ public class DeletingPathVisitor extends CountingPathVisitor {
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!super.equals(obj)) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DeletingPathVisitor other = (DeletingPathVisitor) obj;
-        return overrideReadOnly == other.overrideReadOnly && Arrays.equals(skip, other.skip);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + Arrays.hashCode(skip);
-        result = prime * result + Objects.hash(overrideReadOnly);
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult postVisitDirectory(final Path dir, final IOException exc) throws IOException {
-        if (PathUtils.isEmptyDirectory(dir)) {
-            Files.deleteIfExists(dir);
-        }
-        return super.postVisitDirectory(dir, exc);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult preVisitDirectory(final Path dir, final BasicFileAttributes attrs) throws IOException {
-        super.preVisitDirectory(dir, attrs);
-        return accept(dir) ? FileVisitResult.CONTINUE : FileVisitResult.SKIP_SUBTREE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
-        if (accept(file)) {
-            // delete files and valid links, respecting linkOptions
-            if (Files.exists(file, linkOptions)) {
-                if (overrideReadOnly) {
-                    PathUtils.setReadOnly(file, false, linkOptions);
-                }
-                Files.deleteIfExists(file);
-            }
-            // invalid links will survive previous delete, different approach needed:
-            if (Files.isSymbolicLink(file)) {
-                try {
-                    // deleteIfExists does not work for this case
-                    Files.delete(file);
-                } catch (final NoSuchFileException ignored) {
-                    // ignore
-                }
-            }
-        }
-        updateFileCounters(file, attrs);
-        return FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

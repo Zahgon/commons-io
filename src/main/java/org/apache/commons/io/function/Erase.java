@@ -37,11 +37,7 @@ public final class Erase {
      * @see IOBiConsumer
      */
     static <T, U> void accept(final IOBiConsumer<T, U> consumer, final T t, final U u) {
-        try {
-            consumer.accept(t, u);
-        } catch (final IOException ex) {
-            rethrow(ex); // throws IOException
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -54,11 +50,7 @@ public final class Erase {
      * @see IOConsumer
      */
     static <T> void accept(final IOConsumer<T> consumer, final T t) {
-        try {
-            consumer.accept(t);
-        } catch (final IOException ex) {
-            rethrow(ex); // throws IOException
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -75,11 +67,7 @@ public final class Erase {
      * @see IOBiFunction
      */
     static <T, U, R> R apply(final IOBiFunction<? super T, ? super U, ? extends R> mapper, final T t, final U u) {
-        try {
-            return mapper.apply(t, u);
-        } catch (final IOException e) {
-            throw rethrow(e); // throws IOException
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -94,11 +82,7 @@ public final class Erase {
      * @see IOFunction
      */
     static <T, R> R apply(final IOFunction<? super T, ? extends R> mapper, final T t) {
-        try {
-            return mapper.apply(t);
-        } catch (final IOException e) {
-            throw rethrow(e); // throws IOException
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -113,11 +97,7 @@ public final class Erase {
      * @see IOComparator
      */
     static <T> int compare(final IOComparator<? super T> comparator, final T t, final T u) {
-        try {
-            return comparator.compare(t, u);
-        } catch (final IOException e) {
-            throw rethrow(e); // throws IOException
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,11 +110,7 @@ public final class Erase {
      * @see IOSupplier
      */
     static <T> T get(final IOSupplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (final IOException e) {
-            throw rethrow(e); // throws IOException
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,7 +123,7 @@ public final class Erase {
      */
     @SuppressWarnings("unchecked")
     public static <T extends Throwable> RuntimeException rethrow(final Throwable throwable) throws T {
-        throw (T) throwable;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -158,11 +134,7 @@ public final class Erase {
      * @see IORunnable
      */
     static void run(final IORunnable runnable) {
-        try {
-            runnable.run();
-        } catch (final IOException e) {
-            throw rethrow(e); // throws IOException
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -176,16 +148,13 @@ public final class Erase {
      * @see IOPredicate
      */
     static <T> boolean test(final IOPredicate<? super T> predicate, final T t) {
-        try {
-            return predicate.test(t);
-        } catch (final IOException e) {
-            throw rethrow(e); // throws IOException
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** No instances. */
+    /**
+     * No instances.
+     */
     private Erase() {
         // No instances.
     }
-
 }

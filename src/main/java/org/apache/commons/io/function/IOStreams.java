@@ -14,14 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.function;
 
 import java.io.IOException;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-
 import org.apache.commons.io.IOExceptionList;
 import org.apache.commons.io.IOIndexedException;
 
@@ -33,19 +31,19 @@ final class IOStreams {
     static final Object NONE = new Object();
 
     static <T> void forAll(final Stream<T> stream, final IOConsumer<T> action) throws IOExceptionList {
-        forAll(stream, action, (i, e) -> e);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    @SuppressWarnings("resource") // adapt()
-    static <T> void forAll(final Stream<T> stream, final IOConsumer<T> action, final BiFunction<Integer, IOException, IOException> exSupplier)
-        throws IOExceptionList {
-        IOStream.adapt(stream).forAll(action, IOIndexedException::new);
+    // adapt()
+    @SuppressWarnings("resource")
+    static <T> void forAll(final Stream<T> stream, final IOConsumer<T> action, final BiFunction<Integer, IOException, IOException> exSupplier) throws IOExceptionList {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    @SuppressWarnings("unused") // IOStreams.rethrow() throws
+    // IOStreams.rethrow() throws
+    @SuppressWarnings("unused")
     static <T> void forEach(final Stream<T> stream, final IOConsumer<T> action) throws IOException {
-        final IOConsumer<T> actualAction = toIOConsumer(action);
-        of(stream).forEach(e -> Erase.accept(actualAction, e));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -58,11 +56,11 @@ final class IOStreams {
      * @return the new stream on {@code values} or {@link Stream#empty()}.
      */
     static <T> Stream<T> of(final Iterable<T> values) {
-        return values == null ? Stream.empty() : StreamSupport.stream(values.spliterator(), false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static <T> Stream<T> of(final Stream<T> stream) {
-        return stream == null ? Stream.empty() : stream;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -74,13 +72,14 @@ final class IOStreams {
      * @param values the elements of the new stream, may be {@code null}.
      * @return the new stream on {@code values} or {@link Stream#empty()}.
      */
-    @SafeVarargs // Creating a stream from an array is safe
+    // Creating a stream from an array is safe
+    @SafeVarargs
     static <T> Stream<T> of(final T... values) {
-        return values == null ? Stream.empty() : Stream.of(values);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static <T> IOConsumer<T> toIOConsumer(final IOConsumer<T> action) {
-        return action != null ? action : IOConsumer.noop();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private IOStreams() {

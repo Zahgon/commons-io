@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.commons.io.file;
 
 import java.io.IOException;
@@ -25,7 +24,6 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Objects;
 import java.util.function.UnaryOperator;
-
 import org.apache.commons.io.file.Counters.PathCounters;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.SymbolicLinkFileFilter;
@@ -49,8 +47,11 @@ public class CountingPathVisitor extends SimplePathVisitor {
     public abstract static class AbstractBuilder<T, B extends AbstractBuilder<T, B>> extends SimplePathVisitor.AbstractBuilder<T, B> {
 
         private PathCounters pathCounters = defaultPathCounters();
+
         private PathFilter fileFilter = defaultFileFilter();
+
         private PathFilter directoryFilter = defaultDirectoryFilter();
+
         private UnaryOperator<Path> directoryPostTransformer = defaultDirectoryTransformer();
 
         /**
@@ -61,19 +62,19 @@ public class CountingPathVisitor extends SimplePathVisitor {
         }
 
         PathFilter getDirectoryFilter() {
-            return directoryFilter;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         UnaryOperator<Path> getDirectoryPostTransformer() {
-            return directoryPostTransformer;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         PathFilter getFileFilter() {
-            return fileFilter;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         PathCounters getPathCounters() {
-            return pathCounters;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -83,8 +84,7 @@ public class CountingPathVisitor extends SimplePathVisitor {
          * @return this instance.
          */
         public B setDirectoryFilter(final PathFilter directoryFilter) {
-            this.directoryFilter = directoryFilter != null ? directoryFilter : defaultDirectoryFilter();
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -94,8 +94,7 @@ public class CountingPathVisitor extends SimplePathVisitor {
          * @return this instance.
          */
         public B setDirectoryPostTransformer(final UnaryOperator<Path> directoryTransformer) {
-            this.directoryPostTransformer = directoryTransformer != null ? directoryTransformer : defaultDirectoryTransformer();
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -105,8 +104,7 @@ public class CountingPathVisitor extends SimplePathVisitor {
          * @return this instance.
          */
         public B setFileFilter(final PathFilter fileFilter) {
-            this.fileFilter = fileFilter != null ? fileFilter : defaultFileFilter();
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -116,8 +114,7 @@ public class CountingPathVisitor extends SimplePathVisitor {
          * @return this instance.
          */
         public B setPathCounters(final PathCounters pathCounters) {
-            this.pathCounters = pathCounters != null ? pathCounters : defaultPathCounters();
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -137,26 +134,26 @@ public class CountingPathVisitor extends SimplePathVisitor {
 
         @Override
         public CountingPathVisitor get() {
-            return new CountingPathVisitor(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     static final String[] EMPTY_STRING_ARRAY = {};
 
     static IOFileFilter defaultDirectoryFilter() {
-        return TrueFileFilter.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static UnaryOperator<Path> defaultDirectoryTransformer() {
-        return UnaryOperator.identity();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static IOFileFilter defaultFileFilter() {
-        return new SymbolicLinkFileFilter(FileVisitResult.TERMINATE, FileVisitResult.CONTINUE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static PathCounters defaultPathCounters() {
-        return Counters.longPathCounters();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -165,7 +162,7 @@ public class CountingPathVisitor extends SimplePathVisitor {
      * @return a new instance configured with a {@link BigInteger} {@link PathCounters}.
      */
     public static CountingPathVisitor withBigIntegerCounters() {
-        return new Builder().setPathCounters(Counters.bigIntegerPathCounters()).get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -174,12 +171,15 @@ public class CountingPathVisitor extends SimplePathVisitor {
      * @return a new instance configured with a {@code long} {@link PathCounters}.
      */
     public static CountingPathVisitor withLongCounters() {
-        return new Builder().setPathCounters(Counters.longPathCounters()).get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final PathCounters pathCounters;
+
     private final PathFilter fileFilter;
+
     private final PathFilter directoryFilter;
+
     private final UnaryOperator<Path> directoryPostTransformer;
 
     CountingPathVisitor(final AbstractBuilder<?, ?> builder) {
@@ -227,8 +227,7 @@ public class CountingPathVisitor extends SimplePathVisitor {
      * @deprecated Use {@link Builder}.
      */
     @Deprecated
-    public CountingPathVisitor(final PathCounters pathCounters, final PathFilter fileFilter, final PathFilter directoryFilter,
-            final IOBiFunction<Path, IOException, FileVisitResult> visitFileFailed) {
+    public CountingPathVisitor(final PathCounters pathCounters, final PathFilter fileFilter, final PathFilter directoryFilter, final IOBiFunction<Path, IOException, FileVisitResult> visitFileFailed) {
         super(visitFileFailed);
         this.pathCounters = Objects.requireNonNull(pathCounters, "pathCounters");
         this.fileFilter = Objects.requireNonNull(fileFilter, "fileFilter");
@@ -245,20 +244,12 @@ public class CountingPathVisitor extends SimplePathVisitor {
      * @since 2.20.0
      */
     protected boolean accept(final Path file, final BasicFileAttributes attributes) {
-        // Note: A file can be a symbolic link to a directory.
-        return Files.exists(file) && fileFilter.accept(file, attributes) == FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof CountingPathVisitor)) {
-            return false;
-        }
-        final CountingPathVisitor other = (CountingPathVisitor) obj;
-        return Objects.equals(pathCounters, other.pathCounters);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -267,29 +258,27 @@ public class CountingPathVisitor extends SimplePathVisitor {
      * @return the visitation counts.
      */
     public PathCounters getPathCounters() {
-        return pathCounters;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pathCounters);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult postVisitDirectory(final Path dir, final IOException exc) throws IOException {
-        updateDirCounter(directoryPostTransformer.apply(dir), exc);
-        return FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult preVisitDirectory(final Path dir, final BasicFileAttributes attributes) throws IOException {
-        final FileVisitResult accept = directoryFilter.accept(dir, attributes);
-        return accept != FileVisitResult.CONTINUE ? FileVisitResult.SKIP_SUBTREE : FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return pathCounters.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -300,7 +289,7 @@ public class CountingPathVisitor extends SimplePathVisitor {
      * @since 2.9.0
      */
     protected void updateDirCounter(final Path dir, final IOException exc) {
-        pathCounters.getDirectoryCounter().increment();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -310,16 +299,11 @@ public class CountingPathVisitor extends SimplePathVisitor {
      * @param attributes the visited file attributes.
      */
     protected void updateFileCounters(final Path file, final BasicFileAttributes attributes) {
-        pathCounters.getFileCounter().increment();
-        pathCounters.getByteCounter().add(attributes.size());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public FileVisitResult visitFile(final Path file, final BasicFileAttributes attributes) throws IOException {
-        if (accept(file, attributes)) {
-            updateFileCounters(file, attributes);
-        }
-        return FileVisitResult.CONTINUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

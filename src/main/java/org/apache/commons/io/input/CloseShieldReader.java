@@ -38,7 +38,7 @@ public class CloseShieldReader extends ProxyReader {
      * @since 2.9.0
      */
     public static CloseShieldReader wrap(final Reader reader) {
-        return new CloseShieldReader(reader);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -60,7 +60,6 @@ public class CloseShieldReader extends ProxyReader {
      */
     @Override
     public void close() {
-        in = ClosedReader.INSTANCE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }
